@@ -24,3 +24,7 @@ gem 'jbuilder', '~> 1.0.1'
 gem 'sqlite3'
 
 gem 'devise', '3.0.0.rc'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+end
