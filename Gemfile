@@ -24,6 +24,10 @@ gem 'jbuilder', '~> 1.0.1'
 
 gem 'devise', '3.0.0.rc'
 
+# html/xml parsers
+gem 'nokogiri'
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
+  gem 'debugger'
 end
