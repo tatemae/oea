@@ -1,0 +1,29 @@
+{
+  "id": 2,
+  "question_text": "<p><img title=\"\\frac{4}{5}\\:?\\:\\frac{6}{7}\" class=\"equation_image\" src=\"http://latex.codecogs.com/gif.latex?%5Cfrac%7B4%7D%7B5%7D%5C%3A%3F%5C%3A%5Cfrac%7B6%7D%7B7%7D\" alt=\"\\frac{4}{5}\\:?\\:\\frac{6}{7}\" /></p>",
+  "question_type": "mulitple_choice",
+  "answers": [
+    {
+      "id": 3518,
+      "text": "> (greater than)",
+      "weight": 0,
+      "comments": ""
+    },
+    {
+      "id": 5187,
+      "text": "< (less than)",
+      "weight": 100,
+      "comments": ""
+    },
+    {
+      "id": 1515,
+      "text": "= (equal)",
+      "weight": 0,
+      "comments": ""
+    }
+  ],
+  "points_possible": 10,
+  "correct_comments": "",
+  "neutral_comments": "",
+  "incorrect_comments": ""
+}
