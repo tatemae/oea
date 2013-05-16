@@ -1,5 +1,9 @@
 class DefaultController < ApplicationController
   def index
-  	@item = JSON(File.open("#{Rails.root}/app/assets/item1.json").read)
+    items = Item.all
+    @items = {}
+    items.each do |item|
+      @items[item.id] = Nokogiri::XML.parse(item.xml)
+    end
   end
 end
