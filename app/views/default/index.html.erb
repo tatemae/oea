@@ -1,13 +1,17 @@
-<% @items.each do |id, item| -%>  
-  <% item.css('presentation/material/mattext').each do |question_text| -%>
-    <%= item_content(question_text) %>
-  <% end -%>
-  <% item.css('response_lid/render_choice/response_label').each do |answer_text, asdf| -%>
-    <%= item_content(answer_text.css('mattext')[0]) %>
-    <% answer_text.each do |an_text| -%>
-    <input type="hidden" value="<%= an_text[1] %>"></input>
-    <% end -%>
-    <br/>
-  <% end -%>
-  <br/><br/>
+<% @items.each do |id, item| -%>
+  <div>
+    <div class="question_text">
+      <% item.css('presentation/material/mattext').each do |question_text| -%>
+        <%= item_content(question_text) %>
+      <% end -%>
+    </div>
+    <div class="answers">
+      <% item.css('response_lid/render_choice/response_label').each do |answer_text| -%>
+        <div class="answer_text">
+          <% answer_id = answer_text.first[1] -%>
+          <input type="radio" name="<%= id %>" value="<%= answer_id %>"><%= sanitize(item_content(answer_text.css('mattext')[0])) %>
+        </div>
+      <% end -%>
+    </div>
+  </div><br/>
 <% end -%>
