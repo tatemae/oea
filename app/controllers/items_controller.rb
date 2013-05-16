@@ -5,6 +5,5 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @item_xml = Nokogiri::XML.parse(@item.xml)
   end
 end
