@@ -1,35 +1,20 @@
-<% item_xml = Nokogiri::XML.parse(item.xml) -%>
 <div class="question">
   <div class="header">
-      <p>Test Yourself</p>
+    <p>Test Yourself</p>
   </div>
   <div class="full_question">
     <div class="inner_question">
       <div class="question_text">
-        <% item_xml.css('presentation/material/mattext').each do |question_text| -%>
-          <%= item_content(question_text) %>
-        <% end -%>
+        <%= item.question_text %>
       </div>
       <div class="answers">
-        <% item_xml.css('response_lid/render_choice/response_label').each do |answer_text| -%>
-          <div class="answer_text">
-            <% answer_id = answer_text.first[1] -%>
-            <label>
-              <div class="radio_control">
-                <input type="radio" name="<%= item.id %>" value="<%= answer_id %>">
-              </div>
-              <div class="radio_label">
-                <%= sanitize(item_content(answer_text.css('mattext')[0])) %>
-              </div>
-             </label> 
-          </div>
-        <% end -%>
+        <%= render partial: 'answer', collection: item.answers, locals: {item: item} %>
       </div>
-    </div> 
+    </div>
   </div>
 </div>
 <% if display_embed_code -%>
-  <div class="embed_code">
-    <%= CGI.unescapeHTML("<iframe src='#{request.protocol}#{request.host_with_port}#{item_path(item.id)}' frameborder='0' width='300' height='300' ></iframe>") %>
-  </div>
+<div class="embed_code">
+  <%= CGI.unescapeHTML("<iframe src='#{request.protocol}#{request.host_with_port}#{item_path(item.id)}' frameborder='0' width='300' height='300' ></iframe>") %>
+</div>
 <% end -%>
