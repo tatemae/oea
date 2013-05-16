@@ -13,5 +13,9 @@
         </div>
       <% end -%>
     </div>
-  </div><br/>
+  </div>
+  <div class="embed_code">
+    <%= CGI.unescapeHTML("<iframe width=\"300\" height=\"300\" src=\"#{request.protocol}#{request.host_with_port}#{item_path(id)}\"></iframe>") %>
+  </div>
+  <br/>
 <% end -%>

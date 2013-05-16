@@ -1,0 +1,15 @@
+<div>
+  <div class="question_text">
+    <% @item_xml.css('presentation/material/mattext').each do |question_text| -%>
+      <%= item_content(question_text) %>
+    <% end -%>
+  </div>
+  <div class="answers">
+    <% @item_xml.css('response_lid/render_choice/response_label').each do |answer_text| -%>
+      <div class="answer_text">
+        <% answer_id = answer_text.first[1] -%>
+        <input type="radio" name="<%= @item.id %>" value="<%= answer_id %>"><%= sanitize(item_content(answer_text.css('mattext')[0])) %>
+      </div>
+    <% end -%>
+  </div>
+</div>
