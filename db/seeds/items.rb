@@ -1,6 +1,6 @@
 class Items
   def self.add_all
-    xml_file = File.open("app/assets/items_xml/items1.xml", "rb")
+    xml_file = File.open("db/seeds/items.xml", "rb")
     contents = xml_file.read
     xml = Nokogiri::XML.parse(contents)
     xml.css('item').each do |item_xml|
