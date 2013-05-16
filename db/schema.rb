@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130516184522) do
+ActiveRecord::Schema.define(version: 20130516190240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,12 +33,12 @@ ActiveRecord::Schema.define(version: 20130516184522) do
   end
 
   create_table "items", force: true do |t|
-    t.string   "external_id"
-    t.string   "xml",         limit: 1048576
+    t.string   "identifier"
+    t.string   "xml",        limit: 1048576
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "items", ["external_id"], name: "index_items_on_external_id", using: :btree
+  add_index "items", ["identifier"], name: "index_items_on_identifier", using: :btree
 
 end

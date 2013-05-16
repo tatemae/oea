@@ -4,16 +4,16 @@ class Items
     contents = xml_file.read
     xml = Nokogiri::XML.parse(contents)
     xml.css('item').each do |item_xml|
-      external_id = item_xml.xpath('@ident').to_s
-      if item = Item.find_by_external_id(external_id)
+      identifier = item_xml.xpath('@ident').to_s
+      if item = Item.find_by_identifier(identifier)
         item.update_attributes(:xml => item_xml.to_xml)
-        puts "Updated item #{external_id}"
+        puts "Updated item #{identifier}"
       else
         item = Item.new
-        item.external_id = item_xml.xpath('@ident').to_s
+        item.identifier = item_xml.xpath('@ident').to_s
         item.xml = item_xml.to_xml
         item.save!
-        puts "Created item #{external_id}"
+        puts "Created item #{identifier}"
       end
     end
   end
