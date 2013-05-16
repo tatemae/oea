@@ -1,7 +1,5 @@
 <div class="item_list">
-	<% @items.each do |item| %>
 		<div class="item_container">
-			<%= render :partial => 'items/item', :locals => {:item => item, :display_embed_code => true} %>
+			<%= render :partial => 'item', collection: @items, locals: {display_embed_code: true} %>
 		</div>
-	<% end %>
 </div>
