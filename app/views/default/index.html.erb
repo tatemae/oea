@@ -1,5 +1,13 @@
-<% @items.each do |id, item| -%>
-<!-- I smell..bad...fix me...-->
-  <%= sanitize(CGI.unescape(item.css('presentation/material/mattext').to_html).html_safe) %>
-  <br/>
+<% @items.each do |id, item| -%>  
+  <% item.css('presentation/material/mattext').each do |question_text| -%>
+    <%= item_content(question_text) %>
+  <% end -%>
+  <% item.css('response_lid/render_choice/response_label').each do |answer_text, asdf| -%>
+    <%= item_content(answer_text.css('mattext')[0]) %>
+    <% answer_text.each do |an_text| -%>
+    <input type="hidden" value="<%= an_text[1] %>"></input>
+    <% end -%>
+    <br/>
+  <% end -%>
+  <br/><br/>
 <% end -%>
