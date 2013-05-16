@@ -1,2 +1,1 @@
-<h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+<%= render :partial => 'items/item', :collection => @items, :locals => {:display_embed_code => true} %>
