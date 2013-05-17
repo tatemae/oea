@@ -7,6 +7,8 @@ Oea::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'items#index'
 
+  post '/items/check_answer', to: 'items#check_answer'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

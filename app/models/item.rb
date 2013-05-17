@@ -13,6 +13,9 @@ class Item < ActiveRecord::Base
     end
   end
 
+  def is_correct? answer_id
+  end
+
   private
 
   def parsed_xml
