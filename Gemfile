@@ -1,3 +1,7 @@
+# clean up:
+# rm -rf ~/.bundle/ ~/.gem/; rm -rf $GEM_HOME/bundler/ $GEM_HOME/cache/bundler/; rm -rf .bundle/; rm -rf vendor/cache/; rm -rf Gemfile.lock
+# rvm gemset empty oea
+
 source 'https://rubygems.org'
 ruby '2.0.0'
 
@@ -6,13 +10,6 @@ gem 'rails', '4.0.0.rc1'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
-
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0.rc1'
-gem 'flatui-rails'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -27,6 +24,18 @@ gem 'devise', '3.0.0.rc'
 
 # html/xml parsers
 gem 'nokogiri'
+
+# Gems used only for assets and not required
+# in production environments by default.
+#group :assets do
+  # Use SCSS for stylesheets
+  gem 'sass-rails', '~> 4.0.0.rc1'
+  gem 'coffee-rails', '~> 4.0.0'
+  # Use Uglifier as compressor for JavaScript assets
+  gem 'uglifier', '>= 1.3.0'
+  gem 'bootstrap-sass-rails', '>= 2.3.1.2'
+  gem 'font-awesome-sass-rails'
+#end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'

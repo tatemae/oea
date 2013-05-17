@@ -28,8 +28,9 @@ GEM
     arel (4.0.0)
     atomic (1.1.9)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.2.2.0)
-      sass (~> 3.2)
+    bootstrap-sass-rails (2.3.1.2)
+      railties (>= 3.1.0)
+      sass-rails (>= 3.1.0)
     builder (3.1.4)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -44,7 +45,7 @@ GEM
       debugger-linecache (~> 1.2.0)
       debugger-ruby_core_source (~> 1.2.1)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.1)
+    debugger-ruby_core_source (1.2.2)
     devise (3.0.0.rc)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -54,10 +55,9 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    flatui-rails (0.0.4)
-      bootstrap-sass (= 2.2.2)
-      railties (>= 3.1)
-      sass-rails (>= 3.2.0)
+    font-awesome-sass-rails (3.0.2.2)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     hike (1.2.2)
     i18n (0.6.4)
     jbuilder (1.0.2)
@@ -138,9 +138,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass-rails (>= 2.3.1.2)
+  coffee-rails (~> 4.0.0)
   debugger
   devise (= 3.0.0.rc)
-  flatui-rails
+  font-awesome-sass-rails
   jbuilder (~> 1.0.1)
   jquery-rails
   nokogiri
