@@ -1,17 +1,21 @@
 <div class="question">
-  <div class="header">
-    <p>Test Yourself</p>
-  </div>
-  <div class="full_question">
-    <div class="inner_question">
-      <div class="question_text">
-        <%= item.question_text %>
-      </div>
-      <div class="answers">
-        <%= render partial: 'answer', collection: item.answers, locals: {item: item} %>
+  <%= form_for item, :url => items_check_answer_path, :html => {:method => :post} do |f| %>
+    <div class="header">
+      <p><%= item.question_title %></p>
+    </div>
+    <div class="full_question">
+      <div class="inner_question">
+        <div class="question_text">
+          <%= item.question_text %>
+        </div>
+        <div class="answers">
+          <%= render partial: 'answer', collection: item.answers, locals: {item: item} %>
+        </div>
       </div>
     </div>
-  </div>
+    <input type="hidden" id="item_id" name="item[id]" value="<%= item.id %>" />
+    <%= f.submit %>
+  <% end -%>
 </div>
 <% if display_embed_code -%>
 <div class="embed_code">

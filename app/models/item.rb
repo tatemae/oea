@@ -7,6 +7,10 @@ class Item < ActiveRecord::Base
     text
   end
 
+  def question_title
+    parsed_xml.css('item').xpath('@title').to_s
+  end
+
   def answers
     parsed_xml.css('response_lid/render_choice/response_label').map do |answer|
       Answer.new( answer.first[1], item_content(answer.css('mattext')[0]) )
@@ -20,7 +24,8 @@ class Item < ActiveRecord::Base
   private
 
   def parsed_xml
-    Nokogiri::XML.parse(self.xml)
+    @xml ||= Nokogiri::XML.parse(self.xml)
+    @xml
   end
 
   def item_content(content)
