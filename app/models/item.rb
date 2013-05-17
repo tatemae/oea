@@ -14,6 +14,7 @@ class Item < ActiveRecord::Base
   end
 
   def is_correct? answer_id
+    parsed_xml.css('varequal')[0].content.to_i == answer_id.to_i
   end
 
   private

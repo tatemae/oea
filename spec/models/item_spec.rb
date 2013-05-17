@@ -21,4 +21,8 @@ describe Item do
   it 'should create an answer with the answer text' do
     @item.answers.first.text.should match /<mattext .*Greater than \(>\)<\/mattext>/
   end
+
+  it 'should respond true if the response is correct' do
+    @item.is_correct?(1602).should be_true
+  end
 end
