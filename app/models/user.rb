@@ -4,4 +4,14 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def self.create_anonymous
+    user = User.new
+    user.email                 = "#{::SecureRandom::hex(8)}@example.com"
+    user.password              = ::SecureRandom::hex(8)
+    user.password_confirmation = user.password
+    user.save!
+    user
+  end
+
 end
