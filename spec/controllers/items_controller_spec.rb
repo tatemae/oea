@@ -22,12 +22,25 @@ describe ItemsController do
 
     it "handles correct answers" do
       correct_answer_id = 1602
-      post :check_answer, { 'name' => @item.id, 'value' => correct_answer_id }
+      post :check_answer, { 'item' => {:id => @item.id}, "#{@item.id}" => correct_answer_id }
+      response.should be_success
+      flash.include?([:persistent_alert, "Correct"]).should be_true
     end
 
-    # it "handles incorrect answers" do
-    #   incorrect_answer_id = 8292
-    #   post :check_answer, nil, { 'name' => @item.id, 'value' => incorrect_answer_id }
-    # end
+    it "creates a user based on session" do
+      correct_answer_id = 1602
+      user = User.create_anonymous
+      user.name = "asdfasdf"
+      user.save!
+      post :check_answer, { 'item' => {:id => @item.id}, "#{@item.id}" => correct_answer_id }
+      User.last.should_not == user
+    end
+
+    it "handles incorrect answers" do
+      incorrect_answer_id = 8292
+      post :check_answer, { 'item' => {:id => @item.id}, "#{@item.id}" => incorrect_answer_id }
+      response.should be_success
+      flash.include?([:persistent_alert, "Incorrect"]).should be_true
+    end
   end
 end
