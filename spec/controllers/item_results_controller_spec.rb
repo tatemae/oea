@@ -8,32 +8,4 @@ describe ItemResultsController do
     @item.save!
   end
 
-  describe "create" do
-    describe "POST" do
-      it "should succeed" do
-        args = {
-          :item_id => @item.id,
-          :identifier => @item.identifier,
-          :option => 4868,
-          :format => 'json'
-        }
-        post :create, args
-        response.should be_success
-      end
-      it "should save the result" do
-        args = {
-          :item_id => @item.id,
-          :identifier => @item.identifier,
-          :option => 7562,
-          :format => 'json'
-        }
-        post :create, args
-        item_result = ItemResult.last
-        item_result.ip_address.should == "0.0.0.0"
-        item_result.item_id.should == @item.id
-        item_result.identifier.should == @item.identifier
-      end
-    end
-  end
-
 end
