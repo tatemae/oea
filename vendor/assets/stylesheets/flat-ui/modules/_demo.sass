@@ -10,7 +10,7 @@
   line-height: 100px
 
   .logo
-    background: url('../images/demo/logo-mask.png') center 0 no-repeat
+    background: url(image-path('flat-ui/demo/logo-mask.png')) center 0 no-repeat
     background-size: 256px 186px
     height: 186px
     margin: 0 auto 26px
@@ -155,7 +155,7 @@
     color: $firm
 
 .demo-browser
-  background: scale-color($base, $lightness: -15%) url('../images/demo/browser.png') 0 0 no-repeat
+  background: scale-color($base, $lightness: -15%) url(image-path('flat-ui/demo/browser.png')) 0 0 no-repeat
   background-size: 659px 42px
   border-radius: 0 0 6px 6px
   color: $inverse
@@ -179,7 +179,7 @@
     text-transform: none
 
 .demo-browser-author
-  background: url('../images/demo/browser-author.jpg') center center no-repeat
+  background: url(image-path('flat-ui/demo/browser-author.jpg')) center center no-repeat
   border: 3px solid $inverse
   display: block
   height: 84px
@@ -221,8 +221,8 @@
 // Serving 2x images
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2)
   .logo
-    background-image: url('../images/demo/logo-mask-2x.png')
+    background-image: url(image-path('flat-ui/demo/logo-mask-2x.png'))
 
   .demo-browser
-    background-image: url('../images/demo/browser-2x.png')
+    background-image: url(image-path('flat-ui/demo/browser-2x.png'))
 
