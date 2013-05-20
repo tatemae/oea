@@ -8,17 +8,21 @@
         <div class="question_text">
           <%= item.question_text %>
         </div>
-        <div class="answers">
+        <div data-toggle="answers">
           <%= render partial: 'answer', collection: item.answers, locals: {f: f, item: item, selected_answer_id: @selected_answer_id} %>
         </div>
       </div>
-      <input type="hidden" id="item_id" name="item[id]" value="<%= item.id %>" />
-    <%= f.submit 'Check Answer', :class => 'btn btn-block btn-info' %>
+      <div class="lower_level">
+        <input type="hidden" id="item_id" name="item[id]" value="<%= item.id %>" />
+        <span><%= f.submit 'Check Answer', :class => 'btn btn-info' %></span>
+        <a href="#" class="btn btn-info embed_button">&lt/&gt</a><p class="embed_button">embed</p>
+      </div>
+      <% if display_embed_code -%>
+      <div class="embed_code">
+        <%= CGI.unescapeHTML("<iframe src='#{request.protocol}#{request.host_with_port}#{item_path(item.id)}' frameborder='0' width='300' height='300' ></iframe>") %>
+      </div>
+      <% end -%>
     </div>
   <% end -%>
 </div>
-<% if display_embed_code -%>
-<div class="embed_code">
-  <%= CGI.unescapeHTML("<iframe src='#{request.protocol}#{request.host_with_port}#{item_path(item.id)}' frameborder='0' width='300' height='300' ></iframe>") %>
-</div>
-<% end -%>
+

@@ -10,8 +10,15 @@
 .item_container{
 	margin:20px;
 }
-
-
+.lower_level{
+  padding:20px;
+}
+.embed_button{
+  display:inline;
+  float:right;
+  margin:0;
+  padding:3px 4px;
+}
 
 //Styles for displaying a single item
 body{
@@ -52,6 +59,12 @@ body{
   background:#FFF;
   color:#000;
   text-align:left;
+  .radio{
+    margin:7px;
+  }
+  .radio:hover{
+    color:#000;
+  }
 }
 
 .btn.btn-question:hover, .btn.btn-question:focus {
@@ -61,7 +74,6 @@ body{
 
 .btn.btn-info {
   background-color: $blue !important;
-  width: 150px !important;
 }
 .btn.btn-info:hover, btn-question:focus {
   background-color: #1983ac !important;
