@@ -1,0 +1,106 @@
+// Place all the styles related to the Items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//Styles for the website
+.item_list{
+	width: 500px;
+	margin: 0 auto;
+}
+.item_container{
+	margin:20px;
+}
+
+
+
+//Styles for displaying a single item
+body{
+	margin:0;
+	padding:0;
+}
+.question {
+	width: 100%;
+	margin: 0px auto;
+}
+.header {
+	margin: 0px auto;
+  border: none;
+  -webkit-border-radius: 6px 6px 0px 0px;
+  -moz-border-radius: 6px 6px 0px 0px;
+  border-radius: 6px 6px 0px 0px;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  color: #FFF;
+  font-weight: 900;
+  background: $blue;
+  font: 21px "Lato", sans-serif;
+  p{
+  	margin:0;
+  	padding: 10px 0px 10px 20px;
+  } 
+}
+.full_question{
+	background-color:#edf0f2;
+}
+.inner_question{
+	padding:20px;
+}
+.question_text{
+	padding: 0 0 14px 4px;
+}
+
+.btn-question{
+  text-decoration: none;
+  text-shadow: none;
+	background-color:#fff;
+	border-top: 0;
+	padding: 10px 0px 10px 20px;
+	margin: 5px 0;
+	text-decoration:none;
+	text-shadow:none;
+	-webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+	-webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+	-webkit-backface-visibility: hidden; 
+	.radio_label {
+		font: 16.5px "Lato", sans-serif;
+		padding-left: 12px;
+		vertical-align:middle;
+		display: table-cell;
+	}
+	.radio_control {
+		vertical-align:middle;
+		display: table-cell;
+	}
+	input{
+		vertical-align:baseline;
+	}
+}
+.btn-question:hover, .btn-question:focus {
+  background-color: $blueLight;
+  -webkit-transition: 0.25s;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  -webkit-backface-visibility: hidden; }
+
+.btn-question.btn-check-answer{
+	background-color: #0076a3; }
+.btn-question.btn-check-answer:hover, .btn.btn-info:focus {
+  background-color: #0088bd; }
+.btn-question.btn-check-answer:active, .btn.btn-info.active {
+  background-color: #2383c4; }
+
+.btn.btn-info {
+  background-color: $blue !important;
+  width: 150px !important;
+}
+.btn.btn-info:hover, btn-question:focus {
+  background-color: #1983ac !important;
+}

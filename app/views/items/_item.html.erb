@@ -12,9 +12,9 @@
           <%= render partial: 'answer', collection: item.answers, locals: {f: f, item: item, selected_answer_id: @selected_answer_id} %>
         </div>
       </div>
+      <input type="hidden" id="item_id" name="item[id]" value="<%= item.id %>" />
+      <%= f.submit 'Check Answer', :class => 'btn btn-large btn-block btn-info' %>
     </div>
-    <input type="hidden" id="item_id" name="item[id]" value="<%= item.id %>" />
-    <%= f.submit 'Check Answer', :class => 'btn btn-large btn-block btn-info' %>
   <% end -%>
 </div>
 <% if display_embed_code -%>
