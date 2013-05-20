@@ -48,54 +48,16 @@ body{
 	padding: 0 0 14px 4px;
 }
 
-.btn-question{
-  text-decoration: none;
-  text-shadow: none;
-	background-color:#fff;
-	border-top: 0;
-	padding: 10px 0px 10px 20px;
-	margin: 5px 0;
-	text-decoration:none;
-	text-shadow:none;
-	-webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-	-webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  -webkit-transition: 0.25s;
-  -moz-transition: 0.25s;
-  -o-transition: 0.25s;
-  transition: 0.25s;
-	-webkit-backface-visibility: hidden; 
-	.radio_label {
-		font: 16.5px "Lato", sans-serif;
-		padding-left: 12px;
-		vertical-align:middle;
-		display: table-cell;
-	}
-	.radio_control {
-		vertical-align:middle;
-		display: table-cell;
-	}
-	input{
-		vertical-align:baseline;
-	}
+.btn.btn-question{
+  background:#FFF;
+  color:#000;
+  text-align:left;
 }
-.btn-question:hover, .btn-question:focus {
-  background-color: $blueLight;
-  -webkit-transition: 0.25s;
-  -moz-transition: 0.25s;
-  -o-transition: 0.25s;
-  transition: 0.25s;
-  -webkit-backface-visibility: hidden; }
 
-.btn-question.btn-check-answer{
-	background-color: #0076a3; }
-.btn-question.btn-check-answer:hover, .btn.btn-info:focus {
-  background-color: #0088bd; }
-.btn-question.btn-check-answer:active, .btn.btn-info.active {
-  background-color: #2383c4; }
+.btn.btn-question:hover, .btn.btn-question:focus {
+  background-color: $blueLight;
+  color:#000;
+}
 
 .btn.btn-info {
   background-color: $blue !important;

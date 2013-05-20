@@ -1,12 +1,9 @@
-<div class="btn-question">
-  <label>
-    <div class="radio_control">
-      <%= f.radio_button :id, answer.id, :name => item.id, :checked => (selected_answer_id == answer.id) %>
-      <!-- <input type="radio" name="<%#= item.id %>" value="<%#= answer.id %>"> -->
-    </div>
-    <div class="radio_label">
-      <%= f.label :id, answer.text %>
+<div class="btn btn-block btn-question">
+  <label class="radio">
+  	<span class="icon"></span><span class="icon-to-fade"></span>
+    <%= f.radio_button :id, answer.id, :name => item.id, :checked => (selected_answer_id == answer.id) %>
+    <!-- <input type="radio" name="<%#= item.id %>" value="<%#= answer.id %>"> -->
+      <%= answer.text %>
       <%#= answer.text %>
-    </div>
   </label>
 </div>
