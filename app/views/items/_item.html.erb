@@ -9,7 +9,7 @@
           <%= item.question_text %>
         </div>
         <div class="answers">
-          <%= render partial: 'answer', collection: item.answers, locals: {item: item} %>
+          <%= render partial: 'answer', collection: item.answers, locals: {f: f, item: item, selected_answer_id: @selected_answer_id} %>
         </div>
       </div>
     </div>
