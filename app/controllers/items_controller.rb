@@ -11,11 +11,16 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:item][:id])
     if @item
       @selected_answer_id = params["#{@item.id}"]
-      @item_result = ItemResult.create!(:identifier => params[:identifier], :item_id => @item.id, :datestamp => Time.now, :referer => request.referer, :ip_address => request.ip)
+      if !@user = User.find_by_name(request.session.id)
+        @user = User.create_anonymous
+        @user.name = request.session.id
+        @user.save!
+      end
+      @user.item_results.create!(:identifier => params[:identifier], :item_id => @item.id, :datestamp => Time.now, :referer => request.referer, :ip_address => request.ip)
       if @item.is_correct?(@selected_answer_id)
-        flash[:notice] = 'Correct'
+        flash[:persistent_alert] = 'Correct'
       else
-        flash[:notice] = 'Incorrect'
+        flash[:persistent_alert] = 'Incorrect'
       end
     end
   rescue
