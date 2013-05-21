@@ -37,3 +37,12 @@ $(document).ready(function() {
     }
   });
 });
+
+$(document).ready(function () {
+  $(".question").each(function(index, value){
+    var height = $(value).height();
+    $('.embed_code', value).html( function(index, oldhtml){
+       return oldhtml.replace(/height='[0-9]*'/, "height='" + height + "'");
+    });
+  });
+});
