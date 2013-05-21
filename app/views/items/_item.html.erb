@@ -14,15 +14,16 @@
       </div>
       <div class="lower_level">
         <input type="hidden" id="item_id" name="item[id]" value="<%= item.id %>" />
-        <span><%= f.submit 'Check Answer', :class => 'btn btn-info' %></span>
-        <a href="#" class="btn btn-info embed_button">&lt/&gt</a><p class="embed_button">embed</p>
+        <span><%= f.submit 'Check Answer', :class => 'btn btn-info btn-check-answer' %></span>
+        <a href="#" class="btn btn-info embed_button">&lt/&gt</a><p class="embed_button embed_word">embed</p>
       </div>
-      <% if display_embed_code -%>
-      <div class="embed_code">
-        <%= CGI.unescapeHTML("<iframe src='#{request.protocol}#{request.host_with_port}#{item_path(item.id)}' frameborder='0' width='300' height='300' ></iframe>") %>
-      </div>
-      <% end -%>
+    </div>
+  <% end -%>
+  <% if display_embed_code -%>
+    <div class="embed_code">
+      <textarea name="embed_text"> <%= CGI.unescapeHTML("<iframe src='#{request.protocol}#{request.host_with_port}#{item_path(item.id)}' frameborder='0' width='300' height='300' ></iframe>") %></textarea>
     </div>
   <% end -%>
 </div>
+
 

@@ -16,8 +16,20 @@
 .embed_button{
   display:inline;
   float:right;
-  margin:0;
-  padding:3px 4px;
+  margin-top:6px;
+  padding:5px 3px;
+}
+.embed_word{
+  padding:5px 3px;
+  color:#999;
+}
+.embed_code{
+  background-color:$background-gray;
+  margin-top:-10px;
+  textarea{
+    margin:3.5%;
+    width:90%;
+  }
 }
 
 //Styles for displaying a single item
@@ -28,6 +40,7 @@ body{
 .question {
 	width: 100%;
 	margin: 0px auto;
+  padding-bottom: 20px;
 }
 .header {
 	margin: 0px auto;
@@ -46,7 +59,7 @@ body{
   } 
 }
 .full_question{
-	background-color:#edf0f2;
+	background-color:$background-gray;
 }
 .inner_question{
 	padding:20px;
@@ -61,6 +74,11 @@ body{
   text-align:left;
   .radio{
     margin:7px;
+    .icon, .icon-to-fade{
+      height:100%;
+      top:50%;
+      margin-top:-2.5%;
+    }
   }
   .radio:hover{
     color:#000;
@@ -71,10 +89,12 @@ body{
   background-color: $blueLight;
   color:#000;
 }
-
+.btn.btn-check-answer{
+  padding: 8px 15px !important;
+}
 .btn.btn-info {
   background-color: $blue !important;
 }
 .btn.btn-info:hover, btn-question:focus {
-  background-color: #1983ac !important;
+  background-color: $blueLightest !important;
 }
