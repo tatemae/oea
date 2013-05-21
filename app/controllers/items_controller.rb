@@ -26,7 +26,8 @@ class ItemsController < ApplicationController
         :datestamp => Time.now,
         :referer => request.referer,
         :ip_address => request.ip,
-        :session_status => "final")
+        :session_status => "final",
+        :item_variable => [{"response_variable"=>{"id"=>@item.id,"correct_response"=>@item.correct_response,"base_type"=>@item.base_type,"candidate_response"=>@selected_answer_id}}])
       if @item.is_correct?(@selected_answer_id)
         flash[:persistent_alert] = 'Correct'
       else

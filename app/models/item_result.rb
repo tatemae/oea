@@ -17,4 +17,12 @@ class ItemResult < ActiveRecord::Base
     end
   end
 
+  def item_variable=(hash)
+    write_attribute(:item_variable, hash.to_json)
+  end
+
+  def item_variable
+    JSON.parse(read_attribute(:item_variable)) rescue nil
+  end
+
 end

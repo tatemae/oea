@@ -17,44 +17,62 @@ describe Item do
   # it { should belong_to :item }
   # it { should belong_to :user }
 
-  it "should allow session_status to be set to 'initial'" do
-    @item_result.session_status = 'initial'
-    @item_result.save!.should be_true
+  describe "session_status" do
+    it "should allow session_status to be set to 'initial'" do
+      @item_result.session_status = 'initial'
+      @item_result.save!.should be_true
+    end
+
+    it "should allow session_status to be set to 'pendingSubmission'" do
+      @item_result.session_status = 'pendingSubmission'
+      @item_result.save!.should be_true
+    end
+
+    it "should allow session_status to be set to 'pendingResponseProcessing'" do
+      @item_result.session_status = 'pendingResponseProcessing'
+      @item_result.save!.should be_true
+    end
+
+    it "should allow session_status to be set to 'final'" do
+      @item_result.session_status = 'final'
+      @item_result.save!.should be_true
+    end
+
+    it "should NOT allow session_status to be set to 'initialzzzz'" do
+      @item_result.session_status = 'initialzzzz'
+      expect { @item_result.save! }.to raise_error("Not a valid session status.")
+    end
+
+    it "should NOT allow session_status to be set to 'pendingSubmissionzzzz'" do
+      @item_result.session_status = 'pendingSubmissionzzzz'
+      expect { @item_result.save! }.to raise_error("Not a valid session status.")
+    end
+
+    it "should NOT allow session_status to be set to 'pendingResponseProcessingzzzz'" do
+      @item_result.session_status = 'pendingResponseProcessingzzzz'
+      expect { @item_result.save! }.to raise_error("Not a valid session status.")
+    end
+
+    it "should NOT allow session_status to be set to 'finalzzzz'" do
+      @item_result.session_status = 'finalzzzz'
+      expect { @item_result.save! }.to raise_error("Not a valid session status.")
+    end
   end
 
-  it "should allow session_status to be set to 'pendingSubmission'" do
-    @item_result.session_status = 'pendingSubmission'
-    @item_result.save!.should be_true
-  end
+  describe "item_variable" do
+    before do
+      correct_answer_id = 1602
+      @item_variable_hash = [{"response_variable"=>{"id"=>@item.id,"correct_response"=>correct_answer_id,"base_type"=>"multiple_choice_question","candidate_response"=>5618}},{"response_variable"=>{"id"=>@item.id,"correct_response"=>correct_answer_id,"base_type"=>"explanation_text","candidate_response"=>"I think I can. I think I can."}}]
+      @item_result.item_variable = @item_variable_hash
+    end
+    it "should store a hash as json for item_variable" do
+      @item_result.save!.should be_true
+    end
 
-  it "should allow session_status to be set to 'pendingResponseProcessing'" do
-    @item_result.session_status = 'pendingResponseProcessing'
-    @item_result.save!.should be_true
-  end
-
-  it "should allow session_status to be set to 'final'" do
-    @item_result.session_status = 'final'
-    @item_result.save!.should be_true
-  end
-
-  it "should NOT allow session_status to be set to 'initialzzzz'" do
-    @item_result.session_status = 'initialzzzz'
-    expect { @item_result.save! }.to raise_error("Not a valid session status.")
-  end
-
-  it "should NOT allow session_status to be set to 'pendingSubmissionzzzz'" do
-    @item_result.session_status = 'pendingSubmissionzzzz'
-    expect { @item_result.save! }.to raise_error("Not a valid session status.")
-  end
-
-  it "should NOT allow session_status to be set to 'pendingResponseProcessingzzzz'" do
-    @item_result.session_status = 'pendingResponseProcessingzzzz'
-    expect { @item_result.save! }.to raise_error("Not a valid session status.")
-  end
-
-  it "should NOT allow session_status to be set to 'finalzzzz'" do
-    @item_result.session_status = 'finalzzzz'
-    expect { @item_result.save! }.to raise_error("Not a valid session status.")
+    it "should retrieve a hash from json for item_variable" do
+      debugger
+      @item_result.item_variable.should == @item_variable_hash
+    end
   end
 
 end

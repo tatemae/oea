@@ -24,6 +24,20 @@ class Item < ActiveRecord::Base
     parsed_xml.css('varequal')[0].content.to_i == answer_id.to_i
   end
 
+  def correct_response
+    parsed_xml.css('varequal')[0].content.to_i
+  end
+
+  def base_type
+    base_type = ''
+    parsed_xml.css('itemmetadata/qtimetadata/qtimetadatafield').each do |qtimetadatafield|
+      if qtimetadatafield.css('fieldlabel').text == 'question_type'
+        base_type = qtimetadatafield.css('fieldentry').text
+      end
+    end
+    base_type
+  end
+
   private
 
   def parsed_xml

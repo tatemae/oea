@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130520193001) do
+ActiveRecord::Schema.define(version: 20130521213953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20130520193001) do
     t.string   "sequence_index"
     t.datetime "datestamp"
     t.string   "session_status"
-    t.string   "item_variable"
+    t.string   "item_variable",      limit: 1048576
     t.string   "candidate_comment"
     t.datetime "rendered_datestamp"
     t.string   "referer"
