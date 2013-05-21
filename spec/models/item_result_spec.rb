@@ -70,7 +70,6 @@ describe Item do
     end
 
     it "should retrieve a hash from json for item_variable" do
-      debugger
       @item_result.item_variable.should == @item_variable_hash
     end
   end
