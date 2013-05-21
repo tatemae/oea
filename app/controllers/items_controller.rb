@@ -19,20 +19,21 @@ class ItemsController < ApplicationController
         @user.name = request.session.id
         @user.save!
       end
-      @user.item_results.create!(
+      @item_result = @user.item_results.create!(
         :identifier => @item.identifier,
         :item_id => @item.id,
         :rendered_datestamp => params[:item][:rendered_time],
         :datestamp => Time.now,
         :referer => request.referer,
-        :ip_address => request.ip)
+        :ip_address => request.ip,
+        :session_status => "final")
       if @item.is_correct?(@selected_answer_id)
         flash[:persistent_alert] = 'Correct'
       else
         flash[:persistent_alert] = 'Incorrect'
       end
     end
-  rescue
-    redirect_to items_path, :notice => 'Item not found...'
+  rescue => e
+    redirect_to items_path, :notice => e.to_s
   end
 end

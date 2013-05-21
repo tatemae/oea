@@ -41,3 +41,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'debugger'
 end
+
+# group :test do
+#   gem 'suit', '~> 0.1.5'
+# end

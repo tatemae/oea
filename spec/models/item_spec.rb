@@ -6,6 +6,8 @@ describe Item do
     @item = Item.new( xml: @xml )
   end
 
+  # it { should have_many :item_results }
+
   it 'should extract the question_text' do
     @item.question_text.should match /<mattext .*<\/mattext>/
   end
