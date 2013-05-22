@@ -1,7 +1,6 @@
 class Item < ActiveRecord::Base
   has_many :item_results
 
-
   def question_text
     text = ""
     parsed_xml.css('presentation/material/mattext').each do |question_text|
