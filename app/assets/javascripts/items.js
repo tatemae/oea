@@ -20,6 +20,7 @@ $(document).ready(function() {
     var $button = $(this).closest('.question').find('.btn-check-answer');
     if($button.hasClass('disabled')){
       $button.removeClass('disabled');
+      $button.addClass('btn-info');
       $button.on('click', function(e){
         e.preventDefault();
         $self = $(this).closest('.question');
