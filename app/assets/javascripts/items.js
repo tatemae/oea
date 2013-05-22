@@ -29,6 +29,7 @@ $(document).ready(function() {
           data: $self.find('form').serialize(),
           dataType: 'json',
           success: function(data, status){
+            $self.find('.check_answer_result').empty().append(data.html);
           },
           error: function(jqxhr, status, errorThrown){
           }

@@ -12,6 +12,7 @@
           <%= render partial: 'answer', collection: item.answers, locals: {f: f, item: item, selected_answer_id: @selected_answer_id} %>
         </div>
       </div>
+      <div class="check_answer_result"></div>
       <div class="lower_level">
         <input type="hidden" id="item_id" name="item[id]" value="<%= item.id %>" />
         <input type="hidden" id="rendered_time" name="item[rendered_time]" value="<%= @rendered_time %>" />

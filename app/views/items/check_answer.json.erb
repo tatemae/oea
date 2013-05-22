@@ -1,1 +1,5 @@
-{"correct": <%= @result %>, "html": ""}
+<% if @result == true %>
+	{"correct": <%= @result %>, "html": "<div class='tooltip-inner correct'><span class='result_words'>Correct!</span></div>" }
+<% else %>
+	{"correct": <%= @result %>, "html": "<div class='tooltip-inner incorrect'><span class='result_words'>Incorrect!</span></div>"}
+<% end -%>

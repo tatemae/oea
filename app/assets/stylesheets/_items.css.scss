@@ -11,7 +11,7 @@
 	margin:20px;
 }
 .lower_level{
-  padding:20px;
+  padding:10px;
 }
 .embed_button{
   display:inline;
@@ -25,12 +25,42 @@
 }
 .embed_code{
   background-color:$background-gray;
-  margin-top:-10px;
+  margin-top:-15px;
   textarea{
     margin:3.5%;
     width:90%;
   }
+  textarea:focus{
+    border-color:$light-blue;
+  }
 }
+.check_answer_result{
+  margin:-5px 20px 20px 20px;
+}
+.tooltip-inner{
+  margin:0;
+  padding:12px 0;
+  max-width:99%;
+  width:99%;
+  font-size:22px;
+  text-align:left;
+}
+.correct{
+  background:transparent url("flat-ui/todo/done.png") 10px center no-repeat;
+  background-color:$background-green;
+  color:$dark-green;
+  border:2px solid $dark-green;
+}
+.incorrect{
+  //background:transparent url("flat-ui/todo/done.png") 10px center no-repeat;
+  background-color:$background-red;
+  color:$red;
+  border:2px solid $red;
+}
+.result_words{
+  padding-left:40px; 
+}
+
 
 //Styles for displaying a single item
 body{
@@ -83,7 +113,7 @@ body{
 }
 
 .btn.btn-question:hover, .btn.btn-question:focus {
-  background-color: $blueLight;
+  background-color: $light-blue;
   color:#000;
 }
 .btn.btn-check-answer{
@@ -93,5 +123,5 @@ body{
   background-color: $blue !important;
 }
 .btn.btn-info:hover, btn-question:focus {
-  background-color: $blueLightest !important;
+  background-color: $lighter-blue !important;
 }
