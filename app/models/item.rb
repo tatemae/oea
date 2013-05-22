@@ -37,6 +37,31 @@ class Item < ActiveRecord::Base
     base_type
   end
 
+  def results_summary
+    @results_summary ||= begin
+        users = []
+        referers = []
+        correct = []
+
+        item_results.map do |ir|
+          users << ir.user if !users.include?(ir.user)
+          referers << ir.referer if !ir.referer.nil? && !referers.include?(ir.referer)
+          correct << ir if ir.item_variable && ir.item_variable.map { |iv| iv["response_variable"]["correct_response"].to_i == iv["response_variable"]["candidate_response"].to_i }.any?
+        end
+
+        submitted = item_results.by_status_final.load
+
+        {
+          renders: item_results.count,
+          submitted: submitted,
+          users: users,
+          referers: referers,
+          correct: correct,
+          percent_correct: submitted.count > 0 ? correct.count.to_f / submitted.count.to_f : 0
+        }
+      end
+  end
+
   private
 
   def parsed_xml

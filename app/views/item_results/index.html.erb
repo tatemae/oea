@@ -4,23 +4,23 @@
 <div>
   <span>Item: <%= @item.question_title %></span>
   <div>
-    <span># Renders: <%= @renders %></span>
+    <span># Renders: <%= @item.results_summary[:renders] %></span>
   </div>
   <div>
-    <span># Submitted: <%= @submitted.count %></span>
+    <span># Submitted: <%= @item.results_summary[:submitted].count %></span>
   </div>
   <div>
-    <span>% Correct: <%= @percent_correct * 100 %>%</span>
+    <span>% Correct: <%= @item.results_summary[:percent_correct] * 100 %>%</span>
   </div>
   <div>
-    <span># Of Referers: <%= @referers.count %></span>
+    <span># Of Referers: <%= @item.results_summary[:referers].count %></span>
   </div>
   <div>
-    <span># Of Users: <%= @users.count %></span>
+    <span># Of Users: <%= @item.results_summary[:users].count %></span>
   </div>
   <div>
     <br/>
-    <% @item_results.each do |item_result| -%>
+    <% @item.item_results.each do |item_result| -%>
       <div>ID: <%= item_result.id %></div>
       <div>Rendered at: <%= item_result.rendered_datestamp.strftime("%B %d, %Y @ %l:%M:%S%p") %></div>
       <div>Submitted at: <%= item_result.datestamp.nil? ? 'Was not submitted.' : item_result.datestamp.strftime("%B %d, %Y @ %l:%M%p") %></div>

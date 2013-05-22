@@ -81,26 +81,21 @@ describe ItemResultsController do
       expect(assigns(:item)).to eq(@item)
     end
 
-    it "should get the results for that item" do
-      get 'index', :item_id => @item.id
-      expect(assigns(:item_results)).to eq(@item.item_results)
-    end
-
     it "should get the number of renders for that item" do
       get 'index', :item_id => @item.id
-      expect(assigns(:renders)).to eq(@item.item_results.count)
+      expect(assigns(:item).results_summary[:renders]).to eq(@item.item_results.count)
     end
 
     it "should get the submitted results for that item" do
       get 'index', :item_id => @item.id
-      expect(assigns(:submitted)).to eq(@item.item_results.by_status_final)
+      expect(assigns(:item).results_summary[:submitted]).to eq(@item.item_results.by_status_final)
     end
 
     it "should get the users for that item result" do
       get 'index', :item_id => @item.id
       @users = []
       @item.item_results.map { |ir| @users << ir.user if !@users.include?(ir.user) }
-      expect(assigns(:users)).to eq(@users)
+      expect(assigns(:item).results_summary[:users]).to eq(@users)
     end
 
     it "should get the referers for that item result" do
@@ -108,14 +103,14 @@ describe ItemResultsController do
       @referers = []
       @referers << "http://localhost:3000/items/#{@item.id}"
       @referers << "http://www.bfcoder.com/"
-      expect(assigns(:referers)).to eq(@referers)
+      expect(assigns(:item).results_summary[:referers]).to eq(@referers)
     end
 
     it "should get the correct responses for that item result" do
       get 'index', :item_id => @item.id
       @correct = []
       @correct << @item_result2
-      expect(assigns(:correct)).to eq(@correct)
+      expect(assigns(:item).results_summary[:correct]).to eq(@correct)
     end
 
     it "should get the percent correct of responses for that item result" do
@@ -123,7 +118,7 @@ describe ItemResultsController do
       @correct = []
       @submitted = @item.item_results.by_status_final
       @percent_correct = 1.0/3.0
-      expect(assigns(:percent_correct)).to eq(@percent_correct)
+      expect(assigns(:item).results_summary[:percent_correct]).to eq(@percent_correct)
     end
 
   end
