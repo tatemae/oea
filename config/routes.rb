@@ -10,6 +10,6 @@ Oea::Application.routes.draw do
   post '/items/check_answer', to: 'items#check_answer'
 
   namespace :api do
-    get '/results', to: 'results#index'
+    get '/results/:item_id', to: 'results#index'
   end
 end
