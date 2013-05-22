@@ -35,15 +35,16 @@
   }
 }
 .check_answer_result{
-  margin:-5px 20px 20px 20px;
+  margin:-5px 23px 20px 20px;
 }
 .tooltip-inner{
   margin:0;
   padding:12px 0;
-  max-width:99%;
-  width:99%;
+  max-width:100%;
+  width:100%;
   font-size:22px;
   text-align:left;
+  display:none;
 }
 .correct{
   background:transparent url("flat-ui/todo/done.png") 10px center no-repeat;

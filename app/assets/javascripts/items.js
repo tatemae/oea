@@ -30,7 +30,8 @@ $(document).ready(function() {
           data: $self.find('form').serialize(),
           dataType: 'json',
           success: function(data, status){
-            $self.find('.check_answer_result').empty().append(data.html);
+            $self.find('.check_answer_result').empty().prepend(data.html);
+            $self.find('.tooltip-inner').fadeIn();
           },
           error: function(jqxhr, status, errorThrown){
           }
