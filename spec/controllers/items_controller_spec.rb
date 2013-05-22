@@ -24,7 +24,7 @@ describe ItemsController do
       correct_answer_id = 1602
       post :check_answer, { 'item' => {:id => @item.id}, "#{@item.id}" => correct_answer_id }
       response.should be_success
-      flash.include?([:persistent_alert, "Correct"]).should be_true
+      assigns[:result].should be_true
     end
 
     it "creates a user based on session" do
@@ -40,7 +40,7 @@ describe ItemsController do
       incorrect_answer_id = 8292
       post :check_answer, { 'item' => {:id => @item.id}, "#{@item.id}" => incorrect_answer_id }
       response.should be_success
-      flash.include?([:persistent_alert, "Incorrect"]).should be_true
+      assigns[:result].should be_false
     end
   end
 end
