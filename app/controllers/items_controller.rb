@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
         @user.save!
       end
       create_result = false
-      if params[:item][:item_result_id] && @item_result = ItemResult.find(params[:item][:item_result_id])
+      if !params[:item][:item_result_id].blank? && @item_result = ItemResult.find(params[:item][:item_result_id])
         if @item_result.user.id == @user.id
           @item_result.datestamp = Time.now
           @item_result.item_variable = [{
