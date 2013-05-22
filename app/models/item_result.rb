@@ -4,6 +4,8 @@ class ItemResult < ActiveRecord::Base
 
   before_save :validate_session_status
 
+  scope :by_status_final, -> { where(session_status: 'final') }
+
   STATUS_INITIAL = 'initial'
   STATUS_PENDING_SUBMISSION = 'pendingSubmission'
   STATUS_PENDING_RESPONSE_PROCESSING  = 'pendingResponseProcessing'

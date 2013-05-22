@@ -8,7 +8,7 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.rc1'
 
-# Use sqlite3 as the database for Active Record
+# Use postgresql as the database for Active Record
 gem 'pg'
 
 # Use jquery as the JavaScript library
@@ -20,10 +20,15 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
 
+# User Auth
 gem 'devise', '3.0.0.rc'
 
 # html/xml parsers
 gem 'nokogiri'
+
+# Charts
+gem "chartkick"
+gem 'groupdate' # for grouping the chart data by date
 
 # Gems used only for assets and not required
 # in production environments by default.
