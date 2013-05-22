@@ -27,7 +27,7 @@
         </itemmetadata>
         <presentation>
           <material>
-            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{5}{12}\:?\:\frac{3}{5}" src="http://latex.codecogs.com/gif.latex?%255Cfrac%257B5%257D%257B12%257D%255C%253A%253F%255C%253A%255Cfrac%257B3%257D%257B5%257D" alt="\frac{5}{12}\:?\:\frac{3}{5}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
+            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{5}{12}\:?\:\frac{3}{5}" src="//latex.codecogs.com/gif.latex?%255Cfrac%257B5%257D%257B12%257D%255C%253A%253F%255C%253A%255Cfrac%257B3%257D%257B5%257D" alt="\frac{5}{12}\:?\:\frac{3}{5}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
           </material>
           <response_lid ident="response1" rcardinality="Single">
             <render_choice>
@@ -80,7 +80,7 @@
         </itemmetadata>
         <presentation>
           <material>
-            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{4}{5}\:?\:\frac{6}{7}" src="http://latex.codecogs.com/gif.latex?%255Cfrac%257B4%257D%257B5%257D%255C%253A%253F%255C%253A%255Cfrac%257B6%257D%257B7%257D" alt="\frac{4}{5}\:?\:\frac{6}{7}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
+            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{4}{5}\:?\:\frac{6}{7}" src="//latex.codecogs.com/gif.latex?%255Cfrac%257B4%257D%257B5%257D%255C%253A%253F%255C%253A%255Cfrac%257B6%257D%257B7%257D" alt="\frac{4}{5}\:?\:\frac{6}{7}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
           </material>
           <response_lid ident="response1" rcardinality="Single">
             <render_choice>
@@ -133,7 +133,7 @@
         </itemmetadata>
         <presentation>
           <material>
-            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{6}{8}\:?\:\frac{3}{4}" src="http://latex.codecogs.com/gif.latex?%255Cfrac%257B6%257D%257B8%257D%255C%253A%253F%255C%253A%255Cfrac%257B3%257D%257B4%257D" alt="\frac{6}{8}\:?\:\frac{3}{4}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
+            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{6}{8}\:?\:\frac{3}{4}" src="//latex.codecogs.com/gif.latex?%255Cfrac%257B6%257D%257B8%257D%255C%253A%253F%255C%253A%255Cfrac%257B3%257D%257B4%257D" alt="\frac{6}{8}\:?\:\frac{3}{4}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
           </material>
           <response_lid ident="response1" rcardinality="Single">
             <render_choice>
@@ -186,7 +186,7 @@
         </itemmetadata>
         <presentation>
           <material>
-            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{7}{9}\:?\:\frac{3}{5}" src="http://latex.codecogs.com/gif.latex?%255Cfrac%257B7%257D%257B9%257D%255C%253A%253F%255C%253A%255Cfrac%257B3%257D%257B5%257D" alt="\frac{7}{9}\:?\:\frac{3}{5}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
+            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{7}{9}\:?\:\frac{3}{5}" src="//latex.codecogs.com/gif.latex?%255Cfrac%257B7%257D%257B9%257D%255C%253A%253F%255C%253A%255Cfrac%257B3%257D%257B5%257D" alt="\frac{7}{9}\:?\:\frac{3}{5}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
           </material>
           <response_lid ident="response1" rcardinality="Single">
             <render_choice>
@@ -239,7 +239,7 @@
         </itemmetadata>
         <presentation>
           <material>
-            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{3}{7}\:?\:\frac{4}{9}" src="http://latex.codecogs.com/gif.latex?%255Cfrac%257B3%257D%257B7%257D%255C%253A%253F%255C%253A%255Cfrac%257B4%257D%257B9%257D" alt="\frac{3}{7}\:?\:\frac{4}{9}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
+            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{3}{7}\:?\:\frac{4}{9}" src="//latex.codecogs.com/gif.latex?%255Cfrac%257B3%257D%257B7%257D%255C%253A%253F%255C%253A%255Cfrac%257B4%257D%257B9%257D" alt="\frac{3}{7}\:?\:\frac{4}{9}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
           </material>
           <response_lid ident="response1" rcardinality="Single">
             <render_choice>
@@ -292,7 +292,7 @@
         </itemmetadata>
         <presentation>
           <material>
-            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{7}{8}\:?\:\frac{5}{6}" src="http://latex.codecogs.com/gif.latex?%255Cfrac%257B7%257D%257B8%257D%255C%253A%253F%255C%253A%255Cfrac%257B5%257D%257B6%257D" alt="\frac{7}{8}\:?\:\frac{5}{6}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
+            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{7}{8}\:?\:\frac{5}{6}" src="//latex.codecogs.com/gif.latex?%255Cfrac%257B7%257D%257B8%257D%255C%253A%253F%255C%253A%255Cfrac%257B5%257D%257B6%257D" alt="\frac{7}{8}\:?\:\frac{5}{6}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
           </material>
           <response_lid ident="response1" rcardinality="Single">
             <render_choice>
@@ -345,7 +345,7 @@
         </itemmetadata>
         <presentation>
           <material>
-            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{4}{7}\:?\:\frac{12}{21}" src="http://latex.codecogs.com/gif.latex?%255Cfrac%257B4%257D%257B7%257D%255C%253A%253F%255C%253A%255Cfrac%257B12%257D%257B21%257D" alt="\frac{4}{7}\:?\:\frac{12}{21}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
+            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{4}{7}\:?\:\frac{12}{21}" src="//latex.codecogs.com/gif.latex?%255Cfrac%257B4%257D%257B7%257D%255C%253A%253F%255C%253A%255Cfrac%257B12%257D%257B21%257D" alt="\frac{4}{7}\:?\:\frac{12}{21}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
           </material>
           <response_lid ident="response1" rcardinality="Single">
             <render_choice>
@@ -398,7 +398,7 @@
         </itemmetadata>
         <presentation>
           <material>
-            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{2}{4}\:?\:\frac{1}{2}" src="http://latex.codecogs.com/gif.latex?%255Cfrac%257B2%257D%257B4%257D%255C%253A%253F%255C%253A%255Cfrac%257B1%257D%257B2%257D" alt="\frac{2}{4}\:?\:\frac{1}{2}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
+            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{2}{4}\:?\:\frac{1}{2}" src="//latex.codecogs.com/gif.latex?%255Cfrac%257B2%257D%257B4%257D%255C%253A%253F%255C%253A%255Cfrac%257B1%257D%257B2%257D" alt="\frac{2}{4}\:?\:\frac{1}{2}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
           </material>
           <response_lid ident="response1" rcardinality="Single">
             <render_choice>
@@ -451,7 +451,7 @@
         </itemmetadata>
         <presentation>
           <material>
-            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{3}{8}\:?\:\frac{4}{7}" src="http://latex.codecogs.com/gif.latex?%255Cfrac%257B3%257D%257B8%257D%255C%253A%253F%255C%253A%255Cfrac%257B4%257D%257B7%257D" alt="\frac{3}{8}\:?\:\frac{4}{7}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
+            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{3}{8}\:?\:\frac{4}{7}" src="//latex.codecogs.com/gif.latex?%255Cfrac%257B3%257D%257B8%257D%255C%253A%253F%255C%253A%255Cfrac%257B4%257D%257B7%257D" alt="\frac{3}{8}\:?\:\frac{4}{7}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
           </material>
           <response_lid ident="response1" rcardinality="Single">
             <render_choice>
@@ -504,7 +504,7 @@
         </itemmetadata>
         <presentation>
           <material>
-            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{3}{4}\:?\:\frac{5}{7}" src="http://latex.codecogs.com/gif.latex?%255Cfrac%257B3%257D%257B4%257D%255C%253A%253F%255C%253A%255Cfrac%257B5%257D%257B7%257D" alt="\frac{3}{4}\:?\:\frac{5}{7}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
+            <mattext texttype="text/html">&lt;div&gt;&lt;p&gt;&lt;img class="equation_image" title="\frac{3}{4}\:?\:\frac{5}{7}" src="//latex.codecogs.com/gif.latex?%255Cfrac%257B3%257D%257B4%257D%255C%253A%253F%255C%253A%255Cfrac%257B5%257D%257B7%257D" alt="\frac{3}{4}\:?\:\frac{5}{7}"&gt;&lt;/p&gt;&lt;/div&gt;</mattext>
           </material>
           <response_lid ident="response1" rcardinality="Single">
             <render_choice>

@@ -2,13 +2,13 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @rendered_time = Time.now
-    @referer = request.env['REQUEST_URI']
+    @referer = request.env['HTTP_REFERER']
   end
 
   def show
     @item = Item.find(params[:id])
     @rendered_time = Time.now
-    @referer = request.env['REQUEST_URI']
+    @referer = request.env['HTTP_REFERER']
     if !@user = User.find_by_name(request.session.id)
       @user = User.create_anonymous
       @user.name = request.session.id
