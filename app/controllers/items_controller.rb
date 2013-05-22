@@ -2,11 +2,13 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @rendered_time = Time.now
+    @referer = request.env['REQUEST_URI']
   end
 
   def show
     @item = Item.find(params[:id])
     @rendered_time = Time.now
+    @referer = request.env['REQUEST_URI']
     if !@user = User.find_by_name(request.session.id)
       @user = User.create_anonymous
       @user.name = request.session.id
@@ -16,7 +18,7 @@ class ItemsController < ApplicationController
       :identifier => @item.identifier,
       :item_id => @item.id,
       :rendered_datestamp => @rendered_time,
-      :referer => request.referer,
+      :referer => @referer,
       :ip_address => request.ip,
       :session_status => 'initial')
   end
@@ -43,7 +45,7 @@ class ItemsController < ApplicationController
               "candidate_response"=>@selected_answer_id
             }
           }]
-          @item_result.referer = request.referer
+          @item_result.referer = params[:item][:referer]
           @item_result.session_status = 'final'
           @item_result.save!
         else
@@ -58,7 +60,7 @@ class ItemsController < ApplicationController
           :item_id => @item.id,
           :rendered_datestamp => params[:item][:rendered_time],
           :datestamp => Time.now,
-          :referer => request.referer,
+          :referer => params[:item][:referer],
           :ip_address => request.ip,
           :session_status => 'final',
           :item_variable => [{

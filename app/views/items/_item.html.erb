@@ -16,8 +16,10 @@
       <div class="lower_level">
         <input type="hidden" id="item_id" name="item[id]" value="<%= item.id %>" />
         <input type="hidden" id="rendered_time" name="item[rendered_time]" value="<%= @rendered_time %>" />
-        <span><%= f.submit 'Check Answer', :class => 'btn btn-check-answer disabled' %></span>
         <input type="hidden" id="item_result_id" name="item[item_result_id]" value="<%= @item_result ? @item_result.id : nil %>" />
+        <input type="hidden" id="referer" name="item[referer]" value="<%= @referer %>" />
+        <span><%= f.submit 'Check Answer', :class => 'btn btn-check-answer disabled' %></span>
+
         <% if display_embed_code -%>
           <a href="#" class="btn btn-info embed_button">&lt/&gt</a><p class="embed_button embed_word">embed</p>
         <% end -%>
