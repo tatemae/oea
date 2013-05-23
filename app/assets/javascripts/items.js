@@ -6,7 +6,7 @@ $(document).ready(function() {
     e.preventDefault();
     var $self = $(this).closest('.question');
     if ($self.find('.embed_code').is(":hidden")) {
-      $self.find('.embed_code').show("slow", function(){
+      $self.find('.embed_code').slideDown(function(){
         $self.find('.embed_text').select();
       });
     } else {
