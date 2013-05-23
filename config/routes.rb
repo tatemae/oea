@@ -4,6 +4,7 @@ Oea::Application.routes.draw do
 
   resources :items do
     resources :item_results
+    resources :results, :controller => "item_results"
   end
 
   root 'items#index'
