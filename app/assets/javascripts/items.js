@@ -44,7 +44,7 @@ $(document).ready(function() {
 $(window).ready(function () {
   $(".edit_item").each(function(index, value){
     $value = $(value);
-    var height = $value.outerHeight();
+    var height = $value.outerHeight(true);
     $('.embed_code', $value.parent()).html( function(index, oldhtml){
        return oldhtml.replace(/height='[0-9]*'/, "height='" + height + "'");
     });
