@@ -26,6 +26,8 @@ gem 'devise', '3.0.0.rc'
 # html/xml parsers
 gem 'nokogiri'
 
+gem 'will_paginate', '~> 3.0.3'
+
 # Charts
 gem "chartkick"
 gem 'groupdate' # for grouping the chart data by date
@@ -47,6 +49,8 @@ group :development, :test do
   gem 'debugger'
 end
 
-# group :test do
-#   gem 'suit', '~> 0.1.5'
-# end
+group :test do
+  #gem 'suit', '~> 0.1.5'
+  gem 'factory_girl_rails'
+  #gem 'shoulda-matchers', '~> 1.1.0'
+end

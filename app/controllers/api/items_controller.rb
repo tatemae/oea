@@ -1,7 +1,13 @@
 class Api::ItemsController < ApplicationController
   skip_before_filter :verify_authenticity_token
-
   respond_to :json
+
+  def index
+    page = (params[:page] || 1).to_i
+    per_page = 10
+    items = Item.where("items.xml LIKE ?", "%#{params[:q]}%").paginate(:page => page, :per_page => per_page)
+    respond_with(items, :only => [:id], :methods => [:question_title, :question_text])
+  end
 
   def create
     item_xml = Nokogiri::XML.parse(request.body.read)
@@ -15,6 +21,7 @@ class Api::ItemsController < ApplicationController
     respond_with(item)
   end
 
+  # TODO this isn't a RESTful method. We need to reconsider how this is used/implemented
   def create_questions
     xml = Nokogiri::XML.parse(request.body.read)
     xml.css('item').each do |item_xml|
