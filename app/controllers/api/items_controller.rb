@@ -6,7 +6,7 @@ class Api::ItemsController < ApplicationController
     page = (params[:page] || 1).to_i
     per_page = 10
     items = Item.where("items.xml LIKE ?", "%#{params[:q]}%").paginate(:page => page, :per_page => per_page)
-    respond_with(items, :only => [:id], :methods => [:question_title, :question_text])
+    respond_with(items, :only => [:id, :title, :description])
   end
 
   def create
