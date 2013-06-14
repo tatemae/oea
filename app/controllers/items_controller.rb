@@ -74,6 +74,23 @@ class ItemsController < ApplicationController
       end
       @result = @item.is_correct?(@selected_answer_id)
     end
+    if @result
+      words = 'correct'
+      percent_correct = 100
+    else
+      words = 'incorrect'
+      percent_correct = 0
+    end
+    result = {
+      :id => @item.id,
+      :correct => @result,
+      :percent_correct => percent_correct,
+      :source => 'http://www.openassessments.com',
+      :html => %Q{<div class="tooltip-inner #{words}""><span class='result_words'>#{words.capitalize}!</span></div>}
+    }
+    respond_to do |format|
+      format.json { render :json => result }
+    end
   rescue => e
     redirect_to items_path, :notice => e.to_s
   end
