@@ -6,12 +6,24 @@ FactoryGirl.define do
     "id_#{n}"
   end
 
+  sequence :name do |n|
+    "user_#{n}"
+  end
+
+  sequence :email do |n|
+    "user_#{n}@opentapestry.com"
+  end
+
+  sequence :password do |n|
+    "password_#{n}"
+  end
+
   factory :user do
     name { FactoryGirl.generate(:name) }
     email { FactoryGirl.generate(:email) }
     password { FactoryGirl.generate(:password) }
-    account
-    after_build { |user| user.confirm! }
+    # account
+    # after_build { |user| user.confirm! }
 
     factory :user_facebook do
       active_avatar 'facebook'
