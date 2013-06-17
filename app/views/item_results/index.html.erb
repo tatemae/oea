@@ -18,19 +18,4 @@
   <div>
     <span># Of Users: <%= @item.results_summary[:users].count %></span>
   </div>
-  <div>
-    <br/>
-    <% @item.item_results.each do |item_result| -%>
-      <div>ID: <%= item_result.id %></div>
-      <div>Rendered at: <%= item_result.rendered_datestamp.strftime("%B %d, %Y @ %l:%M:%S%p") %></div>
-      <div>Submitted at: <%= item_result.datestamp.nil? ? 'Was not submitted.' : item_result.datestamp.strftime("%B %d, %Y @ %l:%M%p") %></div>
-      <div>Answered correctly? <%= (item_result.item_variable && item_result.item_variable.map { |iv| iv["response_variable"]["correct_response"].to_i == iv["response_variable"]["candidate_response"].to_i }.any?) ? "Yes" : "No" %></div>
-      <div>Referer: <%= item_result.referer %></div>
-      <div>IP Address: <%= item_result.ip_address %> </div>
-      <div>Session Status: <%= item_result.session_status.titleize %></div>
-      <div>Sequence Index: <%= item_result.sequence_index %></div>
-
-      <br/>
-    <% end -%>
-  </div>
 </div>
