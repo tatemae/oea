@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require flat-ui
 //= require_tree ../../../vendor/assets/javascripts

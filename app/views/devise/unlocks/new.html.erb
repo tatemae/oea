@@ -1,0 +1,20 @@
+<div class="devise_form">
+  <div class="login-screen">
+    <div class="login-icon">
+      <%= image_tag 'illustrations/retina.png' %>
+      <h4>Resend unlock instructions</h4>
+    </div>
+    <div class="login-form">
+      <%= devise_error_messages! %>
+      <%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
+        <%= f.hidden_field :reset_password_token %>
+        <div class="control-group">
+          <%= f.email_field :email, :autofocus => true, :class => "login-field",  :placeholder => "Enter your email" %>
+          <label class="login-field-icon fui-mail-24" for="user_email"></label>
+        </div>
+        <%= f.submit "Resend unlock instructions", :class => "btn btn-large btn-primary" %>
+      <% end %>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

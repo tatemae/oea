@@ -42,6 +42,7 @@ gem 'groupdate' # for grouping the chart data by date
   gem 'uglifier', '>= 1.3.0'
   gem 'bootstrap-sass-rails', '>= 2.3.1.2'
   gem 'font-awesome-sass-rails'
+  gem 'flatui-rails'
 #end
 
 group :development, :test do

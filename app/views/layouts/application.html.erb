@@ -7,7 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render 'layouts/global/messages' %>
-  <%= yield %>
+  <div class="container-narrow">
+    <div class="masthead">
+      <%= render 'layouts/global/user_header' %>
+    </div>
+    <%= render 'layouts/global/messages' %>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>

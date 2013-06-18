@@ -9,6 +9,7 @@ Oea::Application.routes.draw do
   end
 
   root 'items#index'
+  #root :to => "default#index"
 
   post '/items/check_answer', to: 'items#check_answer'
 
