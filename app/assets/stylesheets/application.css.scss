@@ -8,6 +8,7 @@
 
 body{
   padding-top: 30px;
+  font-family: 'News Cycle', serif;
 }
 .navbar-inverse .navbar-inner {
   background: $almost_black;
@@ -20,6 +21,11 @@ body{
 
 footer{
   padding-left: 35px;
+  bottom:10px;
+  position:absolute;
+  background-color:transparent;
+  font-family: 'Merriweather', serif;
+  color:#A6F2FF !important;
 }
 
 footer p{
