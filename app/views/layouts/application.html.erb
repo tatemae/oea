@@ -24,7 +24,7 @@
               <li class="<%= 'active' if current_page?('/sign_out') %>" style='width:100px;'><%= link_to "SIGN OUT", destroy_user_session_path, :method => :delete %></li>
             <% else %>
               <li class="<%= 'active' if current_page?('/users/sign_in') %>" style='width:85px;'><%= link_to "SIGN IN", new_user_session_path %></li>
-              <li class="<%= 'active' if current_page?('/users/sign_up') %>" style='width:90px;'><%= link_to "SIGN UP", new_user_registration_path %></li>
+              <li class="<%= 'active' if current_page?('/users/sign_up') %>" style='width:95px;'><%= link_to "SIGN UP", new_user_registration_path %></li>
             <% end %>
           </ul>
         </div>
