@@ -10,13 +10,21 @@ body{
   padding-top: 30px;
   font-family: 'News Cycle', serif;
 }
+.navbar{
+  line-height:42px;
+  -moz-box-shadow: 2px 2px 1px #888;
+  -webkit-box-shadow: 2px 2px 1px #888;
+  box-shadow: 1px 1px 1px #888;
+  min-width:875px;
+}
 .navbar-inverse .navbar-inner {
   background: $almost_black;
 }
 #logo{
   text-indent: -9999px;
-  width:192px;
+  width:155px;
   background:transparent url(image-path("logo.png")) 10px center no-repeat;
+  margin-left:10px;
 }
 
 .index_content{
@@ -29,17 +37,17 @@ body{
     font-size:40px;
     font-weight:bold;
     float:left;
-    display:inline
+    display:inline;
     .demo_text{
       font-size:24px;
     }
   }
   .quote_bubble{
     float:left;
-    width:250px;
-    height:224px;
+    width:235px;
+    height:211px;
     display:inline;
-    margin-top:250px;
+    margin-top:260px;
   }
 }
 
@@ -62,10 +70,21 @@ footer p img{
   height: 55px;
 }
 
+.nav{
+  height:73px;
+  li{
+    line-height:inherit;
+  }
+}
+
 .active{
   background: transparent url(image-path("selected_tab.png")) center no-repeat;
+  height:100%;
 }
 
 .active a{
+  color: rgb(255,153,0) !important;
+}
+.nav a:hover{
   color: rgb(255,153,0) !important;
 }
