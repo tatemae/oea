@@ -78,9 +78,29 @@ footer p img{
 }
 
 .active{
-  background: transparent url(image-path("selected_tab.png")) center no-repeat;
-  height:100%;
+  position: absolute;
+  width: 75px;
+  height: 85px;
+  line-height: 20px;
+  background: rgb(233, 233, 233);
+  text-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 1px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 2px 0px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 2px 0px;
+  box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 2px 0px;
 }
+
+.active:after{
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top:73px;
+  left:-6px;
+  border-top: 0px solid transparent;
+  border-bottom: 13px solid transparent; 
+  border-right:7px solid rgb(0, 79, 90);
+}
+
 
 .active a{
   color: $light-orange !important;
