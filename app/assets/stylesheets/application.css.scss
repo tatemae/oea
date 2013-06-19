@@ -115,14 +115,14 @@ footer p img{
   width: 800px;
   height: 800px;
   padding-top: 175px;
-  .contact_text{
-    font-size: 45px;
-    padding-left: 300px;
-    padding-top: 15px;
-    color: $almost_black;
-  }
   .boxes{
     padding-left: 100px;
+    .contact_text{
+      font-size: 45px;
+      padding-left: 200px;
+      padding-top: 15px;
+      color: $almost_black;
+    }
     .contact_bar{
       background: transparent url(image-path("contact_bar.png")) center no-repeat;
       background-size: 600px 100px;
@@ -147,6 +147,11 @@ footer p img{
         padding-left: 15px;
         font-size: 16px;
       }
+    }
+    .input-dark{
+      background-color: $almost_black;
+      border-color: $dark-orange;
+      color: $white;
     }
   }
   .send_text{

@@ -1,18 +1,31 @@
 <div class="contact_box">
-  <p class="contact_text">CONTACT</p>
-  <div class="boxes">
-    <div class="contact_bar">
-      <p class="text name">NAME</p>
-    </div>
-    <div class="contact_bar">
-      <p class="text email">E-MAIL</p>
-    </div>
-    <div class="contact_bar">
-      <p class="text subject">SUBJECT</p>
-    </div>
-    <div class="message_box">
-      <p class="text message">MESSAGE</p>
-    </div>
-    <p class="send_text">SEND</p>
-  </div>
+  <%= form_tag('/contact', :id => "contact_form", :class => "boxes well form-horizontal") do -%>
+    <fieldset>
+      <span class="contact_text">CONTACT</span>
+      <div class="contact_bar">
+        <%= label_tag 'name', "NAME", :class => "text" %>
+        <div class="control-group">
+          <%= text_field_tag 'name', params[:name], :class => 'input-dark' %>
+        </div>
+      </div>
+      <div class="contact_bar">
+        <%= label_tag 'email', "E-MAIL", :class => "text" %>
+        <%= text_field_tag 'email', params[:email], :class => 'input-dark' %>
+      </div>
+      <div class="contact_bar">
+        <%= label_tag 'subject', "SUBJECT", :class => "text" %>
+        <%= text_field_tag 'subject', params[:subject], :class => 'input-dark' %>
+      </div>
+      <div class="message_box">
+        <%= label_tag 'message', "MESSAGE", :class => "text" %>
+        <%= text_field_tag 'message', params[:message], :class => 'input-dark' %>
+      </div>
+      <span class="send_text">SEND</span>
+      <div class="control-group">
+        <div class="controls">
+          <button class="send" type=hidden>SEND</button>
+        </div>
+      </div>
+    </fieldset>
+  <% end -%>
 </div>
