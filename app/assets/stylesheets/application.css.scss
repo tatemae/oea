@@ -17,3 +17,17 @@ body{
   width:192px;
   background:transparent url(image-path("logo.png")) 10px center no-repeat;
 }
+
+footer{
+  padding-left: 35px;
+}
+
+footer p{
+  float: left;
+  color: rgb(136,212,255);
+}
+
+footer p img{
+  width: auto;
+  height: 55px;
+}
