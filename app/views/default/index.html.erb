@@ -1,14 +1,20 @@
 <style type="text/css">
 body{
-  background: url(<%=image_path('background.jpg')%>) no-repeat;
-  background-size: 100% auto;
+  background: url(<%=image_path('background.jpg')%>) no-repeat center center fixed;
+  background-size:cover;
 }
 </style>
-<div class="jumbotron">
-  POP THE QUESTION ANYWHERE
-MAKE, CREATE AND SHARE
-“QUESTIONS” SIMPLY. EASILY
-EMBED ASSESSMENTS ON ANY
-PAGE ON ANY WEBSITE.
-DEMO >
+<div class='index_content'>
+	<div class="jumbotron">
+	<p>POP THE QUESTION ANYWHERE
+	<span style='color:white;'>MAKE, CREATE AND SHARE
+	“QUESTIONS” SIMPLY. EASILY
+	EMBED ASSESSMENTS ON ANY
+	PAGE ON ANY WEBSITE.</span><br/>
+	<span class='demo_text'>DEMO ></span></p>
+	</div>
+
+	<div class='quote'>
+		<%= image_tag 'quote_bubble.png', :class => 'quote_bubble' %>
+	</div>
 </div>
