@@ -8,10 +8,12 @@ Oea::Application.routes.draw do
     resources :raw_results
   end
 
-  root 'items#index'
-  #root :to => "default#index"
+  #root 'items#index'
+  root :to => "default#index"
 
   post '/items/check_answer', to: 'items#check_answer'
+
+  resources :users
 
   namespace :api do
     get '/results/:item_id', to: 'results#index'

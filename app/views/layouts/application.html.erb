@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield(:page_title).presence || "Open Assessments" %></title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+  <%= render 'layouts/global/head' %>
 </head>
 <body>
-  <div class="container-narrow">
-    <div class="masthead">
-      <%= render 'layouts/global/user_header' %>
-    </div>
-    <%= render 'layouts/global/messages' %>
-    <div class="container">
-      <%= yield %>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="logo" class="brand" href="/">Open Assessments</a>
+        <div class="nav-collapse collapse pull-right">
+          <ul class="nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/contact">API</a></li>
+            <li><a href="/contact">The Code</a></li>
+            <li><a href="/about">About</a></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+            <% else %>
+              <li><%= link_to "Sign in", new_user_session_path %></li>
+              <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span10 offset1">
+        <%= render 'layouts/global/messages' %>
+      </div>
+    </div>
+  </div>
+  <%= yield %>
+  <div class="container-fluid">
+    <footer>
+      <p>Funded by <%= image_tag 'mit.png', :alt => 'Massachusetts Institute of Technology OEIT' %> Built by <%= image_tag 'ot.png', :alt => 'Open Tapestry' %></p>
+    </footer>
+  </div>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </body>
 </html>

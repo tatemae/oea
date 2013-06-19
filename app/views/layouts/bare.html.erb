@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render 'layouts/global/head' %>
+</head>
+<body>
+  <%= render 'layouts/global/messages' %>
+  <%= yield %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+</body>
+</html>

@@ -1,6 +1,19 @@
 @import 'defines';
 @import 'twitter/bootstrap-no-sprites';
+@import 'twitter/bootstrap/responsive';
 @import 'font-awesome';
 @import 'flat-ui';
 @import 'items';
 @import 'devise';
+
+body{
+  padding-top: 30px;
+}
+.navbar-inverse .navbar-inner {
+  background: $almost_black;
+}
+#logo{
+  text-indent: -9999px;
+  width:192px;
+  background:transparent url(image-path("logo.png")) 10px center no-repeat;
+}

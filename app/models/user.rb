@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
 
   has_many :item_results
 
+  def display_name
+  end
+
   def self.create_anonymous
     user = User.new
     user.email                 = "#{::SecureRandom::hex(8)}@example.com"

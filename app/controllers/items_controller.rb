@@ -23,6 +23,9 @@ class ItemsController < ApplicationController
       :referer => @referer,
       :ip_address => request.ip,
       :session_status => 'initial')
+    respond_to do |format|
+      format.html { render :layout => 'bare' }
+    end
   end
 
   def check_answer
