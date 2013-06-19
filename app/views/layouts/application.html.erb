@@ -41,7 +41,7 @@
   <%= yield %>
   <div class="container-fluid">
     <footer>
-      <p>Funded by <%= image_tag 'mit.png', :alt => 'Massachusetts Institute of Technology OEIT' %> Built by <%= image_tag 'ot.png', :alt => 'Open Tapestry' %></p>
+      <p>Funded by <%= link_to image_tag('mit.png', :alt => 'Massachusetts Institute of Technology OEIT'), 'http://oeit.mit.edu/about' %> Built by <%= link_to image_tag('ot.png', :alt => 'Open Tapestry'), 'http://www.opentapestry.com/' %></p>
     </footer>
   </div>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
