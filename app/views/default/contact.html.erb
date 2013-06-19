@@ -1,31 +1,24 @@
-<div class="contact_box">
-  <%= form_tag('/contact', :id => "contact_form", :class => "boxes form-horizontal") do -%>
-    <fieldset>
-      <span class="contact_text">CONTACT</span>
-      <div class="contact_bar">
-        <%= label_tag 'name', "NAME", :class => "text" %>
+<div class="devise_form">
+  <div class="login-screen">
+    <div class="login-icon">
+      <h4><small>CONTACT US</small></h4>
+    </div>
+    <div class="login-form">
+      <%= form_tag('/contact', :id => "contact_form", :class => "form-horizontal") do -%>
         <div class="control-group">
-          <%= text_field_tag 'name', params[:name], :class => 'input-dark' %>
+          <%= text_field_tag 'name', params[:name], :class => 'login-field', :placeholder => "Enter your name" %>
         </div>
-      </div>
-      <div class="contact_bar">
-        <%= label_tag 'email', "E-MAIL", :class => "text" %>
-        <%= text_field_tag 'email', params[:email], :class => 'input-dark' %>
-      </div>
-      <div class="contact_bar">
-        <%= label_tag 'subject', "SUBJECT", :class => "text" %>
-        <%= text_field_tag 'subject', params[:subject], :class => 'input-dark' %>
-      </div>
-      <div class="message_box">
-        <%= label_tag 'message', "MESSAGE", :class => "text" %>
-        <%= text_field_tag 'message', params[:message], :class => 'input-dark' %>
-      </div>
-      <span class="send_text">SEND</span>
-      <div class="control-group">
-        <div class="controls">
-          <button class="send" type=hidden>SEND</button>
+        <div class="control-group">
+          <%= text_field_tag 'email', params[:email], :class => 'login-field', :placeholder => "Enter your email" %>
         </div>
-      </div>
-    </fieldset>
-  <% end -%>
+        <div class="control-group">
+          <%= text_field_tag 'subject', params[:subject], :class => 'login-field', :placeholder => "Enter a subject" %>
+        </div>
+        <div class="control-group">
+          <%= text_area_tag 'message', params[:message], :class => 'login-field', :placeholder => "Enter your message" %>
+        </div>
+        <input class="btn btn-large btn-primary" name="commit" type="submit" value="SEND">
+      <% end %>
+    </div>
+  </div>
 </div>
