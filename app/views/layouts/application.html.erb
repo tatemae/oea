@@ -17,8 +17,8 @@
           <ul class="nav">
             <li class="<%= 'active' if current_page?(root_path) %>"><a href="/">HOME</a></li>
             <li class="<%= 'active' if current_page?(contact_path) %>" style='width:90px;'><a style='margin-left:-6px;' href="/contact">CONTACT</a></li>
-            <li class="<%#= 'active' if current_page?(api_path) %>"><a href="/api">API</a></li>
-            <li class="<%#= 'active' if current_page?(code_path) %>"><a href="/code">THE CODE</a></li>
+            <li><a href="https://github.com/tatemae/oea/wiki/API" target="_blank">API</a></li>
+            <li><a href="https://github.com/tatemae/oea" target="_blank">THE CODE</a></li>
             <li class="<%#= 'active' if current_page?(about_path) %>"><a href="/about">ABOUT</a></li>
             <% if user_signed_in? %>
               <li class="<%= 'active' if current_page?('/sign_out') %>" style='width:100px;'><%= link_to "SIGN OUT", destroy_user_session_path, :method => :delete %></li>
