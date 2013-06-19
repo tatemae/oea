@@ -23,4 +23,6 @@ Oea::Application.routes.draw do
       end
     end
   end
+
+  match '/contact' => 'default#contact', via: [:get, :post]
 end
