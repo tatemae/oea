@@ -30,10 +30,18 @@ footer{
 
 footer p{
   float: left;
-  color: rgb(136,212,255);
+  color: rgb(166,242,255);
 }
 
 footer p img{
   width: auto;
   height: 55px;
+}
+
+.active{
+  background: transparent url(image-path("selected_tab.png")) center no-repeat;
+}
+
+.active a{
+  color: rgb(255,173,51) !important;
 }

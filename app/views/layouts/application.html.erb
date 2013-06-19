@@ -15,11 +15,11 @@
         <a id="logo" class="brand" href="/">Open Assessments</a>
         <div class="nav-collapse collapse pull-right">
           <ul class="nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/contact">API</a></li>
-            <li><a href="/contact">The Code</a></li>
-            <li><a href="/about">About</a></li>
+            <li class="<%= 'active' if current_page?(root_path) %>"><a href="/">Home</a></li>
+            <li class="<%#= 'active' if current_page?(contact_path) %>"><a href="/contact">Contact</a></li>
+            <li class="<%#= 'active' if current_page?(api_path) %>"><a href="/api">API</a></li>
+            <li class="<%#= 'active' if current_page?(code_path) %>"><a href="/code">The Code</a></li>
+            <li class="<%#= 'active' if current_page?(about_path) %>"><a href="/about">About</a></li>
             <% if user_signed_in? %>
               <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
             <% else %>
