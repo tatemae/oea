@@ -14,7 +14,7 @@
           <span class="icon-bar"></span>
         </button>
         <%= link_to image_tag(image_path("logo.png"), :class => 'brand', :alt => 'Open Assessments'), '/' -%>
-        <%= link_to image_tag(image_path("#{yield(:logo_overlay).presence.strip if yield(:logo_overlay).presence}.png"), :class => 'logo_overlay'), '/' -%>
+        <%= link_to image_tag(image_path("#{yield(:logo_overlay).presence ? yield(:logo_overlay).presence.strip : 'home'}.png"), :class => 'logo_overlay'), '/' -%>
         <div class="nav-collapse collapse pull-right">
           <ul class="nav">
             <li class="<%= 'active' if current_page?(root_path) %>"><a href="/">HOME</a></li>
