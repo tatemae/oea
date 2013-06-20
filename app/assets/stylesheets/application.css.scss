@@ -16,15 +16,23 @@ body{
   -webkit-box-shadow: 2px 2px 1px #888;
   box-shadow: 1px 1px 1px #888;
   min-width:875px;
+  .brand{
+    padding-bottom:0;
+    padding-top:0;
+    position:absolute;
+    top:20px;
+    left:50px;
+    z-index:1;
+  }
 }
 .navbar-inverse .navbar-inner {
   background: $almost_black;
 }
-#logo{
-  text-indent: -9999px;
-  width:155px;
-  background:transparent url(image-path("logo.png")) 10px center no-repeat;
-  margin-left:10px;
+.logo_overlay{
+  z-index:3;
+  position:absolute;
+  top:25px;
+  left:61px;
 }
 
 .index_content{
@@ -35,7 +43,6 @@ body{
     margin-right:50px;
     width:550px;
     font-size:40px;
-    font-weight:bold;
     float:left;
     display:inline;
     .demo_text{
