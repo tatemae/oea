@@ -6,15 +6,16 @@
 @import 'items';
 @import 'devise';
 
+html{
+  height:100%;
+}
 body{
-  padding-top: 30px;
   font-family: 'News Cycle', serif;
   background: url(image-path('background.jpg')) no-repeat center center fixed;
   background-size:cover;
+  height:100%;
 }
-a{
-  color:#34495e;
-}
+
 .navbar{
   line-height:42px;
   -moz-box-shadow: 2px 2px 1px #888;
@@ -42,16 +43,27 @@ a{
 
 .index_content{
   width:850px;
-  margin:0 auto;
-  .jumbotron{
+  margin:0 auto -50px;
+  min-height:95%;
+  height:auto !important;
+  height:95%;
+    .jumbotron{
     margin-top:200px;
     margin-right:50px;
     width:550px;
     font-size:40px;
     float:left;
     display:inline;
+    font-weight:bold;
     .demo_text{
-      font-size:24px;
+      a{
+        font-size:25px;
+        text-decoration:none;
+        color:rgb(0, 79, 90);
+      }
+      a:hover{
+        color:#A6F2FF;
+      }
     }
   }
   .quote_bubble{
@@ -60,13 +72,13 @@ a{
     height:211px;
     display:inline;
     margin-top:260px;
+    padding-bottom:60px;
   }
 }
 
-footer{
-  padding-left: 35px;
-  bottom:10px;
-  position:absolute;
+footer, .push{
+  height:50px;
+  padding-left:35px;
   background-color:transparent;
   font-family: 'Merriweather', serif;
   color:#A6F2FF !important;
