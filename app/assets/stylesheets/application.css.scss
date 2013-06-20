@@ -9,6 +9,11 @@
 body{
   padding-top: 30px;
   font-family: 'News Cycle', serif;
+  background: url(image-path('background.jpg')) no-repeat center center fixed;
+  background-size:cover;
+}
+a{
+  color:#34495e;
 }
 .navbar{
   line-height:42px;
