@@ -11,27 +11,28 @@
 	margin:20px;
 }
 .lower_level{
-  padding:0 20px 20px 20px;
+  padding:0 20px 50px 20px;
 }
-.stats_button{
-  display:inline;
+.right_buttons{
   float:right;
-  margin-top:6px;
-  padding:5px 3px;
-}
-.stats_word{
-  padding:5px 3px;
-  color:#999;
-}
-.embed_button{
-  display:inline;
-  float:right;
-  margin-top:6px;
-  padding:5px 3px;
-}
-.embed_word{
-  padding:5px 3px;
-  color:#999;
+  padding:0 20px 20px 0;
+  .stats_button{
+    padding:11px 8px 0px 7px
+  }
+  .stats_word{
+    padding:5px 3px;
+    color:#999;
+  }
+  .embed_button{
+    padding:5px 4px 8px 4px;
+  }
+  .embed_word{
+    padding:5px 3px;
+    color:#999;
+  }
+  p{
+    display:inline;
+  }
 }
 .embed_code{
   background-color:$background-gray;
@@ -83,6 +84,7 @@ body{
 	width: 100%;
 	margin: 0px auto;
   padding-bottom: 20px;
+  padding-top:30px;
 }
 .header {
 	margin: 0px auto;

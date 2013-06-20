@@ -18,11 +18,13 @@
         <input type="hidden" id="rendered_time" name="item[rendered_time]" value="<%= @rendered_time %>" />
         <input type="hidden" id="item_result_id" name="item[item_result_id]" value="<%= @item_result ? @item_result.id : nil %>" />
         <input type="hidden" id="referer" name="item[referer]" value="<%= @referer %>" />
-        <span><%= f.submit 'Check Answer', :class => 'btn btn-check-answer disabled' %></span>
+        <span style='float:left;'><%= f.submit 'Check Answer', :class => 'btn btn-check-answer disabled' %></span>
 
         <% if display_embed_code -%>
-          <a href="#" class="btn btn-info embed_button">&lt/&gt</a><p class="embed_button embed_word">embed</p>
-          <a href="<%= item_results_path(item.id) %>" class="btn btn-info stats_button">&nbsp<i class="icon-bar-chart"></i>&nbsp</a><p class="stats_button stats_word">stats</p>
+          <div class='right_buttons'>
+            <p><span class="stats_word">stats</span><a href="<%= item_results_path(item.id) %>" class="btn btn-info stats_button"><i class="icon-bar-chart"></i></a></p>
+            <p><span class="embed_word">embed</span><a href="#" class="btn btn-info embed_button">&lt/&gt</a></p>
+          </div>  
         <% end -%>
       </div>
     </div>
