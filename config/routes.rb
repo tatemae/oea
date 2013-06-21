@@ -1,7 +1,5 @@
 Oea::Application.routes.draw do
 
-  get "assessments/index"
-  get "assessments/create"
   devise_for :users
 
   resources :items do
@@ -19,6 +17,8 @@ Oea::Application.routes.draw do
 
   namespace :api do
     get '/results/:item_id', to: 'results#index'
+    get "assessments/index"
+    get "assessments/create"
     resources :items do
       member do
         post :create_questions
