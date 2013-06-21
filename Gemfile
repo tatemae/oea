@@ -28,6 +28,8 @@ gem 'nokogiri'
 
 gem 'will_paginate', '~> 3.0.3'
 
+gem 'figaro'
+
 # Charts
 gem "chartkick"
 gem 'groupdate' # for grouping the chart data by date
