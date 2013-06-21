@@ -1,5 +1,7 @@
 Oea::Application.routes.draw do
 
+  get "assessments/index"
+  get "assessments/create"
   devise_for :users
 
   resources :items do
