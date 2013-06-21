@@ -7,7 +7,7 @@ describe Assessment do
   end
 
   it 'should extract the identifier' do
-    @assessment.ident.should match /A1001/
+    @assessment.identifier.should match /A1001/
   end
 
   it 'should extract the identifier' do

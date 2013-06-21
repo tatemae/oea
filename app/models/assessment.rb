@@ -3,9 +3,9 @@ class Assessment < ActiveRecord::Base
 
   def munge_xml
     @parsed_xml ||= AssessmentParser.parse(self.xml).first
+    self.identifier = @parsed_xml.ident
   end
 
-  delegate :ident, to: :@parsed_xml
   delegate :title, to: :@parsed_xml
 end
 
