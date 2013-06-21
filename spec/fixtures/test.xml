@@ -1,0 +1,776 @@
+<?xml version='1.0' encoding='utf-8'?><questestinterop xmlns='http://www.centralquestion.com/cq_qtiasiv1p2' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'><assessment class="default" ident="A1001" title="XQuestionSample">
+<section ident="S1002" title="Main">
+
+<item ident="QUE_1004" title="Gaseous">
+<presentation>
+<material>
+<mattext texttype="text/html"><![CDATA[Which of the following planets are gaseous planets? ]]></mattext>
+</material>
+<response_lid ident="QUE_1005_RL" rcardinality="Multiple" rtiming="No">
+<render_choice>
+<response_label ident="QUE_1006_A1">
+<material>
+<mattext texttype="text/html"><![CDATA[Mercury ]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1007_A2">
+<material>
+<mattext texttype="text/html"><![CDATA[Venus ]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1008_A3">
+<material>
+<mattext texttype="text/html"><![CDATA[Earth]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1009_A4">
+<material>
+<mattext texttype="text/html"><![CDATA[Mars]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1010_A5">
+<material>
+<mattext texttype="text/html"><![CDATA[Jupiter]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1011_A6">
+<material>
+<mattext texttype="text/html"><![CDATA[Saturn]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1012_A7">
+<material>
+<mattext texttype="text/html"><![CDATA[Uranus]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1013_A8">
+<material>
+<mattext texttype="text/html"><![CDATA[Neptune ]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1014_A9">
+<material>
+<mattext texttype="text/html"><![CDATA[Pluto]]></mattext>
+</material>
+</response_label>
+</render_choice>
+</response_lid>
+</presentation>
+<resprocessing>
+<outcomes>
+  <decvar defaultval="0" maxvalue="1" minvalue="0" varname="que_score" vartype="Integer"/>
+</outcomes>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1005_RL">QUE_1006_A1</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">-0.2</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1015_IC"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1003_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1005_RL">QUE_1007_A2</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">-0.2</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1016_IC"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1003_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1005_RL">QUE_1008_A3</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">-0.2</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1017_IC"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1003_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1005_RL">QUE_1009_A4</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">-0.2</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1018_IC"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1003_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1005_RL">QUE_1010_A5</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0.25</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1019_C"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1003_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1005_RL">QUE_1011_A6</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0.25</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1020_C"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1003_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1005_RL">QUE_1012_A7</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0.25</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1021_C"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1003_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1005_RL">QUE_1013_A8</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0.25</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1022_C"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1003_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1005_RL">QUE_1014_A9</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">-0.2</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1023_IC"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1003_ALL"/>
+</respcondition>
+
+<respcondition continue="Yes">
+<conditionvar>
+  <other/>
+</conditionvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1003_ALL"/>
+</respcondition></resprocessing>
+<itemfeedback ident="QUE_1015_IC" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[No. Mercury is a rocky planet.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1016_IC" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[No. Venus is a rocky planet. ]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1017_IC" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[No. Earth is a rocky planet.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1018_IC" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[No. Mars is a rocky planet. ]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1019_C" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[Yes. Jupiter is a gaseous planet.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1020_C" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[Yes. Saturn is a gaseous planet. ]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1021_C" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[Yes. Uranus is a gaseous planet.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1022_C" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[Yes. Neptune is a gaseous planet.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1023_IC" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[No. Pluto is a rocky planet.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1003_ALL" view="All">
+<material>
+<mattext texttype="text/html"><![CDATA[Jupiter, Saturn, Uranus and Neptune are called the &quot;gaseous&quot; planets. Jupiter and Saturn contain the largest percentages of hydrogen and helium, while Uranus and Neptune contain the largest shares of ices - frozen water, ammonia, methane and carbon monoxide.]]></mattext>
+</material>
+</itemfeedback>
+</item>
+
+<item ident="QUE_1025" title="FIB Question">
+<presentation>
+<material>
+<mattext texttype="text/html"><![CDATA[The small, celestial bodies composed of rock and metal that move around the sun, mainly between the orbits of Mars and Jupiter are called ]]></mattext>
+</material>
+<response_str ident="QUE_1026_RS">
+<render_fib fibtype="String" prompt="Box">
+<response_label ident="QUE_1027_ANS">
+</response_label>
+</render_fib>
+</response_str>
+</presentation>
+<resprocessing>
+<outcomes>
+  <decvar defaultval="0" maxvalue="1" minvalue="0" varname="que_score" vartype="Integer"/>
+</outcomes>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1026_RS">asteroids</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">1.0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1026_RS">asteroid</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">1.0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1026_RS">an asteroid</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">1.0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1026_RS">the asteroids</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">1.0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
+</respcondition>
+
+<respcondition continue="Yes">
+<conditionvar>
+  <other/>
+</conditionvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
+</respcondition></resprocessing>
+<itemfeedback ident="QUE_1024_ALL" view="All">
+<material>
+<mattext texttype="text/html"><![CDATA[The small, celestial bodies composed of rock and metal that move around the sun, mainly between the orbits of Mars and Jupiter are called asteroids.<p>
+Also accepted as correct answer : <p>
+asteroid<br>
+an asteroid<br>
+the asteroids ]]></mattext>
+</material>
+</itemfeedback>
+</item>
+
+<item ident="QUE_1029" title="Picture Of Earth">
+<presentation>
+<material>
+<matimage imagtype="image/jpg" uri="turkey.jpg"/>
+<mattext texttype="text/html"><![CDATA[<p>
+Which of these countries in clearly visible in this picture?<br>]]></mattext>
+</material>
+<response_lid ident="QUE_1030_RL" rcardinality="Single" rtiming="No">
+<render_choice>
+<response_label ident="QUE_1031_A1">
+<material>
+<mattext texttype="text/html"><![CDATA[Nigeria]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1032_A2">
+<material>
+<mattext texttype="text/html"><![CDATA[Turkey ]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1033_A3">
+<material>
+<mattext texttype="text/html"><![CDATA[Canada]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1034_A4">
+<material>
+<mattext texttype="text/html"><![CDATA[India]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1035_A5">
+<material>
+<mattext texttype="text/html"><![CDATA[Australia]]></mattext>
+</material>
+</response_label>
+</render_choice>
+</response_lid>
+</presentation>
+<resprocessing>
+<outcomes>
+  <decvar defaultval="0" maxvalue="1" varname="que_score" vartype="Integer"/>
+</outcomes>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1030_RL">QUE_1031_A1</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1036_IC"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1028_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1030_RL">QUE_1032_A2</varequal>
+</conditionvar>
+<setvar action="Set" varname="que_score">1</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1037_C"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1028_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1030_RL">QUE_1033_A3</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1038_IC"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1028_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1030_RL">QUE_1034_A4</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1039_IC"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1028_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1030_RL">QUE_1035_A5</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1040_IC"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1028_ALL"/>
+</respcondition>
+
+<respcondition continue="Yes">
+<conditionvar>
+  <other/>
+</conditionvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1028_ALL"/>
+</respcondition></resprocessing>
+<itemfeedback ident="QUE_1036_IC" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[No, this is not Nigeria.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1037_C" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[Correct]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1038_IC" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[No, this is not Canada.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1039_IC" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[No, this is not India.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1040_IC" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[No, this is not Australia.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1028_ALL" view="All">
+<material>
+<mattext texttype="text/html"><![CDATA[This is a picture of Turkey. Also visible are parts of Cypus and Syria. ]]></mattext>
+</material>
+</itemfeedback>
+</item>
+
+<item ident="QUE_1042" title="Solar Eclipse">
+<presentation>
+<material>
+<matimage imagtype="image/jpg" uri="solareclipse.jpg"/>
+<mattext texttype="text/html"><![CDATA[<br>
+During a total solar eclipse, the part of the earth where the Sun is totally obscured by the Moon is called 'The Penumbra'. ]]></mattext>
+</material>
+<response_lid ident="QUE_1043_RL" rcardinality="Single" rtiming="No">
+<render_choice>
+<response_label ident="QUE_1044_A1">
+<material>
+<mattext texttype="text/html"><![CDATA[True]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1045_A2">
+<material>
+<mattext texttype="text/html"><![CDATA[False]]></mattext>
+</material>
+</response_label>
+</render_choice>
+</response_lid>
+</presentation>
+<resprocessing>
+<outcomes>
+  <decvar defaultval="0" maxvalue="1" varname="que_score" vartype="Integer"/>
+</outcomes>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1043_RL">QUE_1044_A1</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1046_IC"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1041_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1043_RL">QUE_1045_A2</varequal>
+</conditionvar>
+<setvar action="Set" varname="que_score">1</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1047_C"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1041_ALL"/>
+</respcondition>
+
+<respcondition continue="Yes">
+<conditionvar>
+  <other/>
+</conditionvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1041_ALL"/>
+</respcondition></resprocessing>
+<itemfeedback ident="QUE_1046_IC" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[No! Incorrect]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1047_C" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[Correct.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1041_ALL" view="All">
+<material>
+<mattext texttype="text/html"><![CDATA[The Penumbra is the part of the earth where the Sun is partially obscured. Where the Sun is totally obscured is called 'The Umbra'. ]]></mattext>
+</material>
+</itemfeedback>
+</item>
+
+<item ident="QUE_1049" title="Mars Atmosphere">
+<presentation>
+<material>
+<mattext texttype="text/html"><![CDATA[What does the atmosphere of Mars mainly consist of? ]]></mattext>
+</material>
+<response_lid ident="QUE_1050_RL" rcardinality="Single" rtiming="No">
+<render_choice>
+<response_label ident="QUE_1051_A1">
+<material>
+<mattext texttype="text/html"><![CDATA[Hydrogen]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1052_A2">
+<material>
+<mattext texttype="text/html"><![CDATA[Helium]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1053_A3">
+<material>
+<mattext texttype="text/html"><![CDATA[Oxygen]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1054_A4">
+<material>
+<mattext texttype="text/html"><![CDATA[Carbon Dioxide]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1055_A5">
+<material>
+<mattext texttype="text/html"><![CDATA[Methane]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1056_A6">
+<material>
+<mattext texttype="text/html"><![CDATA[Nitrogen]]></mattext>
+</material>
+</response_label>
+</render_choice>
+</response_lid>
+</presentation>
+<resprocessing>
+<outcomes>
+  <decvar defaultval="0" maxvalue="1" varname="que_score" vartype="Integer"/>
+</outcomes>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1050_RL">QUE_1051_A1</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1048_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1050_RL">QUE_1052_A2</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1048_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1050_RL">QUE_1053_A3</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1048_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1050_RL">QUE_1054_A4</varequal>
+</conditionvar>
+<setvar action="Set" varname="que_score">1</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1048_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1050_RL">QUE_1055_A5</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1048_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1050_RL">QUE_1056_A6</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1048_ALL"/>
+</respcondition>
+
+<respcondition continue="Yes">
+<conditionvar>
+  <other/>
+</conditionvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1048_ALL"/>
+</respcondition></resprocessing>
+<itemfeedback ident="QUE_1048_ALL" view="All">
+<material>
+<mattext texttype="text/html"><![CDATA[The atmosphere of Mars is very thin and mainly consists of Carbon Dioxide.]]></mattext>
+</material>
+</itemfeedback>
+</item>
+
+<item ident="QUE_1058" title="Year">
+<presentation>
+<material>
+<mattext texttype="text/html"><![CDATA[A year is the amount of time it takes a planet to travel once in its orbit around the sun. Which planet has the longest year?]]></mattext>
+</material>
+<response_str ident="QUE_1059_RS">
+<render_fib fibtype="String" prompt="Box">
+<response_label ident="QUE_1060_ANS">
+</response_label>
+</render_fib>
+</response_str>
+</presentation>
+<resprocessing>
+<outcomes>
+  <decvar defaultval="0" maxvalue="1" minvalue="0" varname="que_score" vartype="Integer"/>
+</outcomes>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1059_RS">Pluto</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">1.0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1057_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1059_RS">pluto</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">1.0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1057_ALL"/>
+</respcondition>
+
+<respcondition continue="Yes">
+<conditionvar>
+  <other/>
+</conditionvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1057_ALL"/>
+</respcondition></resprocessing>
+<itemfeedback ident="QUE_1057_ALL" view="All">
+<material>
+<mattext texttype="text/html"><![CDATA[Pluto has the longest year at the equivalent of 248 earth years.]]></mattext>
+</material>
+</itemfeedback>
+</item>
+
+<item ident="QUE_1062" title="Larger than the Earth">
+<presentation>
+<material>
+<mattext texttype="text/html"><![CDATA[Which of these planets are larger than the earth in diameter? ]]></mattext>
+</material>
+<response_lid ident="QUE_1063_RL" rcardinality="Multiple" rtiming="No">
+<render_choice>
+<response_label ident="QUE_1064_A1">
+<material>
+<mattext texttype="text/html"><![CDATA[Mercury]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1065_A2">
+<material>
+<mattext texttype="text/html"><![CDATA[Venus]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1066_A3">
+<material>
+<mattext texttype="text/html"><![CDATA[Mars]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1067_A4">
+<material>
+<mattext texttype="text/html"><![CDATA[Jupiter]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1068_A5">
+<material>
+<mattext texttype="text/html"><![CDATA[Saturn]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1069_A6">
+<material>
+<mattext texttype="text/html"><![CDATA[Uranus]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1070_A7">
+<material>
+<mattext texttype="text/html"><![CDATA[Neptune]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1071_A8">
+<material>
+<mattext texttype="text/html"><![CDATA[Pluto]]></mattext>
+</material>
+</response_label>
+</render_choice>
+</response_lid>
+</presentation>
+<resprocessing>
+<outcomes>
+  <decvar defaultval="0" maxvalue="1" minvalue="0" varname="que_score" vartype="Integer"/>
+</outcomes>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1063_RL">QUE_1064_A1</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">-1.0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1061_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1063_RL">QUE_1065_A2</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">-1.0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1061_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1063_RL">QUE_1066_A3</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">-1.0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1061_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1063_RL">QUE_1067_A4</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0.25</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1061_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1063_RL">QUE_1068_A5</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0.25</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1061_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1063_RL">QUE_1069_A6</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0.25</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1061_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1063_RL">QUE_1070_A7</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0.25</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1061_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1063_RL">QUE_1071_A8</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">-1.0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1061_ALL"/>
+</respcondition>
+
+<respcondition continue="Yes">
+<conditionvar>
+  <other/>
+</conditionvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1061_ALL"/>
+</respcondition></resprocessing>
+<itemfeedback ident="QUE_1061_ALL" view="All">
+<material>
+<mattext texttype="text/html"><![CDATA[Only Jupiter, Saturn, Uranus and Neptune are larger that the Earth in diameter. Venus is quite close to the size of the Earth, but is slightly smaller.]]></mattext>
+</material>
+</itemfeedback>
+</item>
+
+<item ident="QUE_1073" title="Pluto">
+<presentation>
+<material>
+<mattext texttype="text/html"><![CDATA[Sometimes Pluto is closer to the Sun than Neptune, making Neptune the ninth planet.]]></mattext>
+</material>
+<response_lid ident="QUE_1074_RL" rcardinality="Single" rtiming="No">
+<render_choice>
+<response_label ident="QUE_1075_A1">
+<material>
+<mattext texttype="text/html"><![CDATA[True]]></mattext>
+</material>
+</response_label>
+<response_label ident="QUE_1076_A2">
+<material>
+<mattext texttype="text/html"><![CDATA[False]]></mattext>
+</material>
+</response_label>
+</render_choice>
+</response_lid>
+</presentation>
+<resprocessing>
+<outcomes>
+  <decvar defaultval="0" maxvalue="1" varname="que_score" vartype="Integer"/>
+</outcomes>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1074_RL">QUE_1075_A1</varequal>
+</conditionvar>
+<setvar action="Set" varname="que_score">1</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1077_C"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1072_ALL"/>
+</respcondition>
+<respcondition continue="Yes">
+<conditionvar>
+  <varequal case="Nocase" respident="QUE_1074_RL">QUE_1076_A2</varequal>
+</conditionvar>
+<setvar action="Add" varname="que_score">0</setvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1078_IC"/>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1072_ALL"/>
+</respcondition>
+
+<respcondition continue="Yes">
+<conditionvar>
+  <other/>
+</conditionvar>
+<displayfeedback feedbacktype="Response" linkrefid="QUE_1072_ALL"/>
+</respcondition></resprocessing>
+<itemfeedback ident="QUE_1077_C" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[Correct.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1078_IC" view="Candidate">
+<material>
+<mattext texttype="text/html"><![CDATA[Incorrect.]]></mattext>
+</material>
+</itemfeedback>
+<itemfeedback ident="QUE_1072_ALL" view="All">
+<material>
+<mattext texttype="text/html"><![CDATA[The orbit of pluto is so eccentric that between 1979 and 1999, it was closer than Neptune to the Sun. ]]></mattext>
+</material>
+</itemfeedback>
+</item>
+
+
+</section>
+<rubric><material><matimage class="imagebackground" imagtype="application/x-shockwave-flash" uri="components/deepbackground.swf" x0="0" y0="0"/></material></rubric><assessfeedback ident="finished"><flow_mat class="screencenter"><material><mattext>You've reached the end. Closing...</mattext></material></flow_mat></assessfeedback></assessment></questestinterop>
