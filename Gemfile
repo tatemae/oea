@@ -26,6 +26,8 @@ gem 'devise', '3.0.0.rc'
 # html/xml parsers
 gem 'nokogiri'
 
+gem 'nokogiri-happymapper', :require => 'happymapper'
+
 gem 'will_paginate', '~> 3.0.3'
 
 gem 'figaro'

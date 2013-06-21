@@ -90,6 +90,8 @@ GEM
     minitest (4.7.4)
     multi_json (1.7.7)
     nokogiri (1.5.9)
+    nokogiri-happymapper (0.5.7)
+      nokogiri (~> 1.5)
     orm_adapter (0.4.0)
     pg (0.15.1)
     polyglot (0.3.3)
@@ -170,6 +172,7 @@ DEPENDENCIES
   jbuilder (~> 1.0.1)
   jquery-rails
   nokogiri
+  nokogiri-happymapper
   pg
   rails (= 4.0.0.rc2)
   rspec-rails (~> 2.0)
