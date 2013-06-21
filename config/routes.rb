@@ -17,8 +17,7 @@ Oea::Application.routes.draw do
 
   namespace :api do
     get '/results/:item_id', to: 'results#index'
-    get "assessments/index"
-    get "assessments/create"
+    post "assessments/create"
     resources :items do
       member do
         post :create_questions
