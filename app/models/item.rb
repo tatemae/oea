@@ -2,6 +2,15 @@ class Item < ActiveRecord::Base
   has_many :item_results
   belongs_to :section
 
+  after_initialize :munge_xml
+
+  def munge_xml
+    if self.xml
+      @parsed_xml ||= ItemParser.parse(self.xml)
+      self.identifier = @parsed_xml.ident
+    end
+  end
+
   def question_text
     text = ""
     parsed_xml.css('presentation/material/mattext').each do |question_text|
@@ -103,4 +112,15 @@ class Item < ActiveRecord::Base
 end
 
 class Answer < Struct.new(:id, :text)
+end
+
+class ItemParser
+  include HappyMapper
+
+  tag 'item'
+  attribute :ident, String
+
+  with_nokogiri_config do |config|
+    config.strict.nonet
+  end
 end
