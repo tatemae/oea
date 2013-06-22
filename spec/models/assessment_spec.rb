@@ -8,14 +8,14 @@ describe Assessment do
   end
 
   it 'should extract the identifier' do
-    @assessment.identifier.should match /A1001/
+    @assessment.identifier.should eq 'A1001'
   end
 
-  it 'should extract the identifier' do
-    @assessment.title.should match /XQuestionSample/
+  it 'should extract the title' do
+    @assessment.title.should eq 'XQuestionSample'
   end
 
-  it 'should extract the identifier' do
+  it 'should extract the section' do
     @assessment.sections.count.should eq 1
   end
 end
