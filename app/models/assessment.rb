@@ -18,9 +18,12 @@ class AssessmentParser
   include HappyMapper
 
   tag 'assessment'
-  element 'assessment', XmlContent
+
   attribute :ident, String
   attribute :title, String
-  has_many :sections, XmlContent, tag: 'section'
-  has_xml_content
+  has_many :sections, self, tag: 'section', parser: :identity, raw: true
+
+  def self.identity arg
+    arg
+  end
 end
