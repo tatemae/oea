@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
   has_many :item_results
+  belongs_to :section
 
   def question_text
     text = ""

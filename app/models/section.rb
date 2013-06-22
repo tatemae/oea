@@ -6,6 +6,8 @@ class Section < ActiveRecord::Base
     self.identifier = @parsed_xml.ident
   end
 
+  has_many :items
+
   belongs_to :assessment
 
   delegate :title, to: :@parsed_xml
@@ -17,4 +19,10 @@ class SectionPaser
   tag 'section'
   attribute :ident, String
   attribute :title, String
+
+  has_many :items, self, tag: 'item', parser: :identity, raw: true
+
+  def self.identity arg
+    arg
+  end
 end
