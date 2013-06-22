@@ -2,7 +2,7 @@ class Section < ActiveRecord::Base
   after_initialize :munge_xml
 
   def munge_xml
-    @parsed_xml ||= SectionPaser.parse(self.xml)
+    @parsed_xml ||= SectionParser.parse(self.xml)
     self.identifier = @parsed_xml.ident
   end
 
@@ -13,7 +13,7 @@ class Section < ActiveRecord::Base
   delegate :title, to: :@parsed_xml
 end
 
-class SectionPaser
+class SectionParser
   include HappyMapper
 
   tag 'section'
