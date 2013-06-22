@@ -4,6 +4,7 @@ class Section < ActiveRecord::Base
   def munge_xml
     @parsed_xml ||= SectionParser.parse(self.xml)
     self.identifier = @parsed_xml.ident
+    self.items << @parsed_xml.items.collect{ |item| Item.new(xml: item) }
   end
 
   has_many :items

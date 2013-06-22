@@ -16,6 +16,6 @@ describe Section do
   end
 
   it 'should extract the items' do
-    @section.items.count.should eq 1
+    @section.items.count.should eq 8
   end
 end
