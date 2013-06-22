@@ -26,4 +26,8 @@ class AssessmentParser
   def self.identity arg
     arg
   end
+
+  with_nokogiri_config do |config|
+    config.strict.nonet
+  end
 end
