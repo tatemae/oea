@@ -38,7 +38,7 @@ FactoryGirl.define do
 
   factory :item do
     identifier { FactoryGirl.generate(:identifier) }
-    xml <<-CODE
+    xml <<-CODE.gsub(/\s+/, ' ').strip
       <item ident="i3590da31ca486c260f96e955482aca41" title="Question 1">
           <itemmetadata>
             <qtimetadata>
