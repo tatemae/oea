@@ -1,8 +1,8 @@
 class CreateAssessments < ActiveRecord::Migration
   def change
     create_table :assessments do |t|
-      t.string :xml, limit: 2**20, unique: true
-      t.string :identifier
+      t.string :xml, limit: 2**20
+      t.string :identifier, unique: true
 
       t.timestamps
     end

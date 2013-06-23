@@ -1,8 +1,8 @@
 class CreateSections < ActiveRecord::Migration
   def change
     create_table :sections do |t|
-      t.string :xml, limit: 2**20, unique: true
-      t.string :identifier
+      t.string :xml, limit: 2**20
+      t.string :identifier, unique: true
       t.integer :assessment_id
 
       t.timestamps
