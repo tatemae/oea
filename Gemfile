@@ -52,6 +52,7 @@ gem 'groupdate' # for grouping the chart data by date
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'debugger'
+  gem 'email_spec', '~> 1.2.1'
 end
 
 group :test do
