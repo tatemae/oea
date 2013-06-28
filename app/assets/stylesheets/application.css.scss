@@ -42,6 +42,13 @@ body{
   left:61px;
 }
 
+.about_content, .devise_form{
+  min-height:95%;
+  height:auto !important;
+  height:95%;
+  margin:0 auto -50px;
+}
+
 .index_content{
   width:850px;
   margin:0 auto -50px;
