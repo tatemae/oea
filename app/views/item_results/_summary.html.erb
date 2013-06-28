@@ -1,6 +1,7 @@
 <% content_for :page_title do -%>
   <%= @item.question_title %> Item Results
 <% end -%>
+<a href="<%= item_results_url(@item, :format => :csv, :type => "summary") %>">Download CSV</a>
 <div>
   <span>Item: <%= @item.question_title %></span>
   <div>
