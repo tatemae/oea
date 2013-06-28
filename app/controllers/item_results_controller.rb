@@ -2,7 +2,10 @@ class ItemResultsController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     respond_to do |format|
-      format.html { @item }
+      format.html {
+        @item
+        @summary = params[:type] == 'summary'
+      }
       format.json {
         if params[:type] == 'summary'
           render json: @item.results_summary

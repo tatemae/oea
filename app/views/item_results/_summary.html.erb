@@ -1,0 +1,21 @@
+<% content_for :page_title do -%>
+  <%= @item.question_title %> Item Results
+<% end -%>
+<div>
+  <span>Item: <%= @item.question_title %></span>
+  <div>
+    <span># Renders: <%= @item.results_summary[:renders] %></span>
+  </div>
+  <div>
+    <span># Submitted: <%= @item.results_summary[:submitted].count %></span>
+  </div>
+  <div>
+    <span>% Correct: <%= @item.results_summary[:percent_correct] * 100 %>%</span>
+  </div>
+  <div>
+    <span># Of Referers: <%= @item.results_summary[:referers].count %></span>
+  </div>
+  <div>
+    <span># Of Users: <%= @item.results_summary[:users].count %></span>
+  </div>
+</div>
