@@ -1,2 +1,4 @@
-<h1>Assessments#show</h1>
-<p>Find me in app/views/assessments/show.html.erb</p>
+<div class="assessment">
+  <%= link_to "Sections", assessment_sections_path(@assessment) %>
+  <%= render partial: 'assessments/assessment', locals: {assessment: @assessment, display_embed_code: false} %>
+</div>

@@ -2,7 +2,8 @@ class ItemsController < ApplicationController
   respond_to :json, :html
 
   def index
-    @items = Item.all
+    @section = Section.find(params[:section_id])
+    @items = @section.items
     @rendered_time = Time.now
     @referer = request.env['HTTP_REFERER']
   end

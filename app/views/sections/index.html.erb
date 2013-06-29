@@ -1,2 +1,8 @@
-<h1>Sections#index</h1>
-<p>Find me in app/views/sections/index.html.erb</p>
+<div class="section_list">
+  <% @sections.each do |section| %>
+    <div>
+      <%= link_to section.title, assessment_section_path(@assessment, section) %>
+    </div>
+  <% end -%>
+  <%= render partial: 'sections/section', collection: @sections, locals: {display_embed_code: false} %>
+</div>
