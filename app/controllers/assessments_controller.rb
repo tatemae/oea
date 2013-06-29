@@ -7,5 +7,8 @@ class AssessmentsController < ApplicationController
     if !@assessment = Assessment.find(params[:id])
       redirect_to assessments_path
     end
+    respond_to do |format|
+      format.html { render :layout => 'bare' }
+    end
   end
 end
