@@ -2,6 +2,7 @@ class Assessment < ActiveRecord::Base
   validates_presence_of :title
 
   has_many :sections
+  has_many :assessment_results
 
   after_initialize :munge_xml
 

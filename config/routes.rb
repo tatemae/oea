@@ -1,10 +1,13 @@
 Oea::Application.routes.draw do
 
   devise_for :users
-
-  resources :items do
-    resources :item_results
-    resources :results, :controller => "item_results"
+  resources :assessments do
+    resources :results, :controller => "assessment_results"
+    resources :sections do
+      resources :items do
+        resources :results, :controller => "item_results"
+      end
+    end
   end
 
   #root 'items#index'

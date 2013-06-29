@@ -36,6 +36,17 @@ FactoryGirl.define do
     end
   end
 
+  # factory :assessment do
+  #   identifier { FactoryGirl.generate(:identifier) }
+  #   xml <<-CODE.gsub(/\s+/, ' ').strip
+  #     open('./spec/fixtures/test.xml').read
+  #     CODE
+  # end
+
+  # factory :section do
+  #   identifier { FactoryGirl.generate(:identifier) }
+  # end
+
   factory :item do
     identifier { FactoryGirl.generate(:identifier) }
     xml <<-CODE.gsub(/\s+/, ' ').strip

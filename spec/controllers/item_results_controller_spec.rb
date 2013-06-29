@@ -64,29 +64,29 @@ describe ItemResultsController do
 
   describe "GET 'index'" do
     it "returns http success" do
-      get 'index', :item_id => @item.id
+      get 'index', :assessment_id => 1, :section_id => 1, :item_id => @item.id
       response.should be_success
     end
 
     it "should get the item it belongs to" do
-      get 'index', :item_id => @item.id
+      get 'index', :item_id => @item.id, :assessment_id => 1, :section_id => 1
       expect(assigns(:item)).to eq(@item)
     end
 
     it "should get the number of renders for that item" do
-      get 'index', :item_id => @item.id
+      get 'index', :item_id => @item.id, :assessment_id => 1, :section_id => 1
       expect(assigns(:item).results_summary[:renders]).to eq(@item.item_results.count)
     end
 
     it "should get the submitted results for that item" do
-      get 'index', :item_id => @item.id
+      get 'index', :item_id => @item.id, :assessment_id => 1, :section_id => 1
       expect(assigns(:item).results_summary[:submitted]).to eq(@item.item_results.by_status_final)
     end
 
     it "should get the users for that item result" do
       @users = []
       @item.item_results.map { |ir| @users << ir.user if !@users.include?(ir.user) }
-      get 'index', :item_id => @item.id
+      get 'index', :item_id => @item.id, :assessment_id => 1, :section_id => 1
       expect(assigns(:item).results_summary[:users]).to eq(@users)
     end
 
@@ -94,14 +94,14 @@ describe ItemResultsController do
       @referers = []
       @referers << "http://localhost:3000/items/#{@item.id}"
       @referers << "http://www.bfcoder.com/"
-      get 'index', :item_id => @item.id
+      get 'index', :item_id => @item.id, :assessment_id => 1, :section_id => 1
       expect(assigns(:item).results_summary[:referers]).to eq(@referers)
     end
 
     it "should get the correct responses for that item result" do
       @correct = []
       @correct << @item_result2
-      get 'index', :item_id => @item.id
+      get 'index', :item_id => @item.id, :assessment_id => 1, :section_id => 1
       expect(assigns(:item).results_summary[:correct]).to eq(@correct)
     end
 
@@ -109,7 +109,7 @@ describe ItemResultsController do
       @correct = []
       @submitted = @item.item_results.by_status_final
       @percent_correct = 1.0/3.0
-      get 'index', :item_id => @item.id
+      get 'index', :item_id => @item.id, :assessment_id => 1, :section_id => 1
       expect(assigns(:item).results_summary[:percent_correct]).to eq(@percent_correct)
     end
 
