@@ -1,5 +1,5 @@
 <div class="section_list">
   <div class="section_container">
-    <%= render partial: 'sections/section', collection: assessment.sections, locals: {display_embed_code: display_embed_code} %>
+    <%= render partial: 'items/item', object: @item, locals: {display_embed_code: display_embed_code, display_nav: display_nav, next_item: @next_item, prev_item: @prev_item, assessment: assessment } %>
   </div>
 </div>
