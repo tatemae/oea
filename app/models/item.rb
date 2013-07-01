@@ -112,7 +112,7 @@ class Item < ActiveRecord::Base
         item.title = item.question_title
         item.description = item.question_text
         item.save!
-        updates << creates
+        updates << item
       end
     end
     [updates, creates]
