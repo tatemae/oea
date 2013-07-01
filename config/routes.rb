@@ -19,12 +19,12 @@ Oea::Application.routes.draw do
 
   namespace :api do
     get '/results/:item_id', to: 'results#index'
-    post "assessments/create"
     resources :items do
       member do
         post :create_questions
       end
     end
+    resources :assessments
   end
 
   match '/contact' => 'default#contact', via: [:get, :post]

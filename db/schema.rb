@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130622043543) do
+ActiveRecord::Schema.define(version: 20130701212813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "assessments", force: true do |t|
-    t.string   "xml",        limit: 1048576
+    t.string   "xml",         limit: 1048576
     t.string   "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.text     "description"
   end
 
   add_index "assessments", ["identifier"], name: "index_assessments_on_identifier", using: :btree

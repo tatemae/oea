@@ -5,6 +5,11 @@ class Assessment < ActiveRecord::Base
   has_many :items, :through => :sections
   has_many :assessment_results
 
+  before_validation(on: :create) do
+    self.title = @parsed_xml.title
+    self.description = 'Assessment'
+  end
+
   after_initialize :munge_xml
 
   def munge_xml
@@ -18,5 +23,4 @@ class Assessment < ActiveRecord::Base
     self.sections << @parsed_xml.sections.collect{ |section| Section.new(xml: section) }
   end
 
-  delegate :title, to: :@parsed_xml
 end
