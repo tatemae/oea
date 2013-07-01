@@ -38,7 +38,8 @@ $(document).ready(function() {
             window.top.postMessage(data, '*'); // In OT the view is in an iframe but the code we have to call is in the parent of that iframe. This will send a message to the top window.
           },
           error: function(jqxhr, status, errorThrown){
-            console.log(status);
+            $self.find('.check_answer_result').empty().prepend(jqxhr.responseText);
+            console.log(jqxhr.responseText);
           }
         });
       });

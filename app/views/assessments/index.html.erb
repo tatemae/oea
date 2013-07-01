@@ -1,7 +1,7 @@
 <div class="assessment_list">
   <% @assessments.each do |assessment| %>
     <div>
-      <%= link_to assessment.title, assessment_path(assessment) %> <textarea class="embed_text assessment_embed_text" name="embed_text"> <%= CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessment_path(assessment.id)}' frameborder='0' width='600' height='800' ></iframe>") %></textarea>
+      <%= link_to assessment.title, assessment_path(assessment) %> <textarea class="embed_text assessment_embed_text" name="embed_text"> <%= CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessment_path(assessment.id)}' frameborder='0' width='500' height='400' ></iframe>") %></textarea>
     </div>
   <% end -%>
 </div>

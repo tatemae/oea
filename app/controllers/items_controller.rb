@@ -98,6 +98,9 @@ class ItemsController < ApplicationController
       format.json { render :json => result }
     end
   rescue => e
-    redirect_to items_path, :notice => e.to_s
+    respond_to do |format|
+      format.json { render :json => e.to_s }
+      format.html { redirect_to :back, :notice => e.to_s }
+    end
   end
 end
