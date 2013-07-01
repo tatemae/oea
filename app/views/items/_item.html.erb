@@ -1,6 +1,11 @@
 <div class="question">
   <%= form_for item, :url => items_check_answer_path, :html => {:method => :post} do |f| %>
     <div class="header">
+      <% if display_nav -%>
+        <span class="counter">
+          <%= current_index.to_s + " of " + question_count.to_s %>
+        </span>
+      <% end -%>
       <p><%= item.question_title %></p>
     </div>
     <div class="full_question">

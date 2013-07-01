@@ -13,10 +13,10 @@ class AssessmentsController < ApplicationController
     else
       @item = @items.first
     end
-
-    index = @items.index(@item)
-    @prev_item = index == 0 ? nil : @items[index-1]
-    @next_item = index == @items.count-1 ? nil : @items[index+1]
+    @question_count = @items.count
+    @current_index = @items.index(@item)
+    @prev_item = @current_index == 0 ? nil : @items[@current_index-1]
+    @next_item = @current_index == @question_count-1 ? nil : @items[@current_index+1]
 
     respond_to do |format|
       format.html { render :layout => 'bare' }

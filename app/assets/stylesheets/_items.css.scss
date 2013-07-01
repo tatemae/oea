@@ -100,7 +100,11 @@ body{
   p{
   	margin:0;
   	padding: 10px 0px 10px 20px;
-  } 
+  }
+  .counter{
+    float: right;
+    padding: 10px 35px 10px 20px;
+  }
 }
 .full_question{
 	background-color:$background-gray;

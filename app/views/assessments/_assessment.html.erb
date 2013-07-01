@@ -1,5 +1,5 @@
 <div class="section_list">
   <div class="section_container">
-    <%= render partial: 'items/item', object: @item, locals: {display_embed_code: display_embed_code, display_nav: display_nav, next_item: @next_item, prev_item: @prev_item, assessment: assessment } %>
+    <%= render partial: 'items/item', object: @item, locals: {display_embed_code: display_embed_code, display_nav: display_nav, next_item: @next_item, prev_item: @prev_item, assessment: assessment, current_index: @current_index+1, question_count: @question_count} %>
   </div>
 </div>
