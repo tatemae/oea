@@ -74,7 +74,6 @@ class ItemsController < ApplicationController
       words = 'incorrect'
       percent_correct = 0
     end
-    # debugger
     result = {
       :id => @item.id,
       :correct => @result,
