@@ -10,20 +10,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @rendered_time = Time.now
-    @referer = request.env['HTTP_REFERER']
-    if !@user = User.find_by_name(request.session.id)
-      @user = User.create_anonymous
-      @user.name = request.session.id
-      @user.save!
-    end
-    @item_result = @user.item_results.create!(
-      :identifier => @item.identifier,
-      :item_id => @item.id,
-      :rendered_datestamp => @rendered_time,
-      :referer => @referer,
-      :ip_address => request.ip,
-      :session_status => 'initial')
+    create_item_result(@item)
     respond_to do |format|
       format.html { render :layout => 'bare' }
     end
@@ -34,7 +21,7 @@ class ItemsController < ApplicationController
     @rendered_time = Time.now
     if @item
       @selected_answer_id = params["#{@item.id}"]
-      if !@user = User.find_by_name(request.session.id)
+      if !@user = User.find_by(name: request.session.id)
         @user = User.create_anonymous
         @user.name = request.session.id
         @user.save!
@@ -46,7 +33,7 @@ class ItemsController < ApplicationController
           @item_result.item_variable = [{
             "response_variable"=>{
               "id"=>@item.id,
-              "correct_response"=>@item.correct_response,
+              "correct_response"=>@item.correct_responses,
               "base_type"=>@item.base_type,
               "candidate_response"=>@selected_answer_id
             }
@@ -72,7 +59,7 @@ class ItemsController < ApplicationController
           :item_variable => [{
             "response_variable"=>{
               "id"=>@item.id,
-              "correct_response"=>@item.correct_response,
+              "correct_response"=>@item.correct_responses,
               "base_type"=>@item.base_type,
               "candidate_response"=>@selected_answer_id
             }
@@ -87,6 +74,7 @@ class ItemsController < ApplicationController
       words = 'incorrect'
       percent_correct = 0
     end
+    # debugger
     result = {
       :id => @item.id,
       :correct => @result,

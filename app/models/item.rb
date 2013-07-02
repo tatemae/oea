@@ -32,11 +32,19 @@ class Item < ActiveRecord::Base
   end
 
   def is_correct? answer_id
-    parsed_xml.css('varequal')[0].content.to_i == answer_id.to_i
+    correct_responses.include?(answer_id)
   end
 
-  def correct_response
-    parsed_xml.css('varequal')[0].content.to_i
+  def correct_responses
+    @correct ||= []
+    if @correct.empty?
+      parsed_xml.css('respcondition').each do |respcondition|
+        if respcondition.css('setvar').present? && respcondition.css('setvar')[0].content.to_f > 0
+          @correct << respcondition.css('varequal')[0].content
+        end
+      end
+    end
+    @correct
   end
 
   def base_type
@@ -58,7 +66,7 @@ class Item < ActiveRecord::Base
       item_results.map do |ir|
         users << ir.user if !users.include?(ir.user)
         referers << ir.referer if !ir.referer.nil? && !referers.include?(ir.referer)
-        correct << ir if ir.item_variable && ir.item_variable.map { |iv| iv["response_variable"]["correct_response"].to_i == iv["response_variable"]["candidate_response"].to_i }.any?
+        correct << ir if ir.item_variable && ir.item_variable.map { |iv| iv["response_variable"]["correct_response"].include?(iv["response_variable"]["candidate_response"]) }.any?
       end
 
       submitted = item_results.by_status_final.load
@@ -99,7 +107,7 @@ class Item < ActiveRecord::Base
     xml = Nokogiri::XML.parse(xml_stream)
     xml.css('item').each do |item_xml|
       identifier = item_xml.xpath('@ident').to_s
-      if item = Item.find_by_identifier(identifier)
+      if item = Item.find_by(identifier: identifier)
         item.xml = item_xml.to_xml
         item.title = item.question_title
         item.description = item.question_text

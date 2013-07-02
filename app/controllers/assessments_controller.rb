@@ -13,6 +13,9 @@ class AssessmentsController < ApplicationController
     else
       @item = @items.first
     end
+
+    create_item_result(@item)
+
     @question_count = @items.count
     @current_index = @items.index(@item)
     @prev_item = @current_index == 0 ? nil : @items[@current_index-1]

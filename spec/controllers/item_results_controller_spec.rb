@@ -17,7 +17,7 @@ describe ItemResultsController do
       :item_variable => [{
         "response_variable"=>{
           "id"=>@item.id,
-          "correct_response"=>@item.correct_response,
+          "correct_response"=>@item.correct_responses,
           "base_type"=>@item.base_type,
           "candidate_response"=>8292
         }
@@ -36,7 +36,7 @@ describe ItemResultsController do
       :item_variable => [{
         "response_variable"=>{
           "id"=>@item.id,
-          "correct_response"=>@item.correct_response,
+          "correct_response"=>@item.correct_responses,
           "base_type"=>@item.base_type,
           "candidate_response"=>3053
         }
@@ -55,7 +55,7 @@ describe ItemResultsController do
       :item_variable => [{
         "response_variable"=>{
           "id"=>@item.id,
-          "correct_response"=>@item.correct_response,
+          "correct_response"=>@item.correct_responses,
           "base_type"=>@item.base_type,
           "candidate_response"=>2753
         }
