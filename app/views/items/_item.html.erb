@@ -35,6 +35,7 @@
           <div class="nav_buttons">
             <span class="btn btn-prev-item <%= prev_item.nil? ? 'disabled' : '' %>" data-item-id="<%= prev_item.nil? ? '' : prev_item.id %>"><%= prev_item.nil? ? "Previous" : link_to('Prev', assessment_path(assessment, :item => prev_item)) %></span>
             <span class="btn btn-next-item <%= next_item.nil? ? 'disabled' : '' %>" data-item-id="<%= next_item.nil? ? '' : next_item.id %>"><%= next_item.nil? ? "Next" : link_to('Next', assessment_path(assessment, :item => next_item)) %></span>
+            <input type="hidden" class="at_the_end" value="<%= 'true' if next_item.nil? %>" /> <!-- TODO REMOVE THIS TEMP HACK -->
           </div>
         <% end -%>
       </div>

@@ -35,7 +35,9 @@ $(document).ready(function() {
             // if(parent){ // We can add this in later on if we decide that we want to just call the parent window for some reason (other 3rd party integrations, MIT, etc)
             //   parent.postMessage(data, '*');
             // }
-            window.top.postMessage(data, '*'); // In OT the view is in an iframe but the code we have to call is in the parent of that iframe. This will send a message to the top window.
+            if ($('.at_the_end').val("true")){
+              window.top.postMessage(data, '*'); // In OT the view is in an iframe but the code we have to call is in the parent of that iframe. This will send a message to the top window.
+            }
           },
           error: function(jqxhr, status, errorThrown){
             $self.find('.check_answer_result').empty().prepend(jqxhr.responseText);

@@ -4,7 +4,7 @@ class Item < ActiveRecord::Base
 
   after_initialize :munge_xml
 
-  scope :by_oldest, order("items.created_at ASC")
+  scope :by_oldest, -> { order("items.created_at ASC") }
 
   def munge_xml
     if self.xml
