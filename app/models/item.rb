@@ -31,6 +31,37 @@ class Item < ActiveRecord::Base
     end
   end
 
+  def feedback answer_id
+    @feedback ||= nil
+    if @feedback.nil?
+      @feedback_ids = []
+      parsed_xml.css('respcondition').each do |respcondition|
+        if respcondition.css('varequal')[0].present? && respcondition.css('varequal')[0].content == answer_id
+          respcondition.css('displayfeedback').each do |displayfeedback|
+            @feedback_ids << displayfeedback.xpath('@linkrefid').to_s
+          end
+        end
+        # if respcondition.css('setvar').present? && respcondition.css('setvar')[0].content.to_f > 0
+        #   @feedback << respcondition.css('varequal')[0].content
+        # end
+      end
+      @feedback = item_feedback(@feedback_ids)
+    end
+    @feedback
+  end
+
+  def item_feedback feedback_ids
+    @feedback ||= []
+    if @feedback.empty?
+      parsed_xml.css('itemfeedback').each do |feedback|
+        if feedback_ids.include?(feedback.xpath('@ident').to_s)
+          @feedback << feedback.css('material/mattext')[0].content
+        end
+      end
+    end
+    @feedback
+  end
+
   def is_correct? answer_id
     correct_responses.include?(answer_id)
   end

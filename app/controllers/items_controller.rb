@@ -67,14 +67,16 @@ class ItemsController < ApplicationController
             }
           }])
       end
+      feedback = @item.feedback(@selected_answer_id)
       @result = @item.is_correct?(@selected_answer_id)
     end
+    words = feedback
     if @result
-      words = 'correct'
+      words = ['correct'] if feedback.empty?
       html_class = ''
       percent_correct = 100
     else
-      words = 'incorrect'
+      words = ['incorrect'] if feedback.empty?
       html_class = ''
       percent_correct = 0
     end
@@ -83,7 +85,7 @@ class ItemsController < ApplicationController
       :correct => @result,
       :percent_correct => percent_correct,
       :source => 'http://www.openassessments.com',
-      :html => %Q{<div class="tooltip-inner #{words} #{html_class} ""><span class='result_words'>#{words.capitalize}!</span></div>}
+      :html => result_html(words, html_class)
     }
     respond_to do |format|
       format.json { render :json => result }
@@ -94,4 +96,13 @@ class ItemsController < ApplicationController
       format.html { redirect_to :back, :notice => e.to_s }
     end
   end
+
+  def result_html(words, html_class)
+    html = ''
+    words.each do |feedback|
+      html += %Q{<div class="tooltip-inner #{feedback} #{html_class} ""><span class='result_words'>#{feedback}</span></div>}
+    end
+    html
+  end
+
 end
