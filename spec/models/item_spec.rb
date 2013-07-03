@@ -25,6 +25,6 @@ describe Item do
   end
 
   it 'should respond true if the response is correct' do
-    @item.is_correct?(1602).should be_true
+    @item.is_correct?('1602').should be_true
   end
 end
