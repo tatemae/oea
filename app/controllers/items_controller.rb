@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   respond_to :json, :html
 
+  skip_before_filter :verify_authenticity_token, :only => [:check_answer]
+
   def index
     @section = Section.find(params[:section_id])
     @items = @section.items
@@ -69,9 +71,11 @@ class ItemsController < ApplicationController
     end
     if @result
       words = 'correct'
+      html_class = ''
       percent_correct = 100
     else
       words = 'incorrect'
+      html_class = ''
       percent_correct = 0
     end
     result = {
@@ -79,7 +83,7 @@ class ItemsController < ApplicationController
       :correct => @result,
       :percent_correct => percent_correct,
       :source => 'http://www.openassessments.com',
-      :html => %Q{<div class="tooltip-inner #{words}""><span class='result_words'>#{words.capitalize}!</span></div>}
+      :html => %Q{<div class="tooltip-inner #{words} #{html_class} ""><span class='result_words'>#{words.capitalize}!</span></div>}
     }
     respond_to do |format|
       format.json { render :json => result }

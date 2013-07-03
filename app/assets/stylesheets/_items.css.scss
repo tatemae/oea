@@ -59,13 +59,13 @@
   display:none;
 }
 .correct{
-  background:transparent url("flat-ui/todo/done.png") 10px center no-repeat;
+  //background:transparent image-url("flat-ui/todo/done.png") 10px center no-repeat;
   background-color:$background-green;
   color:$dark-green;
   border:2px solid $dark-green;
 }
 .incorrect{
-  //background:transparent url("flat-ui/todo/done.png") 10px center no-repeat;
+  //background:transparent image-url("flat-ui/todo/done.png") 10px center no-repeat;
   background-color:$background-red;
   color:$red;
   border:2px solid $red;
