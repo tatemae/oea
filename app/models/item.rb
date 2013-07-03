@@ -41,9 +41,6 @@ class Item < ActiveRecord::Base
             @feedback_ids << displayfeedback.xpath('@linkrefid').to_s
           end
         end
-        # if respcondition.css('setvar').present? && respcondition.css('setvar')[0].content.to_f > 0
-        #   @feedback << respcondition.css('varequal')[0].content
-        # end
       end
       @feedback = item_feedback(@feedback_ids)
     end
