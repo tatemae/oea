@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe AssessmentsController do
 
+  before do
+    @xml = open('./spec/fixtures/test.xml').read
+    @assessment = Assessment.new( xml: @xml )
+    @assessment.save!
+  end
+
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'
@@ -11,7 +17,7 @@ describe AssessmentsController do
 
   describe "GET 'show'" do
     it "returns http success" do
-      get 'show', :id => 1
+      get 'show', :id => @assessment.id
       response.should be_success
     end
   end
