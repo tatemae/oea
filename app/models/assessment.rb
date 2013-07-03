@@ -6,14 +6,15 @@ class Assessment < ActiveRecord::Base
   has_many :assessment_results
 
   before_validation(on: :create) do
-    self.title = @parsed_xml.title
+    @parsed_xml ||= AssessmentParser.parse(self.xml).first if self.xml
+    self.title = @parsed_xml.title if @parsed_xml
     self.description = 'Assessment'
   end
 
   after_initialize :munge_xml
 
   def munge_xml
-    @parsed_xml ||= AssessmentParser.parse(self.xml).first
+    @parsed_xml ||= AssessmentParser.parse(self.xml).first if self.xml
   end
 
   before_create :create_subitems
