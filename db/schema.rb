@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130701212813) do
+ActiveRecord::Schema.define(version: 20130705212143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assessment_results", force: true do |t|
+    t.integer  "assessment_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assessment_results", ["assessment_id"], name: "index_assessment_results_on_assessment_id", using: :btree
+  add_index "assessment_results", ["user_id"], name: "index_assessment_results_on_user_id", using: :btree
 
   create_table "assessments", force: true do |t|
     t.string   "xml",         limit: 1048576
@@ -32,7 +42,7 @@ ActiveRecord::Schema.define(version: 20130701212813) do
     t.string   "sequence_index"
     t.datetime "datestamp"
     t.string   "session_status"
-    t.string   "item_variable",      limit: 1048576
+    t.string   "item_variable",        limit: 1048576
     t.string   "candidate_comment"
     t.datetime "rendered_datestamp"
     t.string   "referer"
@@ -41,7 +51,12 @@ ActiveRecord::Schema.define(version: 20130701212813) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "assessment_result_id"
   end
+
+  add_index "item_results", ["assessment_result_id"], name: "index_item_results_on_assessment_result_id", using: :btree
+  add_index "item_results", ["item_id"], name: "index_item_results_on_item_id", using: :btree
+  add_index "item_results", ["user_id"], name: "index_item_results_on_user_id", using: :btree
 
   create_table "items", force: true do |t|
     t.string   "identifier"
@@ -64,6 +79,18 @@ ActiveRecord::Schema.define(version: 20130701212813) do
   end
 
   add_index "sections", ["identifier"], name: "index_sections_on_identifier", using: :btree
+
+  create_table "test_results", force: true do |t|
+    t.integer  "assessment_result_id"
+    t.integer  "identifier"
+    t.datetime "datestamp"
+    t.string   "item_variable",        limit: 1048576
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "test_results", ["assessment_result_id"], name: "index_test_results_on_assessment_result_id", using: :btree
+  add_index "test_results", ["identifier"], name: "index_test_results_on_identifier", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

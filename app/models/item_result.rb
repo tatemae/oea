@@ -1,6 +1,7 @@
 class ItemResult < ActiveRecord::Base
   belongs_to :item
   belongs_to :user
+  belongs_to :assessment_result
 
   before_save :validate_session_status
 
