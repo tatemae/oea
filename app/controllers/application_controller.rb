@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
     user_path(user)
   end
 
+  def skip_trackable
+    request.env['devise.skip_trackable'] = true
+  end
+
   def create_item_result(item)
     @rendered_time = Time.now
     @referer = request.env['HTTP_REFERER']

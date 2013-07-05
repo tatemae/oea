@@ -14,14 +14,23 @@ describe Api::AssessmentsController do
   end
 
   describe "POST 'create'" do
-    it "creates an assessment xml" do
+    before do
+      @user = FactoryGirl.create(:user)
+    end
+
+    it "denies unauthenticated requests" do
       request.env['RAW_POST_DATA'] = @xml
       post 'create', format: :xml
+      expect(response.status).to eq(401)
+    end
+    it "creates an assessment xml" do
+      request.env['RAW_POST_DATA'] = @xml
+      post 'create', auth_token: @user.authentication_token, format: :xml
       response.should be_success
     end
     it "creates an assessment json" do
       request.env['RAW_POST_DATA'] = @xml
-      post 'create', format: :json
+      post 'create', auth_token: @user.authentication_token, format: :json
       response.should be_success
     end
   end

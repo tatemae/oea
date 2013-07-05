@@ -1,5 +1,7 @@
 class Api::AssessmentsController < ApplicationController
   skip_before_filter :verify_authenticity_token
+  before_filter :skip_trackable
+  before_filter :authenticate_user!, only: [:create]
   respond_to :xml, :json
 
   def index
