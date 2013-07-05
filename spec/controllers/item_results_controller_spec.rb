@@ -92,8 +92,8 @@ describe ItemResultsController do
 
     it "should get the referers for that item result" do
       @referers = []
-      @referers << "http://localhost:3000/items/#{@item.id}"
       @referers << "http://www.bfcoder.com/"
+      @referers << "http://localhost:3000/items/#{@item.id}"
       get 'index', :item_id => @item.id, :assessment_id => 1, :section_id => 1
       expect(assigns(:item).results_summary[:referers]).to eq(@referers)
     end
