@@ -1,4 +1,5 @@
 Oea::Application.routes.draw do
+  root :to => "default#index"
 
   devise_for :users
   resources :assessments do
@@ -9,9 +10,6 @@ Oea::Application.routes.draw do
       end
     end
   end
-
-  #root 'items#index'
-  root :to => "default#index"
 
   post '/items/check_answer', to: 'items#check_answer'
 
