@@ -1,0 +1,6 @@
+<div style="padding: 50px;">
+  Api Authentication Token:
+  <%= current_user.authentication_token %>
+  <%= link_to "Reset API Authentication Token", reset_authentication_token_user_path(current_user) %>
+</div>
+

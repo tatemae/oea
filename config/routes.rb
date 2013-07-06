@@ -2,6 +2,13 @@ Oea::Application.routes.draw do
   root :to => "default#index"
 
   devise_for :users
+
+  resources :users do
+    member do
+      get :reset_authentication_token
+    end
+  end
+
   resources :assessments do
     resources :results, :controller => "assessment_results"
     resources :sections do
@@ -12,8 +19,6 @@ Oea::Application.routes.draw do
   end
 
   post '/items/check_answer', to: 'items#check_answer'
-
-  resources :users
 
   namespace :api do
     get '/results/:item_id', to: 'results#index'
