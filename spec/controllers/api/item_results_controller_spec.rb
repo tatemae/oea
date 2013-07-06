@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::ResultsController do
+describe Api::ItemResultsController do
   before do
     @item = Item.new
     @item.save!
@@ -8,7 +8,7 @@ describe Api::ResultsController do
 
   describe "GET 'index'" do
     it "returns http success" do
-      get 'index', format: :json, item_id: @item.id
+      get :index, format: :json, id: @item.id
       response.should be_success
     end
   end
