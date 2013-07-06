@@ -24,7 +24,7 @@ Oea::Application.routes.draw do
         post :create_questions
       end
     end
-    resources :assessments
+    resources :assessments, only: [:index, :create]
   end
 
   match '/contact' => 'default#contact', via: [:get, :post]
