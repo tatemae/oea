@@ -1,4 +1,9 @@
 class AssessmentsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+  before_filter :skip_trackable
+  before_filter :authenticate_user!, only: [:create]
+  respond_to :html
+
   def index
     @assessments = Assessment.all
   end
@@ -26,8 +31,12 @@ class AssessmentsController < ApplicationController
     end
   end
 
+  def new
+  end
+
   def create
-    assessment_xml = request.body.read
+    assessment_xml = params[:assessment][:xml_file].read
+    # assessment_xml = request.body.read
     ident = AssessmentParser.parse(assessment_xml).first.ident
     unless assessment = Assessment.find_by(identifier: ident)
       assessment = Assessment.new(xml: assessment_xml)

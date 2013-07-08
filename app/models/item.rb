@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-  has_many :item_results
+  has_many :item_results, dependent: :destroy
   belongs_to :section
 
   after_initialize :munge_xml

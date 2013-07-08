@@ -4,4 +4,7 @@
       <%= link_to assessment.title, assessment_path(assessment) %> <textarea class="embed_text assessment_embed_text" name="embed_text"> <%= CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessment_path(assessment.id)}' frameborder='0' width='500' height='400' ></iframe>") %></textarea> <%= link_to "delete", assessment, method: :delete, data: { confirm: "You sure?" } %>
     </div>
   <% end -%>
+  <div>
+    <%= link_to "New", new_assessment_path %>
+  </div>
 </div>

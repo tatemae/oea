@@ -1,9 +1,9 @@
 class Assessment < ActiveRecord::Base
   validates_presence_of :title
 
-  has_many :sections
-  has_many :items, :through => :sections
-  has_many :assessment_results
+  has_many :sections, dependent: :destroy
+  has_many :items, through: :sections
+  has_many :assessment_results, dependent: :destroy
 
   before_validation(on: :create) do
     @parsed_xml ||= AssessmentParser.parse(self.xml).first if self.xml
