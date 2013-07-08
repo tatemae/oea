@@ -26,4 +26,12 @@ class AssessmentsController < ApplicationController
     end
   end
 
+  def destroy
+    @assessment = Assessment.find(params[:id])
+    @assessment.destroy
+    respond_to do |format|
+      format.html { redirect_to(assessments_url) }
+    end
+  end
+
 end
