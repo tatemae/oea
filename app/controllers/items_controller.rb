@@ -29,6 +29,25 @@ class ItemsController < ApplicationController
       @user.save!
     end
     create_result = false
+    if !params[:item][:assessment_result_id].blank? && @assessment_result = AssessmentResult.find(params[:item][:assessment_result_id])
+      if @assessment_result.user.id == @user.id
+        tr = @assessment_result.test_result
+        tr.datestamp = Time.now
+        tr.save!
+      else
+        create_result = true
+      end
+    else
+      create_result = true
+    end
+
+    if create_result && params[:item][:assessment_id]
+      @assessment_result = @user.assessment_results.create!(:assessment_id => params[:item][:assessment_id])
+      TestResult.create!(:assessment_result_id => @assessment_result.id, :datestamp => Time.now)
+    end
+
+    create_result = false
+
     if !params[:item][:item_result_id].blank? && @item_result = ItemResult.find(params[:item][:item_result_id])
       if @item_result.user.id == @user.id
         @item_result.datestamp = Time.now
@@ -50,7 +69,7 @@ class ItemsController < ApplicationController
       create_result = true
     end
     if create_result
-      @item_result = @user.item_results.create!(
+      irs = {
         :identifier => @item.identifier,
         :item_id => @item.id,
         :rendered_datestamp => params[:item][:rendered_time],
@@ -65,7 +84,14 @@ class ItemsController < ApplicationController
             "base_type"=>@item.base_type,
             "candidate_response"=>@selected_answer_id
           }
-        }])
+        }]
+      }
+      if @assessment_result
+        irs[:user_id] = @user.id
+        @item_result = @assessment_result.item_results.create(irs)
+      else
+        @item_result = @user.item_results.create!(irs)
+      end
     end
     feedback = @item.feedback(@selected_answer_id)
     correct = @item.is_correct?(@selected_answer_id)
