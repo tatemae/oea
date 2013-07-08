@@ -1,6 +1,6 @@
 class ItemResultsController < ApplicationController
   def index
-    @item = Item.find(params[:item_id])
+    @item = Item.find(params[:id])
     respond_to do |format|
       format.html {
         @item

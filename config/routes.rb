@@ -9,11 +9,11 @@ Oea::Application.routes.draw do
     end
   end
 
-  resources :assessments do
-    resources :results, :controller => "assessment_results"
-    resources :sections do
-      resources :items do
-        resources :results, :controller => "item_results"
+  resources :assessments, except: [:update, :edit] do
+    get 'results', on: :member, to: 'assessment_results#index'
+    resources :sections, except: [:update, :edit] do
+      resources :items, except: [:update, :edit] do
+        get 'results', on: :member, to: 'item_results#index'
       end
     end
   end

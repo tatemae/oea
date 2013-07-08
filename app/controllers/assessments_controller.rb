@@ -26,6 +26,16 @@ class AssessmentsController < ApplicationController
     end
   end
 
+  def create
+    assessment_xml = request.body.read
+    ident = AssessmentParser.parse(assessment_xml).first.ident
+    unless assessment = Assessment.find_by(identifier: ident)
+      assessment = Assessment.new(xml: assessment_xml)
+      assessment.save!
+    end
+    respond_with(assessment, location: nil)
+  end
+
   def destroy
     @assessment = Assessment.find(params[:id])
     @assessment.destroy

@@ -29,7 +29,7 @@
 
         <% if display_embed_code -%>
           <div class="right_buttons">
-            <p><span class="stats_word">stats</span><a href="<%= assessment_section_item_results_path(params[:assessment_id], params[:section_id], item.id) %>" class="btn btn-info stats_button"><i class="icon-bar-chart"></i></a></p>
+            <p><span class="stats_word">stats</span><a href="<%= results_assessment_section_item_path(params[:assessment_id], params[:section_id], item.id) %>" class="btn btn-info stats_button"><i class="icon-bar-chart"></i></a></p>
             <p><span class="embed_word">embed</span><a href="#" class="btn btn-info embed_button">&lt/&gt</a></p>
           </div>
         <% end -%>
