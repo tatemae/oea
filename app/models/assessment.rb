@@ -4,6 +4,7 @@ class Assessment < ActiveRecord::Base
   has_many :sections, dependent: :destroy
   has_many :items, through: :sections
   has_many :assessment_results, dependent: :destroy
+  belongs_to :user
 
   before_validation(on: :create) do
     @parsed_xml ||= AssessmentParser.parse(self.xml).first if self.xml

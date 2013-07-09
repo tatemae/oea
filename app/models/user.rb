@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :assessment_results
   has_many :item_results
+  has_many :assessments
 
   before_save :ensure_authentication_token
 
