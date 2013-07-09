@@ -46,22 +46,28 @@ class Item < ActiveRecord::Base
     if @feedback.nil?
       @feedback_ids = []
       parsed_xml.css('respcondition').each do |respcondition|
-        if respcondition.css('varequal')[0].present? && respcondition.css('varequal')[0].content == answer_id
+        if respcondition.css('varequal')[0].present? && respcondition.css('varequal').map { |varequal| varequal.content }.include?(answer_id)
           respcondition.css('displayfeedback').each do |displayfeedback|
             @feedback_ids << displayfeedback.xpath('@linkrefid').to_s
           end
         end
       end
-      @feedback = item_feedback(@feedback_ids)
+      @feedback = item_feedback(@feedback_ids.flatten, is_correct?(answer_id))
     end
     @feedback
   end
 
-  def item_feedback feedback_ids
+  def item_feedback feedback_ids, is_correct
     @feedback ||= []
     if @feedback.empty?
       parsed_xml.css('itemfeedback').each do |feedback|
         if feedback_ids.include?(feedback.xpath('@ident').to_s)
+          @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
+        end
+        if feedback.xpath('@ident').to_s == 'general_fb'
+          @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
+        end
+        if !is_correct && feedback.xpath('@ident').to_s == 'general_incorrect_fb'
           @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
         end
       end
