@@ -36,11 +36,9 @@ class AssessmentsController < ApplicationController
 
   def create
     assessment_xml = params[:assessment][:xml_file].read
-    # assessment_xml = request.body.read
     ident = AssessmentParser.parse(assessment_xml).first.ident
     unless assessment = Assessment.find_by(identifier: ident)
-      assessment = Assessment.new(xml: assessment_xml)
-      assessment.save!
+      assessment = current_user.assessments.create!(xml: assessment_xml)
     end
     respond_with(assessment, location: nil)
   end
