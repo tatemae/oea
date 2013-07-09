@@ -5,7 +5,12 @@ class AssessmentsController < ApplicationController
   respond_to :html
 
   def index
-    @assessments = Assessment.all
+    if params[:user_id]
+      user = User.find(params[:user_id])
+      @assessments = user.assessments
+    else
+      @assessments = Assessment.all
+    end
   end
 
   def show

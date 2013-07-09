@@ -7,6 +7,7 @@ Oea::Application.routes.draw do
     member do
       get :reset_authentication_token
     end
+    resources :assessments, except: [:update, :edit], :controller => "assessments"
   end
 
   resources :assessments, except: [:update, :edit] do
