@@ -3,11 +3,12 @@ class Api::ItemResultsController < ApplicationController
   respond_to :xml, :json
 
   def index
-    #TODO: scope
+    scope_url = params[:url] if params[:scope] == 'domain' || params[:scope] == 'page'
+    scope_url = get_domain(scope_url) if params[:scope] == 'domain'
     if params[:type] == 'summary'
-      results = Item.find(params[:id]).results_summary
+      results = Item.find(params[:id]).results_summary( scope_url )
     else
-      results = Item.find(params[:id]).item_results
+      results = Item.find(params[:id]).item_results.where("referer LIKE ?", "%#{scope_url}%")
     end
     respond_to do |format|
       format.json { render json: results }

@@ -28,4 +28,10 @@ class ApplicationController < ActionController::Base
       :session_status => 'initial')
   end
 
+  def get_domain(url)
+    url = "http://#{url}" if URI.parse(url).scheme.nil?
+    host = URI.parse(url).host.downcase
+    host
+  end
+
 end

@@ -101,22 +101,24 @@ class Item < ActiveRecord::Base
     base_type
   end
 
-  def results_summary
+  def results_summary( scope_url = nil )
     @results_summary ||= begin
       users = []
       referers = []
       correct = []
 
-      item_results.map do |ir|
-        users << ir.user if !users.include?(ir.user)
-        referers << ir.referer if !ir.referer.nil? && !referers.include?(ir.referer)
-        correct << ir if ir.item_variable && ir.item_variable.map { |iv| iv["response_variable"]["correct_response"].include?(iv["response_variable"]["candidate_response"]) }.any?
+      results = scope_url ? item_results.where("referer LIKE ?", "%#{scope_url}%") : item_results
+
+      results.map do |item_result|
+        users << item_result.user if !users.include?(item_result.user)
+        referers << item_result.referer if !item_result.referer.nil? && !referers.include?(item_result.referer)
+        correct << item_result if item_result.item_variable && item_result.item_variable.map { |iv| iv["response_variable"]["correct_response"].include?(iv["response_variable"]["candidate_response"]) }.any?
       end
 
-      submitted = item_results.by_status_final.load
+      submitted = results.by_status_final.load
 
       {
-        renders: item_results.count,
+        renders: users.count,
         submitted: submitted,
         users: users,
         referers: referers,
