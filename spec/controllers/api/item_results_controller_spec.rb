@@ -2,8 +2,7 @@ require 'spec_helper'
 
 describe Api::ItemResultsController do
   before do
-    @item = Item.new
-    @item.save!
+    @item = FactoryGirl.create(:item)
   end
 
   describe "GET 'index'" do
