@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Api::AssessmentsController do
   before do
-    @xml = open('./spec/fixtures/test.xml').read
+    @xml = open('./spec/fixtures/assessment.xml').read
   end
 
   describe "GET 'index'" do

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ItemsController do
 
   before do
-    @xml = open('./spec/fixtures/test.xml').read
+    @xml = open('./spec/fixtures/assessment.xml').read
     @assessment = Assessment.new( xml: @xml )
     @assessment.save!
   end
