@@ -27,4 +27,8 @@ describe Item do
   it 'should respond true if the response is correct' do
     @item.is_correct?('1602').should be_true
   end
+
+  it 'should extract the question_type' do
+    @item.question_type.should match 'multiple_choice_question'
+  end
 end

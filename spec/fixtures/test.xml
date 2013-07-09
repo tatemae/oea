@@ -192,65 +192,67 @@
 </item>
 
 <item ident="QUE_1025" title="FIB Question">
-<presentation>
-<material>
-<mattext texttype="text/html"><![CDATA[The small, celestial bodies composed of rock and metal that move around the sun, mainly between the orbits of Mars and Jupiter are called ]]></mattext>
-</material>
-<response_str ident="QUE_1026_RS">
-<render_fib fibtype="String" prompt="Box">
-<response_label ident="QUE_1027_ANS">
-</response_label>
-</render_fib>
-</response_str>
-</presentation>
-<resprocessing>
-<outcomes>
-  <decvar defaultval="0" maxvalue="1" minvalue="0" varname="que_score" vartype="Integer"/>
-</outcomes>
-<respcondition continue="Yes">
-<conditionvar>
-  <varequal case="Nocase" respident="QUE_1026_RS">asteroids</varequal>
-</conditionvar>
-<setvar action="Add" varname="que_score">1.0</setvar>
-<displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
-</respcondition>
-<respcondition continue="Yes">
-<conditionvar>
-  <varequal case="Nocase" respident="QUE_1026_RS">asteroid</varequal>
-</conditionvar>
-<setvar action="Add" varname="que_score">1.0</setvar>
-<displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
-</respcondition>
-<respcondition continue="Yes">
-<conditionvar>
-  <varequal case="Nocase" respident="QUE_1026_RS">an asteroid</varequal>
-</conditionvar>
-<setvar action="Add" varname="que_score">1.0</setvar>
-<displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
-</respcondition>
-<respcondition continue="Yes">
-<conditionvar>
-  <varequal case="Nocase" respident="QUE_1026_RS">the asteroids</varequal>
-</conditionvar>
-<setvar action="Add" varname="que_score">1.0</setvar>
-<displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
-</respcondition>
+  <presentation>
+    <material>
+      <mattext texttype="text/html"><![CDATA[The small, celestial bodies composed of rock and metal that move around the sun, mainly between the orbits of Mars and Jupiter are called ]]></mattext>
+    </material>
+    <response_str ident="QUE_1026_RS">
+      <render_fib fibtype="String" prompt="Box">
+        <response_label ident="QUE_1027_ANS">
+        </response_label>
+      </render_fib>
+    </response_str>
+  </presentation>
+  <resprocessing>
+    <outcomes>
+      <decvar defaultval="0" maxvalue="1" minvalue="0" varname="que_score" vartype="Integer"/>
+    </outcomes>
+    <respcondition continue="Yes">
+      <conditionvar>
+        <varequal case="Nocase" respident="QUE_1026_RS">asteroids</varequal>
+      </conditionvar>
+      <setvar action="Add" varname="que_score">1.0</setvar>
+      <displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
+    </respcondition>
+    <respcondition continue="Yes">
+      <conditionvar>
+        <varequal case="Nocase" respident="QUE_1026_RS">asteroid</varequal>
+      </conditionvar>
+      <setvar action="Add" varname="que_score">1.0</setvar>
+      <displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
+    </respcondition>
+    <respcondition continue="Yes">
+      <conditionvar>
+        <varequal case="Nocase" respident="QUE_1026_RS">an asteroid</varequal>
+      </conditionvar>
+      <setvar action="Add" varname="que_score">1.0</setvar>
+      <displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
+    </respcondition>
+    <respcondition continue="Yes">
+      <conditionvar>
+        <varequal case="Nocase" respident="QUE_1026_RS">the asteroids</varequal>
+      </conditionvar>
+      <setvar action="Add" varname="que_score">1.0</setvar>
+      <displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
+    </respcondition>
 
-<respcondition continue="Yes">
-<conditionvar>
-  <other/>
-</conditionvar>
-<displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
-</respcondition></resprocessing>
-<itemfeedback ident="QUE_1024_ALL" view="All">
-<material>
-<mattext texttype="text/html"><![CDATA[The small, celestial bodies composed of rock and metal that move around the sun, mainly between the orbits of Mars and Jupiter are called asteroids.<p>
-Also accepted as correct answer : <p>
-asteroid<br>
-an asteroid<br>
-the asteroids ]]></mattext>
-</material>
-</itemfeedback>
+    <respcondition continue="Yes">
+      <conditionvar>
+        <other/>
+      </conditionvar>
+      <displayfeedback feedbacktype="Response" linkrefid="QUE_1024_ALL"/>
+    </respcondition>
+  </resprocessing>
+  <itemfeedback ident="QUE_1024_ALL" view="All">
+    <material>
+      <mattext texttype="text/html"><![CDATA[The small, celestial bodies composed of rock and metal that move around the sun, mainly between the orbits of Mars and Jupiter are called asteroids.<p>
+        Also accepted as correct answer : <p>
+        asteroid<br>
+        an asteroid<br>
+        the asteroids ]]>
+      </mattext>
+    </material>
+  </itemfeedback>
 </item>
 
 <item ident="QUE_1029" title="Picture Of Earth">

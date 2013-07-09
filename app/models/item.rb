@@ -25,6 +25,16 @@ class Item < ActiveRecord::Base
     parsed_xml.css('item').xpath('@title').to_s
   end
 
+  def question_type
+    qt = nil
+    parsed_xml.css('itemmetadata/qtimetadata/qtimetadatafield').map do |datafield|
+      if datafield.css('fieldlabel')[0].content == 'question_type'
+        qt = datafield.css('fieldentry')[0].content
+      end
+    end
+    qt
+  end
+
   def answers
     parsed_xml.css('response_lid/render_choice/response_label').map do |answer|
       Answer.new( answer.first[1], item_content(answer.css('mattext')[0]) )
@@ -52,11 +62,11 @@ class Item < ActiveRecord::Base
     if @feedback.empty?
       parsed_xml.css('itemfeedback').each do |feedback|
         if feedback_ids.include?(feedback.xpath('@ident').to_s)
-          @feedback << feedback.css('material/mattext')[0].content
+          @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
         end
       end
     end
-    @feedback
+    @feedback.flatten
   end
 
   def is_correct? answer_id
@@ -68,11 +78,11 @@ class Item < ActiveRecord::Base
     if @correct.empty?
       parsed_xml.css('respcondition').each do |respcondition|
         if respcondition.css('setvar').present? && respcondition.css('setvar')[0].content.to_f > 0
-          @correct << respcondition.css('varequal')[0].content
+          @correct << respcondition.css('varequal').map { |varequal| varequal.content }
         end
       end
     end
-    @correct
+    @correct.flatten
   end
 
   def base_type

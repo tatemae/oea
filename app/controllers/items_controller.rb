@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:item][:id])
     @rendered_time = Time.now
 
-    @selected_answer_id = params["#{@item.id}"]
+    @user_response = params["#{@item.id}"]
     if !@user = User.find_by(name: request.session.id)
       @user = User.create_anonymous
       @user.name = request.session.id
@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
             "id"=>@item.id,
             "correct_response"=>@item.correct_responses,
             "base_type"=>@item.base_type,
-            "candidate_response"=>@selected_answer_id
+            "candidate_response"=>@user_response
           }
         }]
         @item_result.referer = params[:item][:referer]
@@ -82,7 +82,7 @@ class ItemsController < ApplicationController
             "id"=>@item.id,
             "correct_response"=>@item.correct_responses,
             "base_type"=>@item.base_type,
-            "candidate_response"=>@selected_answer_id
+            "candidate_response"=>@user_response
           }
         }]
       }
@@ -93,8 +93,8 @@ class ItemsController < ApplicationController
         @item_result = @user.item_results.create!(irs)
       end
     end
-    feedback = @item.feedback(@selected_answer_id)
-    correct = @item.is_correct?(@selected_answer_id)
+    feedback = @item.feedback(@user_response)
+    correct = @item.is_correct?(@user_response)
 
     if correct
       feedback = ['correct'] if feedback.empty?
