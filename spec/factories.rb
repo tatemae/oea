@@ -50,4 +50,17 @@ FactoryGirl.define do
     xml { open('./spec/fixtures/item.xml').read.gsub(/\s+/, ' ').strip }
   end
 
+  factory :assessment_result do
+
+  end
+
+  factory :item_result do
+    item
+    user
+    assessment_result
+
+    session_status { 'initial' }
+
+  end
+
 end
