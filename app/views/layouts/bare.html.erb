@@ -2,13 +2,11 @@
 <html>
 <head>
   <%= render 'layouts/global/head' %>
-  <%= stylesheet_link_tag "bare", media: "all" %>
+  <%= stylesheet_link_tag "bare", media: "all", "data-turbolinks-track" => true %>
 </head>
 <body>
   <%= render 'layouts/global/messages' %>
   <%= yield %>
-  <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "oea" %>
-  <%= javascript_include_tag "templates/all" %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </body>
 </html>

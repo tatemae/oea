@@ -13,9 +13,25 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require turbolinks
 //= require handlebars
 //= require ember
 //= require ember-data
 //= require_self
+//= require oea
+
+// for more details see: http://emberjs.com/guides/application/
+Oea = Ember.Application.create();
+
+//= require_tree .
 //= require flat-ui
+//= require handlebars
+//= require ember
+//= require ember-data
+//= require_self
+//= require oea
+
+// for more details see: http://emberjs.com/guides/application/
+Oea = Ember.Application.create();
+
 //= require_tree ../../../vendor/assets/javascripts
