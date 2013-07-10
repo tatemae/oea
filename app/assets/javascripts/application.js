@@ -13,8 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
-//= require_tree .
 //= require flat-ui
 
 //= require_tree ../../../vendor/assets/javascripts
