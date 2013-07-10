@@ -1,5 +1,5 @@
 {
-  "jsPath": "app/assets/javascripts",
+  "jsPath": "app/assets/javascripts/assessment",
   "modules": "cjs"
 }
 
