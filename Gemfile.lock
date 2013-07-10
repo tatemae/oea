@@ -68,6 +68,7 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    ffi (1.9.0)
     figaro (0.6.4)
       bundler (~> 1.0)
       rails (>= 3, < 5)
@@ -88,6 +89,7 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     kgio (2.8.0)
+    libxml-ruby (2.6.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -135,6 +137,9 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    ruby-saml-mod (0.1.22)
+      ffi
+      libxml-ruby (>= 2.3.0)
     sass (3.2.9)
     sass-rails (4.0.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -193,6 +198,7 @@ DEPENDENCIES
   pg
   rails (= 4.0.0)
   rspec-rails (~> 2.0)
+  ruby-saml-mod
   sass-rails (~> 4.0.0.rc1)
   turbolinks
   uglifier (>= 1.3.0)
