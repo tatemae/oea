@@ -29,8 +29,8 @@ class ApplicationController < ActionController::Base
   end
 
   def get_domain(url)
-    url = "http://#{url}" if URI.parse(url).scheme.nil?
-    host = URI.parse(url).host.downcase
+    url = "http://#{url}" if URI.parse(url).scheme.nil? rescue nil
+    host = URI.parse(url).host.downcase rescue nil
     host
   end
 
