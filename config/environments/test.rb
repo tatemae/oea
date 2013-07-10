@@ -34,6 +34,4 @@ Oea::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  # Ember Variant
-  config.ember.variant = :test
 end

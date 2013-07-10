@@ -27,6 +27,4 @@ Oea::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  # Ember Variant
-  config.ember.variant = :development
 end
