@@ -32,10 +32,6 @@ gem 'will_paginate', '~> 3.0.3'
 
 gem 'figaro'
 
-# Ember stuff
-gem 'ember-rails'
-gem 'ember-source', '1.0.0.rc6.2'
-
 gem 'unicorn'
 
 # Charts
