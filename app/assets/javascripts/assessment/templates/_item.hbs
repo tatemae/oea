@@ -1,5 +1,5 @@
 <div class="question">
-  <%= form_for item, :url => items_check_answer_path, :html => {:method => :post} do |f| %>
+  <form {{action check on="submit"}}>
     <div class="header">
       <% if display_nav -%>
         <span class="counter">
@@ -29,14 +29,9 @@
         <input type="hidden" id="assessment_id" name="item[assessment_id]" value="<%= assessment ? assessment.id : nil %>" />
         <input type="hidden" id="item_result_id" name="item[item_result_id]" value="<%= @item_result ? @item_result.id : nil %>" />
         <input type="hidden" id="referer" name="item[referer]" value="<%= @referer %>" />
-        <span style='float:left;'><%= f.submit 'Check Answer', :class => 'btn btn-check-answer disabled' %></span>
-
-        <% if display_embed_code -%>
-          <div class="right_buttons">
-            <p><span class="stats_word">stats</span><a href="<%= results_assessment_section_item_path(params[:assessment_id], params[:section_id], item.id) %>" class="btn btn-info stats_button"><i class="icon-bar-chart"></i></a></p>
-            <p><span class="embed_word">embed</span><a href="#" class="btn btn-info embed_button">&lt/&gt</a></p>
-          </div>
-        <% end -%>
+        <span style="float:left;">
+          <button type="submit" class="btn btn-check-answer disabled">Check Answer</button>
+        </span>
         <% if display_nav -%>
           <div class="nav_buttons">
             <span class="btn btn-prev-item <%= prev_item.nil? ? 'disabled' : '' %>" data-item-id="<%= prev_item.nil? ? '' : prev_item.id %>"><%= prev_item.nil? ? "Previous" : link_to('Prev', assessment_path(assessment, :item => prev_item)) %></span>
@@ -46,12 +41,7 @@
         <% end -%>
       </div>
     </div>
-  <% end -%>
-  <% if display_embed_code -%>
-    <div class="embed_code">
-      <textarea class="embed_text" name="embed_text"> <%= CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessment_section_item_path(params[:assessment_id], params[:section_id], item.id)}' frameborder='0' width='300' height='400' ></iframe>") %></textarea>
-    </div>
-  <% end -%>
+  </form>
 </div>
 
 
