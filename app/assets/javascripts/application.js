@@ -18,4 +18,17 @@
 //= require ember-data
 //= require_self
 //= require flat-ui
-//= require_tree ../../../vendor/assets/javascripts
+
+//= require_tree .
+
+
+Oea = Ember.Application.create();
+
+// = require ./store
+// = require_tree ./models
+// = require_tree ./controllers
+// = require_tree ./views
+// = require_tree ./helpers
+// = require_tree ./templates
+// = require_tree ./routes
+// = require ./router

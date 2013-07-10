@@ -9,6 +9,25 @@
   <%= yield %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "oea" %>
-  <%= javascript_include_tag "templates/all" %>
+
+  <script type="text/x-handlebars">
+    <div>
+
+      why won't {{outlet}}this work
+
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" id="assessments">
+    <span>
+      {{title}} in assessments
+    </span>
+  </script>
+
+  <script type="text/x-handlebars" id="assessment">
+    <span>
+      show page
+    </span>
+  </script>
 </body>
 </html>
