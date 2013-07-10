@@ -1,3 +1,4 @@
 Oea.Store = DS.Store.extend({
-  adapter: DS.RESTAdapter
+  revision: 11,
+  adapter: DS.RESTAdapter.create()
 });
