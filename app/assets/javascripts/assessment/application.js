@@ -7954,13 +7954,8 @@ DS.RESTAdapter = DS.Adapter.extend({
 
 
 },{}],10:[function(require,module,exports){
-<<<<<<< HEAD
 // Version: v1.0.0-rc.6
 // Last commit: 893bbc4 (2013-06-23 15:14:46 -0400)
-=======
-// Version: v1.0.0-rc.5
-// Last commit: 9f2b6ac (2013-06-01 13:54:46 -0400)
->>>>>>> template fixes
 
 
 (function() {
