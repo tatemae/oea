@@ -101,13 +101,17 @@ class Item < ActiveRecord::Base
     base_type
   end
 
+  def raw_results( scope_url = nil )
+    results = scope_url ? item_results.where("referer LIKE ?", "%#{scope_url}%") : item_results
+  end
+
   def results_summary( scope_url = nil )
     @results_summary ||= begin
       users = []
       referers = []
       correct = []
 
-      results = scope_url ? item_results.where("referer LIKE ?", "%#{scope_url}%") : item_results
+      results = raw_results( scope_url )
 
       results.map do |item_result|
         users << item_result.user if !users.include?(item_result.user)

@@ -8,7 +8,7 @@ class Api::ItemResultsController < ApplicationController
     if params[:type] == 'summary'
       results = Item.find(params[:id]).results_summary( scope_url )
     else
-      results = Item.find(params[:id]).item_results.where("referer LIKE ?", "%#{scope_url}%")
+      results = Item.find(params[:id]).raw_results( scope_url )
     end
     respond_to do |format|
       format.json { render json: results }
