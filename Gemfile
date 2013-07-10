@@ -34,6 +34,8 @@ gem 'figaro'
 
 gem 'unicorn'
 
+gem 'active_model_serializers' # Make Rails generate json that ember likes.
+
 # Charts
 gem "chartkick"
 gem 'groupdate' # for grouping the chart data by date

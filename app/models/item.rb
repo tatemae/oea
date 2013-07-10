@@ -13,28 +13,6 @@ class Item < ActiveRecord::Base
     end
   end
 
-  def question_text
-    text = ""
-    parsed_xml.css('presentation/material/mattext').each do |question_text|
-      text = item_content(question_text)
-    end
-    text
-  end
-
-  def question_title
-    parsed_xml.css('item').xpath('@title').to_s
-  end
-
-  def question_type
-    qt = nil
-    parsed_xml.css('itemmetadata/qtimetadata/qtimetadatafield').map do |datafield|
-      if datafield.css('fieldlabel')[0].content == 'question_type'
-        qt = datafield.css('fieldentry')[0].content
-      end
-    end
-    qt
-  end
-
   def answers
     parsed_xml.css('response_lid/render_choice/response_label').map do |answer|
       Answer.new( answer.first[1], item_content(answer.css('mattext')[0]) )
