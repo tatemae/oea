@@ -11,10 +11,6 @@ describe Section do
     @section.identifier.should eq 'S1002'
   end
 
-  it 'should extract the identifier' do
-    @section.title.should eq 'Main'
-  end
-
   it 'should extract the items' do
     @section.items.count.should eq 8
   end

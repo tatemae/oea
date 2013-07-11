@@ -5,7 +5,7 @@ class Item < ActiveRecord::Base
   scope :by_oldest, -> { order("items.created_at ASC") }
 
   def from_xml(input_xml)
-    xml = input_xml.is_a?(String) ? ItemParser.parse(input_xml) : input_xml
+    xml = input_xml.is_a?(String) ? Nokogiri::XML.parse(input_xml) : input_xml
     self.identifier = Item.parse_identifier(xml)
     self.description = self.question_text = Item.parse_question_text(xml)
     self.title = Item.parse_title(xml)
@@ -57,7 +57,7 @@ class Item < ActiveRecord::Base
   end
 
   def self.parse_identifier(xml)
-    xml.ident
+    xml.xpath('@ident').to_s
   end
 
   def self.parse_title(xml)
