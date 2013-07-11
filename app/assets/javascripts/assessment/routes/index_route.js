@@ -1,11 +1,10 @@
-var Item = require('../models/item');
+var Assessment = require('../models/assessment');
 var IndexRoute = Ember.Route.extend({
 
   model: function() {
-    return Item.find();
+    return Assessment.find(global_assessment_id);
   }
 
 });
 
 module.exports = IndexRoute;
-

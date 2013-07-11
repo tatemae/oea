@@ -11,6 +11,13 @@ class Api::AssessmentsController < ApplicationController
     respond_with(assessments, :only => [:id, :title, :description])
   end
 
+  def show
+    assessment = Assessment.find(params[:id])
+    json = assessment.to_json
+    debugger
+    respond_with(json)
+  end
+
   def create
     assessment_xml = request.body.read
     ident = AssessmentParser.parse(assessment_xml).first.ident

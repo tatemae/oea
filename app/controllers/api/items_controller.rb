@@ -7,7 +7,7 @@ class Api::ItemsController < ApplicationController
   def index
     page = (params[:page] || 1).to_i
     per_page = 10
-    items = Item.where("items.xml LIKE ?", "%#{params[:q]}%").paginate(:page => page, :per_page => per_page)
+    items = Item.where("items.title LIKE ?", "%#{params[:q]}%").paginate(:page => page, :per_page => per_page)
     respond_with(items, :only => [:id, :title, :description])
   end
 

@@ -13,7 +13,7 @@ App.Store = require('./store'); // delete if you don't want ember-data
 module.exports = App;
 
 
-},{"../vendor/ember":10,"../vendor/ember-data":9,"../vendor/handlebars":11,"../vendor/jquery":12,"./store":3}],2:[function(require,module,exports){
+},{"../vendor/ember":12,"../vendor/ember-data":11,"../vendor/handlebars":13,"../vendor/jquery":14,"./store":3}],2:[function(require,module,exports){
 var App = require('./app');
 
 App.Router.map(function() {
@@ -36,7 +36,9 @@ var App = window.App = require('./config/app');
 require('./templates');
 
 
+App.Assessment = require('./models/assessment');
 App.Item = require('./models/item');
+App.Section = require('./models/section');
 App.ApplicationRoute = require('./routes/application_route');
 App.IndexRoute = require('./routes/index_route');
 
@@ -45,15 +47,29 @@ require('./config/routes');
 module.exports = App;
 
 
-},{"./config/app":1,"./config/routes":2,"./models/item":5,"./routes/application_route":6,"./routes/index_route":7,"./templates":8}],5:[function(require,module,exports){
-var Item = DS.Model.extend({
+},{"./config/app":1,"./config/routes":2,"./models/assessment":5,"./models/item":6,"./models/section":7,"./routes/application_route":8,"./routes/index_route":9,"./templates":10}],5:[function(require,module,exports){
+var Assessment = DS.Model.extend({
+  sections: DS.hasMany('App.Section')
+});
 
+module.exports = Assessment;
+
+},{}],6:[function(require,module,exports){
+var Item = DS.Model.extend({
+  section: DS.belongsTo('App.Section')
 });
 
 module.exports = Item;
 
+},{}],7:[function(require,module,exports){
+var Section = DS.Model.extend({
+  assessment: DS.belongsTo('App.Assessment'),
+  items: DS.hasMany('App.Item')
+});
 
-},{}],6:[function(require,module,exports){
+module.exports = Section;
+
+},{}],8:[function(require,module,exports){
 var ApplicationRoute = Ember.Route.extend({
 
 });
@@ -61,20 +77,18 @@ var ApplicationRoute = Ember.Route.extend({
 module.exports = ApplicationRoute;
 
 
-},{}],7:[function(require,module,exports){
-var Item = require('../models/item');
+},{}],9:[function(require,module,exports){
+var Assessment = require('../models/assessment');
 var IndexRoute = Ember.Route.extend({
 
   model: function() {
-    return Item.find();
+    return Assessment.find(global_assessment_id);
   }
 
 });
 
 module.exports = IndexRoute;
-
-
-},{"../models/item":5}],8:[function(require,module,exports){
+},{"../models/assessment":5}],10:[function(require,module,exports){
 
 Ember.TEMPLATES['_item'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [3,'>= 1.0.0-rc.4'];
@@ -141,7 +155,7 @@ function program1(depth0,data) {
 
 
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 (function() {
 window.DS = Ember.Namespace.create({
   // this one goes to 11
@@ -7957,7 +7971,7 @@ DS.RESTAdapter = DS.Adapter.extend({
 })();
 
 
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 // Version: v1.0.0-rc.6
 // Last commit: 893bbc4 (2013-06-23 15:14:46 -0400)
 
@@ -38929,7 +38943,7 @@ Ember
 
 })();
 
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /*
 
 Copyright (C) 2011 by Yehuda Katz
@@ -39276,7 +39290,7 @@ Handlebars.template = Handlebars.VM.template;
 })(Handlebars);
 ;
 
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v1.9.1
  * http://jquery.com/
