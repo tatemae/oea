@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130711000537) do
+ActiveRecord::Schema.define(version: 20130711033015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,9 +27,10 @@ ActiveRecord::Schema.define(version: 20130711000537) do
   add_index "assessment_results", ["user_id"], name: "index_assessment_results_on_user_id", using: :btree
 
   create_table "assessment_xmls", force: true do |t|
-    t.string   "xml",        limit: 1048576
+    t.string   "xml",           limit: 1048576
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "assessment_id"
   end
 
   create_table "assessments", force: true do |t|
@@ -67,18 +68,16 @@ ActiveRecord::Schema.define(version: 20130711000537) do
 
   create_table "items", force: true do |t|
     t.string   "identifier"
-    t.string   "xml",               limit: 1048576
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
-    t.text     "description"
+    t.string   "description",       limit: 32768
     t.integer  "section_id"
-    t.string   "question_text"
-    t.string   "question_title"
-    t.string   "answers"
-    t.string   "feedback"
+    t.string   "question_text",     limit: 32768
+    t.string   "answers",           limit: 32768
+    t.string   "feedback",          limit: 32768
     t.string   "item_feedback",     limit: 32768
-    t.string   "correct_responses"
+    t.string   "correct_responses", limit: 32768
     t.string   "base_type"
   end
 

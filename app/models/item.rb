@@ -2,88 +2,117 @@ class Item < ActiveRecord::Base
   has_many :item_results, dependent: :destroy
   belongs_to :section
 
-  after_initialize :munge_xml
+  # after_initialize :munge_xml
 
   scope :by_oldest, -> { order("items.created_at ASC") }
 
-  def munge_xml
-    if self.xml
-      @parsed_xml ||= ItemParser.parse(self.xml)
-      self.identifier = @parsed_xml.ident
-    end
+  # def munge_xml
+  #   if self.xml
+  #     @parsed_xml ||= ItemParser.parse(self.xml)
+  #     self.identifier = @parsed_xml.ident
+  #   end
+  # end
+
+  def self.identifier xml
+    parsed_xml = ItemParser.parse(xml)
+    parsed_xml.ident
   end
 
-  def question_textOLD
+  def self.question_text xml
     text = ""
-    parsed_xml.css('presentation/material/mattext').each do |question_text|
-      text = item_content(question_text)
+    xml.css('presentation/material/mattext').each do |question_text|
+      text = self.item_content(question_text)
     end
     text
   end
 
-  def question_titleOLD
-    parsed_xml.css('item').xpath('@title').to_s
+  def self.title xml
+    xml.css('item').xpath('@title').to_s
   end
 
-  def answersOLD
-    parsed_xml.css('response_lid/render_choice/response_label').map do |answer|
-      Answer.new( answer.first[1], item_content(answer.css('mattext')[0]) )
+  def self.answers xml
+    xml.css('response_lid/render_choice/response_label').map do |answer|
+      Answer.new( answer.first[1], self.item_content(answer.css('mattext')[0]) )
     end
   end
 
-  def feedbackOLD answer_id
-    @feedback ||= nil
-    if @feedback.nil?
-      @feedback_ids = []
-      parsed_xml.css('respcondition').each do |respcondition|
-        if respcondition.css('varequal')[0].present? && respcondition.css('varequal').map { |varequal| varequal.content }.include?(answer_id)
+  # def feedback answer_id
+  #   @feedback ||= nil
+  #   if @feedback.nil?
+  #     @feedback_ids = []
+  #     parsed_xml.css('respcondition').each do |respcondition|
+  #       if respcondition.css('varequal')[0].present? && respcondition.css('varequal').map { |varequal| varequal.content }.include?(answer_id)
+  #         respcondition.css('displayfeedback').each do |displayfeedback|
+  #           @feedback_ids << displayfeedback.xpath('@linkrefid').to_s
+  #         end
+  #       end
+  #     end
+  #     @feedback = item_feedback(@feedback_ids.flatten, is_correct?(answer_id))
+  #   end
+  #   @feedback
+  # end
+
+  # def item_feedback feedback_ids, is_correct
+  #   @feedback ||= []
+  #   if @feedback.empty?
+  #     parsed_xml.css('itemfeedback').each do |feedback|
+  #       if feedback_ids.include?(feedback.xpath('@ident').to_s)
+  #         @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
+  #       end
+  #       if feedback.xpath('@ident').to_s == 'general_fb'
+  #         @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
+  #       end
+  #       if !is_correct && feedback.xpath('@ident').to_s == 'general_incorrect_fb'
+  #         @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
+  #       end
+  #     end
+  #   end
+  #   @feedback.flatten
+  # end
+
+  def self.feedback xml
+    feedback_ids = {}
+    xml.css('respcondition').each do |respcondition|
+      if respcondition.css('varequal')[0].present?
+        respcondition.css('varequal').each do |varequal|
+          feedback_ids["#{varequal.content}"] = [] if feedback_ids["#{varequal.content}"].nil?
           respcondition.css('displayfeedback').each do |displayfeedback|
-            @feedback_ids << displayfeedback.xpath('@linkrefid').to_s
+            feedback_ids["#{varequal.content}"] << displayfeedback.xpath('@linkrefid').to_s
           end
         end
       end
-      @feedback = item_feedback(@feedback_ids.flatten, is_correct?(answer_id))
     end
-    @feedback
+    feedback_ids.to_json
   end
 
-  def item_feedbackOLD feedback_ids, is_correct
-    @feedback ||= []
-    if @feedback.empty?
-      parsed_xml.css('itemfeedback').each do |feedback|
-        if feedback_ids.include?(feedback.xpath('@ident').to_s)
-          @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
-        end
-        if feedback.xpath('@ident').to_s == 'general_fb'
-          @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
-        end
-        if !is_correct && feedback.xpath('@ident').to_s == 'general_incorrect_fb'
-          @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
-        end
-      end
+  def self.item_feedback xml
+    feedback = {}
+    xml.css('itemfeedback').each do |fb|
+      ident = fb.xpath('@ident').to_s
+      feedback["#{ident}"] = [] if feedback["#{ident}"].nil?
+      feedback["#{ident}"] << fb.css('material/mattext').map { |mattext| mattext.content }
+      feedback["#{ident}"].flatten!
     end
-    @feedback.flatten
+    feedback.to_json
   end
 
   def is_correct? answer_id
     correct_responses.include?(answer_id)
   end
 
-  def correct_responsesOLD
-    @correct ||= []
-    if @correct.empty?
-      parsed_xml.css('respcondition').each do |respcondition|
-        if respcondition.css('setvar').present? && respcondition.css('setvar')[0].content.to_f > 0
-          @correct << respcondition.css('varequal').map { |varequal| varequal.content }
-        end
+  def self.correct_responses xml
+    correct = []
+    xml.css('respcondition').each do |respcondition|
+      if respcondition.css('setvar').present? && respcondition.css('setvar').map { |setvar| setvar.content.to_f > 0 }.any?
+        correct << respcondition.css('varequal').map { |varequal| varequal.content }
       end
     end
-    @correct.flatten
+    correct.flatten.to_json
   end
 
-  def base_typeOLD
+  def self.base_type xml
     base_type = ''
-    parsed_xml.css('itemmetadata/qtimetadata/qtimetadatafield').each do |qtimetadatafield|
+    xml.css('itemmetadata/qtimetadata/qtimetadatafield').each do |qtimetadatafield|
       if qtimetadatafield.css('fieldlabel').text == 'question_type'
         base_type = qtimetadatafield.css('fieldentry').text
       end
@@ -166,14 +195,14 @@ class Item < ActiveRecord::Base
     [updates, creates]
   end
 
+  def self.parsed_xml xml
+    xml = Nokogiri::XML.parse(xml)
+    xml
+  end
+
   private
 
-    def parsed_xml
-      @xml ||= Nokogiri::XML.parse(self.xml)
-      @xml
-    end
-
-    def item_content(content)
+    def self.item_content(content)
       CGI.unescapeHTML(CGI.unescape(content.to_html)).html_safe
     end
 
