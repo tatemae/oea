@@ -32,8 +32,8 @@ class AssessmentsController < ApplicationController
     @next_item = @current_index == @question_count-1 ? nil : @items[@current_index+1]
 
     respond_to do |format|
-      format.html { render :layout => 'bare' }
-      format.xml { render @assessment.assessment_xml.xml }
+      format.html { render :layout => params[:embed].present? ? 'bare' : 'application' }
+      format.xml { render :text => @assessment.assessment_xml.xml }
     end
   end
 

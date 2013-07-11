@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Section do
   before do
     @xml = open('./spec/fixtures/section.xml').read
-    @section = Section.new( xml: @xml )
-    @section.save!
+    @section = FactoryGirl.create(:section)
+    @section.from_xml(@xml)
   end
 
   it 'should extract the identifier' do

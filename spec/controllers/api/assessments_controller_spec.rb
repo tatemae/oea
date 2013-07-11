@@ -13,6 +13,24 @@ describe Api::AssessmentsController do
     end
   end
 
+  describe "GET 'show'" do
+    before do
+      @assessment = FactoryGirl.create(:assessment)
+    end
+    context "json" do
+      it "returns http success" do
+        get 'show', format: :json, id: @assessment.id
+        response.should be_success
+      end
+    end
+    context "xml" do
+      it "renders the assessment QTI xml" do
+        get 'show', format: :xml, id: @assessment.id
+        response.should be_success
+      end
+    end
+  end
+
   describe "POST 'create'" do
     before do
       @user = FactoryGirl.create(:user)

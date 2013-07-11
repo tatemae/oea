@@ -13,17 +13,18 @@ class Api::AssessmentsController < ApplicationController
 
   def show
     assessment = Assessment.find(params[:id])
-    json = assessment.to_json
-    debugger
-    respond_with(json)
+    respond_to do |format|
+      format.json { render :json => assessment }
+      format.xml { render :text => assessment.assessment_xml.xml }
+    end
   end
 
   def create
     assessment_xml = request.body.read
     ident = AssessmentParser.parse(assessment_xml).first.ident
     unless assessment = Assessment.find_by(identifier: ident)
-      assessment = Assessment.new(xml: assessment_xml)
-      assessment.save!
+      assessment = Assessment.new
+      assessment.from_xml(assessment_xml)
     end
     respond_with(assessment, location: nil)
   end

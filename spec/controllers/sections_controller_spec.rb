@@ -3,8 +3,8 @@ require 'spec_helper'
 describe SectionsController do
   before do
     @xml = open('./spec/fixtures/assessment.xml').read
-    @assessment = Assessment.new( xml: @xml )
-    @assessment.save!
+    @assessment = Assessment.new
+    @assessment.from_xml(@xml)
   end
 
   describe "GET 'index'" do

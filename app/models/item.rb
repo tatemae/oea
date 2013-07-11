@@ -2,75 +2,83 @@ class Item < ActiveRecord::Base
   has_many :item_results, dependent: :destroy
   belongs_to :section
 
-  # after_initialize :munge_xml
-
   scope :by_oldest, -> { order("items.created_at ASC") }
 
-  # def munge_xml
-  #   if self.xml
-  #     @parsed_xml ||= ItemParser.parse(self.xml)
-  #     self.identifier = @parsed_xml.ident
-  #   end
-  # end
-
-  def self.identifier xml
-    parsed_xml = ItemParser.parse(xml)
-    parsed_xml.ident
+  def from_xml(input_xml)
+    xml = input_xml.is_a?(String) ? ItemParser.parse(input_xml) : input_xml
+    self.identifier = Item.parse_identifier(xml)
+    self.description = self.question_text = Item.parse_question_text(xml)
+    self.title = Item.parse_title(xml)
+    self.feedback = Item.parse_feedback(xml)
+    self.answers = Item.parse_answers(xml).to_json
+    self.item_feedback = Item.parse_item_feedback(xml).to_json
+    self.correct_responses = Item.parse_correct_responses(xml).to_json
+    self.base_type = Item.parse_base_type(xml)
+    self.save!
   end
 
-  def self.question_text xml
+  def get_feedback(answer_id)
+    @feedback ||= nil
+    if @feedback.nil?
+      @feedback_ids = []
+      JSON.parse(self.feedback).each do |fb_id, fb_ids|
+        @feedback_ids = fb_ids and break if fb_id == answer_id
+      end
+      @feedback = get_item_feedback(@feedback_ids.flatten, is_correct?(answer_id))
+    end
+    @feedback
+  end
+
+  def get_item_feedback feedback_ids, is_correct
+    @feedback ||= []
+    if @feedback.empty?
+      item_fb = JSON.parse(self.item_feedback)
+      feedback_ids.each do |fb_id|
+        @feedback << item_fb["#{fb_id}"] if item_fb.include?(fb_id)
+      end
+      @feedback << item_fb["general_incorrect_fb"] if !is_correct
+      @feedback << item_fb["general_fb"] if item_fb["general_fb"]
+    end
+    @feedback.flatten
+  end
+
+  def is_correct?(answer_id)
+    correct_responses.include?(answer_id)
+  end
+
+  def self.parse_correct_responses(xml)
+    correct = []
+    xml.css('respcondition').each do |respcondition|
+      if respcondition.css('setvar').present? && respcondition.css('setvar').map { |setvar| setvar.content.to_f > 0 }.any?
+        correct << respcondition.css('varequal').map { |varequal| varequal.content }
+      end
+    end
+    correct.flatten
+  end
+
+  def self.parse_identifier(xml)
+    xml.ident
+  end
+
+  def self.parse_title(xml)
+    xml.css('item').xpath('@title').to_s
+  end
+
+  def self.parse_question_text(xml)
     text = ""
     xml.css('presentation/material/mattext').each do |question_text|
-      text = self.item_content(question_text)
+      text = question_text.content
     end
     text
   end
 
-  def self.title xml
-    xml.css('item').xpath('@title').to_s
-  end
-
-  def self.answers xml
+  def self.parse_answers(xml)
     xml.css('response_lid/render_choice/response_label').map do |answer|
-      Answer.new( answer.first[1], self.item_content(answer.css('mattext')[0]) )
+      Answer.new( answer.first[1], answer.css('mattext')[0].content )
     end
   end
 
-  # def feedback answer_id
-  #   @feedback ||= nil
-  #   if @feedback.nil?
-  #     @feedback_ids = []
-  #     parsed_xml.css('respcondition').each do |respcondition|
-  #       if respcondition.css('varequal')[0].present? && respcondition.css('varequal').map { |varequal| varequal.content }.include?(answer_id)
-  #         respcondition.css('displayfeedback').each do |displayfeedback|
-  #           @feedback_ids << displayfeedback.xpath('@linkrefid').to_s
-  #         end
-  #       end
-  #     end
-  #     @feedback = item_feedback(@feedback_ids.flatten, is_correct?(answer_id))
-  #   end
-  #   @feedback
-  # end
-
-  # def item_feedback feedback_ids, is_correct
-  #   @feedback ||= []
-  #   if @feedback.empty?
-  #     parsed_xml.css('itemfeedback').each do |feedback|
-  #       if feedback_ids.include?(feedback.xpath('@ident').to_s)
-  #         @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
-  #       end
-  #       if feedback.xpath('@ident').to_s == 'general_fb'
-  #         @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
-  #       end
-  #       if !is_correct && feedback.xpath('@ident').to_s == 'general_incorrect_fb'
-  #         @feedback << feedback.css('material/mattext').map { |mattext| mattext.content }
-  #       end
-  #     end
-  #   end
-  #   @feedback.flatten
-  # end
-
-  def self.feedback xml
+  def self.parse_feedback(xml)
     feedback_ids = {}
     xml.css('respcondition').each do |respcondition|
       if respcondition.css('varequal')[0].present?
@@ -85,7 +93,7 @@ class Item < ActiveRecord::Base
     feedback_ids.to_json
   end
 
-  def self.item_feedback xml
+  def self.parse_item_feedback(xml)
     feedback = {}
     xml.css('itemfeedback').each do |fb|
       ident = fb.xpath('@ident').to_s
@@ -93,24 +101,10 @@ class Item < ActiveRecord::Base
       feedback["#{ident}"] << fb.css('material/mattext').map { |mattext| mattext.content }
       feedback["#{ident}"].flatten!
     end
-    feedback.to_json
+    feedback
   end
 
-  def is_correct? answer_id
-    correct_responses.include?(answer_id)
-  end
-
-  def self.correct_responses xml
-    correct = []
-    xml.css('respcondition').each do |respcondition|
-      if respcondition.css('setvar').present? && respcondition.css('setvar').map { |setvar| setvar.content.to_f > 0 }.any?
-        correct << respcondition.css('varequal').map { |varequal| varequal.content }
-      end
-    end
-    correct.flatten.to_json
-  end
-
-  def self.base_type xml
+  def self.parse_base_type(xml)
     base_type = ''
     xml.css('itemmetadata/qtimetadata/qtimetadatafield').each do |qtimetadatafield|
       if qtimetadatafield.css('fieldlabel').text == 'question_type'
@@ -168,43 +162,6 @@ class Item < ActiveRecord::Base
       end
     end
   end
-
-  # xml_stream is an xml file or string - anything Nokogiri can parse
-  def self.load_qti(xml_stream)
-    updates = []
-    creates = []
-    xml = Nokogiri::XML.parse(xml_stream)
-    xml.css('item').each do |item_xml|
-      identifier = item_xml.xpath('@ident').to_s
-      if item = Item.find_by(identifier: identifier)
-        item.xml = item_xml.to_xml
-        item.title = item.question_title
-        item.description = item.question_text
-        item.save!
-        updates << item
-      else
-        item = Item.new
-        item.identifier = item_xml.xpath('@ident').to_s
-        item.xml = item_xml.to_xml
-        item.title = item.question_title
-        item.description = item.question_text
-        item.save!
-        updates << item
-      end
-    end
-    [updates, creates]
-  end
-
-  def self.parsed_xml xml
-    xml = Nokogiri::XML.parse(xml)
-    xml
-  end
-
-  private
-
-    def self.item_content(content)
-      CGI.unescapeHTML(CGI.unescape(content.to_html)).html_safe
-    end
 
 end
 

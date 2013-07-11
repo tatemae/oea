@@ -3,35 +3,21 @@ class Section < ActiveRecord::Base
   has_many :items, dependent: :destroy
   belongs_to :assessment
 
-  # after_initialize :munge_xml
+  def from_xml(input_xml)
+    xml = SectionParser.parse(input_xml)
+    self.identifier = xml.ident
+    self.save!
+    create_subitems(xml)
+  end
 
-  # def munge_xml
-  #   @parsed_xml ||= SectionParser.parse(self.xml)
-  # end
-
-  # before_create :create_subitems
-
-  def create_subitems section_xml
-    parsed_xml = SectionParser.parse(section_xml)
-    self.identifier = parsed_xml.ident
-    self.items << parsed_xml.items.collect do |item|
-
-      xml = Item.parsed_xml(item)
-
-      args = {
-        identifier: Item.identifier(xml),
-        title: Item.title(xml),
-        question_text: Item.question_text(xml),
-        answers: Item.answers(xml).to_json,
-        feedback: Item.feedback(xml),
-        item_feedback: Item.item_feedback(xml),
-        correct_responses: Item.correct_responses(xml),
-        base_type: Item.base_type(xml)
-      }
-      Item.new(args)
-
+  def create_subitems(xml)
+    xml.items.each do |item_xml|
+      item_xml = ItemParser.parse(item_xml)
+      identifier = Item.parse_identifier(item_xml)
+      item = Item.where(:identifier => identifier)
+      item = self.items.create! unless item
+      item.from_xml(item_xml)
     end
   end
 
-  # delegate :title, to: :@parsed_xml
 end
