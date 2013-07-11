@@ -1,2 +1,3 @@
-<script type="text/javascript">global_assessment_id = <%= @assessment.id %></script>
-<%= javascript_include_tag "assessment/application" %>
+<div class="assessment">
+  <%= render partial: 'assessments/assessment', locals: {assessment: @assessment, display_embed_code: false, display_nav: true} %>
+</div>

@@ -11,13 +11,13 @@
     <div class="full_question">
       <div class="inner_question">
         <div class="question_text">
-          <%= item.question_text %>
+          <%= item.question_text.html_safe %>
         </div>
         <div data-toggle="answers">
           <% if item.base_type == 'short_answer_question' -%>
             <%= render partial: 'items/short_answer', locals: {f: f, user_response: @user_response, item: item} %>
           <% else -%>
-            <%= render partial: 'items/answer', collection: item.answers, locals: {f: f, item: item, user_response: @user_response} %>
+            <%= render partial: 'items/answer', collection: JSON.parse(item.answers), locals: {f: f, item: item, user_response: @user_response} %>
           <% end -%>
         </div>
       </div>

@@ -93,7 +93,7 @@ class ItemsController < ApplicationController
         @item_result = @user.item_results.create!(irs)
       end
     end
-    feedback = @item.feedback(@user_response)
+    feedback = @item.get_feedback(@user_response)
     correct = @item.is_correct?(@user_response)
 
     if correct
