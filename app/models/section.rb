@@ -3,17 +3,18 @@ class Section < ActiveRecord::Base
   has_many :items, dependent: :destroy
   belongs_to :assessment
 
-  after_initialize :munge_xml
+  # after_initialize :munge_xml
 
-  def munge_xml
-    @parsed_xml ||= SectionParser.parse(self.xml)
-  end
+  # def munge_xml
+  #   @parsed_xml ||= SectionParser.parse(self.xml)
+  # end
 
-  before_create :create_subitems
+  # before_create :create_subitems
 
-  def create_subitems
-    self.identifier = @parsed_xml.ident
-    self.items << @parsed_xml.items.collect do |item|
+  def create_subitems section_xml
+    parsed_xml = SectionParser.parse(section_xml)
+    self.identifier = parsed_xml.ident
+    self.items << parsed_xml.items.collect do |item|
 
       xml = Item.parsed_xml(item)
 
@@ -32,5 +33,5 @@ class Section < ActiveRecord::Base
     end
   end
 
-  delegate :title, to: :@parsed_xml
+  # delegate :title, to: :@parsed_xml
 end
