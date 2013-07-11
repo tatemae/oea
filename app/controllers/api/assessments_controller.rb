@@ -15,7 +15,7 @@ class Api::AssessmentsController < ApplicationController
     assessment = Assessment.find(params[:id])
     respond_to do |format|
       format.json { render :json => assessment }
-      format.xml { render :text => assessment.assessment_xml.xml }
+      format.xml { render :text => assessment.assessment_xmls.by_newest.first.xml }
     end
   end
 

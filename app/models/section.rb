@@ -14,7 +14,7 @@ class Section < ActiveRecord::Base
     xml.items.each do |item_xml|
       item_xml = ItemParser.parse(item_xml)
       identifier = Item.parse_identifier(item_xml)
-      item = Item.where(:identifier => identifier)
+      item = Item.where(:identifier => identifier).first
       item = self.items.create! unless item
       item.from_xml(item_xml)
     end
