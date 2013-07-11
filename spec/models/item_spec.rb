@@ -29,6 +29,6 @@ describe Item do
   end
 
   it 'should extract the question_type' do
-    @item.question_type.should match 'multiple_choice_question'
+    @item.base_type.should match 'multiple_choice_question'
   end
 end

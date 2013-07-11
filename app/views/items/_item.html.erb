@@ -14,7 +14,7 @@
           <%= item.question_text %>
         </div>
         <div data-toggle="answers">
-          <% if item.question_type == 'short_answer_question' -%>
+          <% if item.base_type == 'short_answer_question' -%>
             <%= render partial: 'items/short_answer', locals: {f: f, user_response: @user_response, item: item} %>
           <% else -%>
             <%= render partial: 'items/answer', collection: item.answers, locals: {f: f, item: item, user_response: @user_response} %>

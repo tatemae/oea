@@ -13,13 +13,25 @@ class Item < ActiveRecord::Base
     end
   end
 
-  def answers
+  def question_textOLD
+    text = ""
+    parsed_xml.css('presentation/material/mattext').each do |question_text|
+      text = item_content(question_text)
+    end
+    text
+  end
+
+  def question_titleOLD
+    parsed_xml.css('item').xpath('@title').to_s
+  end
+
+  def answersOLD
     parsed_xml.css('response_lid/render_choice/response_label').map do |answer|
       Answer.new( answer.first[1], item_content(answer.css('mattext')[0]) )
     end
   end
 
-  def feedback answer_id
+  def feedbackOLD answer_id
     @feedback ||= nil
     if @feedback.nil?
       @feedback_ids = []
@@ -35,7 +47,7 @@ class Item < ActiveRecord::Base
     @feedback
   end
 
-  def item_feedback feedback_ids, is_correct
+  def item_feedbackOLD feedback_ids, is_correct
     @feedback ||= []
     if @feedback.empty?
       parsed_xml.css('itemfeedback').each do |feedback|
@@ -57,7 +69,7 @@ class Item < ActiveRecord::Base
     correct_responses.include?(answer_id)
   end
 
-  def correct_responses
+  def correct_responsesOLD
     @correct ||= []
     if @correct.empty?
       parsed_xml.css('respcondition').each do |respcondition|
@@ -69,7 +81,7 @@ class Item < ActiveRecord::Base
     @correct.flatten
   end
 
-  def base_type
+  def base_typeOLD
     base_type = ''
     parsed_xml.css('itemmetadata/qtimetadata/qtimetadatafield').each do |qtimetadatafield|
       if qtimetadatafield.css('fieldlabel').text == 'question_type'
