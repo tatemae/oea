@@ -48,7 +48,7 @@ class Item < ActiveRecord::Base
   end
 
   def is_correct?(answer_id)
-    correct_responses.include?(answer_id)
+    JSON.parse(self.correct_responses).include?(answer_id)
   end
 
   def self.parse_correct_responses(xml)

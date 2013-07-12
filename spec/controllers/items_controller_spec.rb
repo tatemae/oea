@@ -23,7 +23,7 @@ describe ItemsController do
     end
 
     it "handles correct answers" do
-      correct_answer_id = "3053"
+      correct_answer_id = "Yellow"
       post :check_answer, { :format => 'json', 'item' => {:id => @item.id}, "#{@item.id}" => correct_answer_id }
       response.should be_success
       body = JSON.parse(response.body)
@@ -33,7 +33,7 @@ describe ItemsController do
     end
 
     it "creates a user based on session" do
-      correct_answer_id = "3053"
+      correct_answer_id = "black"
       user = User.create_anonymous
       user.name = "asdfasdf"
       user.save!
@@ -42,7 +42,7 @@ describe ItemsController do
     end
 
     it "handles incorrect answers" do
-      incorrect_answer_id = "8292"
+      incorrect_answer_id = "orange"
       post :check_answer, { :format => 'json', 'item' => {:id => @item.id}, "#{@item.id}" => incorrect_answer_id }
       response.should be_success
       body = JSON.parse(response.body)
