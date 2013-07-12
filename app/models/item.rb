@@ -62,7 +62,7 @@ class Item < ActiveRecord::Base
   end
 
   def self.parse_identifier(xml)
-    xml.xpath('@ident').to_s
+    xml.css('item').xpath('@ident').to_s
   end
 
   def self.parse_title(xml)
