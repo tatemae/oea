@@ -19,7 +19,7 @@ describe ItemResultsController do
           "id"=>@item.id,
           "correct_response"=>@item.correct_responses,
           "base_type"=>@item.base_type,
-          "candidate_response"=>"8292"
+          "candidate_response"=>"orange"
         }
       }])
 
@@ -38,7 +38,7 @@ describe ItemResultsController do
           "id"=>@item.id,
           "correct_response"=>@item.correct_responses,
           "base_type"=>@item.base_type,
-          "candidate_response"=>"3053"
+          "candidate_response"=>"Yellow"
         }
       }])
 
@@ -57,7 +57,7 @@ describe ItemResultsController do
           "id"=>@item.id,
           "correct_response"=>@item.correct_responses,
           "base_type"=>@item.base_type,
-          "candidate_response"=>"2753"
+          "candidate_response"=>"gold"
         }
       }])
   end
