@@ -5,7 +5,7 @@ class Assessment < ActiveRecord::Base
   has_many :items, through: :sections
   has_many :assessment_results, dependent: :destroy
   belongs_to :user
-  has_many :assessment_xmls
+  has_many :assessment_xmls, dependent: :destroy
 
   validates_uniqueness_of :identifier
 
