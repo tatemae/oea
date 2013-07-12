@@ -23,7 +23,7 @@ class Api::AssessmentsController < ApplicationController
     assessment_xml = request.body.read
     ident = AssessmentParser.parse(assessment_xml).first.ident
     unless assessment = Assessment.find_by(identifier: ident)
-      assessment = Assessment.new
+      assessment = current_user.assessments.build
       assessment.from_xml(assessment_xml)
     end
     respond_with(assessment, location: nil)

@@ -2,7 +2,7 @@ class AssessmentsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_filter :skip_trackable
   before_filter :authenticate_user!, only: [:create]
-  respond_to :html, :xml
+  respond_to :html
 
   def index
     if params[:user_id]
@@ -33,7 +33,6 @@ class AssessmentsController < ApplicationController
 
     respond_to do |format|
       format.html { render :layout => params[:embed].present? ? 'bare' : 'application' }
-      format.xml { render :text => @assessment.assessment_xml.xml }
     end
   end
 
@@ -43,15 +42,11 @@ class AssessmentsController < ApplicationController
   def create
     assessment_xml = params[:assessment][:xml_file].read
     ident = AssessmentParser.parse(assessment_xml).first.ident
-    unless assessment = Assessment.find_by(identifier: ident)
-      parsed_xml = AssessmentParser.parse(assessment_xml).first if assessment_xml
-      title = parsed_xml.title if parsed_xml
-      description = 'Assessment'
-      assessment = current_user.assessments.create!(title: title, description: description)
-      AssessmentXml.create!(xml: assessment_xml, assessment_id: assessment.id)
-      assessment.create_subitems
+    unless @assessment = Assessment.find_by(identifier: ident)
+      @assessment = current_user.assessments.build
+      @assessment.from_xml(assessment_xml)
     end
-    respond_with(assessment, location: nil)
+    respond_with(@assessment)
   end
 
   def destroy
