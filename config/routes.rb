@@ -21,6 +21,9 @@ Oea::Application.routes.draw do
 
   post '/items/check_answer', to: 'items#check_answer'
 
+  get 'saml', to: 'saml#index'
+  post 'saml/consume', to: 'saml#consume'
+
   namespace :api do
     resources :items, only: [:index] do
       get 'results', on: :member, to: 'item_results#index'
