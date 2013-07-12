@@ -6,17 +6,20 @@ class Item < ActiveRecord::Base
 
   scope :by_oldest, -> { order("items.created_at ASC") }
 
-  def from_xml(input_xml)
-    xml = input_xml.is_a?(String) ? Nokogiri::XML.parse(input_xml) : input_xml
-    self.identifier = Item.parse_identifier(xml)
-    self.description = self.question_text = Item.parse_question_text(xml)
-    self.title = Item.parse_title(xml)
-    self.feedback = Item.parse_feedback(xml)
-    self.answers = Item.parse_answers(xml).to_json
-    self.item_feedback = Item.parse_item_feedback(xml).to_json
-    self.correct_responses = Item.parse_correct_responses(xml).to_json
-    self.base_type = Item.parse_base_type(xml)
-    self.save!
+  def self.from_xml(input_xml, section)
+    xml = Nokogiri::XML.parse(input_xml)
+    identifier = Item.parse_identifier(xml)
+    item = Item.find_by(identifier: identifier) || section.items.build
+    item.identifier = identifier
+    item.description = item.question_text = Item.parse_question_text(xml)
+    item.title = Item.parse_title(xml)
+    item.feedback = Item.parse_feedback(xml)
+    item.answers = Item.parse_answers(xml).to_json
+    item.item_feedback = Item.parse_item_feedback(xml).to_json
+    item.correct_responses = Item.parse_correct_responses(xml).to_json
+    item.base_type = Item.parse_base_type(xml)
+    item.save!
+    item
   end
 
   def get_feedback(answer_id)

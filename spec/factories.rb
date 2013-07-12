@@ -39,17 +39,15 @@ FactoryGirl.define do
   factory :assessment do
     identifier { FactoryGirl.generate(:identifier) }
     title { FactoryGirl.generate(:name) }
-    after(:create) do |assessment|
-      xml = open('./spec/fixtures/assessment.xml').read.gsub(/\s+/, ' ').strip
-      assessment.from_xml(xml)
-    end
   end
 
   factory :section do
+    assessment
     identifier { FactoryGirl.generate(:identifier) }
   end
 
   factory :item do
+    section
     identifier { FactoryGirl.generate(:identifier) }
   end
 

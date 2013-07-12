@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe Assessment do
   before do
-    @xml = open('./spec/fixtures/assessment.xml').read
-    @assessment = Assessment.new
-    @assessment.from_xml(@xml)
+    @assessment = make_assessment
   end
 
   it 'should extract the identifier' do

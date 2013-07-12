@@ -42,3 +42,9 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, :type => :controller
 end
+
+def make_assessment
+  xml = open('./spec/fixtures/assessment.xml').read
+  user = FactoryGirl.create(:user)
+  Assessment.from_xml(xml, user)
+end

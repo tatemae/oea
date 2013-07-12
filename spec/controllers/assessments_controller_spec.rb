@@ -3,9 +3,7 @@ require 'spec_helper'
 describe AssessmentsController do
 
   before do
-    @xml = open('./spec/fixtures/assessment.xml').read
-    @assessment = Assessment.new
-    @assessment.from_xml(@xml)
+    @assessment = make_assessment
   end
 
   describe "GET 'index'" do

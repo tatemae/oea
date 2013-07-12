@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Section do
   before do
     @xml = open('./spec/fixtures/section.xml').read
-    @section = FactoryGirl.create(:section)
-    @section.from_xml(@xml)
+    assessment = FactoryGirl.create(:assessment)
+    @section = Section.from_xml(@xml, assessment)
   end
 
   it 'should extract the identifier' do

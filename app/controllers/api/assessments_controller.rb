@@ -7,7 +7,7 @@ class Api::AssessmentsController < ApplicationController
   def index
     page = (params[:page] || 1).to_i
     per_page = 10
-    assessments = Assessment.where("assessments.xml LIKE ?", "%#{params[:q]}%").paginate(:page => page, :per_page => per_page)
+    assessments = Assessment.where("assessment_xmls.xml LIKE ?", "%#{params[:q]}%").includes(:assessment_xmls).paginate(:page => page, :per_page => per_page)
     respond_with(assessments, :only => [:id, :title, :description])
   end
 
@@ -20,12 +20,7 @@ class Api::AssessmentsController < ApplicationController
   end
 
   def create
-    assessment_xml = request.body.read
-    ident = AssessmentParser.parse(assessment_xml).first.ident
-    unless assessment = Assessment.find_by(identifier: ident)
-      assessment = current_user.assessments.build
-      assessment.from_xml(assessment_xml)
-    end
+    assessment = Assessment.from_xml(request.body.read, current_user)
     respond_with(assessment, location: nil)
   end
 

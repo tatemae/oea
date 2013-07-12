@@ -9,24 +9,22 @@ class Assessment < ActiveRecord::Base
 
   validates_uniqueness_of :identifier
 
-  def from_xml(input_xml)
+  def self.from_xml(input_xml, user)
     xml = AssessmentParser.parse(input_xml).first
-    self.identifier = xml.ident
-    self.title = xml.title
-    self.description = 'Assessment'
-    self.save!
-    self.assessment_xmls.create!(:xml => input_xml)
-    create_subitems(xml)
+    assessment = Assessment.find_by(identifier: xml.ident) || user.assessments.build
+    assessment.identifier = xml.ident
+    assessment.title = xml.title
+    assessment.description = 'Assessment'
+    assessment.save!
+    assessment.assessment_xmls.create!(:xml => input_xml)
+    assessment.create_subitems(xml)
+    assessment
   end
 
-  private
-
-    def create_subitems(xml)
-      self.sections << xml.sections.collect do |section_xml|
-        section = Section.new(:assessment_id => self.id) # TODO make update work
-        section.from_xml(section_xml)
-        section
-      end
+  def create_subitems(xml)
+    xml.sections.collect do |section_xml|
+      Section.from_xml(section_xml, self)
     end
+  end
 
 end

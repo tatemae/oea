@@ -1,3 +1,2 @@
-require_relative 'seeds/items.rb'
-
-Items.add_all
+xml_file = File.open("db/seeds/assessment.xml", "rb")
+Assessment.from_xml(xml_file)

@@ -41,11 +41,7 @@ class AssessmentsController < ApplicationController
 
   def create
     assessment_xml = params[:assessment][:xml_file].read
-    ident = AssessmentParser.parse(assessment_xml).first.ident
-    unless @assessment = Assessment.find_by(identifier: ident)
-      @assessment = current_user.assessments.build
-      @assessment.from_xml(assessment_xml)
-    end
+    @assessment = Assessment.from_xml(assessment_xml, current_user)
     respond_with(@assessment)
   end
 

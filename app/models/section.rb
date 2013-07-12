@@ -5,20 +5,18 @@ class Section < ActiveRecord::Base
 
   validates_uniqueness_of :identifier
 
-  def from_xml(input_xml)
+  def self.from_xml(input_xml, assessment)
     xml = SectionParser.parse(input_xml)
-    self.identifier = xml.ident
-    self.save!
-    create_subitems(xml)
+    section = Section.find_by(identifier: xml.ident) || assessment.sections.build
+    section.identifier = xml.ident
+    section.save!
+    section.create_subitems(xml)
+    section
   end
 
   def create_subitems(xml)
     xml.items.each do |item_xml|
-      item_xml = Nokogiri::XML.parse(item_xml)
-      identifier = Item.parse_identifier(item_xml)
-      item = Item.where(:identifier => identifier).first
-      item = self.items.create! unless item
-      item.from_xml(item_xml)
+      Item.from_xml(item_xml, self)
     end
   end
 
