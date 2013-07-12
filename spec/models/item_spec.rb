@@ -10,7 +10,7 @@ describe Item do
   # it { should have_many :item_results }
 
   it 'should extract the question_text' do
-    @item.question_text.should match /<mattext .*<\/mattext>/
+    @item.question_text.should match /<div.*<\/div>/
   end
 
   it 'should extract an array of answers' do
@@ -22,7 +22,7 @@ describe Item do
   end
 
   it 'should create an answer with the answer text' do
-    @item.get_answers.first.text.should match /<mattext .*Greater than \(>\)<\/mattext>/
+    @item.get_answers.first.text.should match /Greater than \(>\)/
   end
 
   it 'should respond true if the response is correct' do
