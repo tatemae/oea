@@ -171,7 +171,7 @@ class Item < ActiveRecord::Base
   def get_answers
     JSON.parse(self.answers).map do |ans_id|
       Answer.new( ans_id["id"], ans_id["text"] )
-    end
+    end if self.answers
   end
 
   def set_answers(ans)
