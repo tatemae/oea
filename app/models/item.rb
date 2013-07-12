@@ -165,6 +165,17 @@ class Item < ActiveRecord::Base
     end
   end
 
+  def get_answers
+    JSON.parse(self.answers).map do |ans_id|
+      Answer.new( ans_id["id"], ans_id["text"] )
+    end
+  end
+
+  def set_answers(ans)
+    self.answers = ans.to_json
+  end
+
+
 end
 
 class Answer < Struct.new(:id, :text)

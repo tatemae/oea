@@ -14,15 +14,15 @@ describe Item do
   end
 
   it 'should extract an array of answers' do
-    @item.answers.count.should == 3
+    @item.get_answers.count.should == 3
   end
 
   it 'should create and answer with an id' do
-    @item.answers.first.id.should == '1602'
+    @item.get_answers.first.id.should == '1602'
   end
 
   it 'should create an answer with the answer text' do
-    @item.answers.first.text.should match /<mattext .*Greater than \(>\)<\/mattext>/
+    @item.get_answers.first.text.should match /<mattext .*Greater than \(>\)<\/mattext>/
   end
 
   it 'should respond true if the response is correct' do
