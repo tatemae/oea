@@ -3,11 +3,9 @@ class Section < ActiveRecord::Base
   has_many :items, dependent: :destroy
   belongs_to :assessment
 
-  validates_uniqueness_of :identifier
-
   def self.from_xml(input_xml, assessment)
     xml = SectionParser.parse(input_xml)
-    section = Section.find_by(identifier: xml.ident) || assessment.sections.build
+    section = assessment.sections.build
     section.identifier = xml.ident
     section.save!
     section.create_subitems(xml)

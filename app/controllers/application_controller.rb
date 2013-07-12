@@ -20,8 +20,8 @@ class ApplicationController < ActionController::Base
       @user.save!
     end
     @item_result = @user.item_results.create!(
-      :identifier => @item.identifier,
-      :item_id => @item.id,
+      :identifier => item.identifier,
+      :item_id => item.id,
       :rendered_datestamp => @rendered_time,
       :referer => @referer,
       :ip_address => request.ip,
