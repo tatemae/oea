@@ -7,6 +7,8 @@ class Assessment < ActiveRecord::Base
   belongs_to :user
   has_many :assessment_xmls
 
+  validates_uniqueness_of :identifier
+
   def from_xml(input_xml)
     xml = AssessmentParser.parse(input_xml).first
     self.identifier = xml.ident

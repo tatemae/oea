@@ -3,6 +3,8 @@ class Section < ActiveRecord::Base
   has_many :items, dependent: :destroy
   belongs_to :assessment
 
+  validates_uniqueness_of :identifier
+
   def from_xml(input_xml)
     xml = SectionParser.parse(input_xml)
     self.identifier = xml.ident
