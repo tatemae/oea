@@ -41,7 +41,7 @@ class Item < ActiveRecord::Base
       feedback_ids.each do |fb_id|
         @feedback << item_fb["#{fb_id}"] if item_fb.include?(fb_id)
       end
-      @feedback << item_fb["general_incorrect_fb"] if !is_correct
+      @feedback << item_fb["general_incorrect_fb"] if !is_correct && item_fb["general_incorrect_fb"]
       @feedback << item_fb["general_fb"] if item_fb["general_fb"]
     end
     @feedback.flatten
