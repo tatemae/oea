@@ -1,7 +1,8 @@
-<div class="section_list">
-  <div class="section_container">
+<div class="container">
+  <ul>
     {{#each controller}}
-      {{partial 'item'}}
+      <li>{{#linkTo "show" this}}{{name}}{{/linkTo}}</li>
     {{/each}}
-  </div>
+  </ul>
+  {{outlet}}
 </div>

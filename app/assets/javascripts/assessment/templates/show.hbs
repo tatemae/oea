@@ -1,0 +1,10 @@
+<div class="assessment">
+  <div class="section_list">
+    <div class="section_container">
+      {{#each controller}}
+        {{partial 'item'}}
+      {{/each}}
+    </div>
+  </div>
+  {{outlet}}
+</div>

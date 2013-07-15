@@ -36,4 +36,5 @@ Oea::Application.routes.draw do
 
   match '/contact' => 'default#contact', via: [:get, :post]
   match '/about' => 'default#about', via: [:get]
+  match '/take' => 'default#take', via: [:get]
 end

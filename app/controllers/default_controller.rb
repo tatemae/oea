@@ -37,4 +37,10 @@ class DefaultController < ApplicationController
     end
   end
 
+  def take
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
+  end
+
 end
