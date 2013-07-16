@@ -11,7 +11,7 @@ var App = Ember.Application.create();
 module.exports = App;
 
 
-},{"../vendor/ember":9,"../vendor/handlebars":10,"../vendor/jquery":11}],2:[function(require,module,exports){
+},{"../vendor/ember":10,"../vendor/handlebars":11,"../vendor/jquery":12}],2:[function(require,module,exports){
 var App = require('./app');
 
 App.Router.map(function(){
@@ -32,6 +32,7 @@ require('./templates');
 App.Assessment = require('./models/assessment');
 App.ModelBase = require('./models/model_base');
 App.ApplicationRoute = require('./routes/application_route');
+App.AssessmentsRoute = require('./routes/assessments_route');
 App.IndexRoute = require('./routes/index_route');
 
 require('./config/routes');
@@ -39,7 +40,7 @@ require('./config/routes');
 module.exports = App;
 
 
-},{"./config/app":1,"./config/routes":2,"./models/assessment":4,"./models/model_base":5,"./routes/application_route":6,"./routes/index_route":7,"./templates":8}],4:[function(require,module,exports){
+},{"./config/app":1,"./config/routes":2,"./models/assessment":4,"./models/model_base":5,"./routes/application_route":6,"./routes/assessments_route":7,"./routes/index_route":8,"./templates":9}],4:[function(require,module,exports){
 var ModelBase = require('./model_base');
 var Assessment = ModelBase.extend({
 
@@ -93,6 +94,15 @@ module.exports = ApplicationRoute;
 
 },{}],7:[function(require,module,exports){
 var Assessment = require('../models/assessment');
+AssessmentsRoute = Ember.Route.extend({
+  model: function() {
+    return Assessment.findAll();
+  }
+});
+
+module.exports = AssessmentsRoute;
+
+},{"../models/assessment":4}],8:[function(require,module,exports){
 var IndexRoute = Ember.Route.extend({
   redirect: function() {
     this.transitionTo('assessments');
@@ -100,7 +110,7 @@ var IndexRoute = Ember.Route.extend({
 });
 
 module.exports = IndexRoute;
-},{"../models/assessment":4}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 
 Ember.TEMPLATES['_item'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [3,'>= 1.0.0-rc.4'];
@@ -210,7 +220,7 @@ function program1(depth0,data) {
 
 
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 // Version: v1.0.0-rc.6
 // Last commit: 893bbc4 (2013-06-23 15:14:46 -0400)
 
@@ -31182,7 +31192,7 @@ Ember
 
 })();
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 /*
 
 Copyright (C) 2011 by Yehuda Katz
@@ -31529,7 +31539,7 @@ Handlebars.template = Handlebars.VM.template;
 })(Handlebars);
 ;
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v1.9.1
  * http://jquery.com/
