@@ -1,4 +1,3 @@
-var Assessment = require('../models/assessment');
 SectionsRoute = Ember.Route.extend({
 
   model: function() {
@@ -6,9 +5,10 @@ SectionsRoute = Ember.Route.extend({
   },
 
   afterModel: function(sections, transition){
+    transition.abort();
     var section = sections.get('firstObject');
     if(section){
-      this.transitionTo('sections', sections.get('firstObject'));
+      this.transitionTo('section', sections.get('firstObject'));
     }
   }
 

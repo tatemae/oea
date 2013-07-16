@@ -1,10 +1,16 @@
 SectionRoute = Ember.Route.extend({
 
   model: function(params){
-    return this.modelFor('assessment').sections();
+    var sections = this.modelFor('sections').sections();
+    return sections.find(function(item, index, enumerable){
+      if(item.id == params.id){
+        return item;
+      }
+    });
   },
 
-  afterModel: function(section, transition) {
+  afterModel: function(section, transition){
+    transition.abort();
     this.transitionTo('items');
   }
 

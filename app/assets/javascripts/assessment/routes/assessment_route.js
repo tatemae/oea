@@ -6,6 +6,7 @@ AssessmentRoute = Ember.Route.extend({
   },
 
   afterModel: function(assessment, transition){
+    transition.abort();
     var assessment_promise = Assessment.find(assessment.id);
     assessment_promise.then(function(assessment){
       this.transitionTo('sections', assessment.sections()); // Call Assessment.find to ensure that we have a fully loaded assessment

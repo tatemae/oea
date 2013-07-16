@@ -1,5 +1,5 @@
 var IndexRoute = Ember.Route.extend({
-  redirect: function() {
+  beforeModel: function(){
     this.transitionTo('assessments');
   }
 });
