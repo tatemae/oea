@@ -50,16 +50,11 @@ var base_uri = 'http://localhost:3010/api/assessments';
 
 Assessment.reopenClass({
   all: function(){
-    return $.get(base_uri, {
+    return $.get(base_uri + '.xml', {
     }).then(function(xml){
       var assessments = Ember.A();
       $.each($(xml).find('assessment'), function(i, assessment){
-        assessment = $(assessment);
-        assessments.pushObject(Assessment.create({
-          id: assessment.find('id').text(),
-          title: assessment.find('title').text(),
-          description: assessment.find('description').text()
-        }));
+        assessments.pushObject(Assessment.xml_to_assessment(assessment));
       });
       return assessments;
     });
@@ -67,8 +62,18 @@ Assessment.reopenClass({
 
   find: function(assessment_id){
     return $.get(base_uri + '/' + assessment_id + '.xml', {
-    }).then(function(xml) {
-      return xml;
+    }).then(function(xml){
+      var assessment = $(xml).find('assessment').first();
+      return Assessment.xml_to_assessment(assessment);
+    });
+  },
+
+  xml_to_assessment: function(xml){
+    xml = $(xml);
+    return Assessment.create({
+      id: xml.attr('ident'),
+      title: xml.attr('title'),
+      xml: xml
     });
   }
 
@@ -98,7 +103,7 @@ module.exports = ApplicationRoute;
 var Assessment = require('../models/assessment');
 AssessmentRoute = Ember.Route.extend({
   model: function(params){
-    return Assessment.findOne(params.assessment_id);
+    return Assessment.find(params.assessment_id);
   }
 });
 
@@ -162,26 +167,14 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
 Ember.TEMPLATES['assessment'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Ember.Handlebars.helpers; data = data || {};
-  var buffer = '', stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
 
-function program1(depth0,data) {
-  
-  var buffer = '', stack1, hashTypes, hashContexts, options;
-  data.buffer.push("\n        ");
+
+  data.buffer.push("<div class=\"assessment\">\n  <h2>");
   hashTypes = {};
   hashContexts = {};
-  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.partial),stack1 ? stack1.call(depth0, "item", options) : helperMissing.call(depth0, "partial", "item", options))));
-  data.buffer.push("\n      ");
-  return buffer;
-  }
-
-  data.buffer.push("<div class=\"assessment\">\n  <div class=\"section_list\">\n    <div class=\"section_container\">\n      ");
-  hashTypes = {};
-  hashContexts = {};
-  stack1 = helpers.each.call(depth0, "controller", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n    </div>\n  </div>\n  ");
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</h2>\n  <div class=\"section_list\">\n    <div class=\"section_container\">\n\n    </div>\n  </div>\n  ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));

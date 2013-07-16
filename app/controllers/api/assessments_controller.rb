@@ -7,12 +7,19 @@ class Api::AssessmentsController < ApplicationController
   def index
     page = (params[:page] || 1).to_i
     per_page = 10
-    assessments = Assessment.where("assessment_xmls.xml LIKE ?", "%#{params[:q]}%").includes(:assessment_xmls).paginate(:page => page, :per_page => per_page)
-    respond_with(assessments, :only => [:id, :title, :description])
+    @assessments = Assessment.where("assessment_xmls.xml LIKE ?", "%#{params[:q]}%").includes(:assessment_xmls).paginate(:page => page, :per_page => per_page)
+    respond_to do |format|
+      format.json { render :json => @assessments, :only => [:id, :title, :description] }
+      format.xml { render }
+    end
   end
 
   def show
-    assessment = Assessment.find(params[:id])
+    if params[:id]
+      assessment = Assessment.find(params[:id])
+    elsif params[:ident]
+      assessment = Assessment.find_by(identifier: params[:ident])
+    end
     respond_to do |format|
       format.json { render :json => assessment }
       format.xml { render :text => assessment.assessment_xmls.by_newest.first.xml }

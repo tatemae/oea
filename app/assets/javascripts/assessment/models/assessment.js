@@ -7,16 +7,11 @@ var base_uri = 'http://localhost:3010/api/assessments';
 
 Assessment.reopenClass({
   all: function(){
-    return $.get(base_uri, {
+    return $.get(base_uri + '.xml', {
     }).then(function(xml){
       var assessments = Ember.A();
       $.each($(xml).find('assessment'), function(i, assessment){
-        assessment = $(assessment);
-        assessments.pushObject(Assessment.create({
-          id: assessment.find('id').text(),
-          title: assessment.find('title').text(),
-          description: assessment.find('description').text()
-        }));
+        assessments.pushObject(Assessment.xml_to_assessment(assessment));
       });
       return assessments;
     });
@@ -24,8 +19,18 @@ Assessment.reopenClass({
 
   find: function(assessment_id){
     return $.get(base_uri + '/' + assessment_id + '.xml', {
-    }).then(function(xml) {
-      return xml;
+    }).then(function(xml){
+      var assessment = $(xml).find('assessment').first();
+      return Assessment.xml_to_assessment(assessment);
+    });
+  },
+
+  xml_to_assessment: function(xml){
+    xml = $(xml);
+    return Assessment.create({
+      id: xml.attr('ident'),
+      title: xml.attr('title'),
+      xml: xml
     });
   }
 
