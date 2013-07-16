@@ -15,9 +15,8 @@ module.exports = App;
 var App = require('./app');
 
 App.Router.map(function(){
-  this.resource('assessments', function() {
-    this.resource('assessment', { path: '/:assessment_id' });
-  });
+  this.resource('assessments');
+  this.resource('assessment', { path: '/assessment/:assessment_id' });
 });
 
 },{"./app":1}],3:[function(require,module,exports){

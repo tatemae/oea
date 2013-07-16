@@ -15,11 +15,7 @@ class Api::AssessmentsController < ApplicationController
   end
 
   def show
-    if params[:id]
-      assessment = Assessment.find(params[:id])
-    elsif params[:ident]
-      assessment = Assessment.find_by(identifier: params[:ident])
-    end
+    assessment = Assessment.find_by(identifier: params[:id]) || Assessment.find(params[:id])
     respond_to do |format|
       format.json { render :json => assessment }
       format.xml { render :text => assessment.assessment_xmls.by_newest.first.xml }
