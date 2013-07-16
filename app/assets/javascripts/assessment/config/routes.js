@@ -1,6 +1,7 @@
 var App = require('./app');
 
 App.Router.map(function(){
-  this.resource('assessments');
-  this.resource('assessment', { path: '/assessment/:assessment_id' });
+  this.resource('assessments', function() {
+    this.resource('assessment', { path: '/:assessment_id' });
+  });
 });
