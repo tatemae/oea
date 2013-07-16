@@ -48,7 +48,7 @@ var Assessment = ModelBase.extend({
 var base_uri = 'http://localhost:3010/api/assessments';
 
 Assessment.reopenClass({
-  findAll: function(){
+  all: function(){
     return $.get(base_uri, {
     }).then(function(xml){
       var assessments = Ember.A();
@@ -64,7 +64,7 @@ Assessment.reopenClass({
     });
   },
 
-  findOne: function(assessment_id){
+  find: function(assessment_id){
     return $.get(base_uri + '/' + assessment_id + '.xml', {
     }).then(function(xml) {
       return xml;
@@ -106,7 +106,7 @@ module.exports = AssessmentRoute;
 var Assessment = require('../models/assessment');
 AssessmentsRoute = Ember.Route.extend({
   model: function() {
-    return Assessment.findAll();
+    return Assessment.all();
   }
 });
 
