@@ -2,8 +2,66 @@
   <h2>{{title}}</h2>
   <div class="section_list">
     <div class="section_container">
+      {{outlet}}
+
+
+
+    <div class="question">
+  <form accept-charset="UTF-8" action="/items/check_answer" class="edit_item" id="edit_item_32" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="1vL9nqqxyiKjqLO+bs5qySuCsqPtwdDq9G4jDHIya4M="></div>
+    <div class="header">
+        <span class="counter">
+          1 of 3
+        </span>
+      <p>Question 1</p>
+    </div>
+    <div class="full_question">
+      <div class="inner_question">
+        <div class="question_text">
+          <div><p>It is better that students don’t understand why they are doing a task in order to increase learning and engagement.</p></div>
+        </div>
+        <div data-toggle="answers">
+            <div class="btn btn-block btn-question">
+  <label class="radio"><span class="icon"></span><span class="icon-to-fade"></span>
+    <div class="icon"></div><div class="icon-to-fade"></div>
+    <input id="item_id_1263" name="32" type="radio" value="1263">
+    True
+  </label>
+</div>
+<div class="btn btn-block btn-question">
+  <label class="radio"><span class="icon"></span><span class="icon-to-fade"></span>
+    <div class="icon"></div><div class="icon-to-fade"></div>
+    <input id="item_id_4549" name="32" type="radio" value="4549">
+    False
+  </label>
+</div>
+
+        </div>
+      </div>
+      <div class="check_answer_result"></div>
+      <div class="lower_level">
+        <input type="hidden" id="item_id" name="item[id]" value="32">
+        <input type="hidden" id="rendered_time" name="item[rendered_time]" value="2013-07-16 18:26:43 +0000">
+        <input type="hidden" id="assessment_result_id" name="item[assessment_result_id]" value="">
+        <input type="hidden" id="assessment_id" name="item[assessment_id]" value="7">
+        <input type="hidden" id="item_result_id" name="item[item_result_id]" value="677">
+        <input type="hidden" id="referer" name="item[referer]" value="">
+        <span style="float:left;"><input class="btn btn-check-answer disabled" name="commit" type="submit" value="Check Answer"></span>
+
+          <div class="nav_buttons">
+            <span class="btn btn-prev-item disabled" data-item-id="">Previous</span>
+            <span class="btn btn-next-item " data-item-id="33"><a href="/assessments/7?embed=true&amp;item=33">Next</a></span>
+            <input id="assessment_id" type="hidden" value=""> <!-- TODO REMOVE THIS TEMP HACK -->
+          </div>
+      </div>
+    </div>
+</form></div>
+
+
+
+
 
     </div>
   </div>
-  {{outlet}}
 </div>
+
+
