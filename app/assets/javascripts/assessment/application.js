@@ -227,7 +227,20 @@ var IndexRoute = Ember.Route.extend({
 
 module.exports = IndexRoute;
 },{}],12:[function(require,module,exports){
+ItemRoute = Ember.Route.extend({
 
+  model: function(params){
+    var items = this.modelFor('items');
+    return items.find(function(item, index, enumerable){
+      if(item.id == params.id){
+        return item;
+      }
+    });
+  }
+
+});
+
+module.exports = ItemRoute;
 },{}],13:[function(require,module,exports){
 ItemsRoute = Ember.Route.extend({
 
@@ -386,17 +399,49 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   
 });
 
+Ember.TEMPLATES['item'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [3,'>= 1.0.0-rc.4'];
+helpers = helpers || Ember.Handlebars.helpers; data = data || {};
+  var buffer = '', hashContexts, hashTypes, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("<form ");
+  hashContexts = {'on': depth0};
+  hashTypes = {'on': "STRING"};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "check_answer", {hash:{
+    'on': ("submit")
+  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(" class=\"edit_item\">\n  <div class=\"full_question\">\n    <div class=\"inner_question\">\n      <div class=\"question_text\">\n        <div><p>It is better that students don’t understand why they are doing a task in order to increase learning and engagement.</p></div>\n      </div>\n\n      <div data-toggle=\"answers\">\n\n        <div class=\"btn btn-block btn-question\">\n          <label class=\"radio\">\n            <span class=\"icon\"></span>\n            <span class=\"icon-to-fade\"></span>\n            <div class=\"icon\"></div>\n            <div class=\"icon-to-fade\"></div>\n            <input id=\"item_id_1263\" name=\"32\" type=\"radio\" value=\"1263\">\n            True\n          </label>\n        </div>\n\n        <div class=\"btn btn-block btn-question\">\n          <label class=\"radio\">\n            <span class=\"icon\"></span>\n            <span class=\"icon-to-fade\"></span>\n            <div class=\"icon\"></div>\n            <div class=\"icon-to-fade\"></div>\n            <input id=\"item_id_4549\" name=\"32\" type=\"radio\" value=\"4549\">\n            False\n          </label>\n        </div>\n\n      </div>\n    </div>\n\n    <div class=\"check_answer_result\"></div>\n\n    <div class=\"lower_level\">\n      <button class=\"btn btn-check-answer disabled\" type=\"submit\">Check Answer</button>\n    </div>\n  </div>\n</form>");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES['items'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [3,'>= 1.0.0-rc.4'];
+helpers = helpers || Ember.Handlebars.helpers; data = data || {};
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("<div class=\"question\">\n  <div class=\"header\">\n    <span class=\"counter\">1 of 3</span>\n    <p>Question 1</p>\n  </div>\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n  <div class=\"nav_buttons\">\n    <span class=\"btn btn-prev-item disabled\" data-item-id=\"\">Previous</span>\n    <span class=\"btn btn-next-item \" data-item-id=\"33\"><a href=\"/assessments/7?embed=true&amp;item=33\">Next</a></span>\n  </div>\n</div>");
+  return buffer;
+  
+});
+
 Ember.TEMPLATES['section'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("<div class=\"section_container\">\n      ");
+  data.buffer.push("<div class=\"section_container\">\n  ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n\n\n      <div class=\"question\">\n        <form accept-charset=\"UTF-8\" action=\"/items/check_answer\" class=\"edit_item\" id=\"edit_item_32\" method=\"post\">\n          <div class=\"header\">\n            <span class=\"counter\">1 of 3</span>\n            <p>Question 1</p>\n          </div>\n          <div class=\"full_question\">\n            <div class=\"inner_question\">\n              <div class=\"question_text\">\n                <div><p>It is better that students don’t understand why they are doing a task in order to increase learning and engagement.</p></div>\n              </div>\n\n              <div data-toggle=\"answers\">\n\n                <div class=\"btn btn-block btn-question\">\n                  <label class=\"radio\">\n                    <span class=\"icon\"></span>\n                    <span class=\"icon-to-fade\"></span>\n                    <div class=\"icon\"></div>\n                    <div class=\"icon-to-fade\"></div>\n                    <input id=\"item_id_1263\" name=\"32\" type=\"radio\" value=\"1263\">\n                    True\n                  </label>\n                </div>\n\n                <div class=\"btn btn-block btn-question\">\n                  <label class=\"radio\">\n                    <span class=\"icon\"></span>\n                    <span class=\"icon-to-fade\"></span>\n                    <div class=\"icon\"></div>\n                    <div class=\"icon-to-fade\"></div>\n                    <input id=\"item_id_4549\" name=\"32\" type=\"radio\" value=\"4549\">\n                    False\n                  </label>\n                </div>\n\n              </div>\n            </div>\n\n            <div class=\"check_answer_result\"></div>\n\n            <div class=\"lower_level\">\n              <input type=\"hidden\" id=\"item_id\" name=\"item[id]\" value=\"32\">\n              <input type=\"hidden\" id=\"rendered_time\" name=\"item[rendered_time]\" value=\"2013-07-16 18:26:43 +0000\">\n              <input type=\"hidden\" id=\"assessment_result_id\" name=\"item[assessment_result_id]\" value=\"\">\n              <input type=\"hidden\" id=\"assessment_id\" name=\"item[assessment_id]\" value=\"7\">\n              <input type=\"hidden\" id=\"item_result_id\" name=\"item[item_result_id]\" value=\"677\">\n              <input type=\"hidden\" id=\"referer\" name=\"item[referer]\" value=\"\">\n              <span style=\"float:left;\"><input class=\"btn btn-check-answer disabled\" name=\"commit\" type=\"submit\" value=\"Check Answer\"></span>\n              <div class=\"nav_buttons\">\n                <span class=\"btn btn-prev-item disabled\" data-item-id=\"\">Previous</span>\n                <span class=\"btn btn-next-item \" data-item-id=\"33\"><a href=\"/assessments/7?embed=true&amp;item=33\">Next</a></span>\n                <input id=\"assessment_id\" type=\"hidden\" value=\"\"> <!-- TODO REMOVE THIS TEMP HACK -->\n              </div>\n          </div>\n        </div>\n        </form>\n      </div>\n\n\n    </div>");
+  data.buffer.push("\n</div>");
   return buffer;
   
 });
