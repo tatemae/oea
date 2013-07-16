@@ -11,14 +11,12 @@ var App = Ember.Application.create();
 module.exports = App;
 
 
-},{"../vendor/ember":10,"../vendor/handlebars":11,"../vendor/jquery":12}],2:[function(require,module,exports){
+},{"../vendor/ember":11,"../vendor/handlebars":12,"../vendor/jquery":13}],2:[function(require,module,exports){
 var App = require('./app');
 
 App.Router.map(function(){
-  this.resource('assessments', function() {
-    this.route('new');
-    this.route('show');
-  });
+  this.resource('assessments');
+  this.resource('assessment', { path: '/assessment/:assessment_id' });
 });
 
 },{"./app":1}],3:[function(require,module,exports){
@@ -32,6 +30,7 @@ require('./templates');
 App.Assessment = require('./models/assessment');
 App.ModelBase = require('./models/model_base');
 App.ApplicationRoute = require('./routes/application_route');
+App.AssessmentRoute = require('./routes/assessment_route');
 App.AssessmentsRoute = require('./routes/assessments_route');
 App.IndexRoute = require('./routes/index_route');
 
@@ -40,15 +39,17 @@ require('./config/routes');
 module.exports = App;
 
 
-},{"./config/app":1,"./config/routes":2,"./models/assessment":4,"./models/model_base":5,"./routes/application_route":6,"./routes/assessments_route":7,"./routes/index_route":8,"./templates":9}],4:[function(require,module,exports){
+},{"./config/app":1,"./config/routes":2,"./models/assessment":4,"./models/model_base":5,"./routes/application_route":6,"./routes/assessment_route":7,"./routes/assessments_route":8,"./routes/index_route":9,"./templates":10}],4:[function(require,module,exports){
 var ModelBase = require('./model_base');
 var Assessment = ModelBase.extend({
 
 });
 
+var base_uri = 'http://localhost:3010/api/assessments';
+
 Assessment.reopenClass({
   findAll: function(){
-    return $.get("http://localhost:3010/api/assessments", {
+    return $.get(base_uri, {
     }).then(function(xml){
       var assessments = Ember.A();
       $.each($(xml).find('assessment'), function(i, assessment){
@@ -63,8 +64,8 @@ Assessment.reopenClass({
     });
   },
 
-  findOne: function(){
-    return $.get("http://localhost:3010/api/assessments/1.xml", {
+  findOne: function(assessment_id){
+    return $.get(base_uri + '/' + assessment_id + '.xml', {
     }).then(function(xml) {
       return xml;
     });
@@ -94,6 +95,15 @@ module.exports = ApplicationRoute;
 
 },{}],7:[function(require,module,exports){
 var Assessment = require('../models/assessment');
+AssessmentRoute = Ember.Route.extend({
+  model: function(params){
+    return Assessment.findOne(params.assessment_id);
+  }
+});
+
+module.exports = AssessmentRoute;
+},{"../models/assessment":4}],8:[function(require,module,exports){
+var Assessment = require('../models/assessment');
 AssessmentsRoute = Ember.Route.extend({
   model: function() {
     return Assessment.findAll();
@@ -102,7 +112,7 @@ AssessmentsRoute = Ember.Route.extend({
 
 module.exports = AssessmentsRoute;
 
-},{"../models/assessment":4}],8:[function(require,module,exports){
+},{"../models/assessment":4}],9:[function(require,module,exports){
 var IndexRoute = Ember.Route.extend({
   redirect: function() {
     this.transitionTo('assessments');
@@ -110,7 +120,7 @@ var IndexRoute = Ember.Route.extend({
 });
 
 module.exports = IndexRoute;
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 
 Ember.TEMPLATES['_item'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [3,'>= 1.0.0-rc.4'];
@@ -139,55 +149,16 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("<div class=\"assessments\">\n  ");
+  data.buffer.push("<div class=\"container\">\n  <div class=\"assessments\">\n    ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n</div>");
+  data.buffer.push("\n  </div>\n</div>");
   return buffer;
   
 });
 
-Ember.TEMPLATES['index'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [3,'>= 1.0.0-rc.4'];
-helpers = helpers || Ember.Handlebars.helpers; data = data || {};
-  var buffer = '', stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
-
-function program1(depth0,data) {
-  
-  var buffer = '', stack1, stack2, hashTypes, hashContexts, options;
-  data.buffer.push("\n      <li>");
-  hashTypes = {};
-  hashContexts = {};
-  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  stack2 = ((stack1 = helpers.linkTo),stack1 ? stack1.call(depth0, "show", "", options) : helperMissing.call(depth0, "linkTo", "show", "", options));
-  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("</li>\n    ");
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  var hashTypes, hashContexts;
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  }
-
-  data.buffer.push("<div class=\"container\">\n  <ul>\n    ");
-  hashTypes = {};
-  hashContexts = {};
-  stack1 = helpers.each.call(depth0, "controller", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n  </ul>\n  ");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n</div>");
-  return buffer;
-  
-});
-
-Ember.TEMPLATES['show'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+Ember.TEMPLATES['assessment'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   var buffer = '', stack1, hashTypes, hashContexts, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
@@ -218,9 +189,59 @@ function program1(depth0,data) {
   
 });
 
+Ember.TEMPLATES['assessments'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [3,'>= 1.0.0-rc.4'];
+helpers = helpers || Ember.Handlebars.helpers; data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = '', stack1, stack2, hashTypes, hashContexts, options;
+  data.buffer.push("\n    <li>");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  stack2 = ((stack1 = helpers.linkTo),stack1 ? stack1.call(depth0, "assessment", "", options) : helperMissing.call(depth0, "linkTo", "assessment", "", options));
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("</li>\n  ");
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var hashTypes, hashContexts;
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "title", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  }
+
+  data.buffer.push("<ul>\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "controller", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n</ul>\n");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  return buffer;
+  
+});
+
+Ember.TEMPLATES['index'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [3,'>= 1.0.0-rc.4'];
+helpers = helpers || Ember.Handlebars.helpers; data = data || {};
+  var hashTypes, hashContexts, escapeExpression=this.escapeExpression;
 
 
-},{}],10:[function(require,module,exports){
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  
+});
+
+
+
+},{}],11:[function(require,module,exports){
 // Version: v1.0.0-rc.6
 // Last commit: 893bbc4 (2013-06-23 15:14:46 -0400)
 
@@ -31192,7 +31213,7 @@ Ember
 
 })();
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /*
 
 Copyright (C) 2011 by Yehuda Katz
@@ -31539,7 +31560,7 @@ Handlebars.template = Handlebars.VM.template;
 })(Handlebars);
 ;
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v1.9.1
  * http://jquery.com/

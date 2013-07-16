@@ -3,9 +3,11 @@ var Assessment = ModelBase.extend({
 
 });
 
+var base_uri = 'http://localhost:3010/api/assessments';
+
 Assessment.reopenClass({
   findAll: function(){
-    return $.get("http://localhost:3010/api/assessments", {
+    return $.get(base_uri, {
     }).then(function(xml){
       var assessments = Ember.A();
       $.each($(xml).find('assessment'), function(i, assessment){
@@ -20,8 +22,8 @@ Assessment.reopenClass({
     });
   },
 
-  findOne: function(){
-    return $.get("http://localhost:3010/api/assessments/1.xml", {
+  findOne: function(assessment_id){
+    return $.get(base_uri + '/' + assessment_id + '.xml', {
     }).then(function(xml) {
       return xml;
     });
