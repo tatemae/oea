@@ -5,11 +5,7 @@ SectionsRoute = Ember.Route.extend({
   },
 
   afterModel: function(sections, transition){
-    transition.abort();
-    var section = sections.get('firstObject');
-    if(section){
-      this.transitionTo('section', sections.get('firstObject'));
-    }
+    this.transitionTo('/section/' + sections[0].id);
   }
 
 });

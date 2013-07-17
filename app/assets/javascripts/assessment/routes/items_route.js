@@ -5,11 +5,7 @@ ItemsRoute = Ember.Route.extend({
   },
 
   afterModel: function(items, transition){
-    transition.abort();
-    var item = items.get('firstObject');
-    if(item){
-      this.transitionTo('item', items.get('firstObject'));
-    }
+    this.transitionTo('/item/' + items[0].id);
   }
 
 });
