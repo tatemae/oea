@@ -6,6 +6,23 @@ var Item = ModelBase.extend({
 
 Item.reopenClass({
 
+  find: function(items, item_id){
+    return new Ember.RSVP.Promise(function(resolve, reject){
+      items.then(function(items){
+        var item = items.find(function(item, index, enumerable){
+          if(item.id == item_id){
+            return item;
+          }
+        });
+        if(item){
+          resolve(item);
+        } else {
+          reject('No item found with id: ' + item_id);
+        }
+      });
+    });
+  },
+
   from_xml: function(xml){
     xml = $(xml);
     return Item.create({

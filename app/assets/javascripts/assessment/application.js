@@ -148,6 +148,23 @@ var Item = ModelBase.extend({
 
 Item.reopenClass({
 
+  find: function(items, item_id){
+    return new Ember.RSVP.Promise(function(resolve, reject){
+      items.then(function(items){
+        var item = items.find(function(item, index, enumerable){
+          if(item.id == item_id){
+            return item;
+          }
+        });
+        if(item){
+          resolve(item);
+        } else {
+          reject('No item found with id: ' + item_id);
+        }
+      });
+    });
+  },
+
   from_xml: function(xml){
     xml = $(xml);
     return Item.create({
@@ -201,16 +218,18 @@ Section.reopenClass({
 
   find: function(sections, section_id){
     return new Ember.RSVP.Promise(function(resolve, reject){
-      var section = sections.find(function(section, index, enumerable){
-        if(section.id == section_id){
-          return section;
+      sections.then(function(sections){
+        var section = sections.find(function(section, index, enumerable){
+          if(section.id == section_id){
+            return section;
+          }
+        });
+        if(section){
+          resolve(section);
+        } else {
+          reject('No section found with id: ' + section_id);
         }
       });
-      if(section){
-        resolve(section);
-      } else {
-        reject('No section found with id: ' + section_id);
-      }
     });
   },
 
@@ -275,21 +294,17 @@ var IndexRoute = Ember.Route.extend({
 
 module.exports = IndexRoute;
 },{}],12:[function(require,module,exports){
+var Item = require('../models/item');
 ItemRoute = Ember.Route.extend({
 
   model: function(params){
-    // var items = this.modelFor('items');
-    // return items.find(function(item, index, enumerable){
-    //   if(item.id == params.id){
-    //     return item;
-    //   }
-    // });
+    return Item.find(this.modelFor('section').items(), params.item_id);
   }
 
 });
 
 module.exports = ItemRoute;
-},{}],13:[function(require,module,exports){
+},{"../models/item":5}],13:[function(require,module,exports){
 ItemsRoute = Ember.Route.extend({
 
   model: function() {
@@ -307,9 +322,7 @@ var Section = require('../models/section');
 SectionRoute = Ember.Route.extend({
 
   model: function(params){
-    var sections = this.controllerFor('sections').get('content');
-    debugger;
-    return Section.find(this.modelFor('sections'), params.section_id);
+    return Section.find(this.modelFor('assessment').sections(), params.section_id);
   },
 
   setupController: function(controller, model){

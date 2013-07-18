@@ -1,12 +1,8 @@
+var Item = require('../models/item');
 ItemRoute = Ember.Route.extend({
 
   model: function(params){
-    // var items = this.modelFor('items');
-    // return items.find(function(item, index, enumerable){
-    //   if(item.id == params.id){
-    //     return item;
-    //   }
-    // });
+    return Item.find(this.modelFor('section').items(), params.item_id);
   }
 
 });

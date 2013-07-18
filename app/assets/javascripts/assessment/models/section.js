@@ -16,16 +16,18 @@ Section.reopenClass({
 
   find: function(sections, section_id){
     return new Ember.RSVP.Promise(function(resolve, reject){
-      var section = sections.find(function(section, index, enumerable){
-        if(section.id == section_id){
-          return section;
+      sections.then(function(sections){
+        var section = sections.find(function(section, index, enumerable){
+          if(section.id == section_id){
+            return section;
+          }
+        });
+        if(section){
+          resolve(section);
+        } else {
+          reject('No section found with id: ' + section_id);
         }
       });
-      if(section){
-        resolve(section);
-      } else {
-        reject('No section found with id: ' + section_id);
-      }
     });
   },
 
