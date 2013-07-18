@@ -1,2 +1,6 @@
 <p>assessment index</p>
-{{outlet}}
+<ul>
+  {{#each controller}}
+    <li>{{#linkTo "assessment" this}}{{title}}{{/linkTo}}</li>
+  {{/each}}
+</ul>

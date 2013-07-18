@@ -44,3 +44,4 @@ Section.reopenClass({
 });
 
 module.exports = Section;
+
