@@ -1,17 +1,11 @@
+var Section = require('../models/section');
 SectionRoute = Ember.Route.extend({
 
   model: function(params){
-    return new Ember.RSVP.Promise(function(resolve, reject){
-      var sections = this.modelFor('sections');
-      return sections.find(function(item, index, enumerable){
-        if(item.id == params.section_id){
-          return resolve(item);
-        }
-      });
-    });
+    return Section.find(this.modelFor('sections'), params.section_id);
   },
 
-  afterModel: function(section, transition){
+  setupController: function(controller, model){
     this.transitionTo('items');
   }
 

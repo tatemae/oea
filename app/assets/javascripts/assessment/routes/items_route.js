@@ -4,8 +4,8 @@ ItemsRoute = Ember.Route.extend({
     return this.modelFor('section').items();
   },
 
-  afterModel: function(items, transition){
-    this.transitionTo('/item/' + items[0].id);
+  setupController: function(controller, model){
+    this.transitionTo('item', model[0]);
   }
 
 });

@@ -4,8 +4,8 @@ SectionsRoute = Ember.Route.extend({
     return this.modelFor('assessment').sections();
   },
 
-  afterModel: function(sections, transition){
-    this.transitionTo('/section/' + sections[0].id);
+  setupController: function(controller, model){
+    this.transitionTo('section', model[0]);
   }
 
 });

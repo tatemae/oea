@@ -82,16 +82,3 @@ Assessment.reopenClass({
 });
 
 module.exports = Assessment;
-
-
-function Section(id, callback) {
-  return new Ember.RSVP.Promise(function(resolve, reject){
-    setTimeout(function() {
-      if (!id)
-        return resolve(sections);
-      if (sections[id])
-        return resolve(sections[id])
-      reject('no section found with id: ' + id);
-    }, 1000);
-  });
-}

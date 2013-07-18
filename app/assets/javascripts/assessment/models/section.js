@@ -4,22 +4,30 @@ var Item = require('./item');
 var Section = ModelBase.extend({
 
   items: function(){
-    var _self = this;
+    var model = this;
     return new Ember.RSVP.Promise(function(resolve, reject){
-      if(!_self.xml){
-        Assessment.get_xml(_self.id).then(function(xml){
-          _self.xml = xml;
-          return resolve(Item.list_from_xml(_self.xml));
-        });
-      } else {
-        return resolve(Item.list_from_xml(_self.xml));
-      }
+      return resolve(Item.list_from_xml(model.xml));
     });
   }
 
 });
 
 Section.reopenClass({
+
+  find: function(sections, section_id){
+    return new Ember.RSVP.Promise(function(resolve, reject){
+      var section = sections.find(function(section, index, enumerable){
+        if(section.id == section_id){
+          return section;
+        }
+      });
+      if(section){
+        resolve(section);
+      } else {
+        reject('No section found with id: ' + section_id);
+      }
+    });
+  },
 
   from_xml: function(xml){
     xml = $(xml);
@@ -30,12 +38,7 @@ Section.reopenClass({
   },
 
   list_from_xml: function(xml){
-    xml = $(xml);
-    var list = Ember.A();
-    $.each(xml.find('section'), function(i, section_xml){
-      list.pushObject(Section.from_xml(section_xml));
-    });
-    return list;
+    return this._list_from_xml(xml, 'section', Section);
   }
 
 });
