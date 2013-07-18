@@ -22,6 +22,7 @@ Oea::Application.routes.draw do
   post '/items/check_answer', to: 'items#check_answer'
 
   get 'saml', to: 'saml#index'
+  get 'saml/metadata', to: 'saml#metadata'
   post 'saml/consume', to: 'saml#consume'
 
   namespace :api do
