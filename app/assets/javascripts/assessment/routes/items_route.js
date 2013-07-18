@@ -4,8 +4,10 @@ ItemsRoute = Ember.Route.extend({
     return this.modelFor('section').items();
   },
 
-  setupController: function(controller, model){
-    this.transitionTo('item', model[0]);
+  afterModel: function(model, transition){
+    if(transition.targetName == 'items.index'){
+      this.transitionTo('item', model[0]);
+    }
   }
 
 });

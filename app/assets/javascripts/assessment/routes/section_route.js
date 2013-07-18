@@ -5,8 +5,10 @@ SectionRoute = Ember.Route.extend({
     return Section.find(this.modelFor('assessment').sections(), params.section_id);
   },
 
-  setupController: function(controller, model){
-    this.transitionTo('items');
+  afterModel: function(model, transition){
+    if(transition.targetName == 'section.index'){
+      this.transitionTo('items');
+    }
   }
 
 });

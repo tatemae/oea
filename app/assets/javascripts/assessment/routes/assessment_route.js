@@ -6,9 +6,14 @@ AssessmentRoute = Ember.Route.extend({
     return Assessment.find(params.assessment_id || this.assessment_id);
   },
 
-  setupController: function(controller, model){ // HACK Would love for this to be afterModel but it sends the route into an infinite loop. We have to use setupController for now. We use this method all the way down the routes.
+  setupController: function(controller, model){
     if(model.id){ this.assessment_id = model.id; }
-    this.transitionTo('sections');
+  },
+
+  afterModel: function(model, transition){
+    if(transition.targetName == "assessment.index"){
+      this.transitionTo('sections');
+    }
   }
 
 });
