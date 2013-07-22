@@ -5,10 +5,6 @@ var Item = ModelBase.extend({
 
   answers: function(){
     return Answer.list_from_xml(this.xml);
-    // var model = this;
-    // return new Ember.RSVP.Promise(function(resolve, reject){
-    //   return resolve(Answer.list_from_xml(model.xml));
-    // });
   }
 
 });

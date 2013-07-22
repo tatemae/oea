@@ -32,9 +32,15 @@ App.Router.map(function(){
 },{"./app":1}],3:[function(require,module,exports){
 var AnswerController = Ember.ObjectController.extend({
 
+  isSelected: false,
+
   text: function(){
     return this.get('content').text_from_xml('material > mattext');
-  }.property()
+  }.property(),
+
+  select: function(){
+    this.set('isSelected', true);
+  }
 
 });
 
@@ -43,6 +49,8 @@ module.exports = AnswerController;
 
 },{}],4:[function(require,module,exports){
 var ItemController = Ember.ObjectController.extend({
+
+  selectedAnswer: null,
 
   text: function(){
     return this.get('content').text_from_xml('presentation > material > mattext');
@@ -260,10 +268,6 @@ var Item = ModelBase.extend({
 
   answers: function(){
     return Answer.list_from_xml(this.xml);
-    // var model = this;
-    // return new Ember.RSVP.Promise(function(resolve, reject){
-    //   return resolve(Answer.list_from_xml(model.xml));
-    // });
   }
 
 });
@@ -591,18 +595,34 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
 Ember.TEMPLATES['item'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Ember.Handlebars.helpers; data = data || {};
-  var buffer = '', stack1, hashContexts, hashTypes, escapeExpression=this.escapeExpression, self=this;
+  var buffer = '', stack1, hashContexts, hashTypes, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
-  var buffer = '', stack1, hashContexts, hashTypes;
-  data.buffer.push("\n          <div class=\"btn btn-block btn-question\">\n            <label class=\"radio\">\n              <span class=\"icon\"></span>\n              <span class=\"icon-to-fade\"></span>\n              <div class=\"icon\"></div>\n              <div class=\"icon-to-fade\"></div>\n              <input id=\"item_id_1263\" name=\"32\" type=\"radio\" value=\"1263\">\n              ");
+  var buffer = '', stack1, stack2, hashContexts, hashTypes, options;
+  data.buffer.push("\n          <div class=\"btn btn-block btn-question\">\n            <label ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  data.buffer.push(escapeExpression(helpers.bindAttr.call(depth0, {hash:{
+    'class': (":radio isSelected:checked")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n              <span class=\"icon\"></span>\n              <span class=\"icon-to-fade\"></span>\n              <div class=\"icon\"></div>\n              <div class=\"icon-to-fade\"></div>\n              ");
+  hashContexts = {'type': depth0,'name': depth0,'value': depth0,'action': depth0};
+  hashTypes = {'type': "STRING",'name': "STRING",'value': "ID",'action': "ID"};
+  options = {hash:{
+    'type': ("radio"),
+    'name': ("radio"),
+    'value': ("id"),
+    'action': ("select")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n              ");
   hashContexts = {'unescaped': depth0};
   hashTypes = {'unescaped': "STRING"};
-  stack1 = helpers._triageMustache.call(depth0, "text", {hash:{
+  stack2 = helpers._triageMustache.call(depth0, "text", {hash:{
     'unescaped': ("true")
   },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n            </label>\n          </div>\n        ");
   return buffer;
   }

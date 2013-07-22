@@ -7,12 +7,12 @@
       <div data-toggle="answers">
         {{#each controller.answers itemController="answer"}}
           <div class="btn btn-block btn-question">
-            <label class="radio">
+            <label {{bindAttr class=":radio isSelected:checked"}}>
               <span class="icon"></span>
               <span class="icon-to-fade"></span>
               <div class="icon"></div>
               <div class="icon-to-fade"></div>
-              <input id="item_id_1263" name="32" type="radio" value="1263">
+              {{input type="radio" name="radio" value=id action=select}}
               {{{text}}}
             </label>
           </div>
