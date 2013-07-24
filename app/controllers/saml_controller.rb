@@ -1,14 +1,16 @@
-require 'onelogin/saml'
+
 
 class SamlController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:consume]
 
   def index
+    require 'onelogin/saml'
     request = Onelogin::Saml::AuthRequest.new(saml_settings)
     redirect_to(request.generate_request)
   end
 
   def consume
+    require 'onelogin/saml'
     response = Onelogin::Saml::Response.new(params[:SAMLResponse])
     response.settings = saml_settings
 
@@ -24,6 +26,7 @@ class SamlController < ApplicationController
   end
 
   def metadata
+    require 'onelogin/saml'
     # This needs to be publicly available since external SAML
     # servers need to be able to access it without being authenticated.
     # It is used to disclose our SAML configuration settings.
