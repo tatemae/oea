@@ -1,10 +1,14 @@
 <div class="assessment_list">
-  <% @assessments.each do |assessment| %>
-    <div>
-      <%= link_to assessment.title, assessment_path(assessment) %> <textarea class="embed_text assessment_embed_text" name="embed_text"> <%= CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessment_path(assessment.id)}?embed=true' frameborder='0' width='500' height='400' ></iframe>") %></textarea> <%= link_to "delete", assessment, method: :delete, data: { confirm: "You sure?" } %>
-    </div>
-  <% end -%>
-  <div>
-    <%= link_to "New", new_assessment_path %>
+  <div class="row-fluid">
+    <%= link_to "Create New Assessment", new_assessment_path, :class => 'btn btn-nav-item' %>
+  </div>
+  <div class="row-fluid">
+    <% @assessments.each do |assessment| %>
+      <div class="assessment span6">
+        <h1><%= link_to assessment.title, assessment_path(assessment) %></h1>
+        <iframe src="<%= assessment_path(assessment, :embed => true) %>" frameborder="0" width="500" height="470"></iframe>
+      </div>
+      <%#= link_to "delete", assessment, method: :delete, data: { confirm: "You sure?" } %>
+    <% end -%>
   </div>
 </div>

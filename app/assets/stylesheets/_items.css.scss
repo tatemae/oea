@@ -82,12 +82,12 @@
 body{
 	margin:0;
 	padding:0;
+  background: transparent;
 }
 .question {
 	width: 100%;
 	margin: 0px auto;
   padding-bottom: 20px;
-  padding-top:30px;
 }
 .header {
 	margin: 0px auto;
@@ -137,7 +137,7 @@ body{
   background-color: $light-blue;
   color:#000;
 }
-.btn.btn-check-answer{
+.btn.btn-check-answer, .btn.btn-nav-item{
   padding: 8px 15px !important;
 }
 .btn.btn-info {

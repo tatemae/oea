@@ -18,6 +18,7 @@ body{
   background: url(image-path('background.jpg')) no-repeat center center fixed;
   background-size:cover;
   height:100%;
+  padding-top: 50px;
 }
 
 .navbar{
@@ -142,4 +143,22 @@ footer p img{
 }
 .nav a:hover{
   color: $light-orange !important;
+}
+
+.assessment{
+  margin:0 auto;
+  .right_buttons{
+    float: none;
+    margin: 0 auto;
+    width: 160px;
+  }
+  h1 {
+    a{
+      color: $white;
+      text-decoration: none;
+    }
+  }
+  iframe{
+    background: transparent;
+  }
 }
