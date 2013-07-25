@@ -1,7 +1,7 @@
 class AssessmentsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_filter :skip_trackable
-  before_filter :authenticate_user!, only: [:create]
+  before_filter :authenticate_user!, only: [:create, :destroy]
   respond_to :html
 
   def index
