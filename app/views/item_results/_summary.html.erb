@@ -1,9 +1,9 @@
 <% content_for :page_title do -%>
-  <%= @item.question_title %> Item Results
+  <%= @item.title %> Item Results
 <% end -%>
-<a href="<%= assessment_section_item_results_url(params[:assessment_id], params[:section_id], @item, :format => :csv, :type => "summary") %>">Download CSV</a>
+<a href="<%= results_assessment_section_item_url(params[:assessment_id], params[:section_id], @item, :format => :csv, :type => "summary") %>">Download CSV</a>
 <div>
-  <span>Item: <%= @item.question_title %></span>
+  <span>Item: <%= @item.title %></span>
   <div>
     <span># Renders: <%= @item.results_summary[:renders] %></span>
   </div>
