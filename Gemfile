@@ -46,6 +46,8 @@ gem 'active_model_serializers' # Make Rails generate json that ember likes.
 gem "chartkick"
 gem 'groupdate' # for grouping the chart data by date
 
+gem 'newrelic_rpm'
+
 # Gems used only for assets and not required
 # in production environments by default.
 #group :assets do
