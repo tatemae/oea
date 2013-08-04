@@ -1,2 +1,33 @@
-<h1>AssessmentResults#index</h1>
-<p>Find me in app/views/assessment_results/index.html.erb</p>
+<div class="container-fluid">
+  <div class="row-fluid">
+
+    <div class="span8 offset2">
+
+      <h1 class="row-fluid"><%= link_to 'Assessments', user_assessments_path(current_user.id) %> &gt;
+        <%= link_to @assessment.title, assessment_path(@assessment) %>  &gt; Results</h1>
+
+      <div class="well row-fluid">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Number of Times Displayed</th>
+              <td><%= @assessment.assessment_results.count %></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Number of Submissions</th>
+              <td><%#= @assessment.submissions.count %></td>
+            </tr>
+            <tr>
+              <th>Average Score</th>
+              <td><%#= @assessment.submissions.avg_score %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -2,7 +2,8 @@
   <div class="row-fluid">
 
     <div class="span8 offset2">
-      <h1 class="row-fluid">Create an Assessment</h1>
+        <h1 class="row-fluid"><%= link_to 'Assessments', user_assessments_path(current_user.id) %> &gt;
+        Create an Assessment</h1>
       
       <% unless flash[:notice].blank? %>
         <div class="row-fluid">
