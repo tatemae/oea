@@ -19,11 +19,14 @@
           <ul class="nav">
             <li class="<%= 'active' if current_page?(root_path) %>"><a href="/">HOME</a></li>
             <li class="<%= 'active' if current_page?(contact_path) %>" style='width:90px;'><a style='margin-left:-6px;' href="/contact">CONTACT</a></li>
-            <li><a href="https://github.com/tatemae/oea/wiki/API" target="_blank">API</a></li>
+            <li><a href="https://github.com/tatemae/oea/wiki/API-Documentation" target="_blank">API</a></li>
             <li><a href="https://github.com/tatemae/oea" target="_blank">THE CODE</a></li>
             <li class="<%= 'active' if current_page?(about_path) %>" style='width:80px;'><a href="/about">ABOUT</a></li>
             <% if user_signed_in? %>
-              <li class="<%= 'active' if current_page?('/sign_out') %>" style='width:105px;'><%= link_to "SIGN OUT", destroy_user_session_path, :method => :delete %></li>
+              <li>
+                <%= link_to current_user.name, user_assessments_path(current_user), :style => 'padding-right:2px;float:left;' %>
+                <%= link_to "(sign out)", destroy_user_session_path, :method => :delete, :style => 'font-size:14px;padding-left:2px;float:left;' %>
+              </li>
             <% else %>
               <li class="<%= 'active' if current_page?('/users/sign_in') %>" style='width:85px;'><%= link_to "SIGN IN", new_user_session_path %></li>
               <li class="<%= 'active' if current_page?('/users/sign_up') %>" style='width:95px;'><%= link_to "SIGN UP", new_user_registration_path %></li>
@@ -33,7 +36,7 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid" id="page_messages">
     <div class="row-fluid">
       <div class="span10 offset1">
         <%= render 'layouts/global/messages' %>

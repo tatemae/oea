@@ -11,13 +11,13 @@
 	margin:20px;
 }
 .lower_level{
-  padding:0 20px 50px 20px;
+  padding:0 20px;
 }
 .right_buttons{
   float:right;
   padding:0 20px 20px 0;
   .stats_button{
-    padding:11px 8px 0px 7px
+    padding:6px 8px;
   }
   .stats_word{
     padding:5px 3px;
@@ -144,7 +144,7 @@ body{
   background-color: $blue !important;
 }
 .btn.btn-info:hover, btn-question:focus {
-  background-color: $lighter-blue !important;
+  background-color: $light-blue !important;
 }
 
 .nav_buttons{

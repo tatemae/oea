@@ -1,7 +1,51 @@
 .assessment_list{
-  margin: 0 auto 100px auto;
-  width: 1020px;
+  margin: 0 auto;
+  ul{
+    margin-left:0;
+  }
+  li:first-child{
+    padding-top:0;
+  }
+  li{
+    list-style:none;
+    line-height:2em;
+    border-bottom:1px solid #CCC;
+    padding:10px 0;
+    .action_links{
+      float:right;
+    }
+  }
+  a{
+    text-decoration:none;
+    font-size:21px;
+    color:$text-color;
+  }
+  a:hover{
+    color:$link-color;
+  }
+  a.nav_link {
+    color:#999;
+  }
 }
 .assessment_embed_text{
   width: 50%;
+}
+#assessment_xml_file{
+  line-height:16px;
+  margin-top:20px;
+}
+#assessments {
+  h2{
+    font-size:20px;
+    line-height:1em;
+    margin-top:0;
+    margin-bottom:10px;
+  }
+  form{
+    margin:0;
+  }
+  hr {
+    border-top: 1px solid #BBB;
+    border-bottom: 1px solid white;
+  }
 }

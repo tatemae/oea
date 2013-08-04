@@ -1,14 +1,18 @@
-<div class="assessment_list">
+<div class="container-fluid">
   <div class="row-fluid">
-    <%= link_to "Create New Assessment", new_assessment_path, :class => 'btn btn-nav-item' %>
-  </div>
-  <div class="row-fluid">
-    <% @assessments.each do |assessment| %>
-      <div class="assessment span6">
-        <h1><%= link_to assessment.title, assessment_path(assessment) %></h1>
-        <iframe src="<%= assessment_path(assessment, :embed => true) %>" frameborder="0" width="500" height="470"></iframe>
+
+    <div class="span8 offset2">
+
+      <h1 class="row-fluid">Your Assessments</h1>
+
+      <div class="assessment_list well row-fluid">
+        <ul>
+          <%= render :collection => @assessments, :partial => 'assessments/list_item', :as => :assessment %>
+        </ul>
+        <%= link_to "<i class='icon-plus'></i> Create an Assessment".html_safe, new_assessment_path, :class => 'nav_link'  %>
       </div>
-      <%#= link_to "delete", assessment, method: :delete, data: { confirm: "You sure?" } %>
-    <% end -%>
+
+    </div>
   </div>
+
 </div>

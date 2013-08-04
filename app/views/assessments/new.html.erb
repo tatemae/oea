@@ -1,34 +1,45 @@
-<div id="assessments" class="workspace row-fluid">
+<div id="assessments" class="container-fluid">
+  <div class="row-fluid">
 
-  <div class="span8 offset2">
-    <h1>Create Assessment</h1>
-    
-    <% unless flash[:notice].blank? %>
-      <div class="row-fluid span12">
-        <div id="notification_notice"><%= flash[:error] %></div>
-      </div>
-    <% end %>
+    <div class="span8 offset2">
+      <h1 class="row-fluid">Create an Assessment</h1>
+      
+      <% unless flash[:notice].blank? %>
+        <div class="row-fluid">
+          <div id="notification_notice"><%= flash[:error] %></div>
+        </div>
+      <% end %>
 
-    <div class="well span12">
-      <div class="row-fluid">
+      <div class="well row-fluid">
         <%= form_for :assessment, :url => assessments_path, :html => { :id => "new-assessment-form", :name => 'new-assessment-form', :class => 'form-horizontal' } do |f| -%>
 
           <div class="control-group">
-            <div class="controls">
-              <span>QTI Formatted xml file</span>
-              <div id="xml_file_option">
-                <%= f.file_field :xml_file, { :name => 'assessment[xml_file]' } %>
-              </div>
+            <h2>Steps to create an assessment:</h2>
+            <ol>
+              <li>Author the assessment using a Learning Management System like <a target="_blank" href="https://canvas.instructure.com">Canvas</a>.</li>
+              <li>Create an assessment file by exporting the assessment to disk in <a target="_blank" href="http://en.wikipedia.org/wiki/QTI">QTI format</a>.</li>
+              <li>Import the assessment file here.</li>
+            </ol>
+            <div id="xml_file_option">
+              <%= f.file_field :xml_file, { :name => 'assessment[xml_file]' } %>
             </div>
           </div>
 
-          <div class="button">
-            <%= f.submit 'Create' %>
-          </div>
+          <%= f.submit 'Upload', :class => 'btn' %>
         <% end -%>
+
+        <hr/>
+
+        <h2 class="row-fluid">Creating assessments using the API</h2>
+
+        <div>
+          You can also create an assessment by using your authentication token to post a QTI file to the <a href="https://github.com/tatemae/oea/wiki/API-Documentation" target="_blank">API</a>:<br/><br/>
+          http://www.openassessments.com/api/assessments.xml?auth_token=<%= current_user.authentication_token %><br/><br/>
+          <%= link_to "Reset Authentication Token", reset_authentication_token_user_path(current_user), :class => 'nav_link' %>
+        </div>
+
       </div>
     </div>
-
   </div>
 
 </div>

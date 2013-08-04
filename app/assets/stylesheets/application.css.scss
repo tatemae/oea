@@ -14,7 +14,7 @@ html{
   height:100%;
 }
 body{
-  font-family: 'News Cycle', serif;
+  font-family: 'News Cycle', 'Arial Narrow', sans-serif;
   background: url(image-path('background.jpg')) no-repeat center center fixed;
   background-size:cover;
   height:100%;
@@ -22,6 +22,7 @@ body{
 }
 
 .navbar{
+  position:absolute;
   line-height:42px;
   -moz-box-shadow: 2px 2px 1px #888;
   -webkit-box-shadow: 2px 2px 1px #888;
@@ -38,6 +39,7 @@ body{
 }
 .navbar-inverse .navbar-inner {
   background: $almost_black;
+  min-height:60px;
 }
 .logo_overlay{
   z-index:3;
@@ -60,7 +62,7 @@ body{
   height:auto !important;
   height:95%;
     .jumbotron{
-    margin-top:200px;
+    margin-top:150px;
     margin-right:50px;
     width:550px;
     font-size:40px;
@@ -83,12 +85,14 @@ body{
     width:235px;
     height:211px;
     display:inline;
-    margin-top:260px;
+    margin-top:210px;
     padding-bottom:60px;
   }
 }
 
 footer, .push{
+  margin-top:30px;
+  text-align:center;
   height:50px;
   padding-left:35px;
   background-color:transparent;
@@ -97,7 +101,6 @@ footer, .push{
 }
 
 footer p{
-  float: left;
   color: rgb(166,242,255);
 }
 
@@ -161,4 +164,12 @@ footer p img{
   iframe{
     background: transparent;
   }
+}
+
+#page_messages{
+  margin-top:10px;
+}
+
+.api_token{
+  margin:30px 0;
 }
