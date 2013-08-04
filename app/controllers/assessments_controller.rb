@@ -39,10 +39,25 @@ class AssessmentsController < ApplicationController
   def new
   end
 
+  def assessment_from_params(params)
+    
+    if params.has_key?(:xml_file_url)
+      src_url = params[:xml_file_url]
+
+      assessment = Assessment.find_by_src_url(src_url)
+      return assessment if assessment
+
+      xml = Net::HTTP.get(URI.parse(src_url))
+    
+    elsif params.has_key?(:xml_file)
+      xml = params[:xml_file].read 
+    end
+    
+    Assessment.from_xml(xml, current_user, src_url)
+  end
+
   def create
-    assessment_xml = params[:assessment][:xml_file].read
-    @assessment = Assessment.from_xml(assessment_xml, current_user)
-    respond_with(@assessment)
+    respond_with(assessment_from_params(params[:assessment]))
   end
 
   def destroy

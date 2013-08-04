@@ -11,19 +11,33 @@ class ApplicationController < ActionController::Base
     request.env['devise.skip_trackable'] = true
   end
 
-  def create_item_result(item)
-    @rendered_time = Time.now
-    @referer = request.env['HTTP_REFERER']
+  def tracking_info
+    rendered_time = Time.now
+    referer = request.env['HTTP_REFERER']
     if !@user = User.find_by(name: request.session.id)
       @user = User.create_anonymous
       @user.name = request.session.id
       @user.save!
     end
-    @item_result = @user.item_results.create!(
+    [rendered_time, referer, @user]
+  end
+
+  def create_item_result(item)
+    rendered_time, referer, user = tracking_info
+    user.item_results.create!(
       :identifier => item.identifier,
       :item_id => item.id,
-      :rendered_datestamp => @rendered_time,
-      :referer => @referer,
+      :rendered_datestamp => rendered_time,
+      :referer => referer,
+      :ip_address => request.ip,
+      :session_status => 'initial')
+  end
+
+  def create_assessment_result(assessment)
+    rendered_time, referer, user = tracking_info
+    user.assessment_results.create!(
+      :rendered_datestamp => rendered_time,
+      :referer => referer,
       :ip_address => request.ip,
       :session_status => 'initial')
   end

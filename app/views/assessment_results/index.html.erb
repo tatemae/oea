@@ -16,11 +16,19 @@
           </thead>
           <tbody>
             <tr>
+              <th>Number of Unique Users</th>
+              <td><%#= @assessment.users.count %></td>
+            </tr>
+            <tr>
               <th>Number of Submissions</th>
               <td><%#= @assessment.submissions.count %></td>
             </tr>
             <tr>
               <th>Average Score</th>
+              <td><%#= @assessment.submissions.avg_score %></td>
+            </tr>
+            <tr>
+              <th>Average Time Spent Completing Assessment</th>
               <td><%#= @assessment.submissions.avg_score %></td>
             </tr>
           </tbody>

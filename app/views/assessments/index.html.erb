@@ -12,6 +12,25 @@
         <%= link_to "<i class='icon-plus'></i> Create an Assessment".html_safe, new_assessment_path, :class => 'nav_link'  %>
       </div>
 
+
+      <h1 class="row-fluid">View an Assessment Hosted Somewhere Else</h1>
+
+      <div class="assessment_list well row-fluid">
+
+        <%= form_for :assessment, :url => assessments_path, :html => { :id => "new-assessment-form", :name => 'new-assessment-form', :class => 'form-horizontal' } do |f| -%>
+
+          <div class="control-group">
+            Enter the web address of a QTI format assessment
+            <div id="xml_file_option">
+              <%= f.text_field :xml_file_url, { :name => 'assessment[xml_file_url]' } %>
+            </div>
+          </div>
+
+          <%= f.submit 'View Assessment', :class => 'btn' %>
+        <% end -%>
+
+      </div>
+
     </div>
   </div>
 
