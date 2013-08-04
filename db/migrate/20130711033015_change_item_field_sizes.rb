@@ -1,10 +1,10 @@
 class ChangeItemFieldSizes < ActiveRecord::Migration
   def self.up
-    change_column :items, :description, :string, :limit => 2**15
-    change_column :items, :question_text, :string, :limit => 2**15
-    change_column :items, :answers, :string, :limit => 2**15
-    change_column :items, :feedback, :string, :limit => 2**15
-    change_column :items, :correct_responses, :string, :limit => 2**15
+    change_column :items, :description, :text, :limit => 2**15
+    change_column :items, :question_text, :text, :limit => 2**15
+    change_column :items, :answers, :string, :text => 2**15
+    change_column :items, :feedback, :string, :text => 2**15
+    change_column :items, :correct_responses, :text, :limit => 2**15
   end
 
   def self.down
