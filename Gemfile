@@ -58,7 +58,7 @@ gem 'newrelic_rpm'
   gem 'uglifier', '>= 1.3.0'
   gem 'bootstrap-sass-rails', '>= 2.3.1.2'
   gem 'font-awesome-sass-rails'
-  gem 'flatui-rails'
+  gem 'flat-ui-rails'
 #end
 
 group :development, :test do
