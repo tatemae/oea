@@ -7,6 +7,7 @@
         <%= link_to @assessment.title, assessment_path(@assessment) %>  &gt; Results</h1>
 
       <div class="well row-fluid">
+        <h2>Assessment Results<h2>
         <table class="table">
           <thead>
             <tr>
@@ -33,6 +34,11 @@
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="well row-fluid">
+        <h2>Item Results<h2>
+        <%= render :collection => @assessment.items, :partial => 'item_results/summary', as: :item, locals:{ assessment: @assessment }  %>
       </div>
 
     </div>

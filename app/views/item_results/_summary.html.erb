@@ -1,22 +1,23 @@
 <% content_for :page_title do -%>
-  <%= @item.title %> Item Results
+  <%= item.title %> Item Results
 <% end -%>
-<a href="<%= results_assessment_section_item_url(params[:assessment_id], params[:section_id], @item, :format => :csv, :type => "summary") %>">Download CSV</a>
+
 <div>
-  <span>Item: <%= @item.title %></span>
+  <span>Item: <%= item.title %></span>
   <div>
-    <span># Renders: <%= @item.results_summary[:renders] %></span>
+    <span># Renders: <%= item.results_summary[:renders] %></span>
   </div>
   <div>
-    <span># Submitted: <%= @item.results_summary[:submitted].count %></span>
+    <span># Submitted: <%= item.results_summary[:submitted].count %></span>
   </div>
   <div>
-    <span>% Correct: <%= @item.results_summary[:percent_correct] * 100 %>%</span>
+    <span>% Correct: <%= item.results_summary[:percent_correct] * 100 %>%</span>
   </div>
   <div>
-    <span># Of Referers: <%= @item.results_summary[:referers].count %></span>
+    <span># Of Referers: <%= item.results_summary[:referers].count %></span>
   </div>
   <div>
-    <span># Of Users: <%= @item.results_summary[:users].count %></span>
+    <span># Of Users: <%= item.results_summary[:users].count %></span>
   </div>
+  <a href="<%= results_assessment_section_item_url(params[:assessment_id] || assessment, params[:section_id] || item.section, item.id, :format => :csv, :type => "summary") %>">Download CSV</a>
 </div>
