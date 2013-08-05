@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130711205038) do
+ActiveRecord::Schema.define(version: 20130804083145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,14 @@ ActiveRecord::Schema.define(version: 20130711205038) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "rendered_datestamp"
+    t.string   "session_status"
+    t.string   "referer"
+    t.string   "ip_address"
   end
 
   add_index "assessment_results", ["assessment_id"], name: "index_assessment_results_on_assessment_id", using: :btree
+  add_index "assessment_results", ["referer"], name: "index_assessment_results_on_referer", using: :btree
   add_index "assessment_results", ["user_id"], name: "index_assessment_results_on_user_id", using: :btree
 
   create_table "assessment_xmls", force: true do |t|
@@ -40,9 +45,11 @@ ActiveRecord::Schema.define(version: 20130711205038) do
     t.string   "title"
     t.text     "description"
     t.integer  "user_id"
+    t.string   "src_url"
   end
 
   add_index "assessments", ["identifier"], name: "index_assessments_on_identifier", using: :btree
+  add_index "assessments", ["src_url"], name: "index_assessments_on_src_url", using: :btree
 
   create_table "item_results", force: true do |t|
     t.string   "identifier"
