@@ -4,7 +4,7 @@
 
     <div class="span8 offset2">
 
-      <h1 class="row-fluid"><%= link_to 'Assessments', user_assessments_path(current_user.id) %> &gt;
+      <h1 class="row-fluid"><%= link_to 'Assessments', user_assessments_path(current_user.id) if current_user %> &gt;
             <%= @assessment.title %></h1>
 
       <div class="assessment">
