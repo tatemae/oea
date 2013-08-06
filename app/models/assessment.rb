@@ -11,7 +11,7 @@ class Assessment < ActiveRecord::Base
 
   def self.from_xml(input_xml, user, src_url=nil)
     xml = AssessmentParser.parse(input_xml).first
-    assessment = Assessment.find_by(identifier: xml.ident) || user.assessments.build
+    assessment = Assessment.find_by(identifier: xml.ident, user_id: user.id) || user.assessments.build
     assessment.identifier = xml.ident
     assessment.title = xml.title
     assessment.description = 'Assessment'

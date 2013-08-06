@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130804083145) do
+ActiveRecord::Schema.define(version: 20130806202217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20130804083145) do
     t.string   "src_url"
   end
 
-  add_index "assessments", ["identifier"], name: "index_assessments_on_identifier", using: :btree
-  add_index "assessments", ["src_url"], name: "index_assessments_on_src_url", using: :btree
+  add_index "assessments", ["identifier", "user_id"], name: "index_assessments_on_identifier_and_user_id", using: :btree
+  add_index "assessments", ["src_url", "user_id"], name: "index_assessments_on_src_url_and_user_id", using: :btree
 
   create_table "item_results", force: true do |t|
     t.string   "identifier"

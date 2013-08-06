@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
   def self.from_xml(input_xml, section)
     xml = Nokogiri::XML.parse(input_xml)
     identifier = Item.parse_identifier(xml)
-    item = Item.find_by(identifier: identifier) || section.items.build
+    item = Item.find_by(identifier: identifier, section_id: section.id) || section.items.build
     item.identifier = identifier
     item.description = item.question_text = Item.parse_question_text(xml)
     item.title = Item.parse_title(xml)
