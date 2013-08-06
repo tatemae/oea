@@ -38,7 +38,36 @@
 
       <div class="well row-fluid">
         <h2>Item Results<h2>
+          <table class="table" id='item_results'>
+            <thead>
+            <tr>
+              <th>
+              Item
+            </th>
+              <th>
+                # Renders
+              </th>
+              <th>
+                # Submitted
+              </th>
+              <th>
+                % Correct%
+              </th>
+              <th>
+                # Of Referers
+              </th>
+              <th>
+                # Of Users
+              </th>
+              <th>
+                CSV
+              </th>
+              </tr>
+            </thead>
+          <tbody>
         <%= render :collection => @assessment.items, :partial => 'item_results/summary', as: :item, locals:{ assessment: @assessment }  %>
+                  </tbody>
+        </table>
       </div>
 
     </div>
