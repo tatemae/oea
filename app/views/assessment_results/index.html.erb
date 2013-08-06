@@ -8,29 +8,27 @@
 
       <div class="well row-fluid">
         <h2>Assessment Results<h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Number of Times Displayed</th>
-              <td><%= @assessment.assessment_results.count %></td>
-            </tr>
-          </thead>
+        <table class="table" id='assessment_results'>
           <tbody>
             <tr>
+              <th>Number of Times Displayed</th>
+              <td><%= @displayed %></td>
+            </tr>
+            <tr>
               <th>Number of Unique Users</th>
-              <td><%#= @assessment.users.count %></td>
+              <td><%= @unique_users_count %></td>
             </tr>
             <tr>
               <th>Number of Submissions</th>
-              <td><%#= @assessment.submissions.count %></td>
+              <td><%= @submissions_count %></td>
             </tr>
             <tr>
               <th>Average Score</th>
-              <td><%#= @assessment.submissions.avg_score %></td>
+              <td><%= @percent_correct %>%</td>
             </tr>
             <tr>
               <th>Average Time Spent Completing Assessment</th>
-              <td><%#= @assessment.submissions.avg_score %></td>
+              <td><%= distance_of_time_in_words @avg_time_to_complete %></td>
             </tr>
           </tbody>
         </table>
@@ -51,7 +49,7 @@
                 # Submitted
               </th>
               <th>
-                % Correct%
+                % Correct
               </th>
               <th>
                 # Of Referers
@@ -66,7 +64,7 @@
             </thead>
           <tbody>
         <%= render :collection => @assessment.items, :partial => 'item_results/summary', as: :item, locals:{ assessment: @assessment }  %>
-                  </tbody>
+          </tbody>
         </table>
       </div>
 
