@@ -4,7 +4,8 @@ describe AssessmentResultsController do
 
   describe "GET 'index'" do
     it "returns http success" do
-      get 'index', :id => 1
+      assessment = Assessment.create! title: "foo title"
+      get 'index', :id => assessment.id
       response.should be_success
     end
   end
