@@ -4,11 +4,11 @@
 
     <div class="span8 offset2">
 
-      <h1 class="row-fluid"><%= link_to 'Assessments', user_assessments_path(current_user.id) if current_user %> &gt;
+      <h1 class="row-fluid"><%= link_to 'Assessments', user_assessments_path(current_user.id) if current_user && @display_embed_code %> <%= '&gt;'.html_safe if @display_embed_code %>
             <%= @assessment.title %></h1>
 
       <div class="assessment">
-        <%= render partial: 'assessments/assessment', locals: {assessment: @assessment, display_embed_code: true, display_nav: true} %>
+        <%= render partial: 'assessments/assessment', locals: {assessment: @assessment, display_embed_code: @display_embed_code, display_nav: true} %>
       </div>
     </div>
   </div>
