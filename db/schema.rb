@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130806202217) do
+ActiveRecord::Schema.define(version: 20130806225524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20130806202217) do
     t.string   "base_type"
   end
 
-  add_index "items", ["identifier"], name: "index_items_on_identifier", using: :btree
+  add_index "items", ["identifier", "section_id"], name: "index_items_on_identifier_and_section_id", using: :btree
 
   create_table "sections", force: true do |t|
     t.string   "identifier"
