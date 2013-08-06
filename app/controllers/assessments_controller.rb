@@ -8,7 +8,7 @@ class AssessmentsController < ApplicationController
     if params[:aid] && params[:src_url]
       @assessment = Assessment.find_by(src_url: params[:src_url], user_id: params[:aid])
       if @assessment
-        redirect_to assessment_path(@assessment) and return
+        redirect_to assessment_path(@assessment, :embed => true) and return
       end
     end
     if params[:user_id]
@@ -30,8 +30,10 @@ class AssessmentsController < ApplicationController
       @item = @items.first
     end
 
+    @display_embed_code = !params[:embed]
+
     if @assessment.src_url
-      @embed_code = CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessments_path}?aid=#{current_user.id}&src_url=#{@assessment.src_url}' frameborder='0' width='600' height='400' ></iframe>")
+      @embed_code = CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessments_path}?embed=true&aid=#{current_user.id}&src_url=#{@assessment.src_url}' frameborder='0' width='600' height='400' ></iframe>")
     else
       @embed_code = CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessment_path(@assessment)}' frameborder='0' width='600' height='400' ></iframe>")
     end
