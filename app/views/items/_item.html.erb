@@ -11,7 +11,7 @@
     <div class="full_question">
       <div class="inner_question">
         <div class="question_text">
-          <%= item.question_text.html_safe if item.question_text %>
+          <%= CGI.unescape(item.question_text).html_safe if item.question_text %>
         </div>
         <div data-toggle="answers">
           <% if item.base_type == 'short_answer_question' -%>
