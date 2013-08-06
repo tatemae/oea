@@ -48,7 +48,7 @@
   <% end -%>
   <% if display_embed_code -%>
     <div class="embed_code">
-      <textarea class="embed_text" name="embed_text"> <%= CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessment_path(params[:assessment_id] || assessment)}' frameborder='0' width='300' height='400' ></iframe>") %></textarea>
+      <textarea class="embed_text" name="embed_text"> <%= @embed_code %></textarea>
     </div>
   <% end -%>
 </div>

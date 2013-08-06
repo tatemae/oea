@@ -5,6 +5,12 @@ class AssessmentsController < ApplicationController
   respond_to :html
 
   def index
+    if params[:aid] && params[:src_url]
+      @assessment = Assessment.find_by(src_url: params[:src_url], user_id: params[:aid])
+      if @assessment
+        redirect_to assessment_path(@assessment) and return
+      end
+    end
     if params[:user_id]
       user = User.find(params[:user_id])
       @assessments = user.assessments
@@ -24,6 +30,12 @@ class AssessmentsController < ApplicationController
       @item = @items.first
     end
 
+    if @assessment.src_url
+      @embed_code = CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessments_path}?aid=#{current_user.id}&src_url=#{@assessment.src_url}' frameborder='0' width='600' height='400' ></iframe>")
+    else
+      @embed_code = CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessment_path(@assessment)}' frameborder='0' width='600' height='400' ></iframe>")
+    end
+
     create_item_result(@item)
 
     @question_count = @items.count
@@ -41,10 +53,10 @@ class AssessmentsController < ApplicationController
 
   def assessment_from_params(params)
     
-    if params.has_key?(:xml_file_url)
-      src_url = params[:xml_file_url]
+    if params.has_key?(:src_url)
+      src_url = params[:src_url]
 
-      assessment = Assessment.find_by_src_url(src_url)
+      assessment = Assessment.find_by(src_url: src_url, user_id: current_user.id)
       return assessment if assessment
 
       xml = Net::HTTP.get(URI.parse(src_url))
