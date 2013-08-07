@@ -10,7 +10,7 @@ Oea::Application.routes.draw do
     resources :assessments, except: [:update, :edit], :controller => "assessments"
   end
 
-  resources :assessments, except: [:update, :edit] do
+  resources :assessments, except: [:update, :edit, :index] do
     get 'results', on: :member, to: 'assessment_results#index'
     resources :sections, except: [:update, :edit] do
       resources :items, except: [:update, :edit] do
