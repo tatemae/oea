@@ -21,7 +21,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.0.1'
 
 # User Auth
-gem 'devise', '3.0.0.rc'
+gem 'devise', '>=3.0.0'
 
 # html/xml parsers
 gem 'nokogiri'
@@ -58,7 +58,10 @@ gem 'newrelic_rpm'
   gem 'uglifier', '>= 1.3.0'
   gem 'bootstrap-sass-rails', '>= 2.3.1.2'
   gem 'font-awesome-sass-rails'
-  gem 'flat-ui-rails'
+  #gem 'flat-ui-rails'
+
+  gem 'flatui-rails', :git => 'git://github.com/mbrock/flatui-rails.git' #, :branch => 'master', :ref => '5818e50e26c9e21c8b3291544e1fecc388b04875'
+
 #end
 
 group :development, :test do
