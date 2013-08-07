@@ -1,6 +1,7 @@
 class DefaultController < ApplicationController
 
   def index
+    @comparing_fractions = Assessment.find_by_title("Comparing Fractions")
   end
 
   def contact
