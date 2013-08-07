@@ -3,7 +3,7 @@
 
     <div class="span8 offset2">
 
-      <h1 class="row-fluid"><%= link_to 'Assessments', user_assessments_path(current_user.id) %> &gt;
+      <h1 class="row-fluid"><% if current_user -%><%= link_to 'Assessments', user_assessments_path(current_user.id) %> &gt;<% end -%>
         <%= link_to @assessment.title, assessment_path(@assessment) %>  &gt; Results</h1>
 
       <div class="well row-fluid">
