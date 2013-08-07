@@ -29,6 +29,9 @@
           <%= f.submit 'View Assessment', :class => 'btn' %>
         <% end -%>
 
+        <div>Example Url</div>
+        <%= link_to "#{request.host_with_port}/assessment.xml", "//#{request.host_with_port}/assessment.xml" %>
+
       </div>
 
     </div>
