@@ -11,11 +11,10 @@ class AssessmentsController < ApplicationController
         redirect_to assessment_path(@assessment, :embed => true) and return
       end
     end
-    if params[:user_id]
-      user = User.find(params[:user_id])
-      @assessments = user.assessments
+    if current_user && current_user.id.to_s == params[:user_id]
+      @assessments = current_user.assessments
     else
-      @assessments = Assessment.all
+      redirect_to '/'
     end
   end
 
