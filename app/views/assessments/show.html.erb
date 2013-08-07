@@ -4,7 +4,7 @@
 
     <div class="span8 offset2">
 
-      <h1 class="row-fluid"><%= link_to 'Assessments', user_assessments_path(current_user.id) if current_user && @display_embed_code %> <%= '&gt;'.html_safe if @display_embed_code %>
+      <h1 class="row-fluid"><%= link_to 'Assessments', user_assessments_path(current_user.id) if current_user && @display_embed_code %> <%= '&gt;'.html_safe if current_user && @display_embed_code %>
             <%= @assessment.title %></h1>
 
       <div class="assessment">

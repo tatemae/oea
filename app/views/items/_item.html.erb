@@ -32,8 +32,8 @@
         <span style='float:left;'><%= f.submit 'Check Answer', :class => 'btn btn-check-answer disabled' %></span>
         <% if display_nav -%>
           <div class="nav_buttons">
-            <span class="btn btn-prev-item btn-nav-item <%= prev_item.nil? ? 'disabled' : '' %>" data-item-id="<%= prev_item.nil? ? '' : prev_item.id %>"><%= prev_item.nil? ? "Previous" : link_to('Previous', assessment_path(assessment, :embed => true, :item => prev_item)) %></span>
-            <span class="btn btn-next-item btn-nav-item <%= next_item.nil? ? 'disabled' : '' %>" data-item-id="<%= next_item.nil? ? '' : next_item.id %>"><%= next_item.nil? ? "Next" : link_to('Next', assessment_path(assessment, :embed => true, :item => next_item)) %></span>
+            <span class="btn btn-prev-item btn-nav-item <%= prev_item.nil? ? 'disabled' : '' %>" data-item-id="<%= prev_item.nil? ? '' : prev_item.id %>"><%= prev_item.nil? ? "Previous" : link_to('Previous', assessment_path(assessment, :embed => display_embed_code ? false : true, :item => prev_item)) %></span>
+            <span class="btn btn-next-item btn-nav-item <%= next_item.nil? ? 'disabled' : '' %>" data-item-id="<%= next_item.nil? ? '' : next_item.id %>"><%= next_item.nil? ? "Next" : link_to('Next', assessment_path(assessment, :embed => display_embed_code ? false : true, :item => next_item)) %></span>
             <input id="assessment_id" type="hidden" value="<%= @assessment.id if next_item.nil? %>" /> <!-- TODO REMOVE THIS TEMP HACK -->
           </div>
         <% end -%>

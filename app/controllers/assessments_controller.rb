@@ -30,7 +30,7 @@ class AssessmentsController < ApplicationController
       @item = @items.first
     end
 
-    @display_embed_code = !params[:embed]
+    @display_embed_code = params[:embed] != "true"
 
     if @assessment.src_url
       @embed_code = CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessments_path}?embed=true&aid=#{current_user.id}&src_url=#{@assessment.src_url}' frameborder='0' width='600' height='500' ></iframe>")
@@ -46,7 +46,7 @@ class AssessmentsController < ApplicationController
     @next_item = @current_index == @question_count-1 ? nil : @items[@current_index+1]
 
     respond_to do |format|
-      format.html { render :layout => params[:embed].present? ? 'bare' : 'application' }
+      format.html { render :layout => params[:embed] == "true" ? 'bare' : 'application' }
     end
   end
 
