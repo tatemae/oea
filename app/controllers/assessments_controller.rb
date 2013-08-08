@@ -6,7 +6,7 @@ class AssessmentsController < ApplicationController
 
   def index
     if params[:aid] && params[:src_url]
-      @assessment = Assessment.find_by(src_url: params[:src_url], user_id: params[:aid])
+      @assessment = assessment_from_url(params[:src_url], params[:aid].to_i)
       if @assessment
         redirect_to assessment_path(@assessment, :embed => true) and return
       end
@@ -52,32 +52,49 @@ class AssessmentsController < ApplicationController
   def new
   end
 
-  def assessment_from_params(params)
+  def assessment_from_url(src_url, author_id)
     
-    if params.has_key?(:src_url)
-      src_url = params[:src_url]
-
-      assessment = Assessment.find_by(src_url: src_url, user_id: current_user.id)
-      return assessment if assessment
-
-      xml = Net::HTTP.get(URI.parse(src_url))
-    
-    elsif params.has_key?(:xml_file)
-      xml = params[:xml_file].read 
+    src_uri = URI.parse(src_url)
+    http = Net::HTTP.new(src_uri.host, src_uri.port)
+    if src_url.starts_with?('https')
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     end
-    
-    Assessment.from_xml(xml, current_user, src_url)
+    request = Net::HTTP::Get.new(src_uri)
+    response = http.request(request)
+    xml = response.body
+
+    published_at = DateTime.parse(response['date']) rescue nil
+
+    assessment = Assessment.find_by(src_url: src_url, user_id: current_user.id)
+
+    return assessment if assessment && (published_at.blank? || assessment.published_at.blank? || assessment.published_at >= published_at)
+
+debugger
+    Assessment.from_xml(xml, current_user, src_url, published_at)
+  end
+
+  def assessment_from_file(file)
+    xml = file.read
+    Assessment.from_xml(xml, current_user)
   end
 
   def create
-    respond_with(assessment_from_params(params[:assessment]))
+    assessment_params = params[:assessment]
+    if assessment_params.has_key?(:xml_file)
+      respond_with(assessment_from_file(assessment_params[:xml_file]))
+    elsif assessment_params[:src_url]
+      respond_with(assessment_from_url(assessment_params[:src_url], current_user.id))
+    end
+    
+
   end
 
   def destroy
     @assessment = Assessment.find(params[:id])
     @assessment.destroy
     respond_to do |format|
-      format.html { redirect_to(assessments_url) }
+      format.html { redirect_to(user_assessments_url(current_user)) }
     end
   end
 

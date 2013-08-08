@@ -2,8 +2,6 @@ class Item < ActiveRecord::Base
   has_many :item_results, dependent: :destroy
   belongs_to :section
 
-  validates_uniqueness_of :identifier
-
   scope :by_oldest, -> { order("items.created_at ASC") }
 
   def self.from_xml(input_xml, section)
