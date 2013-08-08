@@ -24,13 +24,11 @@
             <div id="xml_file_option">
               <%= f.text_field :src_url, { :name => 'assessment[src_url]' } %>
             </div>
+            <div>(e.g. <%= "http://#{request.host_with_port}/assessment.xml" %>)</div>
           </div>
 
           <%= f.submit 'View Assessment', :class => 'btn' %>
         <% end -%>
-
-        <div>Example Url</div>
-        <%= link_to "#{request.host_with_port}/assessment.xml", "//#{request.host_with_port}/assessment.xml" %>
 
       </div>
 
