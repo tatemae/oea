@@ -28,7 +28,11 @@
             </tr>
             <tr>
               <th>Average Time Spent Completing Assessment</th>
-              <td><%= distance_of_time_in_words @avg_time_to_complete %></td>
+              <td><%= distance_of_time_in_words( @avg_time_to_complete ) %></td>
+            </tr>
+            <tr>
+              <th>CSV Download</th>
+              <td><a href="<%= results_assessment_url(params[:assessment_id] || @assessment, :format => :csv, :type => "summary") %>"><i class='icon-download'></i></a></td>
             </tr>
           </tbody>
         </table>
