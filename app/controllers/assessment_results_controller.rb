@@ -20,7 +20,7 @@ class AssessmentResultsController < ApplicationController
       end
       format.csv do
         send_data(
-          @results,
+          @assessment.results_csv,
           :type => "text/csv",
           :filename =>  "results_#{@assessment.title}.csv",
           :disposition => "attachment"
