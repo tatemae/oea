@@ -70,7 +70,6 @@ class AssessmentsController < ApplicationController
 
     return assessment if assessment && (published_at.blank? || assessment.published_at.blank? || assessment.published_at >= published_at)
 
-debugger
     Assessment.from_xml(xml, current_user, src_url, published_at)
   end
 
