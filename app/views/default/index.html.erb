@@ -2,10 +2,10 @@
   home
 <% end -%>
 
-<div class='index_content'>
+<div class="index_content">
 	<div class="jumbotron">
 		<p>POP THE QUESTION ANYWHERE</p>
-		<p style="color:white;">PLAN, CREATE AND SHARE QUESTIONS SIMPLY. EASILY EMBED ASSESSMENTS ON ANY PAGE ON ANY WEBSITE.</p>
+		<p class="subtext">PLAN, CREATE AND SHARE QUESTIONS SIMPLY. EASILY EMBED ASSESSMENTS ON ANY PAGE ON ANY WEBSITE.</p>
 		<%- if @comparing_fractions %>
 		<p><span class="demo_text"><%= link_to 'EXAMPLE ASSESSMENT >', assessment_path(@comparing_fractions) %></span></p>
 		<%- end %>
@@ -14,5 +14,5 @@
 	<div class="quote">
 		<%= image_tag 'quote_bubble.png', :class => 'quote_bubble' %>
 	</div>
-	<div class='push'></div>
+	<div class="push"></div>
 </div>

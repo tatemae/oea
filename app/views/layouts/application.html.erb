@@ -2,43 +2,44 @@
 <html>
 <head>
   <%= render 'layouts/global/head' %>
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "application", media: "all" %>
 </head>
 <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container-fluid">
-        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to image_tag(image_path("logo.png"), :class => 'brand', :alt => 'Open Assessments'), '/' -%>
+        <%= link_to image_tag(image_path("logo.png"), :class => 'logo', :alt => 'Open Assessments'), '/' -%>
         <%= link_to image_tag(image_path("#{yield(:logo_overlay).presence ? yield(:logo_overlay).presence.strip : 'home'}.png"), :class => 'logo_overlay'), '/' -%>
-        <div class="nav-collapse collapse pull-right">
-          <ul class="nav">
-            <li class="<%= 'active' if current_page?(root_path) %>"><a href="/">HOME</a></li>
-            <li class="<%= 'active' if current_page?(contact_path) %>" style='width:90px;'><a style='margin-left:-6px;' href="/contact">CONTACT</a></li>
-            <li><a href="https://github.com/tatemae/oea/wiki/API-Documentation" target="_blank">API</a></li>
-            <li><a href="https://github.com/tatemae/oea" target="_blank">THE CODE</a></li>
-            <li class="<%= 'active' if current_page?(about_path) %>" style='width:80px;'><a href="/about">ABOUT</a></li>
-            <% if user_signed_in? %>
-              <li>
-                <%= link_to current_user.name, user_assessments_path(current_user), :style => 'padding-right:2px;float:left;' %>
-                <%= link_to "(sign out)", destroy_user_session_path, :method => :delete, :style => 'font-size:14px;padding-left:2px;float:left;' %>
-              </li>
-            <% else %>
-              <li class="<%= 'active' if current_page?('/users/sign_in') %>" style='width:85px;'><%= link_to "SIGN IN", new_user_session_path %></li>
-              <li class="<%= 'active' if current_page?('/users/sign_up') %>" style='width:95px;'><%= link_to "SIGN UP", new_user_registration_path %></li>
-            <% end %>
-          </ul>
-        </div>
       </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="<%= 'active' if current_page?(root_path) %>"><a href="/">HOME</a></li>
+          <li class="<%= 'active' if current_page?(contact_path) %>" ><a href="/contact">CONTACT</a></li>
+          <li><a href="https://github.com/tatemae/oea/wiki/API-Documentation" target="_blank">API</a></li>
+          <li><a href="https://github.com/tatemae/oea" target="_blank">THE CODE</a></li>
+          <li class="<%= 'active' if current_page?(about_path) %>" ><a href="/about">ABOUT</a></li>
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to current_user.name, user_assessments_path(current_user), :style => 'padding-right:2px;float:left;' %>
+              <%= link_to "(sign out)", destroy_user_session_path, :method => :delete, :style => 'font-size:14px;padding-left:2px;float:left;' %>
+            </li>
+          <% else %>
+            <li class="<%= 'active' if current_page?('/users/sign_in') %>" ><%= link_to "SIGN IN", new_user_session_path %></li>
+            <li class="<%= 'active' if current_page?('/users/sign_up') %>" ><%= link_to "SIGN UP", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </div><!--/.nav-collapse -->
     </div>
   </div>
-  <div class="container-fluid" id="page_messages">
-    <div class="row-fluid">
-      <div class="span10 offset1">
+  <div class="container" id="page_messages">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
         <%= render 'layouts/global/messages' %>
       </div>
     </div>
@@ -47,6 +48,6 @@
   <footer>
     <p><i>Funded by</i> <%= link_to image_tag('mit.png', :alt => 'Massachusetts Institute of Technology OEIT'), 'http://oeit.mit.edu/about' %> <i>Built by</i> <%= link_to image_tag('ot.png', :alt => 'Open Tapestry'), 'http://www.opentapestry.com/' %></p>
   </footer>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application" %>
 </body>
 </html>

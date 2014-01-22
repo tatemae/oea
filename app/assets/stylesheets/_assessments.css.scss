@@ -52,3 +52,21 @@
 #assessment_src_url{
   width:98%;
 }
+
+.assessment{
+  margin:0 auto;
+  .right_buttons{
+    float: none;
+    margin: 0 auto;
+    width: 160px;
+  }
+  h1 {
+    a{
+      color: $white;
+      text-decoration: none;
+    }
+  }
+  iframe{
+    background: transparent;
+  }
+}

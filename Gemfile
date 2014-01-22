@@ -6,16 +6,13 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
@@ -48,21 +45,13 @@ gem 'groupdate' # for grouping the chart data by date
 
 gem 'newrelic_rpm'
 
-# Gems used only for assets and not required
-# in production environments by default.
-#group :assets do
-  # Use SCSS for stylesheets
-  gem 'sass-rails', '~> 4.0.0.rc1'
-  gem 'coffee-rails', '~> 4.0.0'
-  # Use Uglifier as compressor for JavaScript assets
-  gem 'uglifier', '>= 1.3.0'
-  gem 'bootstrap-sass-rails', '>= 2.3.1.2'
-  gem 'font-awesome-sass-rails'
-  #gem 'flat-ui-rails'
+# UI
+gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.0.3.0'
 
-  gem 'flatui-rails', :git => 'git://github.com/mbrock/flatui-rails.git' #, :branch => 'master', :ref => '5818e50e26c9e21c8b3291544e1fecc388b04875'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
 
-#end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'

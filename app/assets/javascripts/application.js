@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require bootstrap
 //= require items
-//= require flat-ui
 
 //= require_tree ../../../vendor/assets/javascripts

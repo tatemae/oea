@@ -1,0 +1,64 @@
+$navbar_header_height: 74px;
+$navbar_font_size: 18px;
+$logo_top: $navbar_header_height - 54px;
+$logo_left: 24px;
+.navbar{
+  position:fixed;
+  line-height:42px;
+  -moz-box-shadow: 2px 2px 1px #888;
+  -webkit-box-shadow: 2px 2px 1px #888;
+  box-shadow: 1px 1px 1px #888;
+  min-width:875px;
+
+  .logo{
+    padding-bottom:0;
+    padding-top:0;
+    position:absolute;
+    top:$logo_top;
+    left:$logo_left;
+    z-index:1;
+    margin-left: 15px
+  }
+  .logo_overlay{
+    z-index:3;
+    position:absolute;
+    top:$logo_top + 5px;
+    left:$logo_left + 25px;
+  }
+  .navbar-header {
+    height: $navbar_header_height;
+  }
+
+  .nav{
+    font-size:18px;
+    height:73px;
+    li{
+      line-height:inherit;
+      a{
+        padding-top: ($navbar_header_height - $navbar_font_size) / 2;
+      }
+    }
+  }
+
+  .active{
+    height: 85px;
+    line-height: 20px;
+    background: $lightgray;
+    -moz-box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 2px 0px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 2px 0px;
+    box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 2px 0px;
+  }
+
+  .active:after{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top:73px;
+    left:-7px;
+    border-top: 0px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-right:7px solid rgb(0, 79, 90);
+  }
+
+}

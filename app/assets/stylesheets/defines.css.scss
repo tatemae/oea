@@ -15,8 +15,8 @@ $text-color:      #555;
 $link-color:      #1abc9c;
 
 // Colors
-$almost_black:      #424242;
-$firm:      #1abc9c;
+$almost_black:   #424242;
+$firm:           #1abc9c;
 
 $gray:      #BCBCBC;
 $lightgray: #E9E9E9;
@@ -26,8 +26,15 @@ $inverse:   #fff;
 $dark-orange:     rgb(25,153,0);
 $orange:          rgb(255,153,0);
 $light-orange:    rgb(255,173,51);
+$light-blue:      #A6F2FF;
 
-
+// Twitter bootstrap overrides
+$navbar-inverse-bg:                 $almost_black;
+$navbar-inverse-link-color:         $lightgray;
+$navbar-inverse-link-hover-color:   $light-orange;
+$navbar-inverse-link-hover-bg:      $almost_black;
+$navbar-inverse-link-active-color:  $light-orange;
+$navbar-inverse-link-active-bg:     $lightgray;
 
 //Fonts
 // -------------------------

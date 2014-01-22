@@ -1,12 +1,14 @@
-<div class="container-fluid">
-  <div class="row-fluid">
+<div class="container">
+  <div class="row">
 
-    <div class="span8 offset2">
+    <div class="col-sm-8 col-sm-offset-2">
 
-      <h1 class="row-fluid"><% if current_user -%><%= link_to 'Assessments', user_assessments_path(current_user.id) %> &gt;<% end -%>
-        <%= link_to @assessment.title, assessment_path(@assessment) %>  &gt; Results</h1>
+      <h1 class="row">
+        <% if current_user -%><%= link_to 'Assessments', user_assessments_path(current_user.id) %> &gt;<% end -%>
+        <%= link_to @assessment.title, assessment_path(@assessment) %>  &gt; Results
+      </h1>
 
-      <div class="well row-fluid">
+      <div class="well row">
         <h2>Assessment Results<h2>
         <table class="table" id='assessment_results'>
           <tbody>
@@ -34,7 +36,7 @@
         </table>
       </div>
 
-      <div class="well row-fluid">
+      <div class="well row">
         <h2>Item Results<h2>
           <table class="table" id='item_results'>
             <thead>

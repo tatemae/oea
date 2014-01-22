@@ -1,14 +1,13 @@
-@import 'defines';
-@import 'twitter/bootstrap-no-sprites';
-@import 'twitter/bootstrap/responsive';
-@import 'font-awesome';
-@import 'flat-ui';
-@import 'assessments';
-@import 'assessment_results';
-@import 'sections';
-@import 'items';
-@import 'item_results';
-@import 'devise';
+@import "defines";
+@import "bootstrap";
+@import "nav";
+@import "home";
+@import "assessments";
+@import "assessment_results";
+@import "sections";
+@import "items";
+@import "item_results";
+@import "devise";
 
 html{
   height:100%;
@@ -21,83 +20,16 @@ body{
   padding-top: 50px;
 }
 
-.navbar{
-  position:fixed;
-  line-height:42px;
-  -moz-box-shadow: 2px 2px 1px #888;
-  -webkit-box-shadow: 2px 2px 1px #888;
-  box-shadow: 1px 1px 1px #888;
-  min-width:875px;
-  .brand{
-    padding-bottom:0;
-    padding-top:0;
-    position:absolute;
-    top:20px;
-    left:50px;
-    z-index:1;
-  }
-}
-.navbar-inverse .navbar-inner {
-  background: $almost_black;
-  min-height:60px;
-}
-.logo_overlay{
-  z-index:3;
-  position:absolute;
-  top:25px;
-  left:61px;
-}
-
-.about_content, .devise_form{
-  min-height:95%;
-  height:auto !important;
-  height:95%;
-  margin:0 auto -50px;
-}
-
-.index_content{
-  width:850px;
-  margin:0 auto -50px;
-  min-height:95%;
-  height:auto !important;
-  height:95%;
-    .jumbotron{
-    margin-top:150px;
-    margin-right:50px;
-    width:550px;
-    font-size:40px;
-    float:left;
-    display:inline;
-    font-weight:bold;
-    .demo_text{
-      a{
-        font-size:25px;
-        text-decoration:none;
-        color:rgb(0, 79, 90);
-      }
-      a:hover{
-        color:#A6F2FF;
-      }
-    }
-  }
-  .quote_bubble{
-    float:left;
-    width:235px;
-    height:211px;
-    display:inline;
-    margin-top:210px;
-    padding-bottom:60px;
-  }
+#page_messages{
+  margin-top:10px;
 }
 
 footer, .push{
-  margin-top:30px;
+  margin-top:15px;
   text-align:center;
-  height:50px;
-  padding-left:35px;
   background-color:transparent;
   font-family: 'Merriweather', serif;
-  color:#A6F2FF !important;
+  color: $light-blue !important;
 }
 
 footer p{
@@ -109,67 +41,10 @@ footer p img{
   height: 55px;
 }
 
-.nav{
-  height:73px;
-  li{
-    line-height:inherit;
-  }
-}
 
-.active{
-  position: absolute;
-  width: 75px;
-  height: 85px;
-  line-height: 20px;
-  background: rgb(233, 233, 233);
-  text-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 1px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 2px 0px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 2px 0px;
-  box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 2px 0px;
-}
-
-.active:after{
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  top:73px;
-  left:-7px;
-  border-top: 0px solid transparent;
-  border-bottom: 13px solid transparent;
-  border-right:7px solid rgb(0, 79, 90);
-}
-
-
-.active a{
-  color: $light-orange !important;
-}
-.nav a:hover{
-  color: $light-orange !important;
-}
-
-.assessment{
-  margin:0 auto;
-  .right_buttons{
-    float: none;
-    margin: 0 auto;
-    width: 160px;
-  }
-  h1 {
-    a{
-      color: $white;
-      text-decoration: none;
-    }
-  }
-  iframe{
-    background: transparent;
-  }
-}
-
-#page_messages{
-  margin-top:10px;
-}
-
-.api_token{
-  margin:30px 0;
+.about_content{
+  min-height:95%;
+  height:auto !important;
+  height:95%;
+  margin:0 auto -50px;
 }

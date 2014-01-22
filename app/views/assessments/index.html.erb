@@ -1,11 +1,11 @@
-<div class="container-fluid">
-  <div class="row-fluid">
+<div class="container">
+  <div class="row">
 
-    <div class="span8 offset2">
+    <div class="col-sm-8 col-sm-offset-2">
 
-      <h1 class="row-fluid">Your Assessments</h1>
+      <h1 class="row">Your Assessments</h1>
 
-      <div class="assessment_list well row-fluid">
+      <div class="assessment_list well row">
         <ul>
           <%= render :collection => @assessments, :partial => 'assessments/list_item', :as => :assessment %>
         </ul>
@@ -13,9 +13,9 @@
       </div>
 
 
-      <h1 class="row-fluid">View an Assessment Hosted Somewhere Else</h1>
+      <h1 class="row">View an Assessment Hosted Somewhere Else</h1>
 
-      <div class="assessment_list well row-fluid">
+      <div class="assessment_list well row">
 
         <%= form_for :assessment, :url => assessments_path, :html => { :id => "new-assessment-form", :name => 'new-assessment-form', :class => 'form-horizontal' } do |f| -%>
 

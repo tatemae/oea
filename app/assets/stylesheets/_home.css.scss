@@ -1,0 +1,38 @@
+.index_content{
+  width:850px;
+  margin:0 auto -50px;
+  min-height:95%;
+  height:auto !important;
+  height:95%;
+  .jumbotron{
+    background: none;
+    margin-top:150px;
+    margin-right:50px;
+    width:550px;
+    font-size:40px;
+    float:left;
+    display:inline;
+    font-weight:bold;
+    .subtext{
+      color: $white;
+    }
+    .demo_text{
+      a{
+        font-size:25px;
+        text-decoration:none;
+        color:rgb(0, 79, 90);
+      }
+      a:hover{
+        color:$light-blue;
+      }
+    }
+  }
+  .quote_bubble{
+    float:left;
+    width:235px;
+    height:211px;
+    display:inline;
+    margin-top:210px;
+    padding-bottom:60px;
+  }
+}
