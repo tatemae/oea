@@ -9,13 +9,14 @@ class Assessment < ActiveRecord::Base
 
   validates_uniqueness_of :identifier
 
-  def self.from_xml(input_xml, user, src_url=nil)
+  def self.from_xml(input_xml, user, src_url=nil, published_at=nil)
     xml = AssessmentParser.parse(input_xml).first
     assessment = Assessment.find_by(identifier: xml.ident, user_id: user.id) || user.assessments.build
     assessment.identifier = xml.ident
     assessment.title = xml.title
     assessment.description = 'Assessment'
     assessment.src_url = src_url
+    assessment.published_at = published_at
     assessment.save!
     assessment.assessment_xmls.create!(:xml => input_xml)
     assessment.create_subitems(xml)
@@ -55,6 +56,15 @@ class Assessment < ActiveRecord::Base
     end
   end
 
+  def results_csv
+    results = self.items.collect(&:item_results).flatten
+    CSV.generate do |csv|
+      csv << ItemResult.column_names
+      results.each do |result|
+        csv << result.attributes.values_at(*ItemResult.column_names)
+      end
+    end
+  end
 
 
 end

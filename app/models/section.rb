@@ -5,9 +5,12 @@ class Section < ActiveRecord::Base
 
   def self.from_xml(input_xml, assessment)
     xml = SectionParser.parse(input_xml)
-    section = assessment.sections.build
-    section.identifier = xml.ident
-    section.save!
+    section = assessment.sections.find_by_identifier(xml.ident)
+    unless section
+      section = assessment.sections.build
+      section.identifier = xml.ident
+      section.save!
+    end
     section.create_subitems(xml)
     section
   end
