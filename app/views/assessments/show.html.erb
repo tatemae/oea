@@ -1,18 +1,24 @@
-<% if @display_embed_code %>
-<div class="container-fluid">
-  <div class="row-fluid">
-
-    <div class="col-sm-8 col-sm-offset-2">
-<% end %>
-
-      <h1 class="row"><%= link_to 'Assessments', user_assessments_path(current_user.id) if current_user && @display_embed_code %> <%= '&gt;'.html_safe if current_user && @display_embed_code %>
-            <%= @assessment.title %></h1>
-
-      <div class="assessment">
-        <%= render partial: 'assessments/assessment', locals: {assessment: @assessment, display_embed_code: @display_embed_code, display_nav: true} %>
+<% if @display_embed_code -%>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h1 class="row">
+          <%= link_to 'Assessments', user_assessments_path(current_user.id) if current_user && @display_embed_code %> <%= '&gt;'.html_safe if current_user && @display_embed_code %>
+          <%= @assessment.title %>
+        </h1>
+        <div class="assessment">
+          <%= render partial: 'assessments/assessment', locals: {assessment: @assessment, display_embed_code: @display_embed_code, display_nav: true} %>
+        </div>
       </div>
-<% if @display_embed_code %>
     </div>
   </div>
-</div>
-<% end %>
+<% else -%>
+  <script type="text/javascript">
+    var OEA_SETTINGS = {
+      qtiUrl: '<%= api_assessment_url(@assessment, format: 'xml') %>',
+      user_id: <%= current_user.id %>,
+      end_point: ''
+    };
+  </script>
+  <%= javascript_include_tag "oea/application" %>
+<% end -%>

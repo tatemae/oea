@@ -11,3 +11,6 @@ end
 
 xml_file = File.open("db/seeds/assessment.xml", "rb").read
 Assessment.from_xml(xml_file, admin)
+
+xml_file = File.open("db/seeds/assessment1.xml", "rb").read
+Assessment.from_xml(xml_file, admin)

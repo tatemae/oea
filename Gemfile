@@ -33,11 +33,10 @@ gem 'ruby-saml-mod'
 
 # Ember stuff
 gem 'ember-rails'
-gem 'ember-source', '1.0.0.rc6.2'
+gem 'ember-source', '~> 1.3.0' # or the version you need
 
+# Server
 gem 'unicorn'
-
-gem 'active_model_serializers' # Make Rails generate json that ember likes.
 
 # Charts
 gem "chartkick"

@@ -53,7 +53,7 @@ class AssessmentsController < ApplicationController
   end
 
   def assessment_from_url(src_url, author_id)
-    
+
     src_uri = URI.parse(src_url)
     http = Net::HTTP.new(src_uri.host, src_uri.port)
     if src_url.starts_with?('https')
@@ -85,7 +85,7 @@ class AssessmentsController < ApplicationController
     elsif assessment_params[:src_url]
       respond_with(assessment_from_url(assessment_params[:src_url], current_user.id))
     end
-    
+
 
   end
 

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :item_results
   has_many :assessments
 
-  before_save :ensure_authentication_token
+  #before_save :ensure_authentication_token
 
   def display_name
   end
