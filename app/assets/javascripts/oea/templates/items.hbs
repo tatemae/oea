@@ -5,7 +5,7 @@
   </div>
   {{outlet}}
   <div class="nav_buttons">
-    <span {{bind-attr class=":btn :btn-prev-item atBegin:disabled"}}><a {{action previous on="click"}}>Previous</a></span>
-    <span {{bind-attr class=":btn :btn-next-item atEnd:disabled"}}><a {{action next on="click"}}>Next</a></span>
+    <button {{bind-attr class=":btn :btn-prev-item atBegin:disabled"}} {{action "previous"}}><i class="glyphicon glyphicon-chevron-left"></i> Previous</button>
+    <button {{bind-attr class=":btn :btn-next-item atEnd:disabled"}} {{action "next"}}>Next <i class="glyphicon glyphicon-chevron-right"></i></button>
   </div>
 </div>

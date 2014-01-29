@@ -150,7 +150,10 @@ body{
 
 .nav_buttons{
   float: right;
-  a{
-    text-decoration: none;
+  margin: -50px 20px 0 0;
+  .btn{
+    background-color: $blue !important;
+    color: $white;
+    width: 100px;
   }
 }

@@ -3,8 +3,6 @@ Oea.ItemsController = Ember.ArrayController.extend({
   item: null,
   needs: "item",
   itemBinding: "controllers.item.content",
-  itemController: 'item',
-  answerController: 'answer',
 
   next: function(){
     this.move(1);
