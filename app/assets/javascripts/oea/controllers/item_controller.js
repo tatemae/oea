@@ -1,17 +1,16 @@
 Oea.ItemController = Ember.ObjectController.extend({
 
   selectedAnswer: null,
+  checkAnswerResult: null,
 
-  text: function(){
-    return this.get('content').textFromXml('presentation > material > mattext');
-  }.property('content'),
+  actions: {
+    checkAnswer: function(){
+      this.set('checkAnswerResult', 'You selected ' + this.get('selectedAnswer.text'));
+    }
+  },
 
-  answers: function(){
-    return this.get('content').get('answers');
-  }.property('content'),
-
-  check_answer: function(){
-
+  isMultipleChoice: function(){
+    return this.get('question_type') == 'multiple_choice_question';
   }
 
 });

@@ -4,12 +4,14 @@ Oea.ItemsController = Ember.ArrayController.extend({
   needs: "item",
   itemBinding: "controllers.item.content",
 
-  next: function(){
-    this.move(1);
-  },
+  actions: {
+    next: function(){
+      this.move(1);
+    },
 
-  previous: function(){
-    this.move(-1);
+    previous: function(){
+      this.move(-1);
+    }
   },
 
   atBegin: function(){

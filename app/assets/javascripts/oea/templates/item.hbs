@@ -1,27 +1,20 @@
-<form {{action check_answer on="submit"}} class="edit_item">
+<form {{action checkAnswer on="submit"}} class="edit_item">
   <div class="full_question">
     <div class="inner_question">
       <div class="question_text">
         <div><p>{{{text}}}</p></div>
       </div>
-      <div data-toggle="answers">
-        {{#each controller.answers itemController="answer"}}
-          <div class="btn btn-block btn-question">
-            <label {{bind-attr class=":radio isSelected:checked"}}>
-              <span class="icon"></span>
-              <span class="icon-to-fade"></span>
-              <div class="icon"></div>
-              <div class="icon-to-fade"></div>
-              {{input type="radio" name="radio" value=id action=select}}
-              {{{text}}}
-            </label>
-          </div>
-        {{/each}}
+      <div>
+        {{#if isMultipleChoice}}
+          {{oea-multiple-choice content=controller.answers value=selectedAnswer itemController="answer"}}
+        {{/if}}
       </div>
     </div>
-    <div class="check_answer_result"></div>
+    <div class="check_answer_result">
+      {{checkAnswerResult}}
+    </div>
     <div class="lower_level">
-      <button class="btn btn-check-answer disabled" type="submit">Check Answer</button>
+      {{input type="submit" value='Check Answer' class="btn btn-check-answer" }}
     </div>
   </div>
 </form>

@@ -124,13 +124,15 @@ body{
   background:#FFF;
   color:#000;
   text-align:left;
+  padding:0;
   .radio{
-    margin:7px;
-    .icon, .icon-to-fade{
-    }
+    padding:8px 0 8px 28px;
+    margin: 0;
   }
   .radio:hover{
     color:#000;
+    cursor: pointer;
+    cursor: hand;
   }
 }
 

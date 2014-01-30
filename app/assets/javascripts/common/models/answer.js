@@ -8,6 +8,7 @@ Oea.Answer.reopenClass({
     xml = $(xml);
     return Oea.Answer.create({
       'id': xml.attr('ident'),
+      'text': xml.find('material > mattext').text(),
       'xml': xml
     });
   },

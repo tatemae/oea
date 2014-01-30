@@ -10,6 +10,7 @@
 //= require_tree ./initializers
 //= require_tree ./models
 //= require_tree ./mixins
+//= require_tree ./helpers
 //= require_tree ./templates
 //= require_tree ./components
 
