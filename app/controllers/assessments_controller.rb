@@ -47,6 +47,8 @@ class AssessmentsController < ApplicationController
       @next_item = @current_index == @question_count-1 ? nil : @items[@current_index+1]
     end
 
+    @user_id = user_signed_in? ? current_user.id : ''
+
     respond_to do |format|
       format.html { render :layout => params[:embed] == "true" ? 'bare' : 'application' }
     end

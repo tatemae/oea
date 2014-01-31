@@ -16,7 +16,7 @@
   <script type="text/javascript">
     var OEA_SETTINGS = {
       qtiUrl: '<%= api_assessment_url(@assessment, format: 'xml') %>',
-      user_id: <%= current_user.id %>,
+      user_id: '<%= @user_id %>',
       end_point: ''
     };
   </script>
