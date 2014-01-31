@@ -10,16 +10,26 @@ class Assessment < ActiveRecord::Base
   validates_uniqueness_of :identifier
 
   def self.from_xml(input_xml, user, src_url=nil, published_at=nil)
-    xml = AssessmentParser.parse(input_xml).first
-    assessment = Assessment.find_by(identifier: xml.ident, user_id: user.id) || user.assessments.build
-    assessment.identifier = xml.ident
-    assessment.title = xml.title
+    if xml = AssessmentParser.parse(input_xml).first
+      assessment = Assessment.find_by(identifier: xml.ident, user_id: user.id) || user.assessments.build
+      assessment.identifier = xml.ident
+      assessment.title = xml.title
+    else
+      assessment = Assessment.find_by(identifier: src_url, user_id: user.id) || user.assessments.build
+      assessment.identifier = src_url
+      assessment.title = src_url
+    end
     assessment.description = 'Assessment'
     assessment.src_url = src_url
     assessment.published_at = published_at
     assessment.save!
+
     assessment.assessment_xmls.create!(:xml => input_xml)
-    assessment.create_subitems(xml)
+
+    if xml
+      assessment.create_subitems(xml)
+    end
+
     assessment
   end
 
