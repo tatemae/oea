@@ -24,6 +24,10 @@ Oea.Item.reopenClass({
       attrs[$(x).find('fieldlabel').text()] = $(x).find('fieldentry').text();
     });
 
+    if(xml.find('itemmetadata > qmd_itemtype').text() == 'Multiple Choice'){
+      attrs.question_type = 'multiple_choice_question';
+    }
+
     return Oea.Item.create(attrs);
   },
 
