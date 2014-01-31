@@ -2,7 +2,7 @@
   <div class="full_question">
     <div class="inner_question">
       <div class="question_text">
-        <div><p>{{{text}}}</p></div>
+        <div>{{{material}}}</div>
       </div>
       <div>
         {{#if isMultipleChoice}}
@@ -12,6 +12,9 @@
     </div>
     <div class="check_answer_result">
       {{checkAnswerResult}}
+      {{#each feedback in answerFeedback}}
+        {{{feedback}}}
+      {{/each}}
     </div>
     <div class="lower_level">
       {{input type="submit" value='Check Answer' class="btn btn-check-answer" }}

@@ -1,10 +1,15 @@
 Oea.Item = Oea.ModelBase.extend({
 
   answers: Ember.ArrayProxy.create(),
+  correctAnswers: Ember.ArrayProxy.create(),
 
   init: function(){
     this.get('answers').set('content', Oea.Answer.parseAnswers(this.get('xml')));
-  }
+  },
+
+  material: function(){
+    return this.buildMaterial(this.get('xml').find('presentation > material').children());
+  }.property('xml')
 
 });
 
@@ -15,7 +20,6 @@ Oea.Item.reopenClass({
     var attrs = {
       'id': xml.attr('ident'),
       'title': xml.attr('title'),
-      'text': xml.find('presentation > material > mattext').text(),
       'xml': xml
     };
 
