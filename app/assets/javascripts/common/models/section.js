@@ -18,6 +18,14 @@ Oea.Section.reopenClass({
     });
   },
 
+  // Not all QTI files have sections. If we don't find one we build a default one to contain the items from the QTI file.
+  buildDefault: function(xml){
+    return Oea.Section.create({
+      'id': 'default',
+      'xml': xml
+    });
+  },
+
   parseSections: function(xml){
     return this._listFromXml(xml, 'section', Oea.Section);
   }

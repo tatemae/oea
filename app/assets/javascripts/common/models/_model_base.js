@@ -14,6 +14,9 @@ Oea.ModelBase.reopenClass({
     $.each(xml.find(selector), function(i, x){
       list.pushObject(klass.fromXml(x));
     });
+    if(list.length <= 0 && klass.buildDefault){
+      list.pushObject(klass.buildDefault(xml));
+    }
     return list;
   }
 
