@@ -19,3 +19,6 @@ config/database.yml
 /config/application.yml
 
 .DS_Store
+
+# Can use this for test data but probably shouldn't commit to repo since we don't have the license for it.
+/db/seeds/qti/*

@@ -9,8 +9,10 @@ if(!admin)
   puts "Created admin user. Please login with email 'admin@openassessments.com' and password 'asdfasdf' and change the password."
 end
 
-xml_file = File.open("db/seeds/assessment.xml", "rb").read
-Assessment.from_xml(xml_file, admin)
+# Load QTI files
+Dir.glob("db/seeds/qti/*") do |f|
+  puts "Adding QTI file #{f}"
+  xml_file = File.open(f, "rb").read
+  Assessment.from_xml(xml_file, admin, f)
+end
 
-xml_file = File.open("db/seeds/assessment1.xml", "rb").read
-Assessment.from_xml(xml_file, admin)
