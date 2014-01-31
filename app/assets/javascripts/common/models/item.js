@@ -1,14 +1,11 @@
 Oea.Item = Oea.ModelBase.extend({
 
-  answers: Ember.ArrayProxy.create(),
-  correctAnswers: Ember.ArrayProxy.create(),
-
-  init: function(){
-    this.get('answers').set('content', Oea.Answer.parseAnswers(this.get('xml')));
-  },
-
   material: function(){
     return this.buildMaterial(this.get('xml').find('presentation > material').children());
+  }.property('xml'),
+
+  answers: function(){
+    return Oea.Answer.parseAnswers(this.get('xml'));
   }.property('xml')
 
 });
