@@ -22,27 +22,30 @@ class AssessmentsController < ApplicationController
     if !@assessment = Assessment.find(params[:id])
       redirect_to assessments_path
     end
-    @items = @assessment.items.by_oldest
-    if params[:item]
-      @item = Item.find(params[:item])
-    else
-      @item = @items.first
+
+    if params[:embed].blank?
+      @items = @assessment.items.by_oldest
+      if params[:item]
+        @item = Item.find(params[:item])
+      else
+        @item = @items.first
+      end
+
+      @display_embed_code = true
+
+      if @assessment.src_url
+        @embed_code = CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessments_path}?embed=true&aid=#{@assessment.user_id}&src_url=#{@assessment.src_url}' frameborder='0' width='600' height='500' ></iframe>")
+      else
+        @embed_code = CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessment_path(@assessment)}?embed=true' frameborder='0' width='600' height='500' ></iframe>")
+      end
+
+      create_item_result(@item)
+
+      @question_count = @items.count
+      @current_index = @items.index(@item)
+      @prev_item = @current_index == 0 ? nil : @items[@current_index-1]
+      @next_item = @current_index == @question_count-1 ? nil : @items[@current_index+1]
     end
-
-    @display_embed_code = params[:embed] != "true"
-
-    if @assessment.src_url
-      @embed_code = CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessments_path}?embed=true&aid=#{@assessment.user_id}&src_url=#{@assessment.src_url}' frameborder='0' width='600' height='500' ></iframe>")
-    else
-      @embed_code = CGI.unescapeHTML("<iframe src='//#{request.host_with_port}#{assessment_path(@assessment)}?embed=true' frameborder='0' width='600' height='500' ></iframe>")
-    end
-
-    create_item_result(@item)
-
-    @question_count = @items.count
-    @current_index = @items.index(@item)
-    @prev_item = @current_index == 0 ? nil : @items[@current_index-1]
-    @next_item = @current_index == @question_count-1 ? nil : @items[@current_index+1]
 
     respond_to do |format|
       format.html { render :layout => params[:embed] == "true" ? 'bare' : 'application' }
