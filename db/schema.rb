@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808225524) do
+ActiveRecord::Schema.define(version: 20140204040817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20130808225524) do
     t.integer  "user_id"
     t.string   "src_url"
     t.datetime "published_at"
+    t.integer  "recommended_height"
   end
 
   add_index "assessments", ["identifier", "user_id"], name: "index_assessments_on_identifier_and_user_id", using: :btree

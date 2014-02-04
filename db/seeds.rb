@@ -16,3 +16,4 @@ Dir.glob("db/seeds/qti/*") do |f|
   Assessment.from_xml(xml_file, admin, nil, nil, f)
 end
 
+Assessment.last.recommended_height = 720
