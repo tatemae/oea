@@ -13,6 +13,6 @@ end
 Dir.glob("db/seeds/qti/*") do |f|
   puts "Adding QTI file #{f}"
   xml_file = File.open(f, "rb").read
-  Assessment.from_xml(xml_file, admin, f)
+  Assessment.from_xml(xml_file, admin, nil, nil, f)
 end
 

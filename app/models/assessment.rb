@@ -9,15 +9,15 @@ class Assessment < ActiveRecord::Base
 
   validates_uniqueness_of :identifier
 
-  def self.from_xml(input_xml, user, src_url=nil, published_at=nil)
+  def self.from_xml(input_xml, user, src_url=nil, published_at=nil, file_name = nil)
     if xml = AssessmentParser.parse(input_xml).first
       assessment = Assessment.find_by(identifier: xml.ident, user_id: user.id) || user.assessments.build
       assessment.identifier = xml.ident
       assessment.title = xml.title
     else
-      assessment = Assessment.find_by(identifier: src_url, user_id: user.id) || user.assessments.build
-      assessment.identifier = src_url
-      assessment.title = src_url
+      assessment = Assessment.find_by(identifier: file_name, user_id: user.id) || user.assessments.build
+      assessment.identifier = file_name
+      assessment.title = file_name
     end
     assessment.description = 'Assessment'
     assessment.src_url = src_url
