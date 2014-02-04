@@ -1,5 +1,5 @@
 .assessment_list{
-  margin: 0 auto;
+  margin: 40px auto;
   ul{
     margin-left:0;
   }
@@ -55,11 +55,6 @@
 
 .assessment{
   margin:0 auto;
-  .right_buttons{
-    float: none;
-    margin: 0 auto;
-    width: 164px;
-  }
   h1 {
     a{
       color: $white;

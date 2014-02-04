@@ -17,7 +17,7 @@ body{
   background: url(image-path('background.jpg')) no-repeat center center fixed;
   background-size:cover;
   height:100%;
-  padding-top: 50px;
+  padding-top: 75px;
 }
 
 #page_messages{
@@ -47,4 +47,8 @@ footer p img{
   height:auto !important;
   height:95%;
   margin:0 auto -50px;
+}
+
+.alerts{
+  margin:5px 0;
 }

@@ -5,21 +5,25 @@
 <div class="devise_form">
   <div class="login-screen">
     <div class="login-icon">
-      <h4><small>CONTACT US</small></h4>
+      <h2>CONTACT US</h2>
     </div>
     <div class="login-form">
-      <%= form_tag('/contact', :id => "contact_form", :class => "form-horizontal") do -%>
-        <div class="control-group">
-          <%= text_field_tag 'name', params[:name], :class => 'login-field', :placeholder => "Enter your name" %>
+      <%= form_tag('/contact', :id => "contact_form") do -%>
+        <div class="form-group">
+          <%= label_tag "name", "Name", :class => "control-label" %>
+          <%= text_field_tag 'name', params[:name], :class => "form-control", :placeholder => "Enter your name" %>
         </div>
-        <div class="control-group">
-          <%= text_field_tag 'email', params[:email], :class => 'login-field', :placeholder => "Enter your email" %>
+        <div class="form-group">
+          <%= label_tag "email", "Email", :class => "control-label" %>
+          <%= text_field_tag 'email', params[:email], :class => "form-control", :placeholder => "Enter your email" %>
         </div>
-        <div class="control-group">
-          <%= text_field_tag 'subject', params[:subject], :class => 'login-field', :placeholder => "Enter a subject" %>
+        <div class="form-group">
+          <%= label_tag "subject", "Subject", :class => "control-label" %>
+          <%= text_field_tag 'subject', params[:subject], :class => "form-control", :placeholder => "Enter a subject" %>
         </div>
-        <div class="control-group">
-          <%= text_area_tag 'message', params[:message], :class => 'login-field', :placeholder => "Enter your message" %>
+        <div class="form-group">
+          <%= label_tag "message", "Message", :class => "control-label" %>
+          <%= text_area_tag 'message', params[:message], :class => "form-control", :placeholder => "Enter your message" %>
         </div>
         <input class="btn btn-large btn-primary" name="commit" type="submit" value="SEND">
       <% end %>

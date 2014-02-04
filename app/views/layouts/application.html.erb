@@ -20,6 +20,7 @@
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="<%= 'active' if current_page?(root_path) %>"><a href="/">HOME</a></li>
+          <li class="<%= 'active' if current_page?(assessments_path) %>"><a href="<%=assessments_path%>">ASSESSMENTS</a></li>
           <li class="<%= 'active' if current_page?(contact_path) %>" ><a href="/contact">CONTACT</a></li>
           <li><a href="https://github.com/tatemae/oea/wiki/API-Documentation" target="_blank">API</a></li>
           <li><a href="https://github.com/tatemae/oea" target="_blank">THE CODE</a></li>
@@ -37,13 +38,7 @@
       </div><!--/.nav-collapse -->
     </div>
   </div>
-  <div class="container" id="page_messages">
-    <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
-        <%= render 'layouts/global/messages' %>
-      </div>
-    </div>
-  </div>
+  <%= render 'layouts/global/messages' %>
   <%= yield %>
   <footer>
     <p><i>Funded by</i> <%= link_to image_tag('mit.png', :alt => 'Massachusetts Institute of Technology OEIT'), 'http://oeit.mit.edu/about' %> <i>Built by</i> <%= link_to image_tag('ot.png', :alt => 'Open Tapestry'), 'http://www.opentapestry.com/' %></p>

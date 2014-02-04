@@ -1,4 +1,5 @@
-<li><%= link_to assessment.title, assessment_path(assessment.id) %> 
+<li>
+  <%= link_to assessment.title, assessment_path(assessment.id) %>
   <span class="action_links">
     <%= link_to '<i class="glyphicon glyphicon-signal"></i>'.html_safe, results_assessment_path(assessment.id) %>
     <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe, assessment_path(assessment.id), :method => :delete %>

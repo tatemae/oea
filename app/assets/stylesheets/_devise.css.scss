@@ -3,7 +3,11 @@
   margin: 50px auto;
 }
 .login-screen{
-  background: none;
+  background: $lightgray;
+  padding:30px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
 }
 .login-link{
   margin:0;

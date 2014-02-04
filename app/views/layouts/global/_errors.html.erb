@@ -1,0 +1,10 @@
+<% if obj.present? && obj.errors.any? %>
+  <div id="error_explanation">
+    <h2>Please review the problems below:</h2>
+    <ul>
+    <% obj.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

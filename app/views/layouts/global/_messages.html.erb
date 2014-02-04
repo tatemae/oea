@@ -1,14 +1,11 @@
 <% flash.each do |name, msg| %>
-  <% unless msg.blank? %>
-    <div id="flash_message">
-      <div class="alert header_alert alert-<%= name == :notice ? "success" : "error" %>">
-        <a class="close" data-dismiss="alert">x</a>
-        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-        <% if name != :persistent_alert %>
-          <%= content_tag :script, :type => "text/javascript" do -%>
-            setTimeout("$(flash_message).remove();", 12000);
-          <% end %>
-        <% end %>
+  <% if msg.is_a?(String) %>
+    <div class="row no_print alerts">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="alert alert-<%= name == :notice ? "success" : "danger" %>">
+          <button type="button" class="close" data-dismiss="alert">x</button>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        </div>
       </div>
     </div>
   <% end %>

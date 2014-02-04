@@ -10,11 +10,11 @@
         <%= f.hidden_field :reset_password_token %>
 
         <div class="control-group">
-          <%= f.password_field :password, :class => "login-field", :placeholder => "New password" %>
+          <%= f.password_field :password, :placeholder => "New password" %>
           <label class="login-field-icon fui-lock-24" for="user_password"></label>
         </div>
         <div class="control-group">
-          <%= f.password_field :password_confirmation, :class => "login-field", :placeholder => 'Confirm new password' %>
+          <%= f.password_field :password_confirmation, :placeholder => 'Confirm new password' %>
           <label class="login-field-icon fui-lock-24" for="user_password_confirmation"></label>
         </div>
         <%= f.submit "Change my password", :class => "btn btn-large btn-primary" %>

@@ -8,7 +8,7 @@
       <%= devise_error_messages! %>
       <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
         <div class="control-group">
-          <%= f.email_field :email, :autofocus => true, :class => "login-field", :placeholder => "Enter your email" %>
+          <%= f.email_field :email, :autofocus => true, :placeholder => "Enter your email" %>
           <label class="login-field-icon fui-mail-24" for="user_email"></label>
         </div>
         <%= f.submit "Send me reset instructions", :class => "btn btn-large btn-primary" %>
