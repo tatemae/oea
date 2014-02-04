@@ -17,7 +17,7 @@ class Assessment < ActiveRecord::Base
     else
       assessment = Assessment.find_by(identifier: file_name, user_id: user.id) || user.assessments.build
       assessment.identifier = file_name
-      assessment.title = file_name
+      assessment.title = File.basename(file_name)
     end
     assessment.description = 'Assessment'
     assessment.src_url = src_url
