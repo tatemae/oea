@@ -1,20 +1,16 @@
 <% if @embed_code.present? -%>
   <div class="container">
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        <h1><%= link_to 'Assessments', assessments_path %> &gt; <%= @assessment.title %></h1>
-        <div class="assessment">
-          <%= @embed_code.html_safe %>
-        </div>
-        <div class="assessment_meta">
-          <div class="assessment_buttons">
-            <p><span class="stats_word">stats</span><a href="<%= results_assessment_path(params[:assessment_id] || @assessment) %>" class="btn btn-info stats_button" target="_top"><i class="glyphicon glyphicon-signal"></i></a></p>
-            <p><span class="embed_word">embed</span><a href="#" class="btn btn-info embed_button">&lt/&gt</a></p>
-          </div>
-          <div class="embed_code">
-            <textarea class="embed_text" name="embed_text"> <%= @embed_code %></textarea>
-          </div>
-        </div>
+    <h1><%= link_to 'Assessments', assessments_path %> &gt; <%= @assessment.title %></h1>
+    <div class="assessment">
+      <%= @embed_code.html_safe %>
+    </div>
+    <div class="assessment_meta">
+      <div class="assessment_buttons">
+        <p><span class="stats_word">stats</span><a href="<%= results_assessment_path(params[:assessment_id] || @assessment) %>" class="btn btn-info stats_button" target="_top"><i class="glyphicon glyphicon-signal"></i></a></p>
+        <p><span class="embed_word">embed</span><a href="#" class="btn btn-info embed_button">&lt/&gt</a></p>
+      </div>
+      <div class="embed_code">
+        <textarea class="embed_text" name="embed_text"> <%= @embed_code %></textarea>
       </div>
     </div>
   </div>
