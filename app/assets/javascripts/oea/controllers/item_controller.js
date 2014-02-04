@@ -1,16 +1,16 @@
 Oea.ItemController = Ember.ObjectController.extend({
 
   selectedAnswerId: null,
-  checkAnswerResult: null,
-  answerFeedback: Ember.ArrayProxy.create(),
-  setValues: {},
+  result: null,
+  choiceFeeback: Ember.ArrayProxy.create(),
 
   actions: {
     checkAnswer: function(){
       var xml = this.get('xml');
       var selectedAnswerId = this.get('selectedAnswerId');
-      var score;
-      var correct = false;
+      var score = 0; // TODO we should get var names and types from the QTI. For now we just use the default 'score'
+      var feedbacks = Ember.A();
+
       $.each(xml.find('respcondition'), function(i, condition){
 
         condition = $(condition);
@@ -20,8 +20,6 @@ Oea.ItemController = Ember.ObjectController.extend({
           var varequal = condition.find('conditionvar > varequal');
           if(varequal.text() == selectedAnswerId){
             conditionMet = true;
-            correct = true;
-            //setValues
           }
         } else if(condition.find('conditionvar > unanswered').length){
           if(Ember.isEmpty(selectedAnswerId)){
@@ -29,7 +27,7 @@ Oea.ItemController = Ember.ObjectController.extend({
           }
         } else if(condition.find('conditionvar > not').length){
           if(condition.find('conditionvar > not > varequal').length){
-            if(selectedAnswerId == condition.find('conditionvar > not > varequal').text()){
+            if(selectedAnswerId != condition.find('conditionvar > not > varequal').text()){
               conditionMet = true;
             }
           } else if(condition.find('conditionvar > not > unanswered').length) {
@@ -44,9 +42,9 @@ Oea.ItemController = Ember.ObjectController.extend({
           var setvar = condition.find('setvar');
           var action = setvar.attr('action');
           if(action == 'Add'){
-            score += setvar.text();
+            score += parseFloat(setvar.text(), 10);
           } else if(action == 'Set'){
-            score = setvar.text();
+            score = parseFloat(setvar.text());
           }
           var feedbackId = condition.find('displayfeedback').attr('linkrefid');
           if(feedbackId){
@@ -54,9 +52,10 @@ Oea.ItemController = Ember.ObjectController.extend({
             if(feedback && feedback.attr('view').length === 0 ||
               feedback.attr('view') == 'All' ||
               feedback.attr('view') == 'Candidate' ){  //All, Administrator, AdminAuthority, Assessor, Author, Candidate, InvigilatorProctor, Psychometrician, Scorer, Tutor
-              $.each(feedback.find('material').children(), function(i, child){
-                answerFeedback.addObject($(child).html());
-              });
+              result = Oea.Qti.buildMaterial(feedback.find('material').children());
+              if(feedbacks.indexOf(result) == -1){
+                feedbacks.pushObject(result);
+              }
             }
           }
         }
@@ -64,7 +63,8 @@ Oea.ItemController = Ember.ObjectController.extend({
         if(condition.attr('continue') == 'No'){ return false; }
       });
 
-      this.set('checkAnswerResult', correct ? 'Correct!' : 'Incorrect!');
+      this.get('choiceFeeback').set('content', feedbacks);
+      this.set('result', (score > 0) ? 'Correct!' : 'Incorrect!');
     }
   },
 
