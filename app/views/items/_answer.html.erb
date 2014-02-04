@@ -1,7 +1,0 @@
-<div class="btn btn-block btn-question">
-  <label class="radio">
-    <div class="icon"></div><div class="icon-to-fade"></div>
-    <%= f.radio_button :id, answer["id"], :name => item.id, :checked => (user_response == answer["id"]) %>
-    <%= answer["text"].html_safe %>
-  </label>
-</div>

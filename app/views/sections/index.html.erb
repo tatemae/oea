@@ -1,8 +1,0 @@
-<div class="section_list">
-  <% @sections.each do |section| %>
-    <div>
-      <%= link_to section.title, assessment_section_path(@assessment, section) %>
-    </div>
-  <% end -%>
-  <%= render partial: 'sections/section', collection: @sections, locals: {display_embed_code: false} %>
-</div>
