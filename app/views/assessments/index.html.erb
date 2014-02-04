@@ -1,38 +1,24 @@
 <div class="container">
-  <div class="row">
 
-    <div class="col-sm-8 col-sm-offset-2">
+  <div class="assessment_list well row">
+    <h2>Load Assessment By Url</h2>
 
-      <h1 class="row">Your Assessments</h1>
-
-      <div class="assessment_list well row">
-        <ul>
-          <%= render :collection => @assessments, :partial => 'assessments/list_item', :as => :assessment %>
-        </ul>
-        <%= link_to "<i class='icon-plus'></i> Create an Assessment".html_safe, new_assessment_path, :class => 'nav_link'  %>
+    <%= form_tag(assessment_path('load'), method: :get, html: { :role => 'form' }) do -%>
+      <div class="form-group">
+        <%= label_tag "assessment", "Enter the web address of a QTI format assessment" %>
+        <%= text_field_tag :src_url, nil, class: "form-control" %>
+        <p class="help-block">(e.g. <%= "http://#{request.host_with_port}/assessment.xml" %>)</p>
       </div>
+      <%= submit_tag "View Assessment", :class => "btn" %>
+    <% end -%>
+  </div>
 
-
-      <h1 class="row">View an Assessment Hosted Somewhere Else</h1>
-
-      <div class="assessment_list well row">
-
-        <%= form_for :assessment, :url => assessments_path, :html => { :id => "new-assessment-form", :name => 'new-assessment-form', :class => 'form-horizontal' } do |f| -%>
-
-          <div class="control-group">
-            Enter the web address of a QTI format assessment
-            <div id="xml_file_option">
-              <%= f.text_field :src_url, { :name => 'assessment[src_url]' } %>
-            </div>
-            <div>(e.g. <%= "http://#{request.host_with_port}/assessment.xml" %>)</div>
-          </div>
-
-          <%= f.submit 'View Assessment', :class => 'btn' %>
-        <% end -%>
-
-      </div>
-
-    </div>
+  <div class="assessment_list well row">
+    <h2>Assessments</h2>
+    <ul>
+      <%= render :collection => @assessments, :partial => 'assessments/list_item', :as => :assessment %>
+    </ul>
+    <%= link_to "<i class='icon-plus'></i> Create an Assessment".html_safe, new_assessment_path, :class => 'nav_link'  %>
   </div>
 
 </div>
