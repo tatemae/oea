@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-sm-10 col-sm-offset-1">
 
       <h1 class="row">
         <% if current_user -%><%= link_to 'Assessments', user_assessments_path(current_user.id) %> &gt;<% end -%>
@@ -34,7 +34,7 @@
             </tr>
             <tr>
               <th>CSV Download</th>
-              <td><a href="<%= results_assessment_url(params[:assessment_id] || @assessment, :format => :csv, :type => "summary") %>"><i class='icon-download'></i></a></td>
+              <td><a href="<%= assessment_result_url(params[:assessment_id] || @assessment, :format => :csv, :type => "summary") %>"><i class="glyphicon glyphicon-download"></i></a></td>
             </tr>
           </tbody>
         </table>

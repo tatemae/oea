@@ -1,5 +1,5 @@
 class AssessmentResultsController < ApplicationController
-  def index
+  def show
     @assessment = Assessment.includes(items: :item_results).find(params[:id])
     @results = @assessment.items.collect(&:item_results).flatten
     respond_to do |format|

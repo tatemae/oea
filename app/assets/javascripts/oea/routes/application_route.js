@@ -14,6 +14,14 @@ Oea.ApplicationRoute = Ember.Route.extend({
       assessment.on('error', function(){
         reject(new Error("Failed to load assessment"));
       });
+
+      // Record that the assessment was viewed
+      var assessmentResult = Oea.AssessmentResult.create({
+        assessment: assessment,
+        resultsEndPoint: OEA_SETTINGS.resultsEndPoint,
+        user_id: OEA_SETTINGS.userId
+      }).save();
+
     });
   },
 

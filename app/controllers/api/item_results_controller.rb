@@ -1,7 +1,7 @@
 class Api::ItemResultsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_filter :skip_trackable
-  respond_to :xml, :json
+  respond_to :json
 
   def index
     scope_url = params[:url] if params[:scope] == 'domain' || params[:scope] == 'page'
@@ -16,4 +16,16 @@ class Api::ItemResultsController < ApplicationController
       format.csv { render text: results.to_csv }
     end
   end
+
+  def create
+    rendered_time, referer, user = tracking_info
+    user.item_results.create!(
+      :identifier => params[:identifier],
+      :item_id => params[:item_id],
+      :rendered_datestamp => rendered_time,
+      :referer => referer,
+      :ip_address => request.ip,
+      :session_status => 'initial')
+  end
+
 end

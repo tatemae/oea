@@ -18,6 +18,6 @@
     <%= item.results_summary[:users].count %>
   </td>
   <td>
-    <a href="<%= results_assessment_section_item_url(params[:assessment_id] || assessment, params[:section_id] || item.section, item.id, :format => :csv, :type => "summary") %>"><i class='icon-download'></i></a>
+    <a href="<%= item_results_url(item.id, :format => :csv, :type => "summary") %>"><i class='glyphicon glyphicon-download'></i></a>
   </td>
 </tr>
