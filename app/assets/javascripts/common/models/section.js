@@ -27,7 +27,7 @@ Oea.Section.reopenClass({
   },
 
   parseSections: function(xml){
-    return this._listFromXml(xml, 'section', Oea.Section);
+    return Oea.Qti.listFromXml(xml, 'section', Oea.Section);
   }
 
 });

@@ -1,7 +1,7 @@
 Oea.Answer = Oea.ModelBase.extend({
 
   material: function(){
-    return this.buildMaterial(this.get('xml').find('material').children());
+    return Oea.Qti.buildMaterial(this.get('xml').find('material').children());
   }.property('xml')
 
 });
@@ -17,7 +17,7 @@ Oea.Answer.reopenClass({
   },
 
   parseAnswers: function(xml){
-    return this._listFromXml(xml, 'response_lid > render_choice > response_label', Oea.Answer);
+    return Oea.Qti.listFromXml(xml, 'response_lid > render_choice > response_label', Oea.Answer);
   }
 
 });

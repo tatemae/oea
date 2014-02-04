@@ -1,7 +1,7 @@
 Oea.Item = Oea.ModelBase.extend({
 
   material: function(){
-    return this.buildMaterial(this.get('xml').find('presentation > material').children());
+    return Oea.Qti.buildMaterial(this.get('xml').find('presentation > material').children());
   }.property('xml'),
 
   answers: function(){
@@ -32,7 +32,7 @@ Oea.Item.reopenClass({
   },
 
   parseItems: function(xml){
-    return this._listFromXml(xml, 'item', Oea.Item);
+    return Oea.Qti.listFromXml(xml, 'item', Oea.Item);
   }
 
 });
