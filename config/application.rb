@@ -15,11 +15,6 @@ Bundler.require(:default, Rails.env)
 module Oea
   class Application < Rails::Application
 
-    # allow iframing
-    config.action_dispatch.default_headers = {
-      'X-Frame-Options' => 'ALLOWALL'
-    }
-
     config.middleware.use Rack::Cors do
       allow do
         origins '*'
