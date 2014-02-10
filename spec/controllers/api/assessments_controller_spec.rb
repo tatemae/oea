@@ -13,7 +13,7 @@ describe Api::AssessmentsController do
     end
     describe "search" do
       before do
-        @assessment = FactoryGirl.create(:assessment)
+        @assessment = FactoryGirl.create(:assessment, title: "#{FactoryGirl.generate(:name)} batman dark knight", description: "#{FactoryGirl.generate(:description)} shrimp on the barbie")
         @outcome = FactoryGirl.create(:outcome)
         @assessment_outcome = FactoryGirl.create(:assessment_outcome, assessment: @assessment, outcome: @outcome)
       end
@@ -21,8 +21,16 @@ describe Api::AssessmentsController do
         get 'index', format: :json, q: @assessment.title
         assigns(:assessments).should include(@assessment)
       end
+      it "should return the assessment from the title" do
+        get 'index', format: :json, q: "batman"
+        assigns(:assessments).should include(@assessment)
+      end
       it "should return the assessment from the description" do
         get 'index', format: :json, q: @assessment.description
+        assigns(:assessments).should include(@assessment)
+      end
+      it "should return the assessment from the description" do
+        get 'index', format: :json, q: "shrimp"
         assigns(:assessments).should include(@assessment)
       end
       it "should return the assessment from the outcome name" do
