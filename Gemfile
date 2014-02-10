@@ -51,6 +51,8 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
+# core extensions
+gem 'addressable', '~> 2.3.5' #URI implementation
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'

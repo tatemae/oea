@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   #before_save :ensure_authentication_token
 
   def display_name
+    return self.name if self.name.present?
+    if self.email.present?
+      self.email.split('@')[0]
+    end
   end
 
   def self.create_anonymous

@@ -15,6 +15,9 @@ Oea::Application.routes.draw do
   get 'saml/metadata', to: 'saml#metadata'
   post 'saml/consume', to: 'saml#consume'
 
+  # oembed
+  match 'oembed' => 'oembed#endpoint', :via => [:get, :post]
+
   namespace :api do
     resources :assessments
     resources :assessment_results
