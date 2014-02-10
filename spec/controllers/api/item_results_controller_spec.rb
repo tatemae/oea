@@ -15,9 +15,20 @@ describe Api::ItemResultsController do
     end
 
     it "scopes results" do
-      result = { item_results: [ { item_results: @result3 }, { item_results: @result2 } ]   }
       get :index, format: :json, id: @item.id, scope: 'domain', url: 'www.codingfoo.com/index'
-      expect(response.body).to eq result.to_json
+      result = JSON.parse(response.body)
+      result['item_results'][0]['item_results']['id'].should eq @result3.id
+      result['item_results'][1]['item_results']['id'].should eq @result2.id
+    end
+
+    it "renders results as csv" do
+      get :index, format: :csv, id: @item.id
+      result = response.body
+    end
+
+    it "renders results as xml" do
+      get :index, format: :xml, id: @item.id
+      response.body.should include('xml')
     end
 
     it "scopes summarized results" do

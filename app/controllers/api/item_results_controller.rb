@@ -1,7 +1,7 @@
 class Api::ItemResultsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_filter :skip_trackable
-  respond_to :json
+  respond_to :json, :csv, :xml
 
   def index
     scope_url = params[:url] if params[:scope] == 'domain' || params[:scope] == 'page'
@@ -13,6 +13,7 @@ class Api::ItemResultsController < ApplicationController
     end
     respond_to do |format|
       format.json { render json: results }
+      format.xml { render xml: results }
       format.csv { render text: results.to_csv }
     end
   end
