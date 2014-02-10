@@ -6,6 +6,10 @@ FactoryGirl.define do
     "id_#{n}"
   end
 
+  sequence :description do |n|
+    "description_#{n}"
+  end
+
   sequence :name do |n|
     "user_#{n}"
   end
@@ -16,6 +20,14 @@ FactoryGirl.define do
 
   sequence :password do |n|
     "password_#{n}"
+  end
+
+  sequence :bank_id do |n|
+    "asdf#{n}"
+  end
+
+  sequence :objective_id do |n|
+    "oiu#{n}"
   end
 
   factory :user do
@@ -39,6 +51,7 @@ FactoryGirl.define do
   factory :assessment do
     identifier { FactoryGirl.generate(:identifier) }
     title { FactoryGirl.generate(:name) }
+    description { FactoryGirl.generate(:description) }
   end
 
   factory :assessment_xml do
@@ -69,6 +82,17 @@ FactoryGirl.define do
 
     session_status { 'initial' }
 
+  end
+
+  factory :assessment_outcome do
+    assessment
+    outcome
+  end
+
+  factory :outcome do
+    name { FactoryGirl.generate(:name) }
+    mc3_bank_id { FactoryGirl.generate(:bank_id) }
+    mc3_objective_id { FactoryGirl.generate(:objective_id) }
   end
 
 end

@@ -11,6 +11,17 @@ describe Api::AssessmentsController do
       get 'index', format: :json, q: 'Question'
       response.should be_success
     end
+    describe "search" do
+      before do
+        @assessment = FactoryGirl.create(:assessment)
+        @outcome = FactoryGirl.create(:outcome)
+        @assessment_outcome = FactoryGirl.create(:assessment_outcome, assessment: @assessment, outcome: @outcome)
+      end
+      it "should return the assessment" do
+        get 'index', format: :json, q: @assessment.title
+        assigns(:assessments).should include(@assessment)
+      end
+    end
   end
 
   describe "GET 'show'" do

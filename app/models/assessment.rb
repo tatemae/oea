@@ -11,6 +11,11 @@ class Assessment < ActiveRecord::Base
 
   validates_uniqueness_of :identifier
 
+  scope :by_newest, -> { order(created_at: :desc) }
+  scope :by_oldest, -> { order(start_date: :asc) }
+  scope :by_latest, -> { order(updated_at: :desc) }
+  scope :by_search, ->(q) { where("title LIKE ?", q) }
+
   def self.from_xml(input_xml, user, src_url=nil, published_at=nil, file_name = nil)
     if xml = AssessmentParser.parse(input_xml).first
       assessment = Assessment.find_by(identifier: xml.ident, user_id: user.id) || user.assessments.build

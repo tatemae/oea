@@ -7,7 +7,7 @@ class Api::AssessmentsController < ApplicationController
   def index
     page = (params[:page] || 1).to_i
     per_page = 10
-    @assessments = Assessment.where("assessment_xmls.xml LIKE ?", "%#{params[:q]}%").includes(:assessment_xmls).paginate(:page => page, :per_page => per_page)
+    @assessments = Assessment.by_search(params[:q]).paginate(:page => page, :per_page => per_page)
     respond_to do |format|
       format.json { render :json => @assessments, :only => [:id, :title, :description] }
       format.xml { render }
