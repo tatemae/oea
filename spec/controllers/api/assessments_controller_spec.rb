@@ -17,8 +17,16 @@ describe Api::AssessmentsController do
         @outcome = FactoryGirl.create(:outcome)
         @assessment_outcome = FactoryGirl.create(:assessment_outcome, assessment: @assessment, outcome: @outcome)
       end
-      it "should return the assessment" do
+      it "should return the assessment from the title" do
         get 'index', format: :json, q: @assessment.title
+        assigns(:assessments).should include(@assessment)
+      end
+      it "should return the assessment from the description" do
+        get 'index', format: :json, q: @assessment.description
+        assigns(:assessments).should include(@assessment)
+      end
+      it "should return the assessment from the outcome name" do
+        get 'index', format: :json, q: @outcome.name
         assigns(:assessments).should include(@assessment)
       end
     end
