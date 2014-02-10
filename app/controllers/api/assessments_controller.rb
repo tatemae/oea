@@ -7,11 +7,12 @@ class Api::AssessmentsController < ApplicationController
 
   def index
     page = (params[:page] || 1).to_i
-    per_page = 10
+    per_page = 100
     @assessments = Assessment.where("title LIKE ? OR description LIKE ? OR outcomes.name LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%").joins(assessment_outcomes: [:outcome]).paginate(:page => page, :per_page => per_page)
     respond_to do |format|
-      format.json { render :json => @assessments, :only => [:id, :title, :description] }
+      format.json { render :json => @assessments }
       format.xml { render }
+      format.qti { render }
     end
   end
 
