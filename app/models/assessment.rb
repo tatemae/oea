@@ -6,6 +6,8 @@ class Assessment < ActiveRecord::Base
   has_many :assessment_results, dependent: :destroy
   belongs_to :user
   has_many :assessment_xmls, dependent: :destroy
+  has_many :assessment_outcomes
+  has_many :outcomes, through: :assessment_outcomes
 
   validates_uniqueness_of :identifier
 
