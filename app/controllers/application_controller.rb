@@ -34,4 +34,20 @@ class ApplicationController < ActionController::Base
     CGI.unescapeHTML(%Q{<iframe src="//#{url}" frameborder="0" style="border:none;width:100%;height:100%;min-height:#{assessment.recommended_height || 400}px;"></iframe>})
   end
 
+
+  private
+
+    def authenticate_user_from_token!
+      auth_token = params[:auth_token].presence
+      user = auth_token && User.find_by(authentication_token: auth_token.to_s)
+
+      if user
+        # Notice we are passing store false, so the user is not
+        # actually stored in the session and a token is needed
+        # for every request. If you want the token to work as a
+        # sign in token, you can simply remove store: false.
+        sign_in user, store: false
+      end
+    end
+
 end
