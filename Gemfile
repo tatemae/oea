@@ -57,6 +57,7 @@ gem 'addressable', '~> 2.3.5' #URI implementation
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'debugger'
+  gem 'byebug' # ruby 2.0 debugger
   gem 'email_spec', '~> 1.2.1'
 end
 
