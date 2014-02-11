@@ -16,6 +16,7 @@ Dir.glob("db/seeds/qti/*") do |f|
   Assessment.from_xml(xml_file, admin, nil, nil, f)
 end
 
-assessment = Assessment.find_by(title: 'drupal.xml')
-assessment.recommended_height = 960
-assessment.save!
+if assessment = Assessment.find_by(title: 'drupal.xml')
+  assessment.recommended_height = 960
+  assessment.save!
+end
