@@ -17,7 +17,7 @@
 <% else -%>
   <script type="text/javascript">
     var OEA_SETTINGS = {
-      qtiUrl: '<%= params[:src_url] %>',
+      qtiUrl: '<%= @src_url %>',
       userId: '<%= @user_id %>',
       resultsEndPoint: '<%= "#{request.host_with_port}/api" %>'
     };

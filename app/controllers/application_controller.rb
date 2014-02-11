@@ -29,10 +29,18 @@ class ApplicationController < ActionController::Base
     host
   end
 
-  def embed_code(assessment)
-    url = "#{request.host_with_port}#{assessment_path('load')}?src_url=#{api_assessment_url(assessment, format: 'xml')}"
-    CGI.unescapeHTML(%Q{<iframe src="//#{url}" frameborder="0" style="border:none;width:100%;height:100%;min-height:#{assessment.recommended_height || 400}px;"></iframe>})
-  end
+  protected
+
+    def ensure_scheme(url)
+      return nil unless url.present?
+      url = "http://#{url}" unless url.starts_with?("http") || url.starts_with?('//:')
+      url
+    end
+
+    def embed_code(assessment)
+      url = "#{request.host_with_port}#{assessment_path('load')}?src_url=#{api_assessment_url(assessment, format: 'xml')}"
+      CGI.unescapeHTML(%Q{<iframe src="//#{url}" frameborder="0" style="border:none;width:100%;height:100%;min-height:#{assessment.recommended_height || 400}px;"></iframe>})
+    end
 
 
   private

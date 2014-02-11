@@ -16,6 +16,8 @@ class AssessmentsController < ApplicationController
       @embed_code = embed_code(@assessment)
     end
 
+    @src_url = ensure_scheme(params[:src_url]) if params[:src_url].present?
+
     respond_to do |format|
       format.html { render :layout => params[:src_url].present? ? 'bare' : 'application' }
     end
