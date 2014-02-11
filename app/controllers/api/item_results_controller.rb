@@ -20,13 +20,14 @@ class Api::ItemResultsController < ApplicationController
 
   def create
     rendered_time, referer, user = tracking_info
-    user.item_results.create!(
+    @item_result = user.item_results.create!(
       :identifier => params[:identifier],
       :item_id => params[:item_id],
       :rendered_datestamp => rendered_time,
       :referer => referer,
       :ip_address => request.ip,
       :session_status => 'initial')
+    respond_with(:api, @item_result)
   end
 
 end

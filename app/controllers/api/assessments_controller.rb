@@ -29,7 +29,7 @@ class Api::AssessmentsController < ApplicationController
 
   def create
     assessment = Assessment.from_xml(request.body.read, current_user)
-    respond_with(assessment, location: nil)
+    respond_with(:api, assessment)
   end
 
 end

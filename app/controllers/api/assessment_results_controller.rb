@@ -1,4 +1,4 @@
-class Api::ItemResultsController < ApplicationController
+class Api::AssessmentResultsController < ApplicationController
 
   skip_before_filter :verify_authenticity_token
   before_filter :skip_trackable
@@ -7,12 +7,13 @@ class Api::ItemResultsController < ApplicationController
   # TODO Might have to cheat and make this a index or show so we can use a GET request to record the data. This will avoid cross origin issues.
   def create
     rendered_time, referer, user = tracking_info
-    user.assessment_results.create!(
+    @assessment_result = user.assessment_results.create!(
       :assessment_id => params[:assessment_id],
       :rendered_datestamp => rendered_time,
       :referer => referer,
       :ip_address => request.ip,
       :session_status => 'initial')
+    respond_with(:api, @assessment_result)
   end
 
 end
