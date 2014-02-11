@@ -9,8 +9,6 @@ class Assessment < ActiveRecord::Base
   has_many :assessment_outcomes
   has_many :outcomes, through: :assessment_outcomes
 
-  validates_uniqueness_of :identifier
-
   scope :by_newest, -> { order(created_at: :desc) }
   scope :by_oldest, -> { order(start_date: :asc) }
   scope :by_latest, -> { order(updated_at: :desc) }
