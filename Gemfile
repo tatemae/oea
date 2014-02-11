@@ -36,7 +36,7 @@ gem 'ruby-saml-mod'
 
 # Ember stuff
 gem 'ember-rails'
-gem 'ember-source', '~> 1.3.0' # or the version you need
+gem 'ember-source', '~> 1.3.2' # or the version you need
 
 # Server
 gem 'unicorn'
