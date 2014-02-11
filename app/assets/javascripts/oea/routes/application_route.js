@@ -1,7 +1,7 @@
 Oea.ApplicationRoute = Ember.Route.extend({
 
   model: function(params){
-    return new Promise(function(resolve, reject){
+    return new Ember.RSVP.Promise(function(resolve, reject){
 
       var assessment = Oea.Assessment.create({
         qtiUrl: OEA_SETTINGS.qtiUrl
