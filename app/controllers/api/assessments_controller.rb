@@ -11,7 +11,7 @@ class Api::AssessmentsController < ApplicationController
     @assessments = Assessment.all
     if params[:q].present?
       q = "%#{params[:q]}%"
-      @assessments = @assessments.where("title ILIKE ? OR description ILIKE ? OR outcomes.name ILIKE ?", q, q, q).joins(assessment_outcomes: [:outcome]).paginate(:page => page, :per_page => per_page)
+      @assessments = @assessments.where("title ILIKE ? OR description ILIKE ?", q, q).paginate(:page => page, :per_page => per_page)
     end
     respond_to do |format|
       format.json { render :json => @assessments }
