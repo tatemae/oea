@@ -2,10 +2,16 @@ class AssessmentsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_filter :skip_trackable
   before_filter :authenticate_user!, only: [:new, :create, :destroy]
+  load_and_authorize_resource except: [:index, :show]
+
   respond_to :html
 
   def index
-    @assessments = Assessment.all
+    if params[:user_id].present?
+      @assessments = User.find(params[:user_id]).assessments
+    else
+      @assessments = Assessment.all
+    end
   end
 
   def show

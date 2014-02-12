@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 1.0.1'
 
 # User Auth
 gem 'devise', '>=3.0.0'
+gem 'cancan'
 
 # html/xml parsers
 gem 'nokogiri'
