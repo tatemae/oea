@@ -13,8 +13,9 @@ class User < ActiveRecord::Base
   def display_name
     return self.name if self.name.present?
     if self.email.present?
-      self.email.split('@')[0]
+      return self.email.split('@')[0]
     end
+    'Me'
   end
 
   def self.create_anonymous

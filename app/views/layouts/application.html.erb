@@ -27,7 +27,7 @@
           <li class="<%= 'active' if current_page?(about_path) %>" ><a href="/about">ABOUT</a></li>
           <% if user_signed_in? %>
             <li>
-              <%= link_to current_user.name, user_assessments_path(current_user), :style => 'padding-right:2px;float:left;' %>
+              <%= link_to current_user.display_name, user_assessments_path(current_user), :style => 'padding-right:2px;float:left;' %>
               <%= link_to "(sign out)", destroy_user_session_path, :method => :delete, :style => 'font-size:14px;padding-left:2px;float:left;' %>
             </li>
           <% else %>
