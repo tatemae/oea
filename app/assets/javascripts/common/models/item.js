@@ -1,5 +1,9 @@
 Oea.Item = Oea.ModelBase.extend({
 
+  result: null,
+  choiceFeedback: null,
+  selectedAnswerId: null,
+
   material: function(){
     return Oea.Qti.buildMaterial(this.get('xml').find('presentation > material').children());
   }.property('xml'),

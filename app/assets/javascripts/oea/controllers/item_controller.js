@@ -1,9 +1,5 @@
 Oea.ItemController = Ember.ObjectController.extend({
 
-  selectedAnswerId: null,
-  result: null,
-  choiceFeeback: Ember.ArrayProxy.create(),
-
   actions: {
     checkAnswer: function(){
       var xml = this.get('xml');
@@ -63,7 +59,7 @@ Oea.ItemController = Ember.ObjectController.extend({
         if(condition.attr('continue') == 'No'){ return false; }
       });
 
-      this.get('choiceFeeback').set('content', feedbacks);
+      this.set('choiceFeeback', feedbacks);
       this.set('result', (score > 0) ? 'Correct!' : 'Incorrect!');
     }
   },
