@@ -2,7 +2,7 @@ class AssessmentsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_filter :skip_trackable
   before_filter :authenticate_user!, only: [:new, :create, :destroy]
-  load_and_authorize_resource except: [:index, :show]
+  load_and_authorize_resource except: [:index, :show, :create]
 
   respond_to :html
 
@@ -33,22 +33,25 @@ class AssessmentsController < ApplicationController
   end
 
   def create
-    xml = params[:assessment][:xml_file].read
+    xml = assessment_params[:xml_file].read
     assessment = Assessment.from_xml(xml, current_user)
-
-    assessment.title = params[:assessment][:title] if params[:assessment][:title].present?
-    assessment.description = params[:assessment][:description] if params[:assessment][:description].present?
+    assessment.title = assessment_params[:title] if assessment_params[:title].present?
+    assessment.description = assessment_params[:description] if assessment_params[:description].present?
     assessment.save
-
     respond_with(assessment)
   end
 
   def destroy
-    @assessment = Assessment.find(params[:id])
     @assessment.destroy
     respond_to do |format|
       format.html { redirect_to(user_assessments_url(current_user)) }
     end
   end
+
+  private
+
+    def assessment_params
+      params.require(:assessment).permit(:title, :description, :xml_file)
+    end
 
 end
