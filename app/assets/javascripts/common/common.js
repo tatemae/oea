@@ -20,7 +20,7 @@ Oea = Ember.Application.create({
   LOG_VIEW_LOOKUPS              : true,
   LOG_ACTIVE_GENERATION         : true,
 
-  // The resolver is required since we have namespaced the ember app under 'dashboard'
+  // The resolver is required since we have namespaced the ember app under 'oea'
   Resolver: Ember.DefaultResolver.extend({
     resolveTemplate: function(parsedName){
       var fullNameWithoutType = parsedName.fullNameWithoutType;
