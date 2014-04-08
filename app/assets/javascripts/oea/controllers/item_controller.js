@@ -45,7 +45,7 @@ Oea.ItemController = Ember.ObjectController.extend({
           var feedbackId = condition.find('displayfeedback').attr('linkrefid');
           if(feedbackId){
             var feedback = xml.find('itemfeedback[ident="' + feedbackId + '"]');
-            if(feedback && feedback.attr('view').length === 0 ||
+            if(feedback && feedback.attr('view') && feedback.attr('view').length === 0 ||
               feedback.attr('view') == 'All' ||
               feedback.attr('view') == 'Candidate' ){  //All, Administrator, AdminAuthority, Assessor, Author, Candidate, InvigilatorProctor, Psychometrician, Scorer, Tutor
               result = Oea.Qti.buildMaterial(feedback.find('material').children());
