@@ -1,3 +1,3 @@
-export default OeaMultipleChoiceComponent = Ember.Component.extend({
+export default Ember.Component.extend({
   name: 'response'
 });

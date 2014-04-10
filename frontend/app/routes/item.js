@@ -1,9 +1,11 @@
-export default ItemRoute = Ember.Route.extend({
+import ItemResult from "../models/item_result";
+
+export default Ember.Route.extend({
 
   model: function(params){
 
     // Record that the item was viewed
-    Oea.ItemResult.create({
+    ItemResult.create({
       assessment: this.modelFor('application'),
       resultsEndPoint: OEA_SETTINGS.resultsEndPoint,
       user_id: OEA_SETTINGS.userId,

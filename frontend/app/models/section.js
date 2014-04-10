@@ -1,11 +1,13 @@
-import ModelBase from "./_model_base";
+import Base from "./base";
+import Item from "./item";
+import Qti from "../utils/qti";
 
-var Section = ModelBase.extend({
+var Section = Base.extend({
 
   items: Ember.ArrayProxy.create(),
 
   init: function(){
-    this.get('items').set('content', Oea.Item.parseItems(this.get('xml')));
+    this.get('items').set('content', Item.parseItems(this.get('xml')));
   }
 
 });
@@ -14,7 +16,7 @@ Section.reopenClass({
 
   fromXml: function(xml){
     xml = $(xml);
-    return Oea.Section.create({
+    return Section.create({
       'id': xml.attr('ident'),
       'xml': xml
     });
@@ -22,14 +24,14 @@ Section.reopenClass({
 
   // Not all QTI files have sections. If we don't find one we build a default one to contain the items from the QTI file.
   buildDefault: function(xml){
-    return Oea.Section.create({
+    return Section.create({
       'id': 'default',
       'xml': xml
     });
   },
 
   parseSections: function(xml){
-    return Oea.Qti.listFromXml(xml, 'section', Oea.Section);
+    return Qti.listFromXml(xml, 'section', Section);
   }
 
 });

@@ -1,4 +1,4 @@
-export default SectionRoute = Ember.Route.extend({
+export default Ember.Route.extend({
 
   model: function(params){
     return this.modelFor('sections').findBy('id', params.section_id);

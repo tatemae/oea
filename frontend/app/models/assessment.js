@@ -1,6 +1,7 @@
-import ModelBase from "./_model_base";
+import Base from "./base";
+import Section from "./section";
 
-export default Assessment = ModelBase.extend({
+export default Base.extend({
 
   qtiUrl: '',
   sections: Ember.ArrayProxy.create(),
@@ -22,7 +23,7 @@ export default Assessment = ModelBase.extend({
       'id':    assessment.attr('ident'),
       'title': assessment.attr('title')
     });
-    this.get('sections').set('content', Oea.Section.parseSections(xml));
+    this.get('sections').set('content', Section.parseSections(xml));
   }
 
 });

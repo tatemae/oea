@@ -1,9 +1,11 @@
-export default ApplicationRoute = Ember.Route.extend({
+import Assessment from "../models/assessment";
+import AssessmentResult from "../models/assessment_result";
+
+export default Ember.Route.extend({
 
   model: function(params){
     return new Ember.RSVP.Promise(function(resolve, reject){
-
-      var assessment = Oea.Assessment.create({
+      var assessment = Assessment.create({
         qtiUrl: OEA_SETTINGS.qtiUrl
       });
 
@@ -16,7 +18,7 @@ export default ApplicationRoute = Ember.Route.extend({
       });
 
       // Record that the assessment was viewed
-      var assessmentResult = Oea.AssessmentResult.create({
+      var assessmentResult = AssessmentResult.create({
         assessment: assessment,
         resultsEndPoint: OEA_SETTINGS.resultsEndPoint,
         user_id: OEA_SETTINGS.userId

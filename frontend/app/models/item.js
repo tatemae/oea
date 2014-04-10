@@ -1,17 +1,19 @@
-import ModelBase from "./_model_base";
+import Base from "./base";
+import Answer from "./answer";
+import Qti from "../utils/qti";
 
-var Item = ModelBase.extend({
+var Item = Base.extend({
 
   result: null,
   choiceFeedback: null,
   selectedAnswerId: null,
 
   material: function(){
-    return Oea.Qti.buildMaterial(this.get('xml').find('presentation > material').children());
+    return Qti.buildMaterial(this.get('xml').find('presentation > material').children());
   }.property('xml'),
 
   answers: function(){
-    return Oea.Answer.parseAnswers(this.get('xml'));
+    return Answer.parseAnswers(this.get('xml'));
   }.property('xml')
 
 });
@@ -34,11 +36,11 @@ Item.reopenClass({
       attrs.question_type = 'multiple_choice_question';
     }
 
-    return Oea.Item.create(attrs);
+    return Item.create(attrs);
   },
 
   parseItems: function(xml){
-    return Oea.Qti.listFromXml(xml, 'item', Oea.Item);
+    return Qti.listFromXml(xml, 'item', Item);
   }
 
 });

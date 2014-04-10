@@ -1,4 +1,4 @@
-export default Qti = {
+var Qti = {
 
   // Process nodes based on QTI spec here:
   // http://www.imsglobal.org/question/qtiv1p2/imsqti_litev1p2.html#1404782
@@ -45,3 +45,5 @@ export default Qti = {
   }
 
 };
+
+export default Qti;

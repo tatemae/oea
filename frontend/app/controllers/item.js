@@ -1,4 +1,4 @@
-export default ItemController = Ember.ObjectController.extend({
+export default Ember.ObjectController.extend({
 
   actions: {
     checkAnswer: function(){
@@ -48,7 +48,7 @@ export default ItemController = Ember.ObjectController.extend({
             if(feedback && feedback.attr('view') && feedback.attr('view').length === 0 ||
               feedback.attr('view') == 'All' ||
               feedback.attr('view') == 'Candidate' ){  //All, Administrator, AdminAuthority, Assessor, Author, Candidate, InvigilatorProctor, Psychometrician, Scorer, Tutor
-              result = Oea.Qti.buildMaterial(feedback.find('material').children());
+              result = Qti.buildMaterial(feedback.find('material').children());
               if(feedbacks.indexOf(result) == -1){
                 feedbacks.pushObject(result);
               }
