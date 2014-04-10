@@ -20,7 +20,7 @@ Answer.reopenClass({
   },
 
   parseAnswers: function(xml){
-    return Qti.listFromXml(xml, 'response_lid > render_choice > response_label', Oea.Answer);
+    return Qti.listFromXml(xml, 'response_lid > render_choice > response_label', Answer);
   }
 
 });
