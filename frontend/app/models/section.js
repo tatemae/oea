@@ -1,4 +1,6 @@
-Oea.Section = Oea.ModelBase.extend({
+import ModelBase from "./_model_base";
+
+var Section = ModelBase.extend({
 
   items: Ember.ArrayProxy.create(),
 
@@ -8,7 +10,7 @@ Oea.Section = Oea.ModelBase.extend({
 
 });
 
-Oea.Section.reopenClass({
+Section.reopenClass({
 
   fromXml: function(xml){
     xml = $(xml);
@@ -31,3 +33,5 @@ Oea.Section.reopenClass({
   }
 
 });
+
+export default Section;

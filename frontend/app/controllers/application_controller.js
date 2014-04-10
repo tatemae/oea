@@ -1,2 +1,2 @@
-Oea.ApplicationController = Ember.ObjectController.extend({
+export default ApplicationController = Ember.ObjectController.extend({
 });

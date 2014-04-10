@@ -1,4 +1,6 @@
-Oea.AssessmentResult = Oea.ModelBase.extend({
+import ModelBase from "./_model_base";
+
+export default AssessmentResult = ModelBase.extend({
 
   // TODO change this to a get - maybe even just use an image on the page with the params so we don't run into cross origin issues.
   save: function(){

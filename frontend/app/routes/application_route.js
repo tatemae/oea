@@ -1,4 +1,4 @@
-Oea.ApplicationRoute = Ember.Route.extend({
+export default ApplicationRoute = Ember.Route.extend({
 
   model: function(params){
     return new Ember.RSVP.Promise(function(resolve, reject){
@@ -32,6 +32,3 @@ Oea.ApplicationRoute = Ember.Route.extend({
   }
 
 });
-
-
-

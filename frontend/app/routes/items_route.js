@@ -1,4 +1,4 @@
-Oea.ItemsRoute = Ember.Route.extend({
+export default ItemsRoute = Ember.Route.extend({
 
   model: function() {
     return this.modelFor('section').get('items');

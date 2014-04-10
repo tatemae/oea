@@ -1,4 +1,4 @@
-Oea.AnswerController = Ember.ObjectController.extend({
+export default AnswerController = Ember.ObjectController.extend({
 
 
 });

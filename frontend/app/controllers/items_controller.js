@@ -1,4 +1,4 @@
-Oea.ItemsController = Ember.ArrayController.extend({
+export default ItemsController = Ember.ArrayController.extend({
 
   item: null,
   needs: "item",

@@ -1,4 +1,4 @@
-Oea.ModelBase = Ember.Object.extend(Ember.Evented, {
+export default ModelBase = Ember.Object.extend(Ember.Evented, {
 
 
 });

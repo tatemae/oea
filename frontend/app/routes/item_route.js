@@ -1,4 +1,4 @@
-Oea.ItemRoute = Ember.Route.extend({
+export default ItemRoute = Ember.Route.extend({
 
   model: function(params){
 

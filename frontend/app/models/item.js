@@ -1,4 +1,6 @@
-Oea.Item = Oea.ModelBase.extend({
+import ModelBase from "./_model_base";
+
+var Item = ModelBase.extend({
 
   result: null,
   choiceFeedback: null,
@@ -14,7 +16,7 @@ Oea.Item = Oea.ModelBase.extend({
 
 });
 
-Oea.Item.reopenClass({
+Item.reopenClass({
 
   fromXml: function(xml){
     xml = $(xml);
@@ -40,3 +42,5 @@ Oea.Item.reopenClass({
   }
 
 });
+
+export default Item;

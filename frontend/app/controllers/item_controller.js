@@ -1,4 +1,4 @@
-Oea.ItemController = Ember.ObjectController.extend({
+export default ItemController = Ember.ObjectController.extend({
 
   actions: {
     checkAnswer: function(){

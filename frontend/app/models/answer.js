@@ -1,4 +1,6 @@
-Oea.Answer = Oea.ModelBase.extend({
+import ModelBase from "./_model_base";
+
+var Answer = ModelBase.extend({
 
   material: function(){
     return Oea.Qti.buildMaterial(this.get('xml').find('material').children());
@@ -6,7 +8,7 @@ Oea.Answer = Oea.ModelBase.extend({
 
 });
 
-Oea.Answer.reopenClass({
+Answer.reopenClass({
 
   fromXml: function(xml){
     xml = $(xml);
@@ -21,3 +23,5 @@ Oea.Answer.reopenClass({
   }
 
 });
+
+export default Answer;

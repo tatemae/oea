@@ -1,4 +1,6 @@
-Oea.Assessment = Oea.ModelBase.extend({
+import ModelBase from "./_model_base";
+
+export default Assessment = ModelBase.extend({
 
   qtiUrl: '',
   sections: Ember.ArrayProxy.create(),

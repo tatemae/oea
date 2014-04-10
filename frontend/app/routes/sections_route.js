@@ -1,4 +1,4 @@
-Oea.SectionsRoute = Ember.Route.extend({
+export default SectionsRoute = Ember.Route.extend({
 
   model: function() {
     return this.modelFor('application').get('sections');

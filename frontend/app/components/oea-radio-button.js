@@ -1,4 +1,4 @@
-Oea.OeaRadioButtonComponent = Ember.Component.extend({
+export default OeaRadioButtonComponent = Ember.Component.extend({
 
   tagName : "input",
   type : "radio",
