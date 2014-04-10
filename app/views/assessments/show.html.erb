@@ -15,10 +15,9 @@
     </div>
   </div>
 <% else -%>
-    <script>
-      window.ENV = {"rootURL":"/","FEATURES":{}};
-      document.write('<base href="' + document.location.origin + ENV.rootURL + '" />');
-    </script>
+  <script>
+    window.ENV = {"rootURL":"/assessments/load","FEATURES":{}};
+  </script>
   <script type="text/javascript">
     var OEA_SETTINGS = {
       qtiUrl: '<%= @src_url %>',
