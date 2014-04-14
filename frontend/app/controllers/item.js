@@ -10,7 +10,7 @@ export default Ember.ObjectController.extend({
       $.each(xml.find('respcondition'), function(i, condition){
 
         condition = $(condition);
-        conditionMet = false;
+        var conditionMet = false;
 
         if(condition.find('conditionvar > varequal').length){
           var varequal = condition.find('conditionvar > varequal');
