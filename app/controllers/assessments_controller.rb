@@ -16,16 +16,24 @@ class AssessmentsController < ApplicationController
 
   def show
     @user_id = params[:uid] || user_signed_in? ? current_user.id : ''
+    @embedded = params[:src_url].present? || params[:embed].present?
 
     if params[:id].present? && params[:id] != 'load'
       @assessment = Assessment.find(params[:id])
-      @embed_code = embed_code(@assessment)
+      if @embedded
+        # Just show the assessment. This is here to support old style embed with id=# and embed=true
+        @src_url = embed_url(@assessment)
+      else
+        # Show the full page with analtyics and embed code buttons
+        @embed_code = embed_code(@assessment)
+      end
+    else
+      # Get the remote url where we can download the qti
+      @src_url = ensure_scheme(params[:src_url]) if params[:src_url].present?
     end
 
-    @src_url = ensure_scheme(params[:src_url]) if params[:src_url].present?
-
     respond_to do |format|
-      format.html { render :layout => show_layout }
+      format.html { render :layout => @embedded ? 'bare' : 'application' }
     end
   end
 
@@ -52,14 +60,6 @@ class AssessmentsController < ApplicationController
 
     def assessment_params
       params.require(:assessment).permit(:title, :description, :xml_file)
-    end
-
-    def show_layout
-      if params[:src_url].present? || params[:embed].present?
-        'bare'
-      else
-        'application'
-      end
     end
 
 end
