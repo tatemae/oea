@@ -25,7 +25,7 @@ class AssessmentsController < ApplicationController
     @src_url = ensure_scheme(params[:src_url]) if params[:src_url].present?
 
     respond_to do |format|
-      format.html { render :layout => params[:src_url].present? ? 'bare' : 'application' }
+      format.html { render :layout => show_layout }
     end
   end
 
@@ -52,6 +52,14 @@ class AssessmentsController < ApplicationController
 
     def assessment_params
       params.require(:assessment).permit(:title, :description, :xml_file)
+    end
+
+    def show_layout
+      if params[:src_url].present? || params[:embed].present?
+        'bare'
+      else
+        'application'
+      end
     end
 
 end
