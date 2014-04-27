@@ -14,6 +14,10 @@ Oea.ItemsController = Ember.ArrayController.extend({
     }
   },
 
+  hideNavigation: function(){
+    return this.get('content.length') <= 1;
+  }.property('content'),
+
   atBegin: function(){
     return this.index() === 0;
   }.property('item'),
