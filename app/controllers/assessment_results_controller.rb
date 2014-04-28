@@ -9,7 +9,7 @@ class AssessmentResultsController < ApplicationController
         @submissions_count = @results.select{|i| i.session_status == 'final' }.count
         results_summaries = @assessment.items.collect(&:results_summary)
         percent_correct_array = results_summaries.collect{ |h| h[:percent_correct] }
-        @percent_correct = percent_correct_array.inject(:+).to_f / percent_correct_array.size * 100 #reject zeros?
+        @percent_correct = signif(percent_correct_array.inject(:+).to_f / percent_correct_array.size * 100, 2) #reject zeros?
 
         avg_time_to_complete_arr = @results.group_by(&:user_id).collect do |k,v|
           sorted = v.sort_by(&:created_at)
@@ -28,4 +28,5 @@ class AssessmentResultsController < ApplicationController
       end
     end
   end
+
 end

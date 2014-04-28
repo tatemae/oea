@@ -50,6 +50,9 @@ class ApplicationController < ActionController::Base
       CGI.unescapeHTML(%Q{<iframe src="//#{url}" frameborder="0" style="border:none;width:100%;height:100%;min-height:#{assessment.recommended_height || 400}px;"></iframe>})
     end
 
+    def signif(value, signs)
+      Float("%.#{signs}g" % value)
+    end
 
   private
 
