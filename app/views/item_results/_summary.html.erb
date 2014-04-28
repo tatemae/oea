@@ -9,7 +9,7 @@
     <%= item.results_summary[:submitted].count %>
   </td>
   <td>
-    <%= item.results_summary[:percent_correct] * 100 %>%
+    <%= signif(item.results_summary[:percent_correct] * 100, 2) %>%
   </td>
   <td>
     <%= item.results_summary[:referers].count %>
