@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+$(cd frontend && ember build)
+
+git add -f frontend/dist/assets/app.js
+
+git commit -m "add ember build"
+
+git push -f heroku master
+
+git reset --hard HEAD^

@@ -6,8 +6,12 @@ Open Embeddable Assessment
 Notes
 =====
 
+deploy
+======
+run `bin/deploy` to deploy
+
 oEmbed
-========================================
+======
 OEA supports oembed for assessments. The oEmbed endpoint is located at '/oembed.json'. Pass the url of an assessment to get it's oEmbed representation.
 
 Example when running the application locally:
