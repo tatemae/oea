@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Oea</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+      window.ENV = {{ENV}};
+      document.write('<base href="' + document.location.origin + ENV.rootURL + '" />');
+    </script>
+
+    <script type="text/javascript">
+      var queryDict = {}
+      location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
+      var OEA_SETTINGS = {
+        qtiUrl: queryDict['src_url'],
+        userId: '1',
+        resultsEndPoint: 'http://localhost:3000/api'
+      };
+    </script>
+
+    <link rel="stylesheet" href="assets/app.css">
+    <script src="assets/app.js"></script>
+  </head>
+  <body>
+    <script>
+      window.Oea = require('oea/main')['default']('oea');
+    </script>
+  </body>
+</html>
