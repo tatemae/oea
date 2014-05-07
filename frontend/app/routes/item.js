@@ -1,9 +1,9 @@
-import ItemResult from "../models/item_result";
+import ItemResult from '../models/item_result';
+import Utils from '../utils/utils'
 
 export default Ember.Route.extend({
 
   model: function(params){
-
     // Record that the item was viewed
     ItemResult.create({
       assessment: this.modelFor('application'),
@@ -14,6 +14,9 @@ export default Ember.Route.extend({
     }).save();
 
     return this.modelFor('items').findBy('id', params.item_id);
-  }
+  },
 
+  afterModel: function(model, transition){
+    model.set('start', Utils.currentTime())
+  },
 });

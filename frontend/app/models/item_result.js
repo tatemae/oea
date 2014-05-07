@@ -7,7 +7,11 @@ export default Base.extend({
     $.post(this.get('resultsEndPoint') + '/item_results',
     {
       assessment_id: this.get('assessment.id'),
-      user_id: this.get('user_id')
+      user_id: this.get('user_id'),
+      item_id: this.get('item_id'),
+      identifier: this.get('item_id'),
+      session_status: this.get('session_status'),
+      time_elapsed: this.get('timeSpent')
     },
     function(data){
     }, "json");

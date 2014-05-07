@@ -1,4 +1,9 @@
+import Qti from "../utils/qti";
+import Utils from '../utils/utils'
+import ItemResult from '../models/item_result';
+
 export default Ember.ObjectController.extend({
+  needs: "application",
 
   actions: {
     checkAnswer: function(){
@@ -58,6 +63,20 @@ export default Ember.ObjectController.extend({
 
         if(condition.attr('continue') == 'No'){ return false; }
       });
+
+      var start = this.get('start');
+      if(!Ember.isNone(start)){
+        var end = Utils.currentTime();
+        ItemResult.create({
+          assessment: this.get('controllers.application').get('model'),
+          resultsEndPoint: OEA_SETTINGS.resultsEndPoint,
+          user_id: OEA_SETTINGS.userId,
+          item_id: this.get('id'),
+          identifier: this.get('id'),
+          session_status: 'pendingSubmission',
+          timeSpent: end - start
+        }).save();
+      }
 
       this.set('choiceFeeback', feedbacks);
       this.set('result', (score > 0) ? 'Correct!' : 'Incorrect!');
