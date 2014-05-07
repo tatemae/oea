@@ -2,18 +2,16 @@ import ItemResult from "../models/item_result";
 
 export default Ember.Route.extend({
   beforeModel: function(transition){
-    if(typeof start !== "undefined")
-    {
+    if(typeof this.start !== "undefined"){
       this.endTimeOnQuestion();
       var item = this.get('currentModel');
-      console.log("time spent" + end - start);
-      Oea.ItemResult.create({
+      ItemResult.create({
         assessment: this.modelFor('application'),
         resultsEndPoint: OEA_SETTINGS.resultsEndPoint,
         user_id: OEA_SETTINGS.userId,
         item_id: item.id,
         identifier: item.id,
-        timeSpent: end - start
+        timeSpent: this.end - this.start
       }).save();
     }
   },
