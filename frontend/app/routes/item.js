@@ -1,18 +1,24 @@
-import ItemResult from "../models/item_result";
+import ItemResult from '../models/item_result';
 
 export default Ember.Route.extend({
   beforeModel: function(transition){
-    if(typeof this.start !== "undefined"){
-      this.endTimeOnQuestion();
-      var item = this.get('currentModel');
-      ItemResult.create({
-        assessment: this.modelFor('application'),
-        resultsEndPoint: OEA_SETTINGS.resultsEndPoint,
-        user_id: OEA_SETTINGS.userId,
-        item_id: item.id,
-        identifier: item.id,
-        timeSpent: this.end - this.start
-      }).save();
+    var item = this.get('currentModel')
+    if(!Ember.isNone(item)){
+      var start = item.get('start');
+      if(!Ember.isNone(start)){
+        var end = this.currentTime();
+        console.log('time:');
+        console.log(end - item.get('start'));
+        ItemResult.create({
+          assessment: this.modelFor('application'),
+          resultsEndPoint: OEA_SETTINGS.resultsEndPoint,
+          user_id: OEA_SETTINGS.userId,
+          item_id: item.id,
+          identifier: item.id,
+          timeSpent: end - start
+        }).save();
+        item.set('start', null);
+      }
     }
   },
 
@@ -27,20 +33,22 @@ export default Ember.Route.extend({
       identifier: params.item_id
     }).save();
 
-    return this.modelFor('items').findBy('id', params.item_id);
+    var model = this.modelFor('items').findBy('id', params.item_id);
+
+    model.set('start', null);
+
+    return model;
   },
 
   afterModel: function(model, transition){
-    this.startTimeOnQuestion();
+    model.set('start', this.currentTime())
   },
 
-  startTimeOnQuestion: function() {
-    this.start = new Date().getTime();
+  deactivate: function() {
+    this.get('currentModel').set('start', null);
   },
 
-  endTimeOnQuestion: function() {
-    this.end = new Date().getTime();
-  }
-
-
+  currentTime: function() {
+    return new Date().getTime();
+  },
 });
