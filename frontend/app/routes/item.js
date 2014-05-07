@@ -7,8 +7,6 @@ export default Ember.Route.extend({
       var start = item.get('start');
       if(!Ember.isNone(start)){
         var end = this.currentTime();
-        console.log('time:');
-        console.log(end - item.get('start'));
         ItemResult.create({
           assessment: this.modelFor('application'),
           resultsEndPoint: OEA_SETTINGS.resultsEndPoint,
@@ -33,19 +31,11 @@ export default Ember.Route.extend({
       identifier: params.item_id
     }).save();
 
-    var model = this.modelFor('items').findBy('id', params.item_id);
-
-    model.set('start', null);
-
-    return model;
+    return this.modelFor('items').findBy('id', params.item_id);
   },
 
   afterModel: function(model, transition){
     model.set('start', this.currentTime())
-  },
-
-  deactivate: function() {
-    this.get('currentModel').set('start', null);
   },
 
   currentTime: function() {
