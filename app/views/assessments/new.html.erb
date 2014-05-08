@@ -25,6 +25,12 @@
           </div>
 
           <div class="form-group">
+            <%= f.label :license, "License", :class => "control-label" %>
+            <%= f.text_area :license, :class => "form-control" %>
+            <p class="help-block">This value is optional.</p>
+          </div>
+
+          <div class="form-group">
             <%= f.label :xml_file, "Select QTI file to upload", :class => "control-label" %>
             <%= f.file_field :xml_file %>
           </div>

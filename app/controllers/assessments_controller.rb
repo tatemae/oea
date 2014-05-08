@@ -42,11 +42,12 @@ class AssessmentsController < ApplicationController
 
   def create
     xml = assessment_params[:xml_file].read
-    assessment = Assessment.from_xml(xml, current_user)
-    assessment.title = assessment_params[:title] if assessment_params[:title].present?
-    assessment.description = assessment_params[:description] if assessment_params[:description].present?
-    assessment.save
-    respond_with(assessment)
+    @assessment = Assessment.from_xml(xml, current_user)
+    @assessment.title = assessment_params[:title] if assessment_params[:title].present?
+    @assessment.description = assessment_params[:description] if assessment_params[:description].present?
+    @assessment.license = assessment_params[:license] if assessment_params[:license].present?
+    @assessment.save
+    respond_with(@assessment)
   end
 
   def destroy
@@ -59,7 +60,7 @@ class AssessmentsController < ApplicationController
   private
 
     def assessment_params
-      params.require(:assessment).permit(:title, :description, :xml_file)
+      params.require(:assessment).permit(:title, :description, :xml_file, :license)
     end
 
 end
