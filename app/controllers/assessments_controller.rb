@@ -46,6 +46,7 @@ class AssessmentsController < ApplicationController
     @assessment.title = assessment_params[:title] if assessment_params[:title].present?
     @assessment.description = assessment_params[:description] if assessment_params[:description].present?
     @assessment.license = assessment_params[:license] if assessment_params[:license].present?
+    @assessment.keywords = assessment_params[:keywords] if assessment_params[:keywords].present?
     @assessment.save
     respond_with(@assessment)
   end
@@ -60,7 +61,7 @@ class AssessmentsController < ApplicationController
   private
 
     def assessment_params
-      params.require(:assessment).permit(:title, :description, :xml_file, :license)
+      params.require(:assessment).permit(:title, :description, :xml_file, :license, :keywords)
     end
 
 end

@@ -19,6 +19,12 @@
           </div>
 
           <div class="form-group">
+            <%= f.label :keywords, "Assessment Keywords", :class => "control-label" %>
+            <%= f.text_field :keywords, :class => "form-control" %>
+            <p class="help-block">This value is optional.</p>
+          </div>
+
+          <div class="form-group">
             <%= f.label :description, "Description", :class => "control-label" %>
             <%= f.text_area :description, :class => "form-control" %>
             <p class="help-block">This value is optional.</p>

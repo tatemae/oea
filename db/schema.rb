@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508211601) do
+ActiveRecord::Schema.define(version: 20140508232010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20140508211601) do
     t.datetime "published_at"
     t.integer  "recommended_height"
     t.string   "license"
+    t.string   "keywords"
   end
 
   add_index "assessments", ["identifier", "user_id"], name: "index_assessments_on_identifier_and_user_id", using: :btree
