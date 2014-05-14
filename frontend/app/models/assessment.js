@@ -1,5 +1,6 @@
 import Base from "./base";
 import Section from "./section";
+var ajax = require('ic-ajax');
 
 export default Base.extend({
 
@@ -7,10 +8,11 @@ export default Base.extend({
   sections: Ember.ArrayProxy.create(),
 
   init: function(){
-    $.get(this.get('qtiUrl'), function(xml){
+    ajax.request(this.get('qtiUrl')).then(function(xml){
       this.parseAssessment(xml);
       this.trigger('loaded');
-    }.bind(this)).fail(function(){
+    }.bind(this), function(result){
+      console.log(result.statusText);
       this.trigger('error');
     }.bind(this));
   },
