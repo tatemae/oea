@@ -1,5 +1,5 @@
 import Qti from "../utils/qti";
-import Utils from '../utils/utils'
+import Utils from '../utils/utils';
 import ItemResult from '../models/item_result';
 
 export default Ember.ObjectController.extend({
