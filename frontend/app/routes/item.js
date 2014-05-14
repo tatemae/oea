@@ -4,6 +4,7 @@ import Utils from '../utils/utils'
 export default Ember.Route.extend({
 
   model: function(params){
+
     // Record that the item was viewed
     ItemResult.create({
       assessment: this.modelFor('application'),
@@ -17,6 +18,8 @@ export default Ember.Route.extend({
   },
 
   afterModel: function(model, transition){
-    model.set('start', Utils.currentTime())
+    if(!Ember.isNone(model)){
+      model.set('start', Utils.currentTime())
+    }
   },
 });

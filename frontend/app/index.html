@@ -7,11 +7,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script>
-      window.ENV = {{ENV}};
-      document.write('<base href="' + document.location.origin + ENV.rootURL + '" />');
-    </script>
+    {{BASE_TAG}}
 
+    <link rel="stylesheet" href="assets/app.css">
+  </head>
+  <body>
     <script type="text/javascript">
       var queryDict = {}
       location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
@@ -21,13 +21,12 @@
         resultsEndPoint: queryDict['results_end_point'] || 'http://localhost:4200/api'
       };
     </script>
-
-    <link rel="stylesheet" href="assets/app.css">
-    <script src="assets/app.js"></script>
-  </head>
-  <body>
     <script>
-      window.Oea = require('oea/main')['default']('oea');
+      window.ENV = {{ENV}};
+    </script>
+    <script src="assets/app.js"></script>
+    <script>
+      window.Oea = require('oea/app')['default'].create(ENV.APP);
     </script>
   </body>
 </html>

@@ -1,5 +1,6 @@
 {
   "predef": [
+    "Pretender",
     "document",
     "window",
     "location",
@@ -10,8 +11,6 @@
     "QUnit",
     "define",
     "console",
-    "require",
-    "requirejs",
     "equal",
     "notEqual",
     "notStrictEqual",
@@ -39,7 +38,11 @@
     "DS",
     "keyEvent",
     "isolatedContainer",
-    "startApp"
+    "startApp",
+    "andThen",
+    "currentURL",
+    "currentPath",
+    "currentRouteName"
   ],
   "node" : false,
   "browser" : false,

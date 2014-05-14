@@ -1,10 +1,18 @@
 import startApp from '../helpers/start-app';
+import XML from '../fixtures/8';
+var ajax = require('ic-ajax');
 
 window.OEA_SETTINGS = {
-  qtiUrl: 'http://localhost:4200/fixtures/8.xml',
+  qtiUrl: '/fixtures/8.xml',
   userId: '1',
-  resultsEndPoint: 'http://localhost:4200/api'
+  resultsEndPoint: '/api'
 };
+
+ajax.defineFixture('/fixtures/8.xml', {
+  response: XML.xml,
+  jqXHR: {},
+  textStatus: 'success'
+});
 
 var App;
 
@@ -24,10 +32,3 @@ test('index transitions to question', function(){
   });
 });
 
-test('when a question is viewed a result is created', function(){
-  visit('/');
-  andThen(function(){
-    debugger;
-    equal(this.store.find('item_result'));
-  });
-});
