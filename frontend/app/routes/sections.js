@@ -5,7 +5,7 @@ export default Ember.Route.extend({
   },
 
   afterModel: function(model, transition){
-    if(transition.targetName == 'sections.index'){
+    if(transition.targetName === 'sections.index'){
       this.transitionTo('section', model.objectAt(0));
     }
   }

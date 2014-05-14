@@ -1,5 +1,5 @@
 import ItemResult from '../models/item_result';
-import Utils from '../utils/utils'
+import Utils from '../utils/utils';
 
 export default Ember.Route.extend({
 
@@ -19,7 +19,7 @@ export default Ember.Route.extend({
 
   afterModel: function(model, transition){
     if(!Ember.isNone(model)){
-      model.set('start', Utils.currentTime())
+      model.set('start', Utils.currentTime());
     }
   },
 });

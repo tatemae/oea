@@ -5,7 +5,7 @@ export default Ember.Route.extend({
   },
 
   afterModel: function(model, transition){
-    if(transition.targetName == 'items.index'){
+    if(transition.targetName === 'items.index'){
       this.transitionTo('item', model.objectAt(0));
     }
   }

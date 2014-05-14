@@ -19,7 +19,7 @@ export default Ember.ObjectController.extend({
 
         if(condition.find('conditionvar > varequal').length){
           var varequal = condition.find('conditionvar > varequal');
-          if(varequal.text() == selectedAnswerId){
+          if(varequal.text() === selectedAnswerId){
             conditionMet = true;
           }
         } else if(condition.find('conditionvar > unanswered').length){
@@ -28,7 +28,7 @@ export default Ember.ObjectController.extend({
           }
         } else if(condition.find('conditionvar > not').length){
           if(condition.find('conditionvar > not > varequal').length){
-            if(selectedAnswerId != condition.find('conditionvar > not > varequal').text()){
+            if(selectedAnswerId !== condition.find('conditionvar > not > varequal').text()){
               conditionMet = true;
             }
           } else if(condition.find('conditionvar > not > unanswered').length) {
@@ -42,26 +42,26 @@ export default Ember.ObjectController.extend({
         if(conditionMet){
           var setvar = condition.find('setvar');
           var action = setvar.attr('action');
-          if(action == 'Add'){
+          if(action === 'Add'){
             score += parseFloat(setvar.text(), 10);
-          } else if(action == 'Set'){
+          } else if(action === 'Set'){
             score = parseFloat(setvar.text());
           }
           var feedbackId = condition.find('displayfeedback').attr('linkrefid');
           if(feedbackId){
             var feedback = xml.find('itemfeedback[ident="' + feedbackId + '"]');
             if(feedback && feedback.attr('view') && feedback.attr('view').length === 0 ||
-              feedback.attr('view') == 'All' ||
-              feedback.attr('view') == 'Candidate' ){  //All, Administrator, AdminAuthority, Assessor, Author, Candidate, InvigilatorProctor, Psychometrician, Scorer, Tutor
-              result = Qti.buildMaterial(feedback.find('material').children());
-              if(feedbacks.indexOf(result) == -1){
+              feedback.attr('view') === 'All' ||
+              feedback.attr('view') === 'Candidate' ){  //All, Administrator, AdminAuthority, Assessor, Author, Candidate, InvigilatorProctor, Psychometrician, Scorer, Tutor
+              var result = Qti.buildMaterial(feedback.find('material').children());
+              if(feedbacks.indexOf(result) === -1){
                 feedbacks.pushObject(result);
               }
             }
           }
         }
 
-        if(condition.attr('continue') == 'No'){ return false; }
+        if(condition.attr('continue') === 'No'){ return false; }
       });
 
       var start = this.get('start');
@@ -84,7 +84,7 @@ export default Ember.ObjectController.extend({
   },
 
   isMultipleChoice: function(){
-    return this.get('question_type') == 'multiple_choice_question';
+    return this.get('question_type') === 'multiple_choice_question';
   }.property('question_type')
 
 });
