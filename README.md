@@ -10,6 +10,10 @@ deploy
 ======
 run `bin/deploy` to deploy
 
+QTI
+===
+Most qti in active use seems to be the qti 1.2 lite variant. Full qti comes packaged in a zip file.
+
 oEmbed
 ======
 OEA supports oembed for assessments. The oEmbed endpoint is located at '/oembed.json'. Pass the url of an assessment to get it's oEmbed representation.
