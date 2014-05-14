@@ -10,6 +10,12 @@
         {{/if}}
       </div>
     </div>
+    {{#if promptConfidenceLevel}}
+      <div class="confidence" >
+          How confident are you in your response?
+          {{oea-confidence-level content=controller.confidence_levels value=selectedConfidenceLevel itemController="answer"}}
+      </div>
+    {{/if}}
     <div class="check_answer_result">
       <p>{{result}}</p>
       {{#each feedback in choiceFeeback}}
