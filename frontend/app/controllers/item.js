@@ -5,17 +5,16 @@ import ItemResult from '../models/item_result';
 export default Ember.ObjectController.extend({
   needs: "application",
 
-  promptConfidenceLevel: OEA_SETTINGS.confidence_level,
+  promptConfidenceLevel: OEA_SETTINGS.confidence_levels,
 
   confidence_levels: ['1', '2'],
 
   actions: {
-    checkAnswer: function(){
+    checkAnswer: function(selectedConfidenceLevel){
       var xml = this.get('xml');
       var selectedAnswerId = this.get('selectedAnswerId');
       var score = 0; // TODO we should get var names and types from the QTI. For now we just use the default 'score'
       var feedbacks = Ember.A();
-      var selectedConfidenceLevel = this.get('selectedConfidenceLevel');
 
       $.each(xml.find('respcondition'), function(i, condition){
 
