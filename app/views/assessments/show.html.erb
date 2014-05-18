@@ -22,7 +22,8 @@
     var OEA_SETTINGS = {
       qtiUrl: '<%= @src_url %>',
       userId: '<%= @user_id %>',
-      resultsEndPoint: '<%= @results_end_point || "http://#{request.host_with_port}/api" %>'
+      resultsEndPoint: '<%= @results_end_point || "http://#{request.host_with_port}/api" %>',
+      confidence_levels: '<%= @confidence_levels %>'
     };
   </script>
   <%= javascript_include_tag "oea/application" %>

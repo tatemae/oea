@@ -31,6 +31,7 @@ class AssessmentsController < ApplicationController
       # Get the remote url where we can download the qti
       @src_url = ensure_scheme(params[:src_url]) if params[:src_url].present?
       @results_end_point = ensure_scheme(params[:results_end_point]) if params[:results_end_point].present?
+      @confidence_levels = ensure_scheme(params[:confidence_levels]) if params[:confidence_levels].present?
     end
 
     respond_to do |format|
