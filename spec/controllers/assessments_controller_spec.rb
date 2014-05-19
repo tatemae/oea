@@ -20,6 +20,13 @@ describe AssessmentsController do
     end
   end
 
+  describe "GET 'show'" do
+    it "returns the confidence_level" do
+      get 'show', id: @assessment.id, confidence_levels: true
+      expect(assigns[:confidence_levels]).to eq(true)
+    end
+  end
+
   describe "POST 'create'" do
     it "sets a license and keywords" do
       sign_in FactoryGirl.create(:user)
