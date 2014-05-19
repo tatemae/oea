@@ -17,6 +17,8 @@ class AssessmentsController < ApplicationController
   def show
     @user_id = params[:uid] || user_signed_in? ? current_user.id : ''
     @embedded = params[:src_url].present? || params[:embed].present?
+    @confidence_levels = params[:confidence_levels] ? true : false
+    @results_end_point = ensure_scheme(params[:results_end_point]) if params[:results_end_point].present?
 
     if params[:id].present? && params[:id] != 'load'
       @assessment = Assessment.find(params[:id])
@@ -25,13 +27,12 @@ class AssessmentsController < ApplicationController
         @src_url = embed_url(@assessment)
       else
         # Show the full page with analtyics and embed code buttons
-        @embed_code = embed_code(@assessment)
+        @embed_code = embed_code(@assessment, @confidence_levels)
+        @embed_code_confidence_levels = embed_code(@assessment, true)
       end
     else
       # Get the remote url where we can download the qti
       @src_url = ensure_scheme(params[:src_url]) if params[:src_url].present?
-      @results_end_point = ensure_scheme(params[:results_end_point]) if params[:results_end_point].present?
-      @confidence_levels = ensure_scheme(params[:confidence_levels]) if params[:confidence_levels].present?
     end
 
     respond_to do |format|

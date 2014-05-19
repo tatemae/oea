@@ -7,8 +7,6 @@ export default Ember.ObjectController.extend({
 
   promptConfidenceLevel: OEA_SETTINGS.confidence_levels,
 
-  confidence_levels: ['1', '2'],
-
   actions: {
     checkAnswer: function(selectedConfidenceLevel){
       var xml = this.get('xml');
