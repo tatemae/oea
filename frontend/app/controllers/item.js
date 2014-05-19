@@ -75,9 +75,9 @@ export default Ember.ObjectController.extend({
           user_id: OEA_SETTINGS.userId,
           item_id: this.get('id'),
           identifier: this.get('id'),
-          session_status: 'pendingSubmission',
-          timeSpent: end - start,
-          confidenceLevel: selectedConfidenceLevel
+          session_status: 'final',
+          time_spent: end - start,
+          confidence_level: selectedConfidenceLevel
         }).save();
       }
 
