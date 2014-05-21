@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-$(cd frontend && ember build)
+cd frontend && ember build
+
+cd ..
 
 git add -f frontend/dist/assets/app.js
 
