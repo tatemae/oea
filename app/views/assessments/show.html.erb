@@ -10,7 +10,12 @@
         <p><span class="embed_word">embed</span><a href="#" class="btn btn-info embed_button">&lt/&gt</a></p>
       </div>
       <div class="embed_code">
-        <textarea class="embed_text" name="embed_text"> <%= @embed_code %></textarea>
+        <textarea class="embed_text hidden" name="embed_text"> <%= @embed_code %></textarea>
+        <textarea class="embed_text" name="embed_text_confidence_levels"> <%= @embed_code_confidence_levels %></textarea>
+        <div class="form-group">
+          <%= check_box_tag :confidence_levels, 'true', true %>
+          <%= label_tag "confidence_levels", "Display confidence controls" %>
+          </div>
       </div>
     </div>
   </div>
@@ -22,7 +27,8 @@
     var OEA_SETTINGS = {
       qtiUrl: '<%= @src_url %>',
       userId: '<%= @user_id %>',
-      resultsEndPoint: '<%= @results_end_point || "http://#{request.host_with_port}/api" %>'
+      resultsEndPoint: '<%= @results_end_point || "http://#{request.host_with_port}/api" %>',
+      confidence_levels: <%= @confidence_levels %>
     };
   </script>
   <%= javascript_include_tag "oea/application" %>

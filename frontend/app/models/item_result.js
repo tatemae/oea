@@ -11,7 +11,8 @@ export default Base.extend({
       item_id: this.get('item_id'),
       identifier: this.get('item_id'),
       session_status: this.get('session_status'),
-      time_elapsed: this.get('timeSpent')
+      time_elapsed: this.get('time_spent'),
+      confidence_level: this.get('confidence_level')
     },
     function(data){
     }, "json");

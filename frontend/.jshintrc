@@ -9,7 +9,10 @@
     "DS": true,
     "$": true,
     "ENV": true,
-    "module": true
+    "module": true,
+    "require": true,
+    "console": true,
+    "OEA_SETTINGS": true
   },
   "node" : false,
   "browser" : false,

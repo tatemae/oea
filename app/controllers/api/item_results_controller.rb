@@ -27,8 +27,19 @@ class Api::ItemResultsController < ApplicationController
       referer: referer,
       ip_address: request.ip,
       time_elapsed: params['time_elapsed'],
+      confidence_level: convert_confidence_level,
       session_status: params[:session_status] || 'initial')
     respond_with(:api, @item_result)
+  end
+
+  private
+
+  def convert_confidence_level
+    case params['confidence_level']
+      when "Maybe?" then 1
+      when "Probably." then 2
+      when "Definitely!" then 3
+    end
   end
 
 end

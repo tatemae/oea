@@ -16,4 +16,17 @@ $(document).ready(function() {
     }
   });
 
+  $('#confidence_levels').on('click', function(e){
+    if( e.currentTarget.checked )
+    {
+      $('[name=embed_text]').addClass('hidden');
+      $('[name=embed_text_confidence_levels]').removeClass('hidden');
+    }
+    else
+    {
+      $('[name=embed_text]').removeClass('hidden');
+      $('[name=embed_text_confidence_levels]').addClass('hidden');
+    }
+  });
+
 });

@@ -5,8 +5,10 @@ import ItemResult from '../models/item_result';
 export default Ember.ObjectController.extend({
   needs: "application",
 
+  promptConfidenceLevel: OEA_SETTINGS.confidence_levels,
+
   actions: {
-    checkAnswer: function(){
+    checkAnswer: function(selectedConfidenceLevel){
       var xml = this.get('xml');
       var selectedAnswerId = this.get('selectedAnswerId');
       var score = 0; // TODO we should get var names and types from the QTI. For now we just use the default 'score'
@@ -73,8 +75,9 @@ export default Ember.ObjectController.extend({
           user_id: OEA_SETTINGS.userId,
           item_id: this.get('id'),
           identifier: this.get('id'),
-          session_status: 'pendingSubmission',
-          timeSpent: end - start
+          session_status: 'final',
+          time_spent: end - start,
+          confidence_level: selectedConfidenceLevel
         }).save();
       }
 
