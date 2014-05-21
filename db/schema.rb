@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20140519211308) do
     t.datetime "updated_at"
   end
 
-  add_index "assessment_outcomes", ["assessment_id", "outcome_id"], name: "index_assessment_outcomes_on_assessment_id_and_outcome_id", using: :btree
   add_index "assessment_outcomes", ["assessment_id"], name: "index_assessment_outcomes_on_assessment_id", using: :btree
   add_index "assessment_outcomes", ["outcome_id"], name: "index_assessment_outcomes_on_outcome_id", using: :btree
 
