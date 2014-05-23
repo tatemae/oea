@@ -26,6 +26,7 @@ module('Integration - Index', {
 });
 
 test('index transitions to question', function(){
+  expect(1);
   visit('/');
   andThen(function(){
     equal(find('div.header p').text(), 'Question 1');
