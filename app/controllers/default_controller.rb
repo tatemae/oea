@@ -20,7 +20,7 @@ class DefaultController < ApplicationController
       errors << "a message" if params[:message].blank?
 
       if errors.blank?
-        DefaultMailer.mail_from_params(:subject => "Thanks for your inquiry from #{ENV['application_name']}!", :body=>body.join("\n")).deliver
+        UserMailer.contact_email(params[:email], params[:name]).deliver
         flash[:notice] = 'Thanks for contacting us!'
         redirect_to contact_url
         return

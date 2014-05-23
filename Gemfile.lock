@@ -155,6 +155,8 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    sendgrid (1.2.0)
+      json
     sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -211,6 +213,7 @@ DEPENDENCIES
   rspec-rails (~> 2.0)
   ruby-saml-mod
   sass-rails (~> 4.0.0)
+  sendgrid
   uglifier (>= 1.3.0)
   unicorn
   will_paginate (~> 3.0.3)

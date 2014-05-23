@@ -33,6 +33,8 @@ gem 'will_paginate', '~> 3.0.3'
 
 gem 'figaro'
 
+gem 'sendgrid'
+
 gem 'ruby-saml-mod'
 
 # Ember stuff
