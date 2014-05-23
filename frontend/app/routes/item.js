@@ -1,15 +1,15 @@
 import ItemResult from '../models/item_result';
 import Utils from '../utils/utils';
+import Settings from '../models/settings';
 
 export default Ember.Route.extend({
 
   model: function(params){
-
     // Record that the item was viewed
     ItemResult.create({
       assessment: this.modelFor('application'),
-      resultsEndPoint: OEA_SETTINGS.resultsEndPoint,
-      user_id: OEA_SETTINGS.userId,
+      resultsEndPoint: Settings.get('resultsEndPoint'),
+      user_id: Settings.get('userId'),
       item_id: params.item_id,
       identifier: params.item_id
     }).save();

@@ -1,11 +1,12 @@
 import Qti from "../utils/qti";
 import Utils from '../utils/utils';
 import ItemResult from '../models/item_result';
+import Settings from '../models/settings';
 
 export default Ember.ObjectController.extend({
   needs: "application",
 
-  promptConfidenceLevel: OEA_SETTINGS.confidence_levels,
+  promptConfidenceLevel: Settings.get('confidence_levels'),
 
   actions: {
     checkAnswer: function(selectedConfidenceLevel){
@@ -71,8 +72,8 @@ export default Ember.ObjectController.extend({
         var end = Utils.currentTime();
         ItemResult.create({
           assessment: this.get('controllers.application').get('model'),
-          resultsEndPoint: OEA_SETTINGS.resultsEndPoint,
-          user_id: OEA_SETTINGS.userId,
+          resultsEndPoint: Settings.get('resultsEndPoint'),
+          user_id: Settings.get('userId'),
           item_id: this.get('id'),
           identifier: this.get('id'),
           session_status: 'final',
