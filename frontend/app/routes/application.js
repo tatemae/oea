@@ -1,13 +1,14 @@
 import Assessment from "../models/assessment";
 import AssessmentResult from "../models/assessment_result";
-import Settings from "../models/settings";
 
 export default Ember.Route.extend({
 
   model: function(params){
+    var settings = this.get('settings');
+
     return new Ember.RSVP.Promise(function(resolve, reject){
       var assessment = Assessment.create({
-        qtiUrl: Settings.get('qtiUrl')
+        qtiUrl: settings.get('qtiUrl')
       });
 
       assessment.on('loaded', function(){
@@ -21,8 +22,8 @@ export default Ember.Route.extend({
       // Record that the assessment was viewed
       var assessmentResult = AssessmentResult.create({
         assessment: assessment,
-        resultsEndPoint: Settings.get('resultsEndPoint'),
-        user_id: Settings.get('userId')
+        resultsEndPoint: settings.get('resultsEndPoint'),
+        user_id: settings.get('userId')
       }).save();
 
     });

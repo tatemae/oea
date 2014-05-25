@@ -15,6 +15,8 @@ moduleFor("model:settings", "Unit - Settings", {
 test("it exists", function(){
   expect(2);
 
-  ok(Settings);
-  equal(Settings.get("qtiUrl"), '/fixtures/8.xml');
+  var settings = this.subject();
+
+  ok(settings);
+  equal(settings.get("qtiUrl"), '/fixtures/8.xml');
 });

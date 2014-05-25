@@ -1,4 +1,4 @@
-var settings = Ember.Object.extend({
+export default Ember.Object.extend({
   params: function() {
     var queryDict = {};
     var vars = window.location.search.substring(1).split('&');
@@ -34,5 +34,3 @@ var settings = Ember.Object.extend({
   }
 
 });
-
-export default settings.create({});
