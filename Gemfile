@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 1.0.1'
 
 # User Auth
 gem 'devise', '>=3.0.0'
-gem 'cancan'
+gem 'cancancan'
 
 # Acts as taggable for keywords
 gem 'acts-as-taggable-on'

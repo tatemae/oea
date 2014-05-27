@@ -43,7 +43,7 @@ GEM
     byebug (2.6.0)
       columnize (~> 0.3)
       debugger-linecache (~> 1.2)
-    cancan (1.6.10)
+    cancancan (1.8.0)
     chartkick (1.2.1)
     columnize (0.3.6)
     debugger (1.6.5)
@@ -195,7 +195,7 @@ DEPENDENCIES
   addressable (~> 2.3.5)
   bootstrap-sass (~> 3.0.3.0)
   byebug
-  cancan
+  cancancan
   chartkick
   debugger
   devise (>= 3.0.0)
