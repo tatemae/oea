@@ -26,10 +26,10 @@ export default Ember.Object.extend({
   }.property('params'),
 
   bestValue: function(settings_prop, params_prop, default_prop){
-    if(OEA_SETTINGS){
-      return OEA_SETTINGS[settings_prop];
-    } else {
+    if(typeof OEA_SETTINGS === 'undefined'){
       return this.get('params')[params_prop] || default_prop;
+    } else {
+      return OEA_SETTINGS[settings_prop];
     }
   }
 
