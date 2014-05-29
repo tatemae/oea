@@ -34,7 +34,7 @@ describe AssessmentsController do
       assessment = FactoryGirl.attributes_for(:assessment).merge({xml_file: xml_file, license: "foo license", keywords: "foo keywords"} )
       post 'create', assessment: assessment
       expect(assigns[:assessment].license).to eq("foo license")
-      expect(assigns[:assessment].keywords).to eq("foo keywords")
+      expect(assigns[:assessment].keyword_list).to eq(["foo keywords"])
     end
   end
 

@@ -141,35 +141,34 @@ class Item < ActiveRecord::Base
   end
 
   def self.results_summary( opts={} )
-    @results_summary ||= begin
-      users = []
-      referers = []
-      correct = []
-      submitted = []
-      results = Item.raw_results( opts )
 
-      results.map do |item_result|
-        users << item_result.user if !users.include?(item_result.user)
-        referers << item_result.referer if !item_result.referer.nil? && !referers.include?(item_result.referer)
-        correct << item_result if item_result.item_variable && item_result.item_variable.map { |iv| iv["response_variable"]["correct_response"].include?(iv["response_variable"]["candidate_response"]) }.any?
-      end
-      
+    users = []
+    referers = []
+    correct = []
+    submitted = []
+    results = Item.raw_results( opts )
 
-      results.each do |result| 
-        if result.session_status == 'final'
-          submitted << result
-        end
-      end
-
-      {
-        renders: users.count,
-        submitted: submitted,
-        users: users,
-        referers: referers,
-        correct: correct,
-        percent_correct: submitted.count > 0 ? correct.count.to_f / submitted.count.to_f : 0
-      }
+    results.map do |item_result|
+      users << item_result.user if !users.include?(item_result.user)
+      referers << item_result.referer if !item_result.referer.nil? && !referers.include?(item_result.referer)
+      correct << item_result if item_result.item_variable && item_result.item_variable.map { |iv| iv["response_variable"]["correct_response"].include?(iv["response_variable"]["candidate_response"]) }.any?
     end
+    
+
+    results.each do |result| 
+      if result.session_status == 'final'
+        submitted << result
+      end
+    end
+
+    {
+      renders: users.count,
+      submitted: submitted,
+      users: users,
+      referers: referers,
+      correct: correct,
+      percent_correct: submitted.count > 0 ? correct.count.to_f / submitted.count.to_f : 0
+    }
   end
 
   def raw_results( scope_url=nil )
