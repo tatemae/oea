@@ -24,6 +24,9 @@ gem 'jbuilder', '~> 1.0.1'
 gem 'devise', '>=3.0.0'
 gem 'cancan'
 
+# Acts as taggable for keywords
+gem 'acts-as-taggable-on'
+
 # html/xml parsers
 gem 'nokogiri'
 

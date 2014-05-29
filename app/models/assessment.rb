@@ -1,6 +1,8 @@
 class Assessment < ActiveRecord::Base
   validates_presence_of :title
 
+  acts_as_taggable_on :keywords
+
   has_many :sections, dependent: :destroy
   has_many :items, through: :sections
   has_many :assessment_results, dependent: :destroy
@@ -12,7 +14,6 @@ class Assessment < ActiveRecord::Base
   scope :by_newest, -> { order(created_at: :desc) }
   scope :by_oldest, -> { order(start_date: :asc) }
   scope :by_latest, -> { order(updated_at: :desc) }
-  scope :by_keyword, lambda{|keyword| where("keywords like ?", "%#{keyword}%") }
 
   def self.from_xml(input_xml, user, src_url=nil, published_at=nil, file_name = nil)
     if xml = AssessmentParser.parse(input_xml).first

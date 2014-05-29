@@ -129,7 +129,7 @@ class Item < ActiveRecord::Base
       end
     end
     if opts[:keyword].present?
-      Assessment.by_keyword(opts[:keyword]).each do |assessment|
+      Assessment.tagged_with(opts[:keyword]).each do |assessment|
         assessment.items.each do |item|
           item.item_results.each{|item_result| results << item_result }
         end
