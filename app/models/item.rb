@@ -1,4 +1,6 @@
 class Item < ActiveRecord::Base
+  acts_as_taggable_on :keywords
+  
   has_many :item_results, dependent: :destroy
   belongs_to :section
 

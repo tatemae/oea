@@ -34,6 +34,13 @@ describe Item do
     it 'should extract the question_type' do
       @item.base_type.should match 'multiple_choice_question'
     end
+
+    it 'should add keywords to assessment' do
+      keyword = FactoryGirl.generate(:name)
+      @item.keyword_list.add(keyword, parse: true)
+      @item.save
+      Item.tagged_with(keyword).first.should eq(@item)
+    end
   end
 
   describe 'results' do
@@ -95,7 +102,6 @@ describe Item do
 
     describe 'results summary' do
     
-      ##### These work by themselves, they just don't work as a group for some reason ####
       it 'should return results with identifier' do
         results = Item.results_summary(scope_url: nil, identifier: @item.identifier, keyword: nil)
         results[:submitted].should include(@item_result)
@@ -129,9 +135,7 @@ describe Item do
       end
 
       it 'should return results with scope' do
-        
         results = Item.results_summary(scope_url: @item_result.referer, identifier: nil, keyword: nil)
-
         results[:submitted].should include(@item_result)
       end
     end

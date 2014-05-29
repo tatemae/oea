@@ -16,4 +16,13 @@ describe Assessment do
   it 'should extract the section' do
     @assessment.sections.count.should eq 1
   end
+
+  describe 'acts as taggable'
+    it 'should add keywords to assessment' do
+      keyword = FactoryGirl.generate(:name)
+      @assessment.keyword_list.add(keyword, parse: true)
+      @assessment.save
+      Assessment.tagged_with(keyword).first.should eq(@assessment)
+    end
+
 end
