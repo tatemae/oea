@@ -6,10 +6,12 @@ class Api::ItemResultsController < ApplicationController
   def index
     scope_url = params[:url] if params[:scope] == 'domain' || params[:scope] == 'page'
     scope_url = get_domain(scope_url) if params[:scope] == 'domain'
+    identifier = params[:identifer] if params[:identifer]
+    keyword = params[:keyword] if params[:keyword]
     if params[:type] == 'summary'
-      results = Item.find(params[:id]).results_summary( scope_url )
+      results = Item.results_summary( scope_url: scope_url, identifier: identifier, keyword: keyword )
     else
-      results = Item.find(params[:id]).raw_results( scope_url )
+      results = Item.raw_results( scope_url: scope_url, identifier: identifier, keyword: keyword )
     end
     respond_to do |format|
       format.json { render json: results }

@@ -3,6 +3,7 @@ class Item < ActiveRecord::Base
   belongs_to :section
 
   scope :by_oldest, -> { order("items.created_at ASC") }
+  scope :by_identifier, lambda{|identifier| where("identifier = ?", identifier)} 
 
   def self.from_xml(input_xml, section)
     xml = Nokogiri::XML.parse(input_xml)
@@ -117,11 +118,65 @@ class Item < ActiveRecord::Base
     base_type
   end
 
-  def raw_results( scope_url = nil )
-    results = scope_url ? item_results.where("referer LIKE ?", "%#{scope_url}%") : item_results
+  def self.raw_results( opts={} )
+    results = []
+    if opts[:scope_url].present?
+      results = ItemResult.where("referer LIKE ?", "%#{opts[:scope_url]}%") 
+    end
+    if opts[:identifier].present?
+      Item.by_identifier(opts[:identifier]).each do |item|
+        item.item_results.each{|item_result| results << item_result }
+      end
+    end
+    if opts[:keyword].present?
+      Assessment.by_keyword(opts[:keyword]).each do |assessment|
+        assessment.items.each do |item|
+          item.item_results.each{|item_result| results << item_result }
+        end
+      end
+    end
+
+    return results
+    
   end
 
-  def results_summary( scope_url = nil )
+  def self.results_summary( opts={} )
+    @results_summary ||= begin
+      users = []
+      referers = []
+      correct = []
+      submitted = []
+      results = Item.raw_results( opts )
+
+      results.map do |item_result|
+        users << item_result.user if !users.include?(item_result.user)
+        referers << item_result.referer if !item_result.referer.nil? && !referers.include?(item_result.referer)
+        correct << item_result if item_result.item_variable && item_result.item_variable.map { |iv| iv["response_variable"]["correct_response"].include?(iv["response_variable"]["candidate_response"]) }.any?
+      end
+      
+
+      results.each do |result| 
+        if result.session_status == 'final'
+          submitted << result
+        end
+      end
+
+      {
+        renders: users.count,
+        submitted: submitted,
+        users: users,
+        referers: referers,
+        correct: correct,
+        percent_correct: submitted.count > 0 ? correct.count.to_f / submitted.count.to_f : 0
+      }
+    end
+  end
+
+  def raw_results( scope_url=nil )
+    return scope_url ? item_results.where("referer LIKE ?", "%#{scope_url}%") : item_results
+  end
+
+  def results_summary( scope_url=nil )
     @results_summary ||= begin
       users = []
       referers = []

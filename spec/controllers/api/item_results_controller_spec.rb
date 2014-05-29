@@ -17,8 +17,8 @@ describe Api::ItemResultsController do
     it "scopes results" do
       get :index, format: :json, id: @item.id, scope: 'domain', url: 'www.example.com/index'
       result = JSON.parse(response.body)
-      result['item_results'][0]['item_results']['id'].should eq @result3.id
-      result['item_results'][1]['item_results']['id'].should eq @result2.id
+      result['item_results'][0]['item_results']['id'].should eq @result2.id
+      result['item_results'][1]['item_results']['id'].should eq @result3.id
     end
 
     it "renders results as csv" do
