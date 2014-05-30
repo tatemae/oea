@@ -3,6 +3,13 @@ import AssessmentResult from "../models/assessment_result";
 
 export default Ember.Route.extend({
 
+  beforeModel: function(transition){
+    var qtiUrl = this.get('settings').get('qtiUrl');
+    if(Ember.isBlank(qtiUrl)){
+      throw new Error("No src_url specified: specify a src_url in the url query params.");
+    }
+  },
+
   model: function(params){
     var settings = this.get('settings');
 
@@ -33,6 +40,15 @@ export default Ember.Route.extend({
     if(transition.targetName === 'index'){
       this.transitionTo('sections');
     }
-  }
+  },
 
+  actions: {
+    error: function(e) {
+      var controller = Ember.ObjectController.create({
+        content: e
+      })
+      this.render('error', {controller: controller});
+      return true;
+    }
+  }
 });
