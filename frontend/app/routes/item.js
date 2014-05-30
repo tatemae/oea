@@ -9,6 +9,7 @@ export default Ember.Route.extend({
       assessment: this.modelFor('application'),
       resultsEndPoint: this.get('settings').get('resultsEndPoint'),
       user_id: this.get('settings').get('userId'),
+      eid: this.get('settings').get('eid'),
       item_id: params.item_id,
       identifier: params.item_id
     }).save();

@@ -7,7 +7,8 @@ export default Base.extend({
   save: function(){
     var data = {
       assessment_id: this.get('assessment.id'),
-      user_id: this.get('user_id')
+      user_id: this.get('user_id'),
+      eid: this.get('eid')
     };
     ajax.request(this.get('resultsEndPoint') + '/assessment_results',
       {type: 'POST', data: data, dataType: 'json'});

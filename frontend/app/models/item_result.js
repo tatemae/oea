@@ -10,6 +10,7 @@ export default Base.extend({
       user_id: this.get('user_id'),
       item_id: this.get('item_id'),
       identifier: this.get('item_id'),
+      eid: this.get('eid'),
       session_status: this.get('session_status'),
       time_elapsed: this.get('time_spent'),
       confidence_level: this.get('confidence_level')

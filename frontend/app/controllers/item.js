@@ -75,6 +75,7 @@ export default Ember.ObjectController.extend({
           assessment: this.get('controllers.application').get('model'),
           resultsEndPoint: this.get('settings').get('resultsEndPoint'),
           user_id: this.get('settings').get('userId'),
+          eid: this.get('settings').get('eid'),
           item_id: this.get('id'),
           identifier: this.get('id'),
           session_status: 'final',

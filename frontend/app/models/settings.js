@@ -13,6 +13,10 @@ export default Ember.Object.extend({
     return this.bestValue('qtiUrl', 'src_url');
   }.property('params'),
 
+  eid: function(){
+    return this.bestValue('eid', 'eid');
+  }.property('params'),
+
   userId: function(){
     return this.bestValue('userId', 'userId', '1');
   }.property('params'),
