@@ -26,6 +26,7 @@
   <script type="text/javascript">
     var OEA_SETTINGS = {
       qtiUrl: '<%= @src_url %>',
+      assessmentId: '<%= params[:assessment_id] %>',
       userId: '<%= @user_id %>',
       resultsEndPoint: '<%= @results_end_point || "http://#{request.host_with_port}/api" %>',
       confidence_levels: <%= @confidence_levels %>
