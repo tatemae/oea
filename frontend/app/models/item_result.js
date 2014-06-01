@@ -6,17 +6,17 @@ export default Base.extend({
   save: function(){
     $.post(this.get('resultsEndPoint') + '/item_results',
     {
-      assessment_id: this.get('assessment.id'),
+      assessment_result_id: this.get('assessment_result_id'),
       user_id: this.get('user_id'),
       item_id: this.get('item_id'),
-      identifier: this.get('item_id'),
-      eid: this.get('eid'),
+      identifier: this.get('identifier'),
+      eId: this.get('eId'),
       session_status: this.get('session_status'),
       time_elapsed: this.get('time_spent'),
       confidence_level: this.get('confidence_level')
     },
-    function(data){
-    }, "json");
+    function(data){},
+    "json");
   }
 
 });

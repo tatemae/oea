@@ -4,20 +4,19 @@ import Utils from '../utils/utils';
 export default Ember.Route.extend({
 
   model: function(params){
-    // Record that the item was viewed
-    ItemResult.create({
-      assessment: this.modelFor('application'),
-      resultsEndPoint: this.get('settings').get('resultsEndPoint'),
-      user_id: this.get('settings').get('userId'),
-      eid: this.get('settings').get('eid'),
-      item_id: params.item_id,
-      identifier: params.item_id
-    }).save();
-
     return this.modelFor('items').findBy('id', params.item_id);
   },
 
   afterModel: function(model, transition){
+    // Record that the item was viewed
+    ItemResult.create({
+      assessment_result_id: this.modelFor('application').get('assessment_result.id'),
+      resultsEndPoint: this.get('settings').get('resultsEndPoint'),
+      user_id: this.get('settings').get('userId'),
+      eId: this.get('settings').get('eId'),
+      identifier: model.get('id')
+    }).save();
+
     if(!Ember.isNone(model)){
       model.set('start', Utils.currentTime());
     }

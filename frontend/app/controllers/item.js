@@ -72,11 +72,10 @@ export default Ember.ObjectController.extend({
       if(!Ember.isNone(start)){
         var end = Utils.currentTime();
         ItemResult.create({
-          assessment: this.get('controllers.application').get('model'),
+          assessment_result_id: this.get('controllers.application').get('model').get('assessment_result.id'),
           resultsEndPoint: this.get('settings').get('resultsEndPoint'),
           user_id: this.get('settings').get('userId'),
-          eid: this.get('settings').get('eid'),
-          item_id: this.get('id'),
+          eId: this.get('settings').get('eId'),
           identifier: this.get('id'),
           session_status: 'final',
           time_spent: end - start,

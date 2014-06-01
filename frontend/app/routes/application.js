@@ -19,20 +19,24 @@ export default Ember.Route.extend({
       });
 
       assessment.on('loaded', function(){
-        resolve(assessment);
+        // Record that the assessment was viewed
+        AssessmentResult.create({
+          assessment_id: settings.get('assessmentId'),
+          eId: settings.get('eId'),
+          resultsEndPoint: settings.get('resultsEndPoint'),
+          user_id: settings.get('userId')
+        }).save().then(function(result) {
+          assessment.set('assessment_result', result);
+          resolve(assessment);
+        }.bind(this), function(e) {
+          resolve(assessment);
+        }.bind(this));
+
       }.bind(this));
 
       assessment.on('error', function(){
         reject(new Error("Failed to load assessment"));
       });
-
-      // Record that the assessment was viewed
-      var assessmentResult = AssessmentResult.create({
-        assessment: assessment,
-        eid: settings.get('eid'),
-        resultsEndPoint: settings.get('resultsEndPoint'),
-        user_id: settings.get('userId')
-      }).save();
 
     });
   },
@@ -47,7 +51,7 @@ export default Ember.Route.extend({
     error: function(e) {
       var controller = Ember.ObjectController.create({
         content: e
-      })
+      });
       this.render('error', {controller: controller});
       return true;
     }
