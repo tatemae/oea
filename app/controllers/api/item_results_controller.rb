@@ -25,6 +25,7 @@ class Api::ItemResultsController < ApplicationController
     @item_result = user.item_results.create!(
       identifier: params[:identifier],
       item_id: params[:item_id],
+      assessment_result_id: params[:assessment_result_id],
       rendered_datestamp: rendered_time,
       referer: referer,
       ip_address: request.ip,
