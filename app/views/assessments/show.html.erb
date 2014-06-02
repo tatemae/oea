@@ -29,7 +29,8 @@
       assessmentId: '<%= params[:assessment_id] %>',
       userId: '<%= @user_id %>',
       resultsEndPoint: '<%= @results_end_point || "http://#{request.host_with_port}/api" %>',
-      confidence_levels: <%= @confidence_levels %>
+      confidence_levels: <%= @confidence_levels %>,
+      eid: <%= @eid %>
     };
   </script>
   <%= javascript_include_tag "oea/application" %>

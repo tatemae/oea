@@ -9,9 +9,15 @@
         <%= text_field_tag :src_url, nil, class: "form-control" %>
         <p class="help-block">(e.g. <%= "http://#{request.host_with_port}/assessment.xml" %>)</p>
       </div>
-    <div class="form-group">
-      <%= check_box_tag :confidence_levels, 'true', true %>
-      <%= label_tag "confidence_levels", "Display confidence controls" %>
+
+      <div class="form-group">
+        <%= label_tag "assessment", "Enter the embed identifier" %>
+        <%= text_field_tag :eid, nil, class: "form-control", style: "width: 350px;" %>
+      </div>
+
+      <div class="form-group">
+        <%= check_box_tag :confidence_levels, 'true', true %>
+        <%= label_tag "confidence_levels", "Display confidence controls" %>
       </div>
       <%= submit_tag "View Assessment", :class => "btn" %>
     <% end -%>

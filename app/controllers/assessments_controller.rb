@@ -19,16 +19,16 @@ class AssessmentsController < ApplicationController
     @embedded = params[:src_url].present? || params[:embed].present?
     @confidence_levels = params[:confidence_levels] ? true : false
     @results_end_point = ensure_scheme(params[:results_end_point]) if params[:results_end_point].present?
-
     if params[:id].present? && params[:id] != 'load'
       @assessment = Assessment.find(params[:id])
+      @eid = params[:eid] ? params[:eid] : @assessment.identifier
       if @embedded
         # Just show the assessment. This is here to support old style embed with id=# and embed=true
         @src_url = embed_url(@assessment)
       else
         # Show the full page with analtyics and embed code buttons
-        @embed_code = embed_code(@assessment, @confidence_levels)
-        @embed_code_confidence_levels = embed_code(@assessment, true)
+        @embed_code = embed_code(@assessment, @confidence_levels, @eid)
+        @embed_code_confidence_levels = embed_code(@assessment, true, @eid)
       end
     else
       # Get the remote url where we can download the qti
