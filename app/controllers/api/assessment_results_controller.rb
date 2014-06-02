@@ -8,11 +8,12 @@ class Api::AssessmentResultsController < ApplicationController
   def create
     rendered_time, referer, user = tracking_info
     @assessment_result = user.assessment_results.create!(
-      :assessment_id => params[:assessment_id],
-      :rendered_datestamp => rendered_time,
-      :referer => referer,
-      :ip_address => request.ip,
-      :session_status => 'initial')
+      assessment_id: params[:assessment_id],
+      eid: params[:eid],
+      rendered_datestamp: rendered_time,
+      referer: referer,
+      ip_address: request.ip,
+      session_status: 'initial')
     respond_with(:api, @assessment_result)
   end
 

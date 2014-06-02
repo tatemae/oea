@@ -26,6 +26,7 @@ class Api::ItemResultsController < ApplicationController
       identifier: params[:identifier],
       item_id: params[:item_id],
       assessment_result_id: params[:assessment_result_id],
+      eid: params[:eid],
       rendered_datestamp: rendered_time,
       referer: referer,
       ip_address: request.ip,
