@@ -68,17 +68,17 @@ describe Item do
         results.should include(@item_result)
       end
 
-      it 'should return results with eid', focus: true do
+      it 'should return results with eid' do
         results = Item.raw_results(scope_url: nil, eid: @eid, keyword: nil)
         expect(results).to include(@item_result)
       end
 
-      it 'should return no results when no matching eid', focus: true do
+      it 'should return no results when no matching eid' do
         results = Item.raw_results(scope_url: nil, eid: FactoryGirl.generate(:name), keyword: nil)
         expect(results.empty?).to eq(true)
       end
 
-      it 'should return results with multiple matching eid', focus: true do
+      it 'should return results with multiple matching eid' do
         @item_result2 = ItemResult.new(
           identifier: @item.identifier,
           eid: @eid,
@@ -127,6 +127,32 @@ describe Item do
     end
 
     describe 'results summary' do
+
+      it 'should return results with eid' do
+        results = Item.results_summary(scope_url: nil, eid: @eid, keyword: nil)
+        expect(results[:submitted]).to include(@item_result)
+      end
+
+      it 'should return no results when no matching eid' do
+        results = Item.results_summary(scope_url: nil, eid: FactoryGirl.generate(:name), keyword: nil)
+        expect(results[:submitted].empty?).to eq(true)
+      end
+
+      it 'should return results with multiple matching eid' do
+        @item_result2 = ItemResult.new(
+          identifier: @item.identifier,
+          eid: @eid,
+          item_id: @item.id,
+          rendered_datestamp: Time.now-1,
+          datestamp: Time.now,
+          referer: 'http://localhost:3000/items',
+          ip_address: "127.0.0.1",
+          session_status: "final"
+        )
+        @item.item_results << @item_result2
+        results = Item.results_summary(scope_url: nil, eid: @eid, keyword: nil)
+        expect(results[:submitted]).to eq([@item_result, @item_result2])
+      end
 
       it 'should return results with identifier' do
         results = Item.results_summary(scope_url: nil, identifier: @item.identifier, keyword: nil)
