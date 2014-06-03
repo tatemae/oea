@@ -11,12 +11,8 @@ class AssessmentResultsController < ApplicationController
         percent_correct_array = results_summaries.collect{ |h| h[:percent_correct] }
         @percent_correct = signif(percent_correct_array.inject(:+).to_f / percent_correct_array.size * 100, 2) #reject zeros?
 
-        avg_time_to_complete_arr = @results.group_by(&:user_id).collect do |k,v|
-          sorted = v.sort_by(&:created_at)
-          diff = sorted.last.created_at.to_i - sorted.first.created_at.to_i
-        end
-        @avg_time_to_complete = 0 if avg_time_to_complete_arr.size == 0
-        @avg_time_to_complete ||= (avg_time_to_complete_arr.inject(:+).to_f / avg_time_to_complete_arr.size) * 100
+        assessment_results = @assessment.assessment_results.pluck(:id)
+        @avg_time_to_complete = ItemResult.where(:assessment_result_id => assessment_results).average(:time_elapsed) || 0
       end
       format.csv do
         send_data(
