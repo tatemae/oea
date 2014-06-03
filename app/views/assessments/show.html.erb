@@ -30,7 +30,7 @@
       userId: '<%= @user_id %>',
       resultsEndPoint: '<%= @results_end_point || "http://#{request.host_with_port}/api" %>',
       confidence_levels: <%= @confidence_levels %>,
-      eid: <%= @eid %>
+      eid: <%= @eid || 'null' %>
     };
   </script>
   <%= javascript_include_tag "oea/application" %>
