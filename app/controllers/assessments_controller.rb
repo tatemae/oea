@@ -18,10 +18,11 @@ class AssessmentsController < ApplicationController
     @user_id = params[:uid] || user_signed_in? ? current_user.id : ''
     @embedded = params[:src_url].present? || params[:embed].present?
     @confidence_levels = params[:confidence_levels] ? true : false
+    @eid = params[:eid] if params[:eid]
     @results_end_point = ensure_scheme(params[:results_end_point]) if params[:results_end_point].present?
     if params[:id].present? && params[:id] != 'load'
       @assessment = Assessment.find(params[:id])
-      @eid = params[:eid] ? params[:eid] : @assessment.identifier
+      @eid ||= @assessment.identifier
       if @embedded
         # Just show the assessment. This is here to support old style embed with id=# and embed=true
         @src_url = embed_url(@assessment)
