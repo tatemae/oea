@@ -10,6 +10,7 @@ class Api::AssessmentResultsController < ApplicationController
     @assessment_result = user.assessment_results.create!(
       assessment_id: params[:assessment_id],
       eid: params[:eid],
+      src_url: params[:src_url],
       rendered_datestamp: rendered_time,
       referer: referer,
       ip_address: request.ip,
