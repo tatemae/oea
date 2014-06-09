@@ -26,6 +26,7 @@ class Api::ItemResultsController < ApplicationController
     @item_result = user.item_results.create!(
       identifier: params[:identifier],
       item_id: params[:item_id],
+      src_url: params[:src_url],
       assessment_result_id: params[:assessment_result_id],
       eid: params[:eid],
       rendered_datestamp: rendered_time,
