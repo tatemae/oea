@@ -24,6 +24,7 @@ export default Ember.Route.extend({
           assessment_id: settings.get('assessmentId'),
           eId: settings.get('eId'),
           resultsEndPoint: settings.get('resultsEndPoint'),
+          src_url: settings.get('qtiUrl'),
           user_id: settings.get('userId')
         }).save().then(function(result) {
           assessment.set('assessment_result', result);

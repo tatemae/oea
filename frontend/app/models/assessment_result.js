@@ -8,7 +8,8 @@ export default Base.extend({
     var data = {
       assessment_id: this.get('assessment_id'),
       user_id: this.get('user_id'),
-      eId: this.get('eId')
+      eId: this.get('eId'),
+      src_url: this.get('src_url')
     };
     var url = this.get('resultsEndPoint') + '/assessment_results';
     var payload = {type: 'POST', data: data, dataType: 'json'};
