@@ -8,12 +8,14 @@ export default Ember.Route.extend({
   },
 
   afterModel: function(model, transition){
+    var settings = this.get('settings');
     // Record that the item was viewed
     ItemResult.create({
       assessment_result_id: this.modelFor('application').get('assessment_result.id'),
       resultsEndPoint: this.get('settings').get('resultsEndPoint'),
       user_id: this.get('settings').get('userId'),
       eId: this.get('settings').get('eId'),
+      src_url: settings.get('qtiUrl'),
       identifier: model.get('id')
     }).save();
 
