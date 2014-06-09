@@ -7,6 +7,7 @@ export default Base.extend({
   save: function(){
     var data = {
       assessment_id: this.get('assessment_id'),
+      identifier: this.get('identifier'),
       user_id: this.get('user_id'),
       eId: this.get('eId'),
       src_url: this.get('src_url')

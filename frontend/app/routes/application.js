@@ -22,6 +22,7 @@ export default Ember.Route.extend({
         // Record that the assessment was viewed
         AssessmentResult.create({
           assessment_id: settings.get('assessmentId'),
+          identifier: assessment.get('id'),
           eId: settings.get('eId'),
           resultsEndPoint: settings.get('resultsEndPoint'),
           src_url: settings.get('qtiUrl'),
