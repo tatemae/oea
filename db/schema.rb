@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609203958) do
+ActiveRecord::Schema.define(version: 20140609204659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140609203958) do
     t.string   "eid"
     t.string   "src_url"
     t.string   "identifier"
+    t.string   "keywords"
   end
 
   add_index "assessment_results", ["assessment_id"], name: "index_assessment_results_on_assessment_id", using: :btree
