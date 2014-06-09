@@ -77,6 +77,7 @@ export default Ember.ObjectController.extend({
           resultsEndPoint: this.get('settings').get('resultsEndPoint'),
           user_id: this.get('settings').get('userId'),
           eId: this.get('settings').get('eId'),
+          external_user_id: settings.get('external_user_id'),
           src_url: settings.get('qtiUrl'),
           identifier: this.get('id'),
           session_status: 'final',

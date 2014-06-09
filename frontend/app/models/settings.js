@@ -21,8 +21,8 @@ export default Ember.Object.extend({
     return this.bestValue('eId', 'eId');
   }.property('params'),
 
-  userId: function(){
-    return this.bestValue('userId', 'userId', '1');
+  externalUserId: function(){
+    return this.bestValue('ExternalUserId', 'external_user_id');
   }.property('params'),
 
   resultsEndPoint: function(){

@@ -15,7 +15,6 @@ class AssessmentsController < ApplicationController
   end
 
   def show
-    @user_id = params[:uid] || user_signed_in? ? current_user.id : ''
     @embedded = params[:src_url].present? || params[:embed].present?
     @confidence_levels = params[:confidence_levels] ? true : false
     @eid = params[:eid] if params[:eid]
