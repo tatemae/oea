@@ -2,12 +2,6 @@ import startApp from '../helpers/start-app';
 import XML from '../fixtures/8';
 var ajax = require('ic-ajax');
 
-window.OEA_SETTINGS = {
-  qtiUrl: '/fixtures/8.xml',
-  userId: '1',
-  resultsEndPoint: '/api'
-};
-
 ajax.defineFixture('/fixtures/8.xml', {
   response: XML.xml,
   jqXHR: {},
@@ -18,10 +12,17 @@ var App;
 
 module('Integration - Index', {
   setup: function() {
+    window.OEA_SETTINGS = {
+      qtiUrl: '/fixtures/8.xml',
+      userId: '2',
+      resultsEndPoint: '/api',
+      assessmentId: 1
+    };
     App = startApp();
   },
   teardown: function() {
     Ember.run(App, 'destroy'); //comment this out to see the app in the state once the test it finished
+    delete window.OEA_SETTINGS;
   }
 });
 

@@ -1,15 +1,18 @@
 import { test, moduleFor } from 'ember-qunit';
 import Settings from '../../models/settings';
 
-window.OEA_SETTINGS = {
-  qtiUrl: '/fixtures/8.xml',
-  userId: '1',
-  resultsEndPoint: '/api'
-};
-
 moduleFor("model:settings", "Unit - Settings", {
-  setup: function () {},
-  teardown: function () {}
+  setup: function () {
+    window.OEA_SETTINGS = {
+      qtiUrl: '/fixtures/8.xml',
+      userId: '3',
+      resultsEndPoint: '/api',
+      assessmentId: 1
+    };
+  },
+  teardown: function () {
+    delete window.OEA_SETTINGS;
+  }
 });
 
 test("it exists", function(){
