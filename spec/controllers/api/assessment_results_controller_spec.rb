@@ -15,6 +15,12 @@ describe Api::AssessmentResultsController do
       expect(AssessmentResult.first).to_not be(nil)
       expect(AssessmentResult.first.src_url).to eq("foo")
     end
+    it "creates an assessment result with an src url" do
+      assessment_result = FactoryGirl.build(:assessment_result)
+      post :create, id: assessment_result.id, identifier: "foo", format: :json
+      expect(AssessmentResult.first).to_not be(nil)
+      expect(AssessmentResult.first.identifier).to eq("foo")
+    end
   end
 
 end
