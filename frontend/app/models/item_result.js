@@ -13,6 +13,7 @@ export default Base.extend({
       eId: this.get('eId'),
       external_user_id: this.get('external_user_id'),
       src_url: this.get('src_url'),
+      keywords: this.get("keywords"),
       session_status: this.get('session_status'),
       time_elapsed: this.get('time_spent'),
       confidence_level: this.get('confidence_level')
