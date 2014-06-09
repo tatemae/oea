@@ -11,6 +11,8 @@ class Api::AssessmentResultsController < ApplicationController
       assessment_id: params[:assessment_id],
       eid: params[:eid],
       src_url: params[:src_url],
+      external_user_id: params[:external_user_id],
+      keywords: params[:keywords],
       identifier: params['identifier'],
       rendered_datestamp: rendered_time,
       referer: referer,

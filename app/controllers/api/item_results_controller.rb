@@ -27,6 +27,8 @@ class Api::ItemResultsController < ApplicationController
       identifier: params[:identifier],
       item_id: params[:item_id],
       src_url: params[:src_url],
+      external_user_id: params[:external_user_id],
+      keywords: params[:keywords],
       assessment_result_id: params[:assessment_result_id],
       eid: params[:eid],
       rendered_datestamp: rendered_time,
