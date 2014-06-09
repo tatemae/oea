@@ -35,6 +35,8 @@ class AssessmentsController < ApplicationController
       @src_url = ensure_scheme(params[:src_url]) if params[:src_url].present?
     end
 
+    @assessment_id = @assessment ? @assessment.id : params[:assessment_id] || 'null'
+
     respond_to do |format|
       format.html { render :layout => @embedded ? 'bare' : 'application' }
     end
