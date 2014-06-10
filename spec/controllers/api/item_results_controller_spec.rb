@@ -44,11 +44,17 @@ describe Api::ItemResultsController do
       expect(ItemResult.first).to_not be(nil)
       expect(ItemResult.first.confidence_level).to eq(1)
     end
-    it "creates an item" do
+    it "creates an item with a src_url" do
       item_result = FactoryGirl.build(:item_result)
       post :create, id: item_result.id, src_url: "foo", format: :json
       expect(ItemResult.first).to_not be(nil)
       expect(ItemResult.first.src_url).to eq("foo")
+    end
+    it "creates an item with keywords" do
+      item_result = FactoryGirl.build(:item_result)
+      post :create, id: item_result.id, keywords: "foo, bar", format: :json
+      expect(ItemResult.first).to_not be(nil)
+      expect(ItemResult.first.keyword_list).to eq(["foo", "bar"])
     end
   end
 

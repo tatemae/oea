@@ -25,12 +25,11 @@ class Api::ItemResultsController < ApplicationController
 
   def create
     rendered_time, referer, user = tracking_info
-    @item_result = user.item_results.create!(
+    item_result = user.item_results.create!(
       identifier: params[:identifier],
       item_id: params[:item_id],
       src_url: params[:src_url],
       external_user_id: params[:external_user_id],
-      keywords: params[:keywords],
       assessment_result_id: params[:assessment_result_id],
       eid: params[:eid],
       rendered_datestamp: rendered_time,
@@ -39,7 +38,11 @@ class Api::ItemResultsController < ApplicationController
       time_elapsed: params['time_elapsed'],
       confidence_level: convert_confidence_level,
       session_status: params[:session_status] || 'initial')
-    respond_with(:api, @item_result)
+
+    item_result.keyword_list.add(params[:keywords], parse: true)
+    item_result.save!
+
+    respond_with(:api, item_result)
   end
 
   private

@@ -3,6 +3,8 @@ class ItemResult < ActiveRecord::Base
   belongs_to :user
   belongs_to :assessment_result
 
+  acts_as_taggable_on :keywords
+
   before_save :validate_session_status
 
   scope :by_status_final, -> { where(session_status: 'final') }

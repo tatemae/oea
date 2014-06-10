@@ -21,6 +21,12 @@ describe Api::AssessmentResultsController do
       expect(AssessmentResult.first).to_not be(nil)
       expect(AssessmentResult.first.identifier).to eq("foo")
     end
+    it "creates an assessment result with keywords" do
+      assessment_result = FactoryGirl.build(:assessment_result)
+      post :create, id: assessment_result.id, keywords: "foo, bar", format: :json
+      expect(AssessmentResult.first).to_not be(nil)
+      expect(AssessmentResult.first.keyword_list).to eq(["foo", "bar"])
+    end
   end
 
 end

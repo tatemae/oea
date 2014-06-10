@@ -3,6 +3,8 @@ class AssessmentResult < ActiveRecord::Base
   belongs_to :assessment
   has_many :item_results, dependent: :destroy
 
+  acts_as_taggable_on :keywords
+
   scope :by_status_final, -> { where(session_status: 'final') }
 
   STATUS_INITIAL = 'initial'
