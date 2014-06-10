@@ -12,7 +12,6 @@ export default Ember.Route.extend({
 
   model: function(params){
     var settings = this.get('settings');
-
     return new Ember.RSVP.Promise(function(resolve, reject){
       var assessment = Assessment.create({
         qtiUrl: settings.get('qtiUrl')
@@ -26,6 +25,7 @@ export default Ember.Route.extend({
           eId: settings.get('eId'),
           external_user_id: settings.get('external_user_id'),
           resultsEndPoint: settings.get('resultsEndPoint'),
+          keywords: settings.get('keywords'),
           src_url: settings.get('qtiUrl'),
           user_id: settings.get('userId')
         }).save().then(function(result) {

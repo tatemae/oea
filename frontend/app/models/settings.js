@@ -25,6 +25,10 @@ export default Ember.Object.extend({
     return this.bestValue('ExternalUserId', 'external_user_id');
   }.property('params'),
 
+  keywords: function(){
+    return this.bestValue('keywords', 'keywords');
+  }.property('params'),
+
   resultsEndPoint: function(){
     return this.bestValue('resultsEndPoint', 'results_end_point', 'http://localhost:4200/api');
   }.property('params'),

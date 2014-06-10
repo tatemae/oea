@@ -16,7 +16,8 @@ module('Integration - Index', {
       qtiUrl: '/fixtures/8.xml',
       userId: '2',
       resultsEndPoint: '/api',
-      assessmentId: 1
+      assessmentId: 1,
+      keywords: "foo, bar"
     };
     App = startApp();
   },
@@ -33,4 +34,3 @@ test('index transitions to question', function(){
     equal(find('div.header p').text(), 'Question 1');
   });
 });
-

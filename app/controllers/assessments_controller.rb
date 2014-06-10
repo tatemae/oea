@@ -18,6 +18,7 @@ class AssessmentsController < ApplicationController
     @embedded = params[:src_url].present? || params[:embed].present?
     @confidence_levels = params[:confidence_levels] ? true : false
     @eid = params[:eid] if params[:eid]
+    @keywords = params[:keywords] if params[:keywords]
     @results_end_point = ensure_scheme(params[:results_end_point]) if params[:results_end_point].present?
     if params[:id].present? && params[:id] != 'load'
       @assessment = Assessment.find(params[:id])

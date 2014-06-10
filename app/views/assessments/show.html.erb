@@ -27,6 +27,7 @@
     var OEA_SETTINGS = {
       qtiUrl: '<%= @src_url %>',
       assessmentId: <%= @assessment_id %>,
+      keywords: <%= @keywords %>,
       resultsEndPoint: '<%= @results_end_point || "http://#{request.host_with_port}/api" %>',
       confidence_levels: <%= @confidence_levels %>,
       <% if @eid %>
