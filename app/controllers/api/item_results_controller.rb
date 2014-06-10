@@ -9,10 +9,12 @@ class Api::ItemResultsController < ApplicationController
     identifier = params[:identifer] if params[:identifer]
     eid = params[:eid] if params[:eid]
     keyword = params[:keyword] if params[:keyword]
+    external_user_id = params[:external_user_id] if params[:external_user_id]
+    src_url = params[:src_url] if params[:src_url]
     if params[:type] == 'summary'
-      results = Item.results_summary( scope_url: scope_url, identifier: identifier, eid: eid, keyword: keyword )
+      results = Item.results_summary( scope_url: scope_url, identifier: identifier, eid: eid, keyword: keyword, external_user_id: external_user_id, src_url: src_url )
     else
-      results = Item.raw_results( scope_url: scope_url, identifier: identifier, eid: eid, keyword: keyword )
+      results = Item.raw_results( scope_url: scope_url, identifier: identifier, eid: eid, keyword: keyword, external_user_id: external_user_id, src_url: src_url )
     end
     respond_to do |format|
       format.json { render json: results }

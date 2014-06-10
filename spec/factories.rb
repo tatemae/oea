@@ -72,7 +72,7 @@ FactoryGirl.define do
   end
 
   factory :assessment_result do
-
+    assessment
   end
 
   factory :item_result do

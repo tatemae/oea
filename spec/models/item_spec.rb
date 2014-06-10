@@ -120,6 +120,56 @@ describe Item do
         results.should_not include(@item_result)
       end
 
+      it 'should return results with external_user_id' do
+        external_user_id = FactoryGirl.generate(:name)
+        assessment = make_assessment
+        assessment_result = FactoryGirl.create(:assessment_result, assessment: assessment)
+        assessment_result.update_attribute(:external_user_id, external_user_id)
+        assessment.sections << @section
+        assessment_result.item_results << @item_result
+        assessment.save
+        assessment_result.save
+        results = Item.raw_results(scope_url: nil, identifier: nil, keyword: nil, external_user_id: external_user_id)
+        results.should include(assessment.items.first.item_results.first)
+      end
+
+      it 'should not return results with external_user_id' do
+        external_user_id = FactoryGirl.generate(:name)
+        assessment = make_assessment
+        assessment_result = FactoryGirl.create(:assessment_result, assessment: assessment)
+        assessment_result.update_attribute(:external_user_id, external_user_id)
+        assessment.sections << @section
+        assessment.save
+        assessment_result.save
+        results = Item.raw_results(scope_url: nil, identifier: nil, keyword: nil, external_user_id: external_user_id)
+        results.should_not include(@item_result)
+      end
+
+      it 'should return results with src_url' do
+        src_url = FactoryGirl.generate(:name)
+        assessment = make_assessment
+        assessment_result = FactoryGirl.create(:assessment_result, assessment: assessment)
+        assessment_result.update_attribute(:src_url, src_url)
+        assessment.sections << @section
+        assessment_result.item_results << @item_result
+        assessment.save
+        assessment_result.save
+        results = Item.raw_results(scope_url: nil, identifier: nil, keyword: nil, src_url: src_url)
+        results.should include(assessment.items.first.item_results.first)
+      end
+
+      it 'should not return results with src_url' do
+        src_url = FactoryGirl.generate(:name)
+        assessment = make_assessment
+        assessment_result = FactoryGirl.create(:assessment_result, assessment: assessment)
+        assessment_result.update_attribute(:src_url, src_url)
+        assessment.sections << @section
+        assessment.save
+        assessment_result.save
+        results = Item.raw_results(scope_url: nil, identifier: nil, keyword: nil, src_url: src_url)
+        results.should_not include(@item_result)
+      end
+
       it 'should return results with scope' do
         results = Item.raw_results(scope_url: @item_result.referer, identifier: nil, keyword: nil)
         results.should include(@item_result)
@@ -183,6 +233,56 @@ describe Item do
         assessment = make_assessment
         assessment.sections << @section
         results = Item.results_summary(scope_url: nil, identifier: nil, keyword: keyword)
+        results[:submitted].should_not include(@item_result)
+      end
+
+      it 'should return results with external_user_id' do
+        external_user_id = FactoryGirl.generate(:name)
+        assessment = make_assessment
+        assessment_result = FactoryGirl.create(:assessment_result, assessment: assessment)
+        assessment_result.update_attribute(:external_user_id, external_user_id)
+        assessment.sections << @section
+        assessment_result.item_results << @item_result
+        assessment.save
+        assessment_result.save
+        results = Item.results_summary(scope_url: nil, identifier: nil, keyword: nil, external_user_id: external_user_id)
+        results[:submitted].should include(assessment.items.first.item_results.first)
+      end
+
+      it 'should not return results with external_user_id' do
+        external_user_id = FactoryGirl.generate(:name)
+        assessment = make_assessment
+        assessment_result = FactoryGirl.create(:assessment_result, assessment: assessment)
+        assessment_result.update_attribute(:external_user_id, external_user_id)
+        assessment.sections << @section
+        assessment.save
+        assessment_result.save
+        results = Item.results_summary(scope_url: nil, identifier: nil, keyword: nil, external_user_id: external_user_id)
+        results[:submitted].should_not include(@item_result)
+      end
+
+      it 'should return results with src_url' do
+        src_url = FactoryGirl.generate(:name)
+        assessment = make_assessment
+        assessment_result = FactoryGirl.create(:assessment_result, assessment: assessment)
+        assessment_result.update_attribute(:src_url, src_url)
+        assessment.sections << @section
+        assessment_result.item_results << @item_result
+        assessment.save
+        assessment_result.save
+        results = Item.results_summary(src_url: src_url)
+        results[:submitted].should include(assessment.items.first.item_results.first)
+      end
+
+      it 'should not return results with src_url' do
+        src_url = FactoryGirl.generate(:name)
+        assessment = make_assessment
+        assessment_result = FactoryGirl.create(:assessment_result, assessment: assessment)
+        assessment_result.update_attribute(:src_url, src_url)
+        assessment.sections << @section
+        assessment.save
+        assessment_result.save
+        results = Item.results_summary(src_url: src_url)
         results[:submitted].should_not include(@item_result)
       end
 

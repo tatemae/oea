@@ -143,6 +143,18 @@ class Item < ActiveRecord::Base
       end
     end
 
+    if opts[:external_user_id].present?
+      AssessmentResult.where(external_user_id: opts[:external_user_id]).each do |assessment_result|
+        assessment_result.item_results.each {|item_result| results << item_result }
+      end
+    end
+
+    if opts[:src_url].present?
+      AssessmentResult.where(src_url: opts[:src_url]).each do |assessment_result|
+        assessment_result.item_results.each {|item_result| results << item_result }
+      end
+    end
+
     return results
 
   end
