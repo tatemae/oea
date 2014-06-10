@@ -13,6 +13,7 @@ class AssessmentResultsController < ApplicationController
 
         assessment_results = @assessment.assessment_results.pluck(:id)
         @avg_time_to_complete = ItemResult.where(:assessment_result_id => assessment_results).average(:time_elapsed) || 0
+        @avg_confidence = ItemResult.where(:assessment_result_id => assessment_results).average(:confidence_level) || 'none'
       end
       format.csv do
         send_data(

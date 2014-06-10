@@ -33,6 +33,10 @@
               <td><%= distance_of_time_in_words( @avg_time_to_complete ) %></td>
             </tr>
             <tr>
+              <th>Average Confidence</th>
+              <td><%= @avg_confidence %></td>
+            </tr>
+            <tr>
               <th>CSV Download</th>
               <td><a href="<%= assessment_result_url(params[:assessment_id] || @assessment, :format => :csv, :type => "summary") %>"><i class="glyphicon glyphicon-download"></i></a></td>
             </tr>
