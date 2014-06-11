@@ -4,7 +4,7 @@ class Api::ItemResultsController < ApplicationController
   respond_to :json, :csv, :xml
 
   def index
-    scope_url = params[:url] if params[:scope] == 'domain' || params[:scope] == 'page'
+    scope_url = params[:url]
     scope_url = get_domain(scope_url) if params[:scope] == 'domain'
     identifier = params[:identifer] if params[:identifer]
     eid = params[:eid] if params[:eid]

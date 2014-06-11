@@ -1,10 +1,6 @@
 oea
 ===
-
 Open Embeddable Assessment
-
-Notes
-=====
 
 deploy
 ======
