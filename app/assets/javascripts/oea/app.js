@@ -1,1 +1,1 @@
-../../../../frontend/dist/assets/app.js
+../../../../frontend/dist/assets/oea.js
