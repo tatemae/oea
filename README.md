@@ -12,13 +12,7 @@ Most qti in active use seems to be the qti 1.2 lite variant. Full qti comes pack
 
 oEmbed
 ======
-OEA supports oembed for assessments. The oEmbed endpoint is located at '/oembed.json'. Pass the url of an assessment to get it's oEmbed representation.
-
-Example when running the application locally:
-  http://lvh.me:3000/oembed.json?url=http://lvh.me:3000/users/2/assessments/1
-
-In production:
-  http://www.openassessments.com/oembed.json?url=http://www.openassessments.com/users/2/assessments/1
+See the API Documentation for the documentation on oEmbed.
 
 
 Getting ruby-saml-mod to work on Heroku.
