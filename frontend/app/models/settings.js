@@ -37,6 +37,10 @@ export default Ember.Object.extend({
     return this.bestValue('confidenceLevels', 'confidence_levels', false);
   }.property('params'),
 
+  enableStart: function(){
+    return this.bestValue('enableStart', 'enable_start', false);
+  }.property('params'),
+
   bestValue: function(settings_prop, params_prop, default_prop){
     if(typeof OEA_SETTINGS === 'undefined'){
       return this.get('params')[params_prop] || default_prop;

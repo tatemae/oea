@@ -30,6 +30,7 @@
       keywords: <%= @keywords %>,
       resultsEndPoint: '<%= @results_end_point || "http://#{request.host_with_port}/api" %>',
       confidence_levels: <%= @confidence_levels %>,
+      enable_start: <%= @enable_start %>
       <% if @eid %>
       eid: '<%= @eid %>'
       <% else %>

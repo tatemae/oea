@@ -1,11 +1,24 @@
-<div class="question">
-  <div class="header">
-    <span class="counter">{{current}} of {{length}}</span>
-    <p>{{item.title}}</p>
+<div id="enable_start" {{bind-attr class="showStart::hide"}}>
+  <div class="panel panel-primary">
+  	<div class="header">
+  		{{item.title}}
+  	</div>
+  	<div class="enable_start">
+  		<button {{bind-attr class=":btn :btn-info"}} {{action "start"}}>Check Your Understanding</button>
+  	</div>
   </div>
-  {{outlet}}
-  <div {{bind-attr class=":nav_buttons hideNavigation:hidden"}}>
-    <button {{bind-attr class=":btn :btn-prev-item atBegin:disabled"}} {{action "previous"}}><i class="glyphicon glyphicon-chevron-left"></i> Previous</button>
-    <button {{bind-attr class=":btn :btn-next-item atEnd:disabled"}} {{action "next"}}>Next <i class="glyphicon glyphicon-chevron-right"></i></button>
-  </div>
+</div>
+
+<div id="assessment_container" {{bind-attr class="showStart:hide"}}>
+	<div class="question">
+	  <div class="header">
+	    <span class="counter">{{current}} of {{length}}</span>
+	    <p>{{item.title}}</p>
+	  </div>
+	  {{outlet}}
+	  <div {{bind-attr class=":nav_buttons hideNavigation:hidden"}}>
+	    <button {{bind-attr class=":btn :btn-prev-item atBegin:disabled"}} {{action "previous"}}><i class="glyphicon glyphicon-chevron-left"></i> Previous</button>
+	    <button {{bind-attr class=":btn :btn-next-item atEnd:disabled"}} {{action "next"}}>Next <i class="glyphicon glyphicon-chevron-right"></i></button>
+	  </div>
+	</div>
 </div>

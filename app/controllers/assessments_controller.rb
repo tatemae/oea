@@ -17,6 +17,7 @@ class AssessmentsController < ApplicationController
   def show
     @embedded = params[:src_url].present? || params[:embed].present?
     @confidence_levels = params[:confidence_levels] ? true : false
+    @enable_start = params[:enable_start] ? true : false
     @eid = params[:eid] if params[:eid]
     @keywords = params[:keywords] if params[:keywords]
     @results_end_point = ensure_scheme(params[:results_end_point]) if params[:results_end_point].present?
@@ -28,8 +29,8 @@ class AssessmentsController < ApplicationController
         @src_url = embed_url(@assessment)
       else
         # Show the full page with analtyics and embed code buttons
-        @embed_code = embed_code(@assessment, @confidence_levels, @eid)
-        @embed_code_confidence_levels = embed_code(@assessment, true, @eid)
+        @embed_code = embed_code(@assessment, @confidence_levels, @eid, @enable_start)
+        @embed_code_confidence_levels = embed_code(@assessment, true, @eid, @enable_start)
       end
     else
       # Get the remote url where we can download the qti
