@@ -12,6 +12,7 @@ export default Base.extend({
       eId: this.get('eId'),
       external_user_id: this.get('external_user_id'),
       keywords: this.get("keywords"),
+      objectives: this.get("objectives"),
       src_url: this.get('src_url')
     };
     var url = this.get('resultsEndPoint') + '/assessment_results';

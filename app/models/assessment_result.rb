@@ -4,6 +4,7 @@ class AssessmentResult < ActiveRecord::Base
   has_many :item_results, dependent: :destroy
 
   acts_as_taggable_on :keywords
+  acts_as_taggable_on :objectives
 
   scope :by_status_final, -> { where(session_status: 'final') }
 

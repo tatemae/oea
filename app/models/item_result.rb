@@ -4,6 +4,7 @@ class ItemResult < ActiveRecord::Base
   belongs_to :assessment_result
 
   acts_as_taggable_on :keywords
+  acts_as_taggable_on :objectives
 
   before_save :validate_session_status
 

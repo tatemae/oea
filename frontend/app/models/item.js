@@ -22,9 +22,14 @@ Item.reopenClass({
 
   fromXml: function(xml){
     xml = $(xml);
+
+    var objectives = [];
+    xml.find('objectives matref').map(function(index, item){ return objectives.push( $(item).attr('linkrefid') ); });
+
     var attrs = {
       'id': xml.attr('ident'),
       'title': xml.attr('title'),
+      'objectives': objectives,
       'xml': xml
     };
 

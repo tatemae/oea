@@ -12,11 +12,12 @@ export default Ember.Route.extend({
     // Record that the item was viewed
     ItemResult.create({
       assessment_result_id: this.modelFor('application').get('assessment_result.id'),
-      resultsEndPoint: this.get('settings').get('resultsEndPoint'),
-      user_id: this.get('settings').get('userId'),
-      eId: this.get('settings').get('eId'),
+      resultsEndPoint: settings.get('resultsEndPoint'),
+      user_id: settings.get('userId'),
+      eId: settings.get('eId'),
       external_user_id: settings.get('external_user_id'),
       keywords: settings.get('keywords'),
+      objectives: this.modelFor('application').get('objectives').concat(model.get('objectives')),
       src_url: settings.get('qtiUrl'),
       identifier: model.get('id')
     }).save();

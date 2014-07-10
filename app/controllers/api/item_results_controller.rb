@@ -11,10 +11,11 @@ class Api::ItemResultsController < ApplicationController
     keyword = params[:keyword] if params[:keyword]
     external_user_id = params[:external_user_id] if params[:external_user_id]
     src_url = params[:src_url] if params[:src_url]
+    objective = params[:objectives] if params[:objectives]
     if params[:type] == 'summary'
-      results = Item.results_summary( scope_url: scope_url, identifier: identifier, eid: eid, keyword: keyword, external_user_id: external_user_id, src_url: src_url )
+      results = Item.results_summary( scope_url: scope_url, identifier: identifier, eid: eid, keyword: keyword, objective: objective, external_user_id: external_user_id, src_url: src_url )
     else
-      results = Item.raw_results( scope_url: scope_url, identifier: identifier, eid: eid, keyword: keyword, external_user_id: external_user_id, src_url: src_url )
+      results = Item.raw_results( scope_url: scope_url, identifier: identifier, eid: eid, keyword: keyword, objective: objective, external_user_id: external_user_id, src_url: src_url )
     end
     respond_to do |format|
       format.json { render json: results }
@@ -40,6 +41,7 @@ class Api::ItemResultsController < ApplicationController
       session_status: params[:session_status] || 'initial')
 
     item_result.keyword_list.add(params[:keywords], parse: true)
+    item_result.objective_list.add(params[:objectives], parse: true)
     item_result.save!
 
     respond_with(:api, item_result)

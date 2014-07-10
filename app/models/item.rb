@@ -143,6 +143,14 @@ class Item < ActiveRecord::Base
       end
     end
 
+    if opts[:objective].present?
+      Assessment.tagged_with(opts[:objective]).each do |assessment|
+        assessment.items.each do |item|
+          item.item_results.each{|item_result| results << item_result }
+        end
+      end
+    end
+
     if opts[:external_user_id].present?
       AssessmentResult.where(external_user_id: opts[:external_user_id]).each do |assessment_result|
         assessment_result.item_results.each {|item_result| results << item_result }

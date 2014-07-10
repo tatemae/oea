@@ -26,6 +26,7 @@ export default Ember.Route.extend({
           external_user_id: settings.get('external_user_id'),
           resultsEndPoint: settings.get('resultsEndPoint'),
           keywords: settings.get('keywords'),
+          objectives: assessment.get('objectives'),
           src_url: settings.get('qtiUrl'),
           user_id: settings.get('userId')
         }).save().then(function(result) {

@@ -14,6 +14,7 @@ export default Base.extend({
       external_user_id: this.get('external_user_id'),
       src_url: this.get('src_url'),
       keywords: this.get("keywords"),
+      objectives: this.get("objectives"),
       session_status: this.get('session_status'),
       time_elapsed: this.get('time_spent'),
       confidence_level: this.get('confidence_level')

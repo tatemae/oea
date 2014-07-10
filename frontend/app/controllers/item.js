@@ -74,11 +74,12 @@ export default Ember.ObjectController.extend({
         var settings = this.get('settings');
         ItemResult.create({
           assessment_result_id: this.get('controllers.application').get('model').get('assessment_result.id'),
-          resultsEndPoint: this.get('settings').get('resultsEndPoint'),
-          user_id: this.get('settings').get('userId'),
-          eId: this.get('settings').get('eId'),
+          resultsEndPoint: settings.get('resultsEndPoint'),
+          user_id: settings.get('userId'),
+          eId: settings.get('eId'),
           external_user_id: settings.get('external_user_id'),
           keywords: settings.get('keywords'),
+          objectives: this.get('controllers.application').get('model').get('objectives').concat(this.get('model').get('objectives')),
           src_url: settings.get('qtiUrl'),
           identifier: this.get('id'),
           session_status: 'final',

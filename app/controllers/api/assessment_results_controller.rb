@@ -19,6 +19,7 @@ class Api::AssessmentResultsController < ApplicationController
       session_status: 'initial')
 
     assessment_result.keyword_list.add(params[:keywords], parse: true)
+    assessment_result.objective_list.add(params[:objectives], parse: true)
     assessment_result.save!
     respond_with(:api, assessment_result)
   end

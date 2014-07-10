@@ -6,6 +6,7 @@ export default Base.extend({
 
   qtiUrl: '',
   sections: Ember.ArrayProxy.create(),
+  keywords: [],
 
   init: function(){
     ajax.request(this.get('qtiUrl')).then(function(xml){
@@ -25,6 +26,9 @@ export default Base.extend({
       'id':    assessment.attr('ident'),
       'title': assessment.attr('title')
     });
+    var objectives = [];
+    xml.find('assessment > objectives matref').map(function(index, item){ return objectives.push( $(item).attr('linkrefid') ); });
+    this.set('objectives', objectives);
     this.get('sections').set('content', Section.parseSections(xml));
   }
 
