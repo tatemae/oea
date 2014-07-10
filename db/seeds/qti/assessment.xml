@@ -38,7 +38,7 @@
       </qtimetadatafield>
       <!-- license -->
       <qtimetadatafield>
-        <fieldlabel>qmd_license/fieldlabel>
+        <fieldlabel>qmd_license</fieldlabel>
         <fieldentry>Creative Commons Attribution 4.0 International License</fieldentry>
       </qtimetadatafield>
     </qtimetadata>
@@ -49,7 +49,7 @@
       </material>
       <material>
         <mattext texttype="text/plain">Another broad objective for the entire assessment (optional)</mattext>
-        <matref linkrefid="learning_objective_id_or_url_for_the_assessment"></matref>
+        <matref linkrefid="another_learning_objective_id_or_url_for_the_assessment"></matref>
       </material>
     </objectives>
     <section ident="root_section">
@@ -73,11 +73,11 @@
         <objectives>
           <material>
             <mattext texttype="text/plain">The objective for this specific item (optional)</mattext>
-            <matref linkrefid="learning_objective_id_or_url_for_the_item"></matref>
+            <matref linkrefid="item_learning_objective_id_or_url_for_the_item"></matref>
           </material>
           <material>
             <mattext texttype="text/plain">Another objective for this specific item (optional)</mattext>
-            <matref linkrefid="learning_objective_id_or_url_for_the_item"></matref>
+            <matref linkrefid="another_item_learning_objective_id_or_url_for_the_item"></matref>
           </material>
         </objectives>
         <presentation>
