@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
 
     def embed_code(assessment, confidence_levels=true, eid=nil, enable_start=false)
       url = "#{request.host_with_port}#{assessment_path('load')}?src_url=#{embed_url(assessment)}"
-      url = "#{url}&results_end_point=#{request.host_with_port}/api"
+      url = "#{url}&results_end_point=#{request.scheme}://#{request.host_with_port}/api"
       url = "#{url}&assessment_id=#{assessment.id}" if assessment.present?
       url = "#{url}&confidence_levels=true" if confidence_levels.present?
       url = "#{url}&eid=#{eid}" if eid.present?
