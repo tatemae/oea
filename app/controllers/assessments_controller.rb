@@ -20,6 +20,7 @@ class AssessmentsController < ApplicationController
     @enable_start = params[:enable_start] ? true : false
     @eid = params[:eid] if params[:eid]
     @keywords = params[:keywords] if params[:keywords]
+    @external_user_id = params[:external_user_id] if params[:external_user_id]
     @results_end_point = ensure_scheme(params[:results_end_point]) if params[:results_end_point].present?
     if params[:id].present? && params[:id] != 'load'
       @assessment = Assessment.find(params[:id])

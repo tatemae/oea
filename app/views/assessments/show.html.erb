@@ -27,18 +27,17 @@
     var OEA_SETTINGS = {
       qtiUrl: '<%= @src_url %>',
       assessmentId: <%= @assessment_id %>,
+      <% if @external_user_id %>
+      externalUserId: <%= @external_user_id  %>,
+      <% end %>
       <% if @keywords %>
       keywords: '<%= @keywords %>',
-      <% else %>
-      keywords: <%= 'null' %>,
       <% end %>
       resultsEndPoint: '<%= @results_end_point || "http://#{request.host_with_port}/api" %>',
-      confidence_levels: <%= @confidence_levels %>,
-      enable_start: <%= @enable_start %>,
+      confidenceLevels: <%= @confidence_levels %>,
+      enableStart: <%= @enable_start %>,
       <% if @eid %>
-      eid: '<%= @eid %>'
-      <% else %>
-      eid: <%= 'null' %>
+      eId: '<%= @eid %>'
       <% end %>
     };
   </script>

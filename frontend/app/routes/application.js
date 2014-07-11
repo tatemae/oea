@@ -23,16 +23,17 @@ export default Ember.Route.extend({
           assessment_id: settings.get('assessmentId'),
           identifier: assessment.get('id'),
           eId: settings.get('eId'),
-          external_user_id: settings.get('external_user_id'),
+          external_user_id: settings.get('externalUserId'),
           resultsEndPoint: settings.get('resultsEndPoint'),
           keywords: settings.get('keywords'),
           objectives: assessment.get('objectives'),
-          src_url: settings.get('qtiUrl'),
-          user_id: settings.get('userId')
+          src_url: settings.get('qtiUrl')
         }).save().then(function(result) {
           assessment.set('assessment_result', result);
           resolve(assessment);
         }.bind(this), function(e) {
+          console.log("Assessment error ======");
+          console.log(e);
           resolve(assessment);
         }.bind(this));
 

@@ -13,9 +13,8 @@ export default Ember.Route.extend({
     ItemResult.create({
       assessment_result_id: this.modelFor('application').get('assessment_result.id'),
       resultsEndPoint: settings.get('resultsEndPoint'),
-      user_id: settings.get('userId'),
-      eId: settings.get('eId'),
-      external_user_id: settings.get('external_user_id'),
+      eid: settings.get('eId'),
+      external_user_id: settings.get('externalUserId'),
       keywords: settings.get('keywords'),
       objectives: this.modelFor('application').get('objectives').concat(model.get('objectives')),
       src_url: settings.get('qtiUrl'),

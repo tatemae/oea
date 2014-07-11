@@ -40,9 +40,9 @@ class Api::ItemResultsController < ApplicationController
       confidence_level: convert_confidence_level,
       session_status: params[:session_status] || 'initial')
 
-    item_result.keyword_list.add(params[:keywords], parse: true)
-    item_result.objective_list.add(params[:objectives], parse: true)
-    item_result.save!
+    item_result.keyword_list.add(params[:keywords], parse: true) if params[:keywords]
+    item_result.objective_list.add(params[:objectives], parse: true) if params[:objectives]
+    item_result.save! if params[:objectives] || params[:keywords]
 
     respond_with(:api, item_result)
   end

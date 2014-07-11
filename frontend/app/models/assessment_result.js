@@ -8,8 +8,7 @@ export default Base.extend({
     var data = {
       assessment_id: this.get('assessment_id'),
       identifier: this.get('identifier'),
-      user_id: this.get('user_id'),
-      eId: this.get('eId'),
+      eid: this.get('eId'),
       external_user_id: this.get('external_user_id'),
       keywords: this.get("keywords"),
       objectives: this.get("objectives"),

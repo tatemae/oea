@@ -18,11 +18,11 @@ export default Ember.Object.extend({
   }.property('params'),
 
   eId: function(){
-    return this.bestValue('eId', 'eId');
+    return this.bestValue('eId', 'eid');
   }.property('params'),
 
   externalUserId: function(){
-    return this.bestValue('ExternalUserId', 'external_user_id');
+    return this.bestValue('externalUserId', 'external_user_id');
   }.property('params'),
 
   keywords: function(){
