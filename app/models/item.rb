@@ -125,22 +125,17 @@ class Item < ActiveRecord::Base
     if opts[:scope_url].present?
       results = ItemResult.where("referer LIKE ?", "%#{opts[:scope_url]}%")
     end
+
     if opts[:identifier].present?
-      Item.by_identifier(opts[:identifier]).each do |item|
-        item.item_results.each{|item_result| results << item_result }
-      end
+      results.concat ItemResult.where(identifier: opts[:identifier])
     end
+
     if opts[:eid].present?
-      ItemResult.where(eid: opts[:eid]).each do |result|
-        results << result
-      end
+      results.concat ItemResult.where(eid: opts[:eid])
     end
+
     if opts[:keyword].present?
-      Assessment.tagged_with(opts[:keyword]).each do |assessment|
-        assessment.items.each do |item|
-          item.item_results.each{|item_result| results << item_result }
-        end
-      end
+      results.concat ItemResult.tagged_with(opts[:keyword])
     end
 
     if opts[:objective].present?
@@ -148,15 +143,11 @@ class Item < ActiveRecord::Base
     end
 
     if opts[:external_user_id].present?
-      AssessmentResult.where(external_user_id: opts[:external_user_id]).each do |assessment_result|
-        assessment_result.item_results.each {|item_result| results << item_result }
-      end
+      results.concat ItemResult.where(external_user_id: opts[:external_user_id])
     end
 
     if opts[:src_url].present?
-      AssessmentResult.where(src_url: opts[:src_url]).each do |assessment_result|
-        assessment_result.item_results.each {|item_result| results << item_result }
-      end
+      results.concat ItemResult.where(src_url: opts[:src_url])
     end
 
     return results

@@ -10,9 +10,9 @@ export default Base.extend({
       identifier: this.get('identifier'),
       eid: this.get('eId'),
       external_user_id: this.get('external_user_id'),
+      src_url: this.get('src_url'),
       keywords: this.get("keywords"),
-      objectives: this.get("objectives"),
-      src_url: this.get('src_url')
+      objectives: this.get("objectives")
     };
     var url = this.get('resultsEndPoint') + '/assessment_results';
     var payload = {type: 'POST', data: data, dataType: 'json'};

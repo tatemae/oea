@@ -6,7 +6,7 @@ class Api::ItemResultsController < ApplicationController
   def index
     scope_url = params[:url]
     scope_url = get_domain(scope_url) if params[:scope] == 'domain'
-    identifier = params[:identifer] if params[:identifer]
+    identifier = params[:identifier] if params[:identifier]
     eid = params[:eid] if params[:eid]
     keyword = params[:keyword] if params[:keyword]
     external_user_id = params[:external_user_id] if params[:external_user_id]
