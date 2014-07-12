@@ -7,6 +7,13 @@ describe Api::ItemResultsController do
       @result1 = FactoryGirl.create(:item_result, item: @item)
       @result2 = FactoryGirl.create(:item_result, item: @item, referer: 'www.example.com')
       @result3 = FactoryGirl.create(:item_result, item: @item, referer: 'www.example.com/index.html')
+      @result4 = FactoryGirl.create(:item_result, item: @item)
+      @result4.objective_list.add('goal')
+      @result4.objective_list.add('bar')
+      @result4.save!
+      @result5 = FactoryGirl.create(:item_result, item: @item)
+      @result5.objective_list.add('goal')
+      @result5.save!
     end
 
     it "returns http success" do
@@ -19,6 +26,12 @@ describe Api::ItemResultsController do
       result = JSON.parse(response.body)
       result['item_results'][0]['item_results']['id'].should eq @result2.id
       result['item_results'][1]['item_results']['id'].should eq @result3.id
+    end
+
+    it "filters by objective" do
+      get :index, format: :json, objective: 'goal, bar'
+      result = JSON.parse(response.body)
+      expect(result['item_results'].first['item_results']['id']).to eq( @result4.id)
     end
 
     it "renders results as csv" do

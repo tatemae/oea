@@ -144,7 +144,7 @@ class Item < ActiveRecord::Base
     end
 
     if opts[:objective].present?
-      results << ItemResult.tagged_with(opts[:objective])
+      results.concat ItemResult.tagged_with(opts[:objective])
     end
 
     if opts[:external_user_id].present?
