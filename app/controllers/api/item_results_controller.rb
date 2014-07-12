@@ -11,7 +11,7 @@ class Api::ItemResultsController < ApplicationController
     keyword = params[:keyword] if params[:keyword]
     external_user_id = params[:external_user_id] if params[:external_user_id]
     src_url = params[:src_url] if params[:src_url]
-    objective = params[:objectives] if params[:objectives]
+    objective = params[:objective] if params[:objective]
     if params[:type] == 'summary'
       results = Item.results_summary( scope_url: scope_url, identifier: identifier, eid: eid, keyword: keyword, objective: objective, external_user_id: external_user_id, src_url: src_url )
     else
