@@ -144,10 +144,8 @@ class Item < ActiveRecord::Base
     end
 
     if opts[:objective].present?
-      Assessment.tagged_with(opts[:objective]).each do |assessment|
-        assessment.items.each do |item|
-          item.item_results.each{|item_result| results << item_result }
-        end
+      ItemResult.tagged_with(opts[:objective]).each do |item_result|
+        results << item_result
       end
     end
 
