@@ -55,7 +55,7 @@ class AssessmentsController < ApplicationController
     @assessment.description = assessment_params[:description] if assessment_params[:description].present?
     @assessment.license = assessment_params[:license] if assessment_params[:license].present?
     @assessment.keyword_list.add(assessment_params[:keywords], parse: true) if assessment_params[:keywords].present?
-    @assessment.save
+    @assessment.save!
     respond_with(@assessment)
   end
 
