@@ -27,6 +27,14 @@ describe AssessmentsController do
     end
   end
 
+  describe "GET 'show'" do
+    it "returns the confidence_level" do
+      get 'show', id: 'load', src_url: 'http://www.openassessments.com/api/assessments/35.xml'
+      expect(assigns[:src_url]).to eq('http://www.openassessments.com/api/assessments/35.xml')
+      expect(assigns[:assessment])
+    end
+  end
+
   describe "POST 'create'" do
     it "sets a license and keywords" do
       sign_in FactoryGirl.create(:user)
