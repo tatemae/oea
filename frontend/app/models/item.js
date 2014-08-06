@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Base from "./base";
 import Answer from "./answer";
 import Qti from "../utils/qti";
@@ -21,10 +22,10 @@ var Item = Base.extend({
 Item.reopenClass({
 
   fromXml: function(xml){
-    xml = $(xml);
+    xml = Ember.$(xml);
 
     var objectives = [];
-    xml.find('objectives matref').map(function(index, item){ return objectives.push( $(item).attr('linkrefid') ); });
+    xml.find('objectives matref').map(function(index, item){ return objectives.push( Ember.$(item).attr('linkrefid') ); });
 
     var attrs = {
       'id': xml.attr('ident'),
@@ -33,8 +34,8 @@ Item.reopenClass({
       'xml': xml
     };
 
-    $.each(xml.find('itemmetadata > qtimetadata > qtimetadatafield'), function(i, x){
-      attrs[$(x).find('fieldlabel').text()] = $(x).find('fieldentry').text();
+    Ember.$.each(xml.find('itemmetadata > qtimetadata > qtimetadatafield'), function(i, x){
+      attrs[Ember.$(x).find('fieldlabel').text()] = Ember.$(x).find('fieldentry').text();
     });
 
     if(xml.find('itemmetadata > qmd_itemtype').text() === 'Multiple Choice'){

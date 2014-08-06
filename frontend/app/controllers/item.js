@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Qti from "../utils/qti";
 import Utils from '../utils/utils';
 import ItemResult from '../models/item_result';
@@ -16,9 +17,9 @@ export default Ember.ObjectController.extend({
       var score = 0; // TODO we should get var names and types from the QTI. For now we just use the default 'score'
       var feedbacks = Ember.A();
 
-      $.each(xml.find('respcondition'), function(i, condition){
+      Ember.$.each(xml.find('respcondition'), function(i, condition){
 
-        condition = $(condition);
+        condition = Ember.$(condition);
         var conditionMet = false;
 
         if(condition.find('conditionvar > varequal').length){

@@ -18,11 +18,16 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "ember-cli": "0.0.28",
-    "originate": "0.1.5",
+    "body-parser": "^1.2.0",
+    "broccoli-asset-rev": "0.0.17",
     "broccoli-ember-hbs-template-compiler": "^1.5.0",
-    "loom-generators-ember-appkit": "^1.1.1",
+    "ember-cli": "0.0.40",
+    "ember-cli-ember-data": "0.1.0",
+    "ember-cli-ic-ajax": "0.1.1",
     "express": "^4.1.1",
-    "glob": "^3.2.9"
+    "glob": "^3.2.9",
+    "originate": "0.1.5",
+    "broccoli-static-compiler": "~0.1.4",
+    "broccoli-merge-trees": "~0.1.4"
   }
 }

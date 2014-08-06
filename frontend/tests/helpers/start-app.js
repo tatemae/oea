@@ -2,6 +2,7 @@
 
 var Application = require('oea/app')['default'];
 var Router = require('oea/router')['default'];
+import Ember from 'ember';
 
 export default function startApp(attrs) {
   var App;

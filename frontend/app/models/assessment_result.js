@@ -1,4 +1,5 @@
 import Base from "./base";
+
 var ajax = require('ic-ajax');
 
 export default Base.extend({

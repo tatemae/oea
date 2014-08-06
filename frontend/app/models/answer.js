@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Base from "./base";
 import Qti from "../utils/qti";
 
@@ -12,7 +13,7 @@ var Answer = Base.extend({
 Answer.reopenClass({
 
   fromXml: function(xml){
-    xml = $(xml);
+    xml = Ember.$(xml);
     return Answer.create({
       'id': xml.attr('ident'),
       'xml': xml

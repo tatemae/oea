@@ -1,5 +1,7 @@
+import Ember from 'ember';
 import Base from "./base";
 import Section from "./section";
+
 var ajax = require('ic-ajax');
 
 export default Base.extend({
@@ -19,7 +21,7 @@ export default Base.extend({
   },
 
   parseAssessment: function(xml){
-    xml = $(xml);
+    xml = Ember.$(xml);
     var assessment = xml.find('assessment');
     this.setProperties({
       'xml':   xml,
@@ -27,7 +29,7 @@ export default Base.extend({
       'title': assessment.attr('title')
     });
     var objectives = [];
-    xml.find('assessment > objectives matref').map(function(index, item){ return objectives.push( $(item).attr('linkrefid') ); });
+    xml.find('assessment > objectives matref').map(function(index, item){ return objectives.push( Ember.$(item).attr('linkrefid') ); });
     this.set('objectives', objectives);
     this.get('sections').set('content', Section.parseSections(xml));
   }

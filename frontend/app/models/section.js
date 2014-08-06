@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Base from "./base";
 import Item from "./item";
 import Qti from "../utils/qti";
@@ -15,7 +16,7 @@ var Section = Base.extend({
 Section.reopenClass({
 
   fromXml: function(xml){
-    xml = $(xml);
+    xml = Ember.$(xml);
     return Section.create({
       'id': xml.attr('ident'),
       'xml': xml

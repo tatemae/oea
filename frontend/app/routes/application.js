@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Assessment from "../models/assessment";
 import AssessmentResult from "../models/assessment_result";
 

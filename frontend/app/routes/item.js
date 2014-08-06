@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import ItemResult from '../models/item_result';
 import Utils from '../utils/utils';
 

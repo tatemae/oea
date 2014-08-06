@@ -9,15 +9,18 @@
 
     {{BASE_TAG}}
 
-    <link rel="stylesheet" href="assets/app.css">
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/oea.css">
   </head>
   <body>
     <script>
-      window.ENV = {{ENV}};
+      window.OeaENV = {{ENV}};
+      window.EmberENV = window.OeaENV.EmberENV;
     </script>
+    <script src="assets/vendor.js"></script>
     <script src="assets/oea.js"></script>
     <script>
-      window.Oea = require('oea/app')['default'].create(ENV.APP);
+      window.Oea = require('oea/app')['default'].create(OeaENV.APP);
     </script>
   </body>
 </html>

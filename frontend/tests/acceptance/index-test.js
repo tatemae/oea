@@ -1,5 +1,7 @@
+import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import XML from '../fixtures/8';
+
 var ajax = require('ic-ajax');
 
 ajax.defineFixture('/fixtures/8.xml', {

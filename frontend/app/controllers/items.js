@@ -1,4 +1,6 @@
+import Ember from 'ember';
 import Utils from '../utils/utils';
+import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
 
