@@ -5,6 +5,7 @@ cd frontend && ember build
 cd ..
 
 git add -f frontend/dist/assets/oea.js
+git add -f frontend/dist/assets/vendor.js
 
 git commit -m "add ember build"
 
