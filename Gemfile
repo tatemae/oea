@@ -64,6 +64,9 @@ gem 'uglifier', '>= 1.3.0'
 # core extensions
 gem 'addressable', '~> 2.3.5' #URI implementation
 
+# Use 12 factor for heroku deployment
+gem 'rails_12factor'
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'debugger'
