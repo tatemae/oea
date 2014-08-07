@@ -26,6 +26,7 @@
   <script type="text/javascript">
     var OEA_SETTINGS = {
       qtiUrl: '<%= @src_url %>',
+      style: '<%= params[:style] %>',
       assessmentId: <%= @assessment_id %>,
       <% if @external_user_id %>
       externalUserId: <%= @external_user_id  %>,

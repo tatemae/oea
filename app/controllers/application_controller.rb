@@ -49,11 +49,11 @@ class ApplicationController < ActionController::Base
 
     def embed_code(assessment, confidence_levels=true, eid=nil, enable_start=false)
       url = "#{request.host_with_port}#{assessment_path('load')}?src_url=#{embed_url(assessment)}"
-      url = "#{url}&results_end_point=#{request.scheme}://#{request.host_with_port}/api"
-      url = "#{url}&assessment_id=#{assessment.id}" if assessment.present?
-      url = "#{url}&confidence_levels=true" if confidence_levels.present?
-      url = "#{url}&eid=#{eid}" if eid.present?
-      url = "#{url}&enable_start=#{enable_start}" if enable_start.present?
+      url << "&results_end_point=#{request.scheme}://#{request.host_with_port}/api"
+      url << "&assessment_id=#{assessment.id}" if assessment.present?
+      url << "&confidence_levels=true" if confidence_levels.present?
+      url << "&eid=#{eid}" if eid.present?
+      url << "&enable_start=#{enable_start}" if enable_start.present?
       CGI.unescapeHTML(%Q{<iframe src="//#{url}" frameborder="0" style="border:none;width:100%;height:100%;min-height:#{assessment.recommended_height || 400}px;"></iframe>})
     end
 

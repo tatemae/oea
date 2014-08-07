@@ -1,0 +1,79 @@
+@import "defines";
+body{
+  background:transparent image-url("pony.jpg") center -190px no-repeat;
+}
+.enable_start {
+  background-color:$pony-dark-gray;
+  .btn.btn-info:hover{
+    background-color:$pony-light-gray !important;
+  }
+}
+.assessment_buttons{
+  .stats_word{
+    color:$pony-light-gray;
+  }
+  .embed_word{
+    color:$pony-light-gray;
+  }
+}
+.embed_code{
+  background-color:$pony-yellow;
+  textarea:focus{
+    border-color:$pony-light-gray;
+  }
+}
+.check_answer_result{
+  color: $pony-pink;
+}
+.correct{
+  background-color:$pony-light-green;
+  color:$pony-green;
+  border:2px solid $pony-green;
+}
+.incorrect{
+  background-color:$background-red;
+  color:$pony-pink;
+  border:2px solid $pony-pink;
+}
+
+
+//Styles for displaying a single item
+.header {
+  color: $pony-purple;
+  background: transparent;
+  border-radius: 0px;
+}
+.full_question{
+  background-color:transparent;
+}
+
+.btn.btn-question{
+  background:$white;
+  color:$pony-purple;
+  border: solid 1px $pony-blue;
+  .radio:hover{
+    color:$black;
+  }
+}
+
+.btn.btn-question:hover, .btn.btn-question:focus {
+  background-color: $pony-light-gray;
+  color:$black;
+}
+.btn.btn-info {
+  background-color: $pony-purple !important;
+}
+.btn.btn-info:hover, btn-question:focus {
+  background-color: $pony-light-gray !important;
+}
+
+.nav_buttons{
+  .btn{
+    background-color: $pony-purple !important;
+    color: $white;
+  }
+}
+
+.btn-check-answer{
+  background-color: $pony-yellow;
+}

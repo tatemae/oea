@@ -5,8 +5,6 @@ $logo_left: 24px;
 .navbar{
   position:fixed;
   line-height:42px;
-  -moz-box-shadow: 2px 2px 1px #888;
-  -webkit-box-shadow: 2px 2px 1px #888;
   box-shadow: 1px 1px 1px #888;
   min-width:875px;
 
@@ -44,8 +42,6 @@ $logo_left: 24px;
     height: 85px;
     line-height: 20px;
     background: $lightgray;
-    -moz-box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 2px 0px;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 2px 0px;
     box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 2px 0px;
   }
 

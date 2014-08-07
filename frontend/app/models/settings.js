@@ -43,6 +43,14 @@ export default Ember.Object.extend({
     return this.bestValue('enableStart', 'enable_start', false);
   }.property('params'),
 
+  style: function(){
+    var style = this.bestValue('style', 'style', null);
+    if(style.indexOf('.css') < 0){
+      style = '/assets/themes/' + style + '.css?body=1';
+    }
+    return style;
+  }.property('params'),
+
   bestValue: function(settings_prop, params_prop, default_prop){
     if(typeof OEA_SETTINGS === 'undefined'){
       return this.get('params')[params_prop] || default_prop;

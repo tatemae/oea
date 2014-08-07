@@ -1,0 +1,72 @@
+@import "defines";
+
+.enable_start {
+  background-color:$mitocw-dark-gray;
+  .btn.btn-info:hover{
+    background-color:$mitocw-light-gray !important;
+  }
+}
+.assessment_buttons{
+  .stats_word{
+    color:$mitocw-light-gray;
+  }
+  .embed_word{
+    color:$mitocw-light-gray;
+  }
+}
+.embed_code{
+  background-color:$mitocw-light-brown;
+  textarea:focus{
+    border-color:$mitocw-light-gray;
+  }
+}
+.check_answer_result{
+  color: $mitocw-red;
+}
+.correct{
+  background-color:$background-green;
+  color:$dark-green;
+  border:2px solid $dark-green;
+}
+.incorrect{
+  background-color:$background-red;
+  color:$mitocw-red;
+  border:2px solid $mitocw-red;
+}
+
+
+//Styles for displaying a single item
+.header {
+  color: $white;
+  background: $mitocw-dark-brown;
+  border-radius: 0px;
+}
+.full_question{
+  background-color:$mitocw-light-brown;
+}
+
+.btn.btn-question{
+  background:$white;
+  color:$black;
+  .radio:hover{
+    color:$black;
+  }
+}
+
+.btn.btn-question:hover, .btn.btn-question:focus {
+  background-color: $mitocw-light-gray;
+  color:$black;
+}
+.btn.btn-info {
+  background-color: $mitocw-dark-brown !important;
+}
+.btn.btn-info:hover, btn-question:focus {
+  background-color: $mitocw-light-gray !important;
+}
+
+.nav_buttons{
+  .btn{
+    background-color: $mitocw-dark-brown !important;
+    color: $white;
+  }
+}

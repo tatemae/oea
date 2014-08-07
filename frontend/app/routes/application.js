@@ -9,6 +9,12 @@ export default Ember.Route.extend({
     if(Ember.isBlank(qtiUrl)){
       throw new Error("No src_url specified: specify a src_url in the url query params.");
     }
+
+    var style = this.get('settings').get('style');
+    if(style){
+      Ember.$('head').append('<link href="' + style + '" media="all" rel="stylesheet">');
+    }
+
   },
 
   model: function(params){

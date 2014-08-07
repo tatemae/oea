@@ -33,6 +33,8 @@ GEM
       activerecord (>= 3, < 5)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (2.2.0.20140727)
+      execjs
     barber (0.4.2)
       ember-source
       execjs
@@ -201,6 +203,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   addressable (~> 2.3.5)
+  autoprefixer-rails
   bootstrap-sass (~> 3.0.3.0)
   byebug
   cancancan
