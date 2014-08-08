@@ -62,7 +62,7 @@ Oea::Application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  config.assets.precompile += %w( html5shiv.js retina.png bare.css themes/ocw.css themes/pony.css themes/bw.css )
+  config.assets.precompile += %w( html5shiv.js retina.png bare.css themes/* )
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
