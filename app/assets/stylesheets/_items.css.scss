@@ -169,6 +169,20 @@ body{
   .btn{
     background-color: $blue !important;
     color: $white;
-    width: 100px;
+    span{
+      display: none;
+    }
   }
 }
+
+@media (min-width: 500px) {
+  .nav_buttons{
+    .btn{
+      width: 100px;
+      span{
+        display: inline-block;
+      }
+    }
+  }
+}
+
