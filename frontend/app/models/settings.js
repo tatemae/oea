@@ -45,7 +45,7 @@ export default Ember.Object.extend({
 
   style: function(){
     var style = this.bestValue('style', 'style', null);
-    if(style.indexOf('.css') < 0){
+    if(style && style.indexOf('.css') < 0){
       style = '/assets/themes/' + style + '.css?body=1';
     }
     return style;
