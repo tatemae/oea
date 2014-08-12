@@ -16,7 +16,7 @@ class Assessment < ActiveRecord::Base
   scope :by_latest, -> { order(updated_at: :desc) }
 
   def self.from_xml(input_xml, user, src_url=nil, published_at=nil, file_name = nil)
-    if xml = AssessmentParser.parse(input_xml).first
+    if xml = AssessmentParser.parse(input_xml).first || ItemParser.parse(input_xml).first
       assessment = Assessment.find_by(identifier: xml.ident, user_id: user.id) || user.assessments.build
       assessment.identifier = xml.ident
       assessment.title = xml.title
@@ -32,7 +32,7 @@ class Assessment < ActiveRecord::Base
 
     assessment.assessment_xmls.create!(:xml => input_xml)
 
-    if xml
+    if xml && xml.respond_to?(:sections)
       assessment.create_subitems(xml)
     end
 

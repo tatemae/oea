@@ -3,6 +3,7 @@ class ItemParser
 
   tag 'item'
   attribute :ident, String
+  attribute :title, String
 
   with_nokogiri_config do |config|
     config.strict.nonet
