@@ -11,7 +11,9 @@ end
 
 # Load QTI files
 Dir.glob("db/seeds/qti/*") do |f|
+  puts "****************************************************************"
   puts "Adding QTI file #{f}"
+  puts "****************************************************************"
   xml_file = File.open(f, "rb").read
   Assessment.from_xml(xml_file, admin, nil, nil, f)
 end
