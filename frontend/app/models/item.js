@@ -28,14 +28,10 @@ var Item = Base.extend({
       if(node.nodeName.toLowerCase() === 'flow'){
         result += Qti.buildMaterial(Ember.$(node).find('material').children());
       } else if(node.nodeName.toLowerCase() === 'response_grp'){
-        result += this.reduceResponsGroup(node);
+        result += Qti.buildResponseGroup(node);
       }
     });
     return result;
-  },
-
-  reduceResponsGroup: function(responseGroup){
-
   },
 
   answers: function(){

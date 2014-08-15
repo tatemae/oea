@@ -44,6 +44,12 @@ var Qti = {
       list.pushObject(klass.buildDefault(xml));
     }
     return list;
+  },
+
+  buildResponseGroup: function(node){
+    // TODO this is an incomplete attempt to build a drag and drop 
+    // question type based on the drag_and_drop.xml in seeds/qti
+    return this.buildMaterial(Ember.$(node).find('material').children());
   }
 
 };
