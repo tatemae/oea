@@ -95,6 +95,10 @@ export default Ember.ObjectController.extend({
 
   isMultipleChoice: function(){
     return this.get('question_type') === 'multiple_choice_question';
+  }.property('question_type'),
+
+  isDragAndDrop: function(){
+    return this.get('question_type') === 'drag_and_drop';
   }.property('question_type')
 
 });

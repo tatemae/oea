@@ -1,0 +1,8 @@
+{{#each content itemController=itemController}}
+  <div class="btn btn-block btn-question">
+    <label class="radio">
+      {{oea-radio-button value=id name=view.name selection=view.value}}
+      {{{material}}}
+    </label>
+  </div>
+{{/each}}

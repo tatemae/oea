@@ -10,8 +10,33 @@ var Item = Base.extend({
   selectedAnswerId: null,
 
   material: function(){
-    return Qti.buildMaterial(this.get('xml').find('presentation > material').children());
+    var material = this.get('xml').find('presentation > material').children();
+    if(material.length > 0){
+      return Qti.buildMaterial(material);
+    }
+
+    var flow = this.get('xml').find('presentation > flow');
+    if(flow.length > 0){
+      return this.reduceFlow(flow);
+    }
+
   }.property('xml'),
+
+  reduceFlow: function(flow){
+    var result = '';
+    Ember.$.each(flow.children(), function(i, node){
+      if(node.nodeName.toLowerCase() === 'flow'){
+        result += Qti.buildMaterial(Ember.$(node).find('material').children());
+      } else if(node.nodeName.toLowerCase() === 'response_grp'){
+        result += this.reduceResponsGroup(node);
+      }
+    });
+    return result;
+  },
+
+  reduceResponsGroup: function(responseGroup){
+
+  },
 
   answers: function(){
     return Answer.parseAnswers(this.get('xml'));
@@ -40,6 +65,13 @@ Item.reopenClass({
 
     if(xml.find('itemmetadata > qmd_itemtype').text() === 'Multiple Choice'){
       attrs.question_type = 'multiple_choice_question';
+    }
+
+    var response_grp = xml.find('response_grp');
+    if(response_grp){
+      if(response_grp.attr('rcardinality') === 'Multiple'){
+        attrs.question_type = 'drag_and_drop';
+      }
     }
 
     return Item.create(attrs);

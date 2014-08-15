@@ -1,0 +1,20 @@
+<div class="inner_question">
+  <div class="question_text">
+    <div>{{{material}}}</div>
+  </div>
+  <div>
+    {{#if isMultipleChoice}}
+      {{oea-multiple-choice content=controller.answers value=selectedAnswerId itemController="answer"}}
+    {{/if}}
+    {{#if isDragAndDrop}}
+      {{oea-drag-and-drop content=controller.answers value=selectedAnswerId itemController="answer"}}
+    {{/if}}
+  </div>
+</div>
+
+<div class="check_answer_result">
+  <p>{{result}}</p>
+  {{#each feedback in choiceFeeback}}
+    {{{feedback}}}
+  {{/each}}
+</div>

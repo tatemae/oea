@@ -1,23 +1,7 @@
 {{#if promptConfidenceLevel}}
   {{#view 'multibuttonform'}}
     <div class="full_question">
-      <div class="inner_question">
-        <div class="question_text">
-          <div>{{{material}}}</div>
-        </div>
-        <div>
-          {{#if isMultipleChoice}}
-            {{oea-multiple-choice content=controller.answers value=selectedAnswerId itemController="answer"}}
-          {{/if}}
-        </div>
-      </div>
-
-      <div class="check_answer_result">
-        <p>{{result}}</p>
-        {{#each feedback in choiceFeeback}}
-          {{{feedback}}}
-        {{/each}}
-      </div>
+      {{partial "item_content"}}
       <div class="lower_level">
         {{input type="submit" value='Maybe?' class="btn btn-check-answer" }}
         {{input type="submit" value='Probably.' class="btn btn-check-answer" }}
@@ -28,23 +12,7 @@
 {{else}}
  <form {{action checkAnswer on="submit"}} class="edit_item">
     <div class="full_question">
-      <div class="inner_question">
-        <div class="question_text">
-          <div>{{{material}}}</div>
-        </div>
-        <div>
-          {{#if isMultipleChoice}}
-            {{oea-multiple-choice content=controller.answers value=selectedAnswerId itemController="answer"}}
-          {{/if}}
-        </div>
-      </div>
-
-      <div class="check_answer_result">
-        <p>{{result}}</p>
-        {{#each feedback in choiceFeeback}}
-          {{{feedback}}}
-        {{/each}}
-      </div>
+      {{partial "item_content"}}
       <div class="lower_level">
         {{input type="submit" value='Check Answer' class="btn btn-check-answer" }}
       </div>
