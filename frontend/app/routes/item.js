@@ -18,7 +18,7 @@ export default Ember.Route.extend({
       external_user_id: settings.get('externalUserId'),
       keywords: settings.get('keywords'),
       objectives: this.modelFor('application').get('objectives').concat(model.get('objectives')),
-      src_url: settings.get('qtiUrl'),
+      src_url: settings.get('srcUrl'),
       identifier: model.get('id')
     }).save();
 

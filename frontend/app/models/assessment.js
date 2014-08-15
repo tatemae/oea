@@ -6,12 +6,12 @@ var ajax = require('ic-ajax');
 
 export default Base.extend({
 
-  qtiUrl: '',
+  srcUrl: '',
   sections: Ember.ArrayProxy.create(),
   keywords: [],
 
   init: function(){
-    ajax.request(this.get('qtiUrl')).then(function(xml){
+    ajax.request(this.get('srcUrl')).then(function(xml){
       this.parseAssessment(xml);
       this.trigger('loaded');
     }.bind(this), function(result){

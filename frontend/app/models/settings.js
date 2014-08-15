@@ -11,8 +11,8 @@ export default Ember.Object.extend({
     return queryDict;
   }.property(),
 
-  qtiUrl: function(){
-    return this.bestValue('qtiUrl', 'src_url');
+  srcUrl: function(){
+    return this.bestValue('srcUrl', 'src_url');
   }.property('params'),
 
   assessmentId: function(){

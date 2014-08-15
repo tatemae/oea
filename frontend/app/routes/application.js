@@ -5,8 +5,8 @@ import AssessmentResult from "../models/assessment_result";
 export default Ember.Route.extend({
 
   beforeModel: function(transition){
-    var qtiUrl = this.get('settings').get('qtiUrl');
-    if(Ember.isBlank(qtiUrl)){
+    var srcUrl = this.get('settings').get('srcUrl');
+    if(Ember.isBlank(srcUrl)){
       throw new Error("No src_url specified: specify a src_url in the url query params.");
     }
 
@@ -20,10 +20,10 @@ export default Ember.Route.extend({
   model: function(params){
     var settings = this.get('settings');
     return new Ember.RSVP.Promise(function(resolve, reject){
-      var url = settings.get('qtiUrl');
+      var url = settings.get('srcUrl');
 
       var assessment = Assessment.create({
-        qtiUrl: url
+        srcUrl: url
       });
 
       assessment.on('loaded', function(){

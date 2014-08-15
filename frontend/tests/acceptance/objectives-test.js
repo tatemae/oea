@@ -6,7 +6,7 @@ var App;
 module('Integration - Keywords', {
   setup: function() {
     window.OEA_SETTINGS = {
-      qtiUrl: '/assessment.xml',
+      srcUrl: '/assessment.xml',
       userId: '2',
       resultsEndPoint: '/api',
       assessmentId: 1,

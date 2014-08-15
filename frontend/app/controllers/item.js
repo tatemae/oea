@@ -80,7 +80,7 @@ export default Ember.ObjectController.extend({
           external_user_id: settings.get('externalUserId'),
           keywords: settings.get('keywords'),
           objectives: this.get('controllers.application').get('model').get('objectives').concat(this.get('model').get('objectives')),
-          src_url: settings.get('qtiUrl'),
+          src_url: settings.get('srcUrl'),
           identifier: this.get('id'),
           session_status: 'final',
           time_spent: end - start,

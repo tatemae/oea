@@ -15,7 +15,7 @@ var App;
 module('Integration - Index', {
   setup: function() {
     window.OEA_SETTINGS = {
-      qtiUrl: '/fixtures/8.xml',
+      srcUrl: '/fixtures/8.xml',
       userId: '2',
       resultsEndPoint: '/api',
       assessmentId: 1,
