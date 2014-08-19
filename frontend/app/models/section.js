@@ -5,10 +5,12 @@ import Qti from "../utils/qti";
 
 var Section = Base.extend({
 
-  items: Ember.ArrayProxy.create(),
+  items: Ember.ArrayProxy.create({ content: Ember.A() }),
 
   init: function(){
-    this.get('items').set('content', Item.parseItems(this.get('xml')));
+    if(this.get('standard') == 'qti'){
+      this.get('items').set('content', Item.parseItems(this.get('xml')));
+    }
   }
 
 });
@@ -19,6 +21,7 @@ Section.reopenClass({
     xml = Ember.$(xml);
     return Section.create({
       'id': xml.attr('ident'),
+      'standard': 'qti',
       'xml': xml
     });
   },
@@ -27,6 +30,17 @@ Section.reopenClass({
   buildDefault: function(xml){
     return Section.create({
       'id': 'default',
+      'standard': 'qti',
+      'xml': xml
+    });
+  },
+
+  fromEdXVertical: function(id, url, xml){
+    xml = Ember.$(xml).find('vertical');
+    return Section.create({
+      'id': id,
+      'url': url,
+      'standard': 'edX',
       'xml': xml
     });
   },

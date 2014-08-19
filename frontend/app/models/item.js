@@ -9,17 +9,33 @@ var Item = Base.extend({
   choiceFeedback: null,
   selectedAnswerId: null,
 
+  answers: Ember.ArrayProxy.create({ content: Ember.A() }),
+
+  init: function(){
+    if(this.get('standard') == 'qti'){
+      this.get('answers').set('content', Answer.parseAnswers(this.get('xml')));
+    }
+  },
+
   material: function(){
-    var material = this.get('xml').find('presentation > material').children();
-    if(material.length > 0){
-      return Qti.buildMaterial(material);
-    }
+    if(this.get('standard') == 'edX'){
+      var contents = Ember.$('<div>').append(this.get('xml').html());
+      contents.remove('solution');
+      contents.remove('stringresponse');
+      contents.remove('customresponse');
+      return contents.html();
+    } else if(this.get('standard') == 'qti'){
+      var material = this.get('xml').find('presentation > material').children();
+      if(material.length > 0){
+        return Qti.buildMaterial(material);
+      }
 
-    var flow = this.get('xml').find('presentation > flow');
-    if(flow.length > 0){
-      return this.reduceFlow(flow);
+      var flow = this.get('xml').find('presentation > flow');
+      if(flow.length > 0){
+        return this.reduceFlow(flow);
+      }
     }
-
+    return '';
   }.property('xml'),
 
   reduceFlow: function(flow){
@@ -32,15 +48,39 @@ var Item = Base.extend({
       }
     });
     return result;
-  },
-
-  answers: function(){
-    return Answer.parseAnswers(this.get('xml'));
-  }.property('xml')
+  }
 
 });
 
 Item.reopenClass({
+
+  fromEdXProblem: function(id, url, xml){
+    xml = Ember.$(xml).find('problem');
+    var attrs = {
+      'id': id,
+      'url': url,
+      'title': xml.attr('display_name'),
+      'xml': xml,
+      'standard': 'edX'
+    };
+
+    switch(xml.attr('display_name')){
+      case 'Drag and Drop':
+        attrs.question_type = 'drag_and_drop';
+        break;
+      case 'Numerical Input':
+        attrs.question_type = ''; // Other edX types we don't yet support
+        break;
+      case 'Dropdown':
+        attrs.question_type = '';
+        break;
+      case 'Multiple Choice':
+        attrs.question_type = 'multiple_choice_question';
+        break;
+    }
+
+    return Item.create(attrs);
+  },
 
   fromXml: function(xml){
     xml = Ember.$(xml);
@@ -52,7 +92,8 @@ Item.reopenClass({
       'id': xml.attr('ident'),
       'title': xml.attr('title'),
       'objectives': objectives,
-      'xml': xml
+      'xml': xml,
+      'standard': 'qti'
     };
 
     Ember.$.each(xml.find('itemmetadata > qtimetadata > qtimetadatafield'), function(i, x){
