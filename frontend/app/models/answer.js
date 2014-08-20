@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Base from "./base";
 import Qti from "../utils/qti";
 
+
 var Answer = Base.extend({
 
   material: function(){

@@ -1,0 +1,8 @@
+{{#each content itemController=itemController}}
+  {{#if imageUrl}}
+    <img {{bind-attr src="imageUrl" alt="imageTitle"}}>
+  {{/if}}
+  {{#each content.draggables}}
+    <label>{{label}}</label>
+  {{/each}}
+{{/each}}

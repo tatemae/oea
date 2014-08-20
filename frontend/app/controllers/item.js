@@ -99,6 +99,22 @@ export default Ember.ObjectController.extend({
 
   isDragAndDrop: function(){
     return this.get('question_type') === 'drag_and_drop';
+  }.property('question_type'),
+
+  isEdXDragAndDrop: function(){
+    return this.get('question_type') === 'Drag and Drop';
+  }.property('question_type'),
+
+  isEdXNumericalInput: function(){
+    return this.get('question_type') === 'Numerical Input';
+  }.property('question_type'),
+
+  isEdXDropdown: function(){
+    return this.get('question_type') === 'Dropdown';
+  }.property('question_type'),
+
+  isEdXMultipleChoice: function(){
+    return this.get('question_type') === 'Multiple Choice';
   }.property('question_type')
 
 });

@@ -8,34 +8,26 @@ var Item = Base.extend({
   result: null,
   choiceFeedback: null,
   selectedAnswerId: null,
-
-  answers: Ember.ArrayProxy.create({ content: Ember.A() }),
+  answers: null,
 
   init: function(){
-    if(this.get('standard') == 'qti'){
-      this.get('answers').set('content', Answer.parseAnswers(this.get('xml')));
-    }
+    var content = Answer.parseAnswers(this.get('xml'));
+    this.set('answers', Ember.ArrayProxy.create({ content : content }));
   },
 
   material: function(){
-    if(this.get('standard') == 'edX'){
-      var contents = Ember.$('<div>').append(this.get('xml').html());
-      contents.remove('solution');
-      contents.remove('stringresponse');
-      contents.remove('customresponse');
-      return contents.html();
-    } else if(this.get('standard') == 'qti'){
-      var material = this.get('xml').find('presentation > material').children();
-      if(material.length > 0){
-        return Qti.buildMaterial(material);
-      }
+    var xml = this.get('xml');
 
-      var flow = this.get('xml').find('presentation > flow');
-      if(flow.length > 0){
-        return this.reduceFlow(flow);
-      }
+    var material = xml.find('presentation > material').children();
+    if(material.length > 0){
+      return Qti.buildMaterial(material);
     }
-    return '';
+
+    var flow = xml.find('presentation > flow');
+    if(flow.length > 0){
+      return this.reduceFlow(flow);
+    }
+
   }.property('xml'),
 
   reduceFlow: function(flow){
@@ -54,34 +46,6 @@ var Item = Base.extend({
 
 Item.reopenClass({
 
-  fromEdXProblem: function(id, url, xml){
-    xml = Ember.$(xml).find('problem');
-    var attrs = {
-      'id': id,
-      'url': url,
-      'title': xml.attr('display_name'),
-      'xml': xml,
-      'standard': 'edX'
-    };
-
-    switch(xml.attr('display_name')){
-      case 'Drag and Drop':
-        attrs.question_type = 'drag_and_drop';
-        break;
-      case 'Numerical Input':
-        attrs.question_type = ''; // Other edX types we don't yet support
-        break;
-      case 'Dropdown':
-        attrs.question_type = '';
-        break;
-      case 'Multiple Choice':
-        attrs.question_type = 'multiple_choice_question';
-        break;
-    }
-
-    return Item.create(attrs);
-  },
-
   fromXml: function(xml){
     xml = Ember.$(xml);
 
@@ -92,8 +56,7 @@ Item.reopenClass({
       'id': xml.attr('ident'),
       'title': xml.attr('title'),
       'objectives': objectives,
-      'xml': xml,
-      'standard': 'qti'
+      'xml': xml
     };
 
     Ember.$.each(xml.find('itemmetadata > qtimetadata > qtimetadatafield'), function(i, x){
@@ -101,13 +64,13 @@ Item.reopenClass({
     });
 
     if(xml.find('itemmetadata > qmd_itemtype').text() === 'Multiple Choice'){
-      attrs.question_type = 'multiple_choice_question';
+      return 'multiple_choice_question';
     }
 
     var response_grp = xml.find('response_grp');
     if(response_grp){
       if(response_grp.attr('rcardinality') === 'Multiple'){
-        attrs.question_type = 'drag_and_drop';
+        return 'drag_and_drop';
       }
     }
 

@@ -7,7 +7,10 @@
       {{oea-multiple-choice content=controller.answers value=selectedAnswerId itemController="answer"}}
     {{/if}}
     {{#if isDragAndDrop}}
-      {{oea-drag-and-drop content=controller.answers value=selectedAnswerId itemController="answer"}}
+      {{oea-drag-and-drop content=controller.answers itemController="answer"}}
+    {{/if}}
+    {{#if isEdXDragAndDrop}}
+      {{edx-drag-and-drop content=controller.answers itemController="answer"}}
     {{/if}}
   </div>
 </div>

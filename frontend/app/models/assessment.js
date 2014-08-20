@@ -1,7 +1,11 @@
 import Ember from 'ember';
 import Base from "./base";
+
 import Section from "./section";
-import Item from "./item";
+
+import EdXSection from "./edx_section";
+import EdXItem from "./edx_item";
+
 
 export default Base.extend({
 
@@ -51,10 +55,10 @@ export default Base.extend({
 
     var baseUrl = url.substr(0, url.indexOf('sequential'));
     var promises = this.crawlEdX(sequential.children(), baseUrl + 'vertical/', function(id, url, data){
-      var section = Section.fromEdXVertical(id, url, data);
+      var section = EdXSection.fromEdX(id, url, data);
       this.get('sections').pushObject(section);
       var sectionPromises = this.crawlEdX(section.get('xml').children(), baseUrl + 'problem/', function(id, url, data){
-        var item = Item.fromEdXProblem(id, url, data);
+        var item = EdXItem.fromEdX(id, url, data);
         section.get('items').pushObject(item);
       });
       Ember.RSVP.Promise.all(promises.concat(sectionPromises)).then(function(){
