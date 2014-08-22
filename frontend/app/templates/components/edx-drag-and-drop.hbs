@@ -1,8 +1,19 @@
-{{#each content itemController=itemController}}
-  {{#if imageUrl}}
-    <img {{bind-attr src="imageUrl" alt="imageTitle"}}>
+<div class="panel panel-default">
+  {{#if content.question}}
+    <div class="panel-heading text-center">
+      {{{content.question}}}
+    </div>
   {{/if}}
-  {{#each content.draggables}}
-    <label>{{label}}</label>
-  {{/each}}
-{{/each}}
+  <div class="panel-body text-center">
+    {{#each content.images}}
+      <img {{bind-attr src="src" alt="title" class=":dropzone"}}>
+    {{/each}}
+  </div>
+  <div class="panel-footer text-center">
+    {{#each content.draggables}}
+      <div class="label label-default draggable">
+        <label>{{label}}</label>
+      </div>
+    {{/each}}
+  </div>
+</div>

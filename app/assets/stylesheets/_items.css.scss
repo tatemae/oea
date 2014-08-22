@@ -129,6 +129,8 @@ body{
 	padding:20px;
 }
 .question_text{
+  font-size: 18px;
+  font-weight: bold;
 	padding: 0 0 14px 4px;
 }
 
@@ -184,5 +186,11 @@ body{
       }
     }
   }
+}
+
+.draggable{
+  font-size: 18px;
+  margin: 2px;
+  display: inline-block;
 }
 

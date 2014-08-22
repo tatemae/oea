@@ -11,6 +11,9 @@ var EdX = {
     contents.find('solution').remove();
     contents.find('stringresponse').remove();
     contents.find('customresponse').remove();
+    contents.find('draggable').remove();
+    contents.find('answer').remove();
+    contents.find('drag_and_drop_input').remove();
     return contents.html();
   },
 
@@ -25,6 +28,12 @@ var EdX = {
       list.pushObject(klass.fromEdX(Utils.makeId(), xml, question_type));
     }
     return list;
+  },
+
+  questionType: function(xml){
+    if(xml.find('drag_and_drop_input').length > 0){
+      return 'edx_drag_and_drop';
+    }
   }
 
 };

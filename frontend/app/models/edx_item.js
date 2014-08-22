@@ -11,7 +11,7 @@ var EdXItem = Base.extend({
   answers: null,
 
   init: function(){
-    var content = EdXAnswer.parseAnswers(this.get('xml'), this.get('question_type'), this.get('standard'));
+    var content = EdXAnswer.parseAnswers(this.get('xml'));
     this.set('answers', Ember.ArrayProxy.create({ content : content }) );
   },
 
@@ -33,7 +33,7 @@ EdXItem.reopenClass({
       'standard': 'edX'
     };
 
-    attrs.question_type = xml.attr('display_name');
+    attrs.question_type = EdX.questionType(xml);
 
     return EdXItem.create(attrs);
   }

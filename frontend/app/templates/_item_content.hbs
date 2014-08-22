@@ -10,7 +10,9 @@
       {{oea-drag-and-drop content=controller.answers itemController="answer"}}
     {{/if}}
     {{#if isEdXDragAndDrop}}
-      {{edx-drag-and-drop content=controller.answers itemController="answer"}}
+      {{#each answer in controller.answers itemController="answer"}}
+        {{edx-drag-and-drop content=answer }}
+      {{/each}}
     {{/if}}
   </div>
 </div>

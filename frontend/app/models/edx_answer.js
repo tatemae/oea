@@ -4,15 +4,21 @@ import EdX from "../utils/edx";
 
 var EdxAnswer = Base.extend({
 
-  imageUrl: function(){
-    var dndRoot = this.get('xml').find('drag_and_drop_input');
-    if(dndRoot.length > 0){
-      return dndRoot.attr('img');
-    }
+  question: function(){
+    return EdX.buildProblemMaterial(this.get('xml'));
   }.property('xml'),
 
-  imageTitle: function(){
-    return 'Drag and Drop main image';
+  images: function(){
+    var imgs = Ember.A();
+    var dndRoot = this.get('xml').find('drag_and_drop_input');
+    if(dndRoot.length > 0){
+      var image = {
+        src: dndRoot.attr('img'),
+        title: 'Drag and Drop main image'
+      };
+      imgs.pushObject(image);
+    }
+    return imgs;
   }.property('xml'),
 
   draggables: function(){
@@ -23,57 +29,31 @@ var EdxAnswer = Base.extend({
         'label': draggable.attr('label')
       };
     });
-  }.property('xml')
+  }.property('xml'),
+
+  correctAnswer: function(){
+    var answer = this.get('xml').find('answer').html();
+    answer = answer.replace('correct_answer =', '');
+    answer = answer.substring(0, answer.indexOf('if draganddrop.grade'));
+    return eval(answer);
+  }
 
 });
 
 EdxAnswer.reopenClass({
 
-  fromEdX: function(id, xml, question_type){
+  fromEdX: function(id, xml){
     xml = Ember.$(xml);
     return EdxAnswer.create({
       'id': id,
-      'question_type': question_type,
       'xml': xml
     });
   },
 
-  parseAnswers: function(xml, question_type){
-    return EdX.answersFromProblem(xml, EdxAnswer, question_type);
+  parseAnswers: function(xml){
+    return EdX.answersFromProblem(xml, EdxAnswer);
   }
 
 });
 
 export default EdxAnswer;
-
-
-//     <drag_and_drop_input img="https://studio.edx.org/c4x/edX/DemoX/asset/L9_buckets.png">
-//       
-//  <draggable id="1" label="a"/>
-//  <draggable id="2" label="cat"/>
-//  <draggable id="3" label="there"/>
-//  <draggable id="4" label="pear"/>
-//  <draggable id="5" label="kitty"/>
-//  <draggable id="6" label="in"/>
-//  <draggable id="7" label="them"/>
-//  <draggable id="8" label="za"/>
-//  <draggable id="9" label="dog"/>
-//  <draggable id="10" label="slate"/>
-//  <draggable id="11" label="few"/></drag_and_drop_input><answer type="loncapa/python">
-// correct_answer = {
-//         '1':      [[70, 150], 121],
-//         '6':      [[190, 150], 121],
-//         '8':      [[190, 150], 121],
-//         '2':      [[310, 150], 121],
-//         '9':      [[310, 150], 121],
-//         '11':     [[310, 150], 121],
-//         '4':      [[420, 150], 121],
-//         '7':      [[420, 150], 121],
-//         '3':      [[550, 150], 121],
-//         '5':      [[550, 150], 121],
-//         '10':     [[550, 150], 121]}
-// if draganddrop.grade(submission[0], correct_answer):
-//     correct = ['correct']
-// else:
-//     correct = ['incorrect']
-//         </answer>"

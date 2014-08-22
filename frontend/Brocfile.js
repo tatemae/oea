@@ -26,8 +26,10 @@ app.import('vendor/ic-ajax/dist/named-amd/main.js', {
     'defineFixture',
     'lookupFixture',
     'raw',
-    'request',
+    'request'
   ]
 });
+
+app.import('vendor/interact/interact.js');
 
 module.exports = app.toTree();
