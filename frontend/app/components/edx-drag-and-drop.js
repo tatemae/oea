@@ -45,6 +45,22 @@ export default Ember.Component.extend({
     });
   }.property('content.xml'),
 
+  correctAnswer: function(){
+    var answer = this.get('content.xml').find('answer').html();
+    answer = answer.replace('correct_answer =', '');
+    answer = answer.substring(0, answer.indexOf('if draganddrop.grade'));
+    return eval(answer);
+  }.property('content.xml'),
+
+  checkAnswers: function(){
+    var answer = this.get('correctAnswer');
+    this.get('draggables').forEach(function(draggable){
+      var pos = this.$('#' + draggable.id).position();
+      var correct = answer[draggable.id];
+    }.bind(this));
+    this.get('content').set('score', 0);
+  },
+
   didInsertElement: function(){
 
     interact('.dropzone')
@@ -56,7 +72,6 @@ export default Ember.Component.extend({
       .on('dragenter', function(event){
         var draggableElement = event.relatedTarget;
         var dropzoneElement = event.target;
-
         // feedback the possibility of a drop
         dropzoneElement.classList.add('drop-target');
       })
@@ -67,20 +82,17 @@ export default Ember.Component.extend({
       .on('drop', function(event){
         // remove the drop feedback style
         event.target.classList.remove('drop-target');
-        //event.relatedTarget.textContent = 'Dropped';
-      });
+        this.checkAnswers();
+      }.bind(this));
 
     //var dropzone = Ember.$('.panel-body');
 
     interact('.draggable')
       .draggable({
         onmove: function(event){
-          //event.dataTransfer.setData('text/data', this.get('content.id'));
           var target = event.target;
-
           target.x = (target.x|0) + event.dx;
           target.y = (target.y|0) + event.dy;
-
           target.style.webkitTransform = target.style.transform = 'translate(' + target.x + 'px, ' + target.y + 'px)';
         }
       })

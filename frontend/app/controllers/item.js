@@ -112,7 +112,15 @@ export default Ember.ObjectController.extend({
   },
 
   checkEdXDragAndDrop: function(){
-
+    var score = 0;
+    this.get('answers').forEach(function(answer){
+      score += answer.get('score');
+    });
+    var feedbacks = [];
+    return {
+      feedbacks: feedbacks,
+      score: score
+    };
   },
 
   isMultipleChoice: function(){

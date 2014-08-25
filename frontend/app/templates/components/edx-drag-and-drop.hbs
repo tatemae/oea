@@ -16,7 +16,7 @@
   </div>
   <div class="panel-footer text-center">
     {{#each draggables}}
-      <div class="label label-default draggable">
+      <div {{bind-attr id="id" class=":label :label-default :draggable"}}>
         <label>{{label}}</label>
       </div>
     {{/each}}
