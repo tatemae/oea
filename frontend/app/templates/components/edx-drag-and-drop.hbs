@@ -1,16 +1,21 @@
 <div class="panel panel-default">
-  {{#if content.question}}
+  {{#if question}}
     <div class="panel-heading text-center">
-      {{{content.question}}}
+      {{{question}}}
     </div>
   {{/if}}
   <div class="panel-body text-center">
-    {{#each content.images}}
-      <img {{bind-attr src="src" alt="title" class=":dropzone"}}>
-    {{/each}}
+    <div class="drop-container">
+      {{#each image in images}}
+        <img {{bind-attr src="image.src" alt="image.title" class="isDroppableImage:dropzone"}}>
+      {{/each}}
+      {{#each targets}}
+        <div {{bind-attr class=":dropzone :dropmarker" style="style"}}></div>
+      {{/each}}
+    </div>
   </div>
   <div class="panel-footer text-center">
-    {{#each content.draggables}}
+    {{#each draggables}}
       <div class="label label-default draggable">
         <label>{{label}}</label>
       </div>

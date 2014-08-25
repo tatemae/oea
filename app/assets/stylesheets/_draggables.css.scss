@@ -1,0 +1,19 @@
+.draggable{
+  font-size: 18px;
+  margin: 2px;
+  display: inline-block;
+}
+
+.drop-target{
+  box-shadow: 0px 0px 3px 4px $lighter_blue;
+}
+
+.drop-container{
+  position: relative;
+  display: inline-block;
+}
+
+.dropmarker{
+  border: dashed 1px $almost_black;
+  position: absolute;
+}
