@@ -114,7 +114,7 @@ export default Ember.ObjectController.extend({
   checkEdXDragAndDrop: function(){
     var score = 0;
     this.get('answers').forEach(function(answer){
-      score += answer.get('score');
+      graded += answer.get('graded');
     });
     var feedbacks = [];
     return {
