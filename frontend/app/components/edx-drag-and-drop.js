@@ -29,22 +29,29 @@ export default Ember.Component.extend({
   draggables: function(){
     return Ember.$.map(this.get('content.xml').find('draggable'), function(draggable){
       draggable = Ember.$(draggable);
+      var style;
+      if(this.get('labelBackgroundColor')){
+        style = 'background-color:' + this.get('labelBackgroundColor') + ';';
+      }
       return {
         'id': draggable.attr('id'),
-        'label': draggable.attr('label')
+        'label': draggable.attr('label'),
+        'style': style
       };
-    });
+    }.bind(this));
   }.property('content.xml'),
 
   targets: function(){
     return Ember.$.map(this.get('content.xml').find('target'), function(target){
       target = Ember.$(target);
+      var style = 'top:' + target.attr('y') + 'px;left:' + target.attr('x') + 'px;width:' +
+                  target.attr('w') + 'px;height:' + target.attr('h') + 'px;';
       return {
         'id': target.attr('id'),
         'label': target.attr('label'),
-        'style': 'top:' + target.attr('y') + 'px;left:' + target.attr('x') + 'px;width:' + target.attr('w') + 'px;height:' + target.attr('h') + 'px;'
+        'style': style
       };
-    });
+    }.bind(this));
   }.property('content.xml'),
 
   correctAnswer: function(){
@@ -55,31 +62,53 @@ export default Ember.Component.extend({
     return JSON.parse(answer);
   }.property('content.xml'),
 
+  onePerTarget: function(){
+    return this.get('content.xml').find('drag_and_drop_input').attr('one_per_target') == "true";
+  }.property('content.xml'),
+
+  outlineTarget: function(){
+    return this.get('content.xml').find('drag_and_drop_input').attr('target_outline') == "true";
+  }.property('content.xml'),
+
+  labelBackgroundColor: function(){
+    return this.get('content.xml').find('drag_and_drop_input').attr('label_bg_color');
+  }.property('content.xml'),
+
   checkAnswers: function(){
     var drugged = this.get('drugged');
     var graded = {};
     var correct = this.get('correctAnswer');
-    if(correct && typeof correct === typeof {}){
-      Ember.$.map(correct, function(answer, id){
-        var node = drugged[id];
-        graded[id] = {
-          correct: false,
-          feedback: '',
-          score:  0
-        };
-        if(node){
-          if((node.x < (answer[0][0] + answer[1]) || node.x > (answer[0][0] - answer[1])) &&
-             (node.y < (answer[0][1] + answer[1]) || node.y > (answer[0][1] - answer[1]))){
-            graded[id].correct = true;
-            graded[id].score = 1;
-          }
+    if(correct){
+      if(correct[0] && correct[0].targets){
+        var rule = correct[0].rule | 'anyof';
+        switch(rule){
+          case 'anyof':
+
+          break;
         }
-      }.bind(this));
+      } else {
+        Ember.$.each(correct, function(answer, id){
+          var node = drugged[id];
+          graded[id] = {
+            correct: false,
+            feedback: '',
+            score:  0
+          };
+          if(node){
+            if((node.x < (answer[0][0] + answer[1]) || node.x > (answer[0][0] - answer[1])) &&
+               (node.y < (answer[0][1] + answer[1]) || node.y > (answer[0][1] - answer[1]))){
+              graded[id].correct = true;
+              graded[id].score = 1;
+            }
+          }
+        }.bind(this));
+      }
     }
     this.get('content').set('graded', graded);
   },
 
   didInsertElement: function(){
+    this.set('messages', Ember.A());
 
     this.$('.dropzone').each(function(i, element){
       this.enableDroppable(element);
@@ -111,12 +140,31 @@ export default Ember.Component.extend({
       .on('drop', function(event){
         // remove the drop feedback style
         event.target.classList.remove('drop-target');
+        var related = event.relatedTarget;
         var drugged = this.get('drugged');
-        drugged[event.relatedTarget.id] = {
-          x: event.relatedTarget.x,
-          y: event.relatedTarget.y
-        };
-        this.set('drugged', drugged);
+        var alreadyOccupied = false;
+        var targetId = event.target.id;
+        if(this.get('onePerTarget')){
+          // Determine if a target is already occupied
+          Ember.$.each(this.get('drugged'), function(i, item){
+            if(targetId == item.droppableId){
+              this.get('messages').pushObject('Only one item per drop area.');
+              alreadyOccupied = true;
+            }
+          }.bind(this));
+        }
+        if(alreadyOccupied){ // If the drop area is already occupied and we don't allow that state
+          // reset the draggable
+          this.moveBack(related);
+        } else {
+          drugged[related.id] = {
+            x: related.x,
+            y: related.y,
+            droppableId: event.target.id
+          };
+          this.set('drugged', drugged);
+        }
+
         this.checkAnswers();
       }.bind(this));
   },
@@ -127,10 +175,12 @@ export default Ember.Component.extend({
     interact(element)
       .draggable({
         onstart: function(event){
+          this.clearPrompts();
           var target = event.target;
           startX = target.x|0;
           startY = target.y|0;
-        },
+          target.classList.remove('can-drop');
+        }.bind(this),
         onmove: function(event){
           var target = event.target;
           target.x = (target.x|0) + event.dx;
@@ -139,14 +189,24 @@ export default Ember.Component.extend({
         },
         onend: function(event){
           var target = event.target;
-          if(!Ember.$(target).hasClass('can-drop')){
-            target.x = startX;
-            target.y = startY;
-            target.style.webkitTransform = target.style.transform = 'translate(' + startX + 'px, ' + startY + 'px)';
+          target.startX = startX;
+          target.startY = startY;
+          if(!Ember.$(target).hasClass('can-drop')){ // We only add can-drop when the draggable is over top of a dropzone
+            this.moveBack(target);
           }
-        }
+        }.bind(this)
       })
       .inertia(true);
+  },
+
+  clearPrompts: function(){
+    this.get('messages').clear();
+  },
+
+  moveBack: function(element){
+    element.x = element.startX;
+    element.y = element.startY;
+    element.style.webkitTransform = element.style.transform = 'translate(' + element.startX + 'px, ' + element.startY + 'px)';
   }
 
 });

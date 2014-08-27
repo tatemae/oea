@@ -14,6 +14,10 @@
 }
 
 .dropmarker{
-  border: dashed 1px $almost_black;
   position: absolute;
 }
+
+.dropmarker-outlined{
+  border: dashed 1px $almost_black;
+}
+
