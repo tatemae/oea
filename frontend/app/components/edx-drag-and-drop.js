@@ -80,12 +80,30 @@ export default Ember.Component.extend({
     var correct = this.get('correctAnswer');
     if(correct){
       if(correct[0] && correct[0].targets){
-        var rule = correct[0].rule | 'anyof';
-        switch(rule){
-          case 'anyof':
-
-          break;
-        }
+        correct.forEach(function(answerSet){
+          var rule = answerSet.rule || 'anyof';
+          switch(rule){
+            case 'anyof':
+              answerSet.draggables.forEach(function(id){
+                id = parseInt(id, 10);
+                graded[id] = {
+                  correct: false,
+                  feedback: '',
+                  score:  0
+                };
+                if(drugged[id] && answerSet.targets.contains(drugged[id].droppableId)){
+                  graded[id].correct = true;
+                  graded[id].score = 1;
+                }
+              });
+            break;
+            case 'exact':
+            case 'unordered_equal':
+            case 'anyof+number':
+            case 'unordered_equal+number':
+            break;
+          }
+        }.bind(this));
       } else {
         Ember.$.each(correct, function(answer, id){
           var node = drugged[id];
