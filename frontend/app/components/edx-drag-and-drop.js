@@ -1,17 +1,10 @@
 import Ember from 'ember';
 import EdX from "../utils/edx";
+import EdXBase from './edx-base';
 
-export default Ember.Component.extend({
+export default EdXBase.extend({
 
   drugged: {}, // All draggables that have been drug.
-
-  question: function(){
-    return EdX.buildProblemMaterial(this.get('content.xml'));
-  }.property('content.xml'),
-
-  solution: function(){
-    return this.get('content.xml').find('solution').html();
-  }.property('content.xml'),
 
   images: function(){
     var imgs = Ember.A();
