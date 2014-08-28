@@ -85,7 +85,6 @@ export default Ember.Component.extend({
           switch(rule){
             case 'anyof':
               answerSet.draggables.forEach(function(id){
-                id = parseInt(id, 10);
                 graded[id] = {
                   correct: false,
                   feedback: '',
@@ -105,7 +104,7 @@ export default Ember.Component.extend({
           }
         }.bind(this));
       } else {
-        Ember.$.each(correct, function(answer, id){
+        Ember.$.each(correct, function(id, answer){
           var node = drugged[id];
           graded[id] = {
             correct: false,
@@ -198,6 +197,7 @@ export default Ember.Component.extend({
           startX = target.x|0;
           startY = target.y|0;
           target.classList.remove('can-drop');
+          target.classList.remove('highlight-draggable');
         }.bind(this),
         onmove: function(event){
           var target = event.target;
@@ -217,8 +217,38 @@ export default Ember.Component.extend({
       .inertia(true);
   },
 
+  isGradedDidChange: function(){
+    // This method is a bit hackish in that we bypass the usual data binding - render technic.
+    // However, if ember re-renders the draggable it reverts to it's original position.
+    // In this case it makes more sense to just add the class
+    if(this.get('content.isGraded') && this.get('content.graded')){
+      this.get('draggables').forEach(function(draggable){
+
+        var result = this.get('content.graded')[draggable.id];
+        var highlight = false;
+        if(typeof result === 'undefined'){
+          // Items hasn't been moved so highlight it
+          highlight = true;
+        } else {
+          // Hightlight based on whether or not the value was correct
+          highlight = !result.correct;
+        }
+
+        if(highlight){
+          this.$('#' + draggable.id).addClass('highlight-draggable');
+        } else {
+          this.$('#' + draggable.id).removeClass('highlight-draggable');
+        }
+
+      }.bind(this));
+    }
+  }.observes('content.isGraded'),
+
   clearPrompts: function(){
     this.get('messages').clear();
+    if(this.get('content.isGraded')){
+      this.set('content.isGraded', false);
+    }
   },
 
   moveBack: function(element){

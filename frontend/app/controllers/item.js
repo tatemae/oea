@@ -42,7 +42,7 @@ export default Ember.ObjectController.extend({
       }
 
       this.set('choiceFeeback', results.feedbacks);
-      this.set('result', (results.score > 0) ? 'Correct!' : 'Incorrect!');
+      this.set('result', results.correct ? 'Correct!' : 'Incorrect!');
     }
   },
 
@@ -51,6 +51,7 @@ export default Ember.ObjectController.extend({
     var selectedAnswerId = this.get('selectedAnswerId');
     var score = 0; // TODO we should get var names and types from the QTI. For now we just use the default 'score'
     var feedbacks = Ember.A();
+    var correct = false;
 
     Ember.$.each(xml.find('respcondition'), function(i, condition){
 
@@ -76,10 +77,10 @@ export default Ember.ObjectController.extend({
             conditionMet = true;
           }
         }
-
       }
 
       if(conditionMet){
+        correct = true;
         var setvar = condition.find('setvar');
         var action = setvar.attr('action');
         if(action === 'Add'){
@@ -106,21 +107,33 @@ export default Ember.ObjectController.extend({
 
     return {
       feedbacks: feedbacks,
-      score: score
+      score: score,
+      correct: correct
     };
 
   },
 
   checkEdXDragAndDrop: function(){
-    var score = 0;
-    this.get('answers').forEach(function(answer){
-      graded += answer.get('graded');
-    });
-    var feedbacks = [];
-    return {
-      feedbacks: feedbacks,
-      score: score
+    var result = {
+      feedbacks: Ember.A(),
+      score: 0,
+      correct: true
     };
+    this.get('answers').forEach(function(answer){
+      if(answer.get('graded')){
+        Ember.$.each(answer.get('graded'), function(id, graded){
+          if(graded.feedback && graded.feedback.length > 0){
+            result.feedbacks.push(graded.feedback);
+          }
+          result.score += graded.score;
+          if(!graded.correct){
+            result.correct = false;
+          }
+        });
+        answer.set('isGraded', true);
+      }
+    });
+    return result;
   },
 
   isMultipleChoice: function(){
