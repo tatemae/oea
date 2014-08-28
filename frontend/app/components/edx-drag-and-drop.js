@@ -9,6 +9,10 @@ export default Ember.Component.extend({
     return EdX.buildProblemMaterial(this.get('content.xml'));
   }.property('content.xml'),
 
+  solution: function(){
+    return this.get('content.xml').find('solution').html();
+  }.property('content.xml'),
+
   images: function(){
     var imgs = Ember.A();
     var dndRoot = this.get('content.xml').find('drag_and_drop_input');
@@ -142,6 +146,8 @@ export default Ember.Component.extend({
       this.enableDraggable(element);
     }.bind(this));
 
+    // Set all answers to an initial state
+    this.checkAnswers();
   },
 
   enableDroppable: function(element){

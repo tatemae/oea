@@ -27,5 +27,10 @@
         <label>{{label}}</label>
       </div>
     {{/each}}
+    {{#if content.isGraded}}
+      <div class="solution">
+        {{{solution}}}
+      </div>
+    {{/if}}
   </div>
 </div>
