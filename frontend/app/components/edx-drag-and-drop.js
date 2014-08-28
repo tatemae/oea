@@ -112,8 +112,15 @@ export default Ember.Component.extend({
             score:  0
           };
           if(node){
-            if((node.x < (answer[0][0] + answer[1]) || node.x > (answer[0][0] - answer[1])) &&
-               (node.y < (answer[0][1] + answer[1]) || node.y > (answer[0][1] - answer[1]))){
+
+            // Get x,y based on the element the target is dropped on.
+            var drag = this.$(node.draggable);
+            var drop = this.$(node.droppable);
+            var relativeX = drag.offset().left - drop.offset().left;
+            var relativeY = drag.offset().top - drop.offset().top;
+
+            if(((relativeX < (answer[0][0] + answer[1]) && relativeX > (answer[0][0] - answer[1]))) &&
+               ((relativeY < (answer[0][1] + answer[1]) && relativeY > (answer[0][1] - answer[1])))){
               graded[id].correct = true;
               graded[id].score = 1;
             }
@@ -177,7 +184,10 @@ export default Ember.Component.extend({
           drugged[related.id] = {
             x: related.x,
             y: related.y,
-            droppableId: event.target.id
+            draggableId: related.id,
+            draggable: related,
+            droppableId: targetId,
+            droppable: event.target
           };
           this.set('drugged', drugged);
         }
