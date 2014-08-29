@@ -53,10 +53,12 @@ export default EdXBase.extend({
 
   correctAnswer: function(){
     var answer = this.get('content.xml').find('answer').html();
-    answer = answer.replace('correct_answer =', '');
-    answer = answer.substring(0, answer.indexOf('if draganddrop.grade'));
-    answer = answer.replace(/'/g, '"');
-    return JSON.parse(answer);
+    if(answer){
+      answer = answer.replace('correct_answer =', '');
+      answer = answer.substring(0, answer.indexOf('if draganddrop.grade'));
+      answer = answer.replace(/'/g, '"');
+      return JSON.parse(answer);
+    }
   }.property('content.xml'),
 
   onePerTarget: function(){
