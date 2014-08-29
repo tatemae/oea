@@ -6,6 +6,10 @@ export default EdXBase.extend({
 
   drugged: {}, // All draggables that have been drug.
 
+  question: function(){
+    return EdX.buildProblemMaterial(this.get('content.xml'));
+  }.property('content.xml'),
+
   images: function(){
     var imgs = Ember.A();
     var dndRoot = this.get('content.xml').find('drag_and_drop_input');
