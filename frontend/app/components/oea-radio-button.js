@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import ItemBase from './item-base';
 
-export default Ember.Component.extend({
+export default ItemBase.extend({
 
   tagName : "input",
   type : "radio",

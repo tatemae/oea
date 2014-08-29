@@ -1,5 +1,5 @@
-import Ember from 'ember';
+import ItemBase from './item-base';
 
-export default Ember.Component.extend({
-  name: 'response'
+export default ItemBase.extend({
+  name: 'response',
 });
