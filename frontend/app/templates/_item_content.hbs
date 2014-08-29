@@ -14,6 +14,11 @@
         {{edx-drag-and-drop content=answer }}
       {{/each}}
     {{/if}}
+    {{#if isEdXNumericalInput}}
+      {{#each answer in controller.answers itemController="answer"}}
+        {{edx-numeric-input content=answer }}
+      {{/each}}
+    {{/if}}
   </div>
 </div>
 

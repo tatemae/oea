@@ -1,0 +1,26 @@
+<div class="panel-messages-container panel panel-default">
+  {{#if question}}
+    <div class="panel-heading text-center">
+      {{{question}}}
+    </div>
+  {{/if}}
+  {{#if messages.length}}
+    <div class="panel-messages alert alert-danger" role="alert">
+      {{#each message in messages}}
+        {{message}}
+      {{/each}}
+    </div>
+  {{/if}}
+  <div class="panel-body text-center">
+    <div class="drop-container">
+
+    </div>
+  </div>
+  <div class="panel-footer text-center">
+    {{#if content.isGraded}}
+      <div class="solution">
+        {{{solution}}}
+      </div>
+    {{/if}}
+  </div>
+</div>
