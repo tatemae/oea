@@ -32,7 +32,4 @@ app.import('vendor/ic-ajax/dist/named-amd/main.js', {
 
 app.import('vendor/interact/interact.js');
 
-//app.import('vendor/MathJax/MathJax.js');
-//app.import('vendor/MathJax/extensions/.....some file that we need.js');
-
 module.exports = app.toTree();

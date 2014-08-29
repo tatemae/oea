@@ -15,7 +15,8 @@ var MathJaxInit = {
     var script = doc.createElement('script'), config;
 
     /* see http://www.mathjax.org/resources/faqs/#problem-https */
-    script.src = 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_HTMLorMML.js';
+    // script.src = 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_HTMLorMML.js';
+    script.src = '/MathJax/MathJax.js?config=TeX-MML-AM_HTMLorMML.js';
     script.type = 'text/javascript';
 
     /* see http://www.mathjax.org/docs/1.1/options/tex2jax.html */
