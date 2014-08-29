@@ -3,7 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     environment: environment,
-    baseURL: '/assessments/load',
+    baseURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
