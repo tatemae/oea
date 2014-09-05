@@ -7,6 +7,9 @@ var EdX = {
   // Problem (Item) functionality
   //
   buildProblemMaterial: function(xml){
+    if(this.questionType(xml) == 'edx_numerical_input'){
+      return null; // Numeric input will handle all question rendering
+    }
     var contents = Ember.$('<div>').append(xml.html());
     contents.find('solution').remove();
     contents.find('stringresponse').remove();
@@ -31,9 +34,19 @@ var EdX = {
   },
 
   questionType: function(xml){
+
     if(xml.find('drag_and_drop_input').length > 0){
       return 'edx_drag_and_drop';
+    } else if(xml.find('numericalresponse').length > 0){
+      return 'edx_numerical_input';
+    } else if(xml.find('multiplechoiceresponse').length > 0){
+      return 'edx_multiple_choice';
+    } else if(xml.find('optionresponse').length > 0){
+      return 'edx_dropdown';
+    } else if(xml.find('stringresponse').length > 0){
+      return 'edx_text_input';
     }
+
   }
 
 };
