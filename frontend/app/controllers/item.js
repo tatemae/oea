@@ -152,6 +152,10 @@ export default Ember.ObjectController.extend({
     return this.get('question_type') === 'edx_numerical_input';
   }.property('question_type'),
 
+  isEdXTextInput: function(){
+    return this.get('question_type') === 'edx_text_input';
+  }.property('question_type'),
+
   isEdXDropdown: function(){
     return this.get('question_type') === 'edx_dropdown';
   }.property('question_type'),
