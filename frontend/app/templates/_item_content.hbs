@@ -1,7 +1,9 @@
 <div class="inner_question">
-  <div class="question_text">
-    <div>{{{material}}}</div>
-  </div>
+  {{#if material}}
+    <div class="question_text">
+      <div>{{{material}}}</div>
+    </div>
+  {{/if}}
   <div>
     {{#if isMultipleChoice}}
       {{oea-multiple-choice content=controller.answers value=selectedAnswerId itemController="answer"}}
