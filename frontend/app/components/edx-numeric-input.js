@@ -4,18 +4,34 @@ import EdXBase from './edx-base';
 
 export default EdXBase.extend({
 
+  graded: {},
+  inputPrefix: 'numeric_question_',
+
+  keyUp: function(e){
+    var args = {
+      id: e.target.id.replace(this.inputPrefix, ''),
+      value: parseFloat(e.target.value, 10)
+    };
+    Ember.run.debounce(this, this.checkAnswers, args, 300);
+  },
+
   title: function(){
     return this.get('content.xml').attr('display_name');
   }.property('content.xml'),
 
   question: function(){
+    var inputs = {};
     var contents = Ember.$('<div>').append(this.get('content.xml').html());
     contents.find('solution').remove();
 
     contents.find('numericalresponse').each(function(i, numericalresponse){
       numericalresponse = Ember.$(numericalresponse);
-      numericalresponse.replaceWith('<input type="text">');
-    });
+      inputs[i] = numericalresponse;
+      var input = Ember.$('<input/>').attr('id', this.inputPrefix + i).attr('type', 'text');
+      numericalresponse.replaceWith(input);
+    }.bind(this));
+
+    this.set('inputs', inputs);
 
     return contents.html();
 
@@ -23,7 +39,46 @@ export default EdXBase.extend({
 
   solution: function(){
     return this.get('content.xml').find('solution').html();
-  }.property('content.xml')
+  }.property('content.xml'),
+
+  checkAnswers: function(args){
+    var correct = false;
+    var score = 0;
+    var graded = this.get('graded');
+    var numericalResponse = this.get('inputs')[args.id];
+    var answer = parseFloat(numericalResponse.attr('answer'), 10);
+    var tolerance = numericalResponse.find('[type="tolerance"]').attr('default');
+    if(tolerance){
+      if(tolerance.indexOf('%') >= 0){
+        tolerance = tolerance.replace('%', '');
+        tolerance = parseFloat(tolerance);
+        tolerance = tolerance * 0.01;
+      } else {
+        tolerance = parseFloat(tolerance);
+      }
+      var deviation = answer*tolerance;
+      correct = (args.value > answer - deviation) && (args.value < answer + deviation);
+    } else {
+      correct = args.value == answer;
+    }
+    if(correct){
+      score = 1;
+    }
+    graded[args.id] = {
+      correct: correct,
+      feedback: '',
+      score: score
+    };
+
+    this.get('content').set('graded', graded);
+  },
+
+  isGradedDidChange: function(){
+    this.get('content.graded').each(function(i, numericalresponse){
+      // highlight incorrect answers
+    });
+
+  }.observes('content.isGraded')
 
 });
 

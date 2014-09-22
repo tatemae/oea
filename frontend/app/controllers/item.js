@@ -20,6 +20,9 @@ export default Ember.ObjectController.extend({
         case 'edx_drag_and_drop':
           results = this.checkEdXDragAndDrop();
           break;
+        case 'edx_numerical_input':
+          results = this.checkEdXNumeric();
+          break;
       }
 
       var start = this.get('start');
@@ -130,6 +133,20 @@ export default Ember.ObjectController.extend({
             result.correct = false;
           }
         });
+        answer.set('isGraded', true);
+      }
+    });
+    return result;
+  },
+
+  checkEdXNumeric: function(){
+    var result = {
+      feedbacks: Ember.A(),
+      score: 0,
+      correct: true
+    };
+    this.get('answers').forEach(function(answer){
+      if(answer.get('graded')){
         answer.set('isGraded', true);
       }
     });
