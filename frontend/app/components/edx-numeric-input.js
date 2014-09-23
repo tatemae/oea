@@ -4,8 +4,11 @@ import EdXBase from './edx-base';
 
 export default EdXBase.extend({
 
-  graded: {},
   inputPrefix: 'numeric_question_',
+
+  didInsertElement: function(){
+    this.set('graded', {});
+  },
 
   keyUp: function(e){
     var args = {
@@ -20,13 +23,13 @@ export default EdXBase.extend({
   }.property('content.xml'),
 
   question: function(){
-    var inputs = {};
+    var inputs = Ember.Map.create();
     var contents = Ember.$('<div>').append(this.get('content.xml').html());
     contents.find('solution').remove();
 
     contents.find('numericalresponse').each(function(i, numericalresponse){
       numericalresponse = Ember.$(numericalresponse);
-      inputs[i] = numericalresponse;
+      inputs.set(i, numericalresponse);
       var input = Ember.$('<input/>').attr('id', this.inputPrefix + i).attr('type', 'text');
       numericalresponse.replaceWith(input);
     }.bind(this));
@@ -45,7 +48,7 @@ export default EdXBase.extend({
     var correct = false;
     var score = 0;
     var graded = this.get('graded');
-    var numericalResponse = this.get('inputs')[args.id];
+    var numericalResponse = this.get('inputs').get(parseInt(args.id, 10));
     var answer = parseFloat(numericalResponse.attr('answer'), 10);
     var tolerance = numericalResponse.find('[type="tolerance"]').attr('default');
     if(tolerance){
@@ -74,9 +77,15 @@ export default EdXBase.extend({
   },
 
   isGradedDidChange: function(){
-    this.get('content.graded').each(function(i, numericalresponse){
-      // highlight incorrect answers
-    });
+    this.$('.incorrect').removeClass('incorrect');
+    var graded = this.get('content.graded');
+    this.get('inputs').forEach(function(i, numericalresponse){
+      var correct = graded[i] && graded[i].correct;
+      if(!correct){
+        // highlight incorrect answer
+        this.$('#' + this.inputPrefix + i).addClass('incorrect');
+      }
+    }.bind(this));
 
   }.observes('content.isGraded')
 

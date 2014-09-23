@@ -198,3 +198,12 @@ body{
   left: 5%;
   right: 5%;
 }
+
+.incorrect{
+  color: $red;
+}
+
+input.incorrect{
+  border: solid 1px $red;
+}
+

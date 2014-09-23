@@ -117,6 +117,14 @@ export default Ember.ObjectController.extend({
   },
 
   checkEdXDragAndDrop: function(){
+    return this.checkEdX();
+  },
+
+  checkEdXNumeric: function(){
+    return this.checkEdX();
+  },
+
+  checkEdX: function(){
     var result = {
       feedbacks: Ember.A(),
       score: 0,
@@ -124,6 +132,7 @@ export default Ember.ObjectController.extend({
     };
     this.get('answers').forEach(function(answer){
       if(answer.get('graded')){
+        answer.set('isGraded', false);
         Ember.$.each(answer.get('graded'), function(id, graded){
           if(graded.feedback && graded.feedback.length > 0){
             result.feedbacks.push(graded.feedback);
@@ -133,20 +142,6 @@ export default Ember.ObjectController.extend({
             result.correct = false;
           }
         });
-        answer.set('isGraded', true);
-      }
-    });
-    return result;
-  },
-
-  checkEdXNumeric: function(){
-    var result = {
-      feedbacks: Ember.A(),
-      score: 0,
-      correct: true
-    };
-    this.get('answers').forEach(function(answer){
-      if(answer.get('graded')){
         answer.set('isGraded', true);
       }
     });
