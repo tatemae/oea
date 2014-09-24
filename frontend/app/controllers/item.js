@@ -23,6 +23,9 @@ export default Ember.ObjectController.extend({
         case 'edx_numerical_input':
           results = this.checkEdXNumeric();
           break;
+        case 'edx_multiple_choice':
+          results = this.checkEdXMultipleChoice();
+          break;
       }
 
       var start = this.get('start');
@@ -124,6 +127,10 @@ export default Ember.ObjectController.extend({
     return this.checkEdX();
   },
 
+  checkEdXMultipleChoice: function(){
+    return this.checkEdX();
+  },
+
   checkEdX: function(){
     var result = {
       feedbacks: Ember.A(),
@@ -143,6 +150,8 @@ export default Ember.ObjectController.extend({
           }
         });
         answer.set('isGraded', true);
+      } else {
+        result.correct = false;
       }
     });
     return result;

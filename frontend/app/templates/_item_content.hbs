@@ -21,6 +21,11 @@
         {{edx-numeric-input content=answer }}
       {{/each}}
     {{/if}}
+    {{#if isEdXMultipleChoice}}
+      {{#each answer in controller.answers itemController="answer"}}
+        {{edx-multiple-choice content=answer }}
+      {{/each}}
+    {{/if}}
   </div>
 </div>
 

@@ -10,6 +10,9 @@ var EdX = {
     if(this.questionType(xml) == 'edx_numerical_input'){
       return null; // Numeric input will handle all question rendering
     }
+    if(this.questionType(xml) == 'edx_multiple_choice'){
+      return null; // Multiple choice will handle all question rendering
+    }
     var contents = Ember.$('<div>').append(xml.html());
     contents.find('solution').remove();
     contents.find('stringresponse').remove();
