@@ -4,7 +4,10 @@ import EdXBase from './edx-base';
 
 export default EdXBase.extend({
 
-  drugged: {}, // All draggables that have been drug.
+  init: function(){
+    this._super();
+    this.set('drugged', {});
+  },
 
   question: function(){
     return EdX.buildProblemMaterial(this.get('content.xml'));
