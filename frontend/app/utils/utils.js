@@ -15,6 +15,16 @@ var Utils = {
       result = result + i;
     }
     return result;
+  },
+
+  htmlDecode: function(input){
+    var e = document.createElement('div');
+    e.innerHTML = input;
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+  },
+
+  htmlDecodeWithRoot: function(input){
+    return '<root>' + Utils.htmlDecode(input) + '</root>';
   }
 
 };

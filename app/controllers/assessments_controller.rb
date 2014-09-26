@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class AssessmentsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_filter :skip_trackable
@@ -22,7 +24,7 @@ class AssessmentsController < ApplicationController
     @keywords = params[:keywords] if params[:keywords]
     @external_user_id = params[:external_user_id] if params[:external_user_id]
     @results_end_point = ensure_scheme(params[:results_end_point]) if params[:results_end_point].present?
-    if params[:id].present? && params[:id] != 'load'
+    if params[:id].present? && !['load', 'offline'].include?(params[:id])
       @assessment = Assessment.find(params[:id])
       @eid ||= @assessment.identifier
       if @embedded
@@ -30,7 +32,7 @@ class AssessmentsController < ApplicationController
         @src_url = embed_url(@assessment)
       else
         # Show the full page with analtyics and embed code buttons
-        @embed_code = embed_code(@assessment, @confidence_levels, @eid, @enable_start)
+        @embed_code = embed_code(@assessment, @confidence_levels, @eid, @enable_start, params[:offline].present?)
         @embed_code_confidence_levels = embed_code(@assessment, true, @eid, @enable_start)
       end
     else
@@ -39,6 +41,21 @@ class AssessmentsController < ApplicationController
     end
 
     @assessment_id = @assessment ? @assessment.id : params[:assessment_id] || 'null'
+
+    if params[:offline].present? && @src_url.present?
+      @src_data = open(@src_url).read
+      xml = EdxSequentialParser.parse(@src_data)
+      # edX
+      if defined?(xml.verticals)
+        base_uri = @src_url[0, @src_url.index('sequential')];
+        @edx_verticals = crawlEdx(base_uri, 'vertical', xml.verticals.map(&:url_name))
+        @edx_problems = {}
+        @edx_verticals.each do |id, vertical|
+          xml = EdxVerticalParser.parse(vertical)
+          @edx_problems.merge!(crawlEdx(base_uri, 'problem', xml.problems.map(&:url_name)))
+        end
+      end
+    end
 
     respond_to do |format|
       format.html { render :layout => @embedded ? 'bare' : 'application' }
@@ -67,6 +84,13 @@ class AssessmentsController < ApplicationController
   end
 
   private
+
+    def crawlEdx(base_uri, type, ids)
+      ids.inject({}) do |hsh, id|
+        hsh[id] = open(base_uri + type + '/' + id + '.xml').read
+        hsh
+      end
+    end
 
     def assessment_params
       params.require(:assessment).permit(:title, :description, :xml_file, :license, :keywords)

@@ -10,13 +10,19 @@ import EdXItem from "./edx_item";
 export default Base.extend({
 
   srcUrl: '',
+  srcData: null,
+  offline: false,
   sections: Ember.ArrayProxy.create({ content: Ember.A() }),
   keywords: [],
   standard: '',
   objectives: [],
 
-  init: function(){
-    this.makeAjax(this.get('srcUrl'), this.parseAssessment.bind(this));
+  loadAndParse: function(){
+    if(this.get('offline')){
+      this.parseAssessment(this.get('srcData'));
+    } else {
+      this.makeAjax(this.get('srcUrl'), this.parseAssessment.bind(this));
+    }
   },
 
   parseAssessment: function(data){
@@ -61,9 +67,13 @@ export default Base.extend({
         var item = EdXItem.fromEdX(id, url, data);
         section.get('items').pushObject(item);
       });
-      Ember.RSVP.Promise.all(promises.concat(sectionPromises)).then(function(){
+      if(promises){
+        Ember.RSVP.Promise.all(promises.concat(sectionPromises)).then(function(){
+          this.trigger('loaded');
+        }.bind(this));
+      } else {
         this.trigger('loaded');
-      }.bind(this));
+      }
     }.bind(this));
   }
 

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Utils from '../utils/utils';
 
 export default Ember.Object.extend({
   params: function() {
@@ -13,6 +14,14 @@ export default Ember.Object.extend({
 
   srcUrl: function(){
     return this.bestValue('srcUrl', 'src_url');
+  }.property('params'),
+
+  srcData: function(){
+    return Utils.htmlDecodeWithRoot(Ember.$('#srcData').html());
+  }.property('params'),
+
+  offline: function(){
+    return this.bestValue('offline', 'offline', false);
   }.property('params'),
 
   assessmentId: function(){
@@ -52,10 +61,10 @@ export default Ember.Object.extend({
   }.property('params'),
 
   bestValue: function(settings_prop, params_prop, default_prop){
-    if(typeof OEA_SETTINGS === 'undefined'){
+    if(typeof window.OEA_SETTINGS === 'undefined'){
       return this.get('params')[params_prop] || default_prop;
     } else {
-      return OEA_SETTINGS[settings_prop];
+      return window.OEA_SETTINGS[settings_prop];
     }
   }
 

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Utils from '../utils/utils';
 
 var ajax = require('ic-ajax');
 
@@ -9,10 +10,15 @@ export default Ember.Object.extend(Ember.Evented, {
     Ember.$.each(children, function(i, child){
       var id = Ember.$(child).attr('url_name');
       var url = baseUrl + id + '.xml';
-      var promise = this.makeAjax(url, function(data){
+      if(this.get('offline')){
+        var data = Utils.htmlDecodeWithRoot(Ember.$('#' + id).html());
         callback(id, url, data);
-      }.bind(this));
-      promises.push(promise);
+      } else {
+        var promise = this.makeAjax(url, function(data){
+          callback(id, url, data);
+        }.bind(this));
+        promises.push(promise);
+      }
     }.bind(this));
     return promises;
   },

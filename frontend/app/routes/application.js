@@ -23,7 +23,9 @@ export default Ember.Route.extend({
       var url = settings.get('srcUrl');
 
       var assessment = Assessment.create({
-        srcUrl: url
+        srcUrl: url,
+        offline: settings.get('offline'),
+        srcData: settings.get('srcData')
       });
 
       assessment.on('loaded', function(){
@@ -51,6 +53,8 @@ export default Ember.Route.extend({
       assessment.on('error', function(){
         reject(new Error("Failed to load assessment"));
       });
+
+      assessment.loadAndParse();
 
     });
   },

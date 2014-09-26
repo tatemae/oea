@@ -23,8 +23,15 @@
   <script>
     window.ENV = {"rootURL":"/assessments/load","FEATURES":{}};
   </script>
+  <script id="srcData" type="text/x-data">
+    <%= @src_data %>
+  </script>
+
+  <%= render partial: 'assessments/edx_data', object: @edx_verticals -%>
+  <%= render partial: 'assessments/edx_data', object: @edx_problems -%>
+
   <script type="text/javascript">
-    var OEA_SETTINGS = {
+    window.OEA_SETTINGS = {
       srcUrl: '<%= @src_url %>',
       style: '<%= params[:style] %>',
       assessmentId: <%= @assessment_id %>,
@@ -38,8 +45,9 @@
       confidenceLevels: <%= @confidence_levels %>,
       enableStart: <%= @enable_start %>,
       <% if @eid %>
-      eId: '<%= @eid %>'
+      eId: '<%= @eid %>',
       <% end %>
+      offline: @src_data.present?
     };
   </script>
   <%= javascript_include_tag "oea/application" %>
