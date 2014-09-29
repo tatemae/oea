@@ -31,6 +31,7 @@ export default Ember.Route.extend({
       assessment.on('loaded', function(){
         // Record that the assessment was viewed
         AssessmentResult.create({
+          offline: settings.get('offline'),
           assessment_id: settings.get('assessmentId'),
           identifier: assessment.get('id'),
           eId: settings.get('eId'),
@@ -47,7 +48,6 @@ export default Ember.Route.extend({
           console.log(e);
           resolve(assessment);
         }.bind(this));
-
       }.bind(this));
 
       assessment.on('error', function(){

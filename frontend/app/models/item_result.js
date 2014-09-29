@@ -6,6 +6,9 @@ export default Base.extend({
 
   // TODO change this to a get - maybe even just use an image on the page with the params so we don't run into cross origin issues.
   save: function(){
+    if(this.get('offline')){
+      return;
+    }
     var data = {
       assessment_result_id: this.get('assessment_result_id'),
       identifier: this.get('identifier'),

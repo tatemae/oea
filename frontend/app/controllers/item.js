@@ -33,6 +33,7 @@ export default Ember.ObjectController.extend({
         var end = Utils.currentTime();
         var settings = this.get('settings');
         ItemResult.create({
+          offline: settings.get('offline'),
           assessment_result_id: this.get('controllers.application').get('model').get('assessment_result.id'),
           resultsEndPoint: settings.get('resultsEndPoint'),
           eId: settings.get('eId'),

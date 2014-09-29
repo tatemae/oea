@@ -27,8 +27,8 @@
     <%= @src_data %>
   </script>
 
-  <%= render partial: 'assessments/edx_data', object: @edx_verticals -%>
-  <%= render partial: 'assessments/edx_data', object: @edx_problems -%>
+  <%= render(partial: 'assessments/edx_data', object: @edx_verticals) if @edx_verticals.present? -%>
+  <%= render(partial: 'assessments/edx_data', object: @edx_problems) if @edx_problems.present? -%>
 
   <script type="text/javascript">
     window.OEA_SETTINGS = {

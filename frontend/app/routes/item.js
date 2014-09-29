@@ -15,6 +15,7 @@ export default Ember.Route.extend({
 
       // Record that the item was viewed
       ItemResult.create({
+        offline: settings.get('offline'),
         assessment_result_id: this.modelFor('application').get('assessment_result.id'),
         resultsEndPoint: settings.get('resultsEndPoint'),
         eId: settings.get('eId'),
