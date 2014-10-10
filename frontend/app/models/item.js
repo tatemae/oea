@@ -64,13 +64,13 @@ Item.reopenClass({
     });
 
     if(xml.find('itemmetadata > qmd_itemtype').text() === 'Multiple Choice'){
-      return 'multiple_choice_question';
+      attrs.question_type = 'multiple_choice_question';
     }
 
     var response_grp = xml.find('response_grp');
     if(response_grp){
       if(response_grp.attr('rcardinality') === 'Multiple'){
-        return 'drag_and_drop';
+        attrs.question_type = 'drag_and_drop';
       }
     }
 

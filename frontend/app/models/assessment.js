@@ -28,9 +28,10 @@ export default Base.extend({
   parseAssessment: function(data){
     var xml = Ember.$(data);
     var assessment = xml.find('assessment');
+    var questestinterop = xml.find('questestinterop');
     var sequential = xml.find('sequential');
     this.set('xml', xml);
-    if(assessment.length > 0){
+    if(assessment.length > 0 || questestinterop.length > 0){
       this.parseQti(assessment, xml);
     } else if(sequential.length > 0){
       this.parseEdX(sequential);
