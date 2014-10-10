@@ -47,7 +47,7 @@
       <% if @eid %>
       eId: '<%= @eid %>',
       <% end %>
-      offline: @src_data.present?
+      offline: <%= @src_data.present? %>
     };
   </script>
   <%= javascript_include_tag "oea/application" %>
