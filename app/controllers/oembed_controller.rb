@@ -12,7 +12,7 @@ class OembedController < ApplicationController
     case controller
 
     when 'assessments'
-      assessment = Assessment.find(id, :include => :user)
+      assessment = Assessment.find(id)
       url = assessment_url(assessment.id, :embed => true).gsub('http:', '')
       width = 600
       height = assessment.recommended_height || 400
