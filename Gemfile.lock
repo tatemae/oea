@@ -79,6 +79,8 @@ GEM
     ember-source (1.3.2)
       handlebars-source (~> 1.2.1)
     erubis (2.7.0)
+    ethon (0.7.1)
+      ffi (>= 1.3.0)
     execjs (2.2.1)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
@@ -190,6 +192,8 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    typhoeus (0.6.9)
+      ethon (>= 0.7.1)
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
@@ -236,6 +240,7 @@ DEPENDENCIES
   ruby-saml-mod
   sass-rails (~> 4.0.0)
   sendgrid
+  typhoeus
   uglifier (>= 1.3.0)
   unicorn
   will_paginate (~> 3.0.3)

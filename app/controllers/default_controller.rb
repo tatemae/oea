@@ -44,4 +44,9 @@ class DefaultController < ApplicationController
     end
   end
 
+  def proxy
+    response = Typhoeus.get(URI.decode(params[:url]), followlocation: true)
+    render :text => response.body, :status => response.code, :content_type => response.headers["Content-Type"]
+  end
+
 end

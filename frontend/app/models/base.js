@@ -23,13 +23,17 @@ export default Ember.Object.extend(Ember.Evented, {
     return promises;
   },
 
-  makeAjax: function(url, callback){
+  makeAjax: function(url, callback, retried){
     var promise = ajax.request(url);
     promise.then(function(data){
       callback(data);
     }.bind(this), function(result){
-      console.log(result.statusText);
-      this.trigger('error');
+      if(!retried && Utils.getLocation(url).hostname != Utils.getLocation(location.href).hostname){
+        this.makeAjax('/proxy?url=' + encodeURI(url), callback, true)
+      } else {
+        console.log(result.statusText);
+        this.trigger('error');
+      }
     }.bind(this));
     return promise;
   }

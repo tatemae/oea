@@ -40,6 +40,8 @@ gem 'sendgrid'
 
 gem 'ruby-saml-mod'
 
+gem 'typhoeus'
+
 # Ember stuff
 gem 'ember-rails'
 gem 'ember-source', '~> 1.3.2' # or the version you need
