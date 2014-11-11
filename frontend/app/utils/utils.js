@@ -25,6 +25,12 @@ var Utils = {
 
   htmlDecodeWithRoot: function(input){
     return '<root>' + Utils.htmlDecode(input) + '</root>';
+  },
+
+  getLocation: function(href){
+    var l = document.createElement("a");
+    l.href = href;
+    return l;
   }
 
 };
