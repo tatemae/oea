@@ -8,6 +8,7 @@ Oea::Application.routes.draw do
   end
 
   resources :assessments
+  resources :assessment_loaders
   resources :assessment_results
   resources :item_results
 
@@ -24,6 +25,7 @@ Oea::Application.routes.draw do
     resources :item_results
   end
 
+  match '/proxy' => 'default#proxy', via: [:get, :post]
   match '/contact' => 'default#contact', via: [:get, :post]
   match '/about' => 'default#about', via: [:get]
   match '/take' => 'default#take', via: [:get]
