@@ -9,6 +9,10 @@ export default Ember.Object.extend(Ember.Evented, {
     var promises = [];
     Ember.$.each(children, function(i, child){
       var id = Ember.$(child).attr('url_name');
+      if(id === undefined){ // Data is embedded in the document
+        id = Utils.makeId();
+        return callback(id, null, child);
+      }
       var url = baseUrl + id + '.xml';
       if(this.get('offline')){
         var data = Utils.htmlDecodeWithRoot(Ember.$('#' + id).html());

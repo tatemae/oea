@@ -3,7 +3,7 @@
   <div class="assessment_list well row">
     <h2>Load Assessment By Url</h2>
 
-    <%= form_tag(assessment_path('load'), method: :get, html: { :role => 'form' }) do -%>
+    <%= form_tag(assessment_loaders_path, html: { :role => 'form' }) do -%>
       <div class="form-group">
         <%= label_tag "assessment", "Enter the web address of a QTI format assessment" %>
         <%= text_field_tag :src_url, nil, class: "form-control" %>
