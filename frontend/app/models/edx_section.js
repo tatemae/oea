@@ -12,7 +12,7 @@ var EdXSection = Base.extend({
 EdXSection.reopenClass({
 
   fromEdX: function(id, url, xml){
-    xml = Ember.$(xml).find('vertical');
+    xml = Ember.$(xml).find('vertical').addBack('vertical');
     return EdXSection.create({
       'id': id,
       'url': url,

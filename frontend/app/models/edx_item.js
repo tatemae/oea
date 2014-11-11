@@ -24,7 +24,7 @@ var EdXItem = Base.extend({
 EdXItem.reopenClass({
 
   fromEdX: function(id, url, xml){
-    xml = Ember.$(xml).find('problem');
+    xml = Ember.$(xml).find('problem').addBack('problem');
     var attrs = {
       'id': id,
       'url': url,

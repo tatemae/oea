@@ -27,9 +27,9 @@ export default Base.extend({
 
   parseAssessment: function(data){
     var xml = Ember.$(data);
-    var assessment = xml.find('assessment');
-    var questestinterop = xml.find('questestinterop');
-    var sequential = xml.find('sequential');
+    var assessment = xml.find('assessment').addBack('assessment');
+    var questestinterop = xml.find('questestinterop').addBack('questestinterop');
+    var sequential = xml.find('sequential').addBack('sequential');
     this.set('xml', xml);
     if(assessment.length > 0 || questestinterop.length > 0){
       this.parseQti(assessment, xml);
@@ -65,8 +65,10 @@ export default Base.extend({
       var section = EdXSection.fromEdX(id, url, data);
       this.get('sections').pushObject(section);
       var sectionPromises = this.crawlEdX(section.get('xml').children(), baseUrl + 'problem/', function(id, url, data){
-        var item = EdXItem.fromEdX(id, url, data);
-        section.get('items').pushObject(item);
+        if(['PROBLEM'].indexOf(data.nodeName) >= 0){ // Other values we might want to add: DISCUSSION
+          var item = EdXItem.fromEdX(id, url, data);
+          section.get('items').pushObject(item);
+        }
       });
       if(promises){
         Ember.RSVP.Promise.all(promises.concat(sectionPromises)).then(function(){
