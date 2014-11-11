@@ -87,13 +87,18 @@ export default Ember.ObjectController.extend({
       }
 
       if(conditionMet){
-        correct = true;
         var setvar = condition.find('setvar');
-        var action = setvar.attr('action');
-        if(action === 'Add'){
-          score += parseFloat(setvar.text(), 10);
-        } else if(action === 'Set'){
-          score = parseFloat(setvar.text());
+        if(setvar.length > 0){
+          var setvarVal = parseFloat(setvar.text(), 10);
+          if(setvarVal > 0){
+            correct = true;
+            var action = setvar.attr('action');
+            if(action === 'Add'){
+              score += setvarVal;
+            } else if(action === 'Set'){
+              score = setvarVal;
+            }
+          }
         }
         var feedbackId = condition.find('displayfeedback').attr('linkrefid');
         if(feedbackId){
