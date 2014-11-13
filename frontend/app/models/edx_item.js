@@ -25,17 +25,21 @@ EdXItem.reopenClass({
 
   fromEdX: function(id, url, xml){
     xml = Ember.$(xml).find('problem').addBack('problem');
-    var attrs = {
-      'id': id,
-      'url': url,
-      'title': xml.attr('display_name'),
-      'xml': xml,
-      'standard': 'edX'
-    };
+    if(xml.length > 0){
+      var attrs = {
+        'id': id,
+        'url': url,
+        'title': xml.attr('display_name'),
+        'xml': xml,
+        'standard': 'edX'
+      };
 
-    attrs.question_type = EdX.questionType(xml);
+      attrs.question_type = EdX.questionType(xml);
 
-    return EdXItem.create(attrs);
+      return EdXItem.create(attrs);
+    } else {
+      return null;
+    }
   }
 
 });

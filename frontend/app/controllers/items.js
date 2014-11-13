@@ -49,7 +49,7 @@ export default Ember.ArrayController.extend({
   index: function(){
     var index = 0;
     this.get('content').find(function(item, i, enumerable){
-      if(this.item.id === item.id){
+      if(this.item && this.item.id === item.id){
         index = i;
         return true;
       }

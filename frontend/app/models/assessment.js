@@ -65,9 +65,9 @@ export default Base.extend({
       var section = EdXSection.fromEdX(id, url, data);
       this.get('sections').pushObject(section);
       var sectionPromises = this.crawlEdX(section.get('xml').children(), baseUrl + 'problem/', function(id, url, data){
-        if(['PROBLEM'].indexOf(data.nodeName) >= 0){ // Other values we might want to add: DISCUSSION
-          var item = EdXItem.fromEdX(id, url, data);
-          section.get('items').pushObject(item);
+        var item = EdXItem.fromEdX(id, url, data);
+        if(item){
+          section.get('items').pushObject(item);  
         }
       });
       if(promises){
