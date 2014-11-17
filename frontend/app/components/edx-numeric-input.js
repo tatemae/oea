@@ -2,6 +2,7 @@ import Ember from 'ember';
 import EdX from "../utils/edx";
 import EdXBase from './edx-base';
 
+
 export default EdXBase.extend({
 
   inputPrefix: 'numeric_question_',
@@ -13,7 +14,7 @@ export default EdXBase.extend({
   keyUp: function(e){
     var args = {
       id: e.target.id.replace(this.inputPrefix, ''),
-      value: parseFloat(e.target.value, 10)
+      value: e.target.value
     };
     Ember.run.debounce(this, this.checkAnswers, args, 300);
   },
@@ -49,7 +50,22 @@ export default EdXBase.extend({
     var score = 0;
     var graded = this.get('graded');
     var numericalResponse = this.get('inputs').get(parseInt(args.id, 10));
+    var student_response;
     var answer = parseFloat(numericalResponse.attr('answer'), 10);
+    
+    try{
+      student_response = math.eval(args.value);
+    }
+    catch(err){
+      graded[args.id] = {
+        correct: false,
+        feedback: "Unable to parse expression. Please check that it's valid",
+        score: score
+      };
+      this.get('content').set('graded', graded);
+      return;
+    }
+
     var tolerance = numericalResponse.find('[type="tolerance"]').attr('default');
     if(tolerance){
       if(tolerance.indexOf('%') >= 0){
@@ -60,9 +76,9 @@ export default EdXBase.extend({
         tolerance = parseFloat(tolerance);
       }
       var deviation = answer*tolerance;
-      correct = (args.value > answer - deviation) && (args.value < answer + deviation);
+      correct = (student_response > answer - deviation) && (student_response < answer + deviation);
     } else {
-      correct = args.value == answer;
+      correct = student_response == answer;
     }
     if(correct){
       score = 1;
@@ -90,6 +106,7 @@ export default EdXBase.extend({
   }.observes('content.isGraded')
 
 });
+
 
 // Example xml for Numerical Input
 

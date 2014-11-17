@@ -32,4 +32,6 @@ app.import('vendor/ic-ajax/dist/named-amd/main.js', {
 
 app.import('vendor/interact/interact.js');
 
+app.import('vendor/mathjs/dist/math.js');
+
 module.exports = app.toTree();

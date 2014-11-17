@@ -13,6 +13,7 @@
     "ember-qunit-notifications": "^0.0.3",
     "ember-cli-test-loader": "rjackson/ember-cli-test-loader#0.0.2",
     "interact": "~1.0.20",
-    "MathJax": "~2.4.0"
+    "MathJax": "~2.4.0",
+    "mathjs": "~1.1.0"
   }
 }
