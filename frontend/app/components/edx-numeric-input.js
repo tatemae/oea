@@ -11,6 +11,15 @@ export default EdXBase.extend({
     this.set('graded', {});
   },
 
+  computedResponses: function(){
+    var computed = {};
+    this.get('content.xml').find('[type="loncapa/python"]').each(function(i, script){
+      var parts = $(script).html().trim().split('=');
+      computed['$' + parts[0].trim()] = math.eval(parts[1].trim());
+    });
+    return computed;
+  }.property('content.xml'),
+
   keyUp: function(e){
     var args = {
       id: e.target.id.replace(this.inputPrefix, ''),
@@ -50,11 +59,18 @@ export default EdXBase.extend({
     var score = 0;
     var graded = this.get('graded');
     var numericalResponse = this.get('inputs').get(parseInt(args.id, 10));
-    var student_response;
-    var answer = parseFloat(numericalResponse.attr('answer'), 10);
-    
+    var studentResponse;
+    var answer;
+    var answerVal = numericalResponse.attr('answer');
+
+    if(typeof answerVal === 'string'){
+      answer = this.get('computedResponses')[answerVal];
+    } else {
+      answer = parseFloat(answerVal, 10);
+    }
+
     try{
-      student_response = math.eval(args.value);
+      studentResponse = math.eval(args.value);
     }
     catch(err){
       graded[args.id] = {
@@ -76,9 +92,9 @@ export default EdXBase.extend({
         tolerance = parseFloat(tolerance);
       }
       var deviation = answer*tolerance;
-      correct = (student_response > answer - deviation) && (student_response < answer + deviation);
+      correct = (studentResponse > answer - deviation) && (studentResponse < answer + deviation);
     } else {
-      correct = student_response == answer;
+      correct = studentResponse == answer;
     }
     if(correct){
       score = 1;
