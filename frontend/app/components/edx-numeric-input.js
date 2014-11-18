@@ -8,7 +8,17 @@ export default EdXBase.extend({
   inputPrefix: 'numeric_question_',
 
   didInsertElement: function(){
-    this.set('graded', {});
+    // Set initial graded value for all numericalresponses in the question xml. 
+    // This ensures that unanswered questions are marked incorrect.
+    var graded = {};
+    this.get('content.xml').find('numericalresponse').each(function(i, numericalresponse){
+      graded[i] = {
+        correct: false,
+        feedback: "",
+        score: 0
+      };
+    });
+    this.set('graded', graded);
   },
 
   computedResponses: function(){
