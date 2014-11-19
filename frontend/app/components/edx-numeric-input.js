@@ -73,7 +73,7 @@ export default EdXBase.extend({
     var answer;
     var answerVal = numericalResponse.attr('answer');
 
-    if(typeof answerVal === 'string'){
+    if(answerVal[0] == '$' && this.get('computedResponses')[answerVal]){
       answer = this.get('computedResponses')[answerVal];
     } else {
       answer = parseFloat(answerVal, 10);
