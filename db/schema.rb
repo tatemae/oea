@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20141208174117) do
   add_index "assessment_results", ["user_id"], name: "index_assessment_results_on_user_id", using: :btree
 
   create_table "assessment_xmls", force: true do |t|
-    t.string   "xml",           limit: 1048576
+    t.text     "xml"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "assessment_id"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20141208174117) do
     t.string   "sequence_index"
     t.datetime "datestamp"
     t.string   "session_status"
-    t.string   "item_variable",        limit: 1048576
+    t.text     "item_variable"
     t.string   "candidate_comment"
     t.datetime "rendered_datestamp"
     t.string   "referer"
@@ -107,13 +107,13 @@ ActiveRecord::Schema.define(version: 20141208174117) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
-    t.string   "description",       limit: 32768
+    t.text     "description"
     t.integer  "section_id"
-    t.string   "question_text",     limit: 32768
-    t.string   "answers",           limit: 32768
-    t.string   "feedback",          limit: 32768
-    t.string   "item_feedback",     limit: 32768
-    t.string   "correct_responses", limit: 32768
+    t.text     "question_text"
+    t.string   "answers"
+    t.string   "feedback"
+    t.text     "item_feedback"
+    t.text     "correct_responses"
     t.string   "base_type"
     t.string   "keywords"
   end
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(version: 20141208174117) do
     t.integer  "assessment_result_id"
     t.integer  "identifier"
     t.datetime "datestamp"
-    t.string   "item_variable",        limit: 1048576
+    t.text     "item_variable"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
