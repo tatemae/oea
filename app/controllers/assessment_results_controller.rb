@@ -27,10 +27,13 @@ class AssessmentResultsController < ApplicationController
         @item_summaries = results_summaries[:item_summaries]
       end
       format.csv do
+        identifier = @assessment.id.to_s if @assessment.present?
+        identifier ||= params[:identifier] || params(:eid) || params(:src_url)
+        identifier.gsub!(/[^0-9A-Za-z.\-]/, '_')
         send_data(
-          @assessment.results_csv,
+          csv_result(@item_results),
           :type => "text/csv",
-          :filename =>  "results_#{@assessment.identifier}.csv",
+          :filename => "assessment_results_#{identifier}.csv",
           :disposition => "attachment"
         )
       end
@@ -41,6 +44,15 @@ class AssessmentResultsController < ApplicationController
 
     def query(key)
       {key => params[key]} if params[key].present?
+    end
+
+    def csv_result(item_results)
+      CSV.generate do |csv|
+        csv << ItemResult.column_names
+        item_results.each do |result|
+          csv << result.attributes.values_at(*ItemResult.column_names)
+        end
+      end
     end
 
 end

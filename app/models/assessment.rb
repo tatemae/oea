@@ -72,15 +72,4 @@ class Assessment < ActiveRecord::Base
     end
   end
 
-  def results_csv
-    results = self.items.collect(&:item_results).flatten
-    CSV.generate do |csv|
-      csv << ItemResult.column_names
-      results.each do |result|
-        csv << result.attributes.values_at(*ItemResult.column_names)
-      end
-    end
-  end
-
-
 end
