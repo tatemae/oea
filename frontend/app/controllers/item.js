@@ -44,7 +44,9 @@ export default Ember.ObjectController.extend({
           identifier: this.get('id'),
           session_status: 'final',
           time_spent: end - start,
-          confidence_level: selectedConfidenceLevel
+          confidence_level: selectedConfidenceLevel,
+          correct: results.correct,
+          score: results.score
         }).save();
       }
 

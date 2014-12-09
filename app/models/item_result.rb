@@ -65,20 +65,25 @@ class ItemResult < ActiveRecord::Base
 
   end
 
-  def self.results_summary( opts={} )
+  def self.results_summary(results)
 
     users = []
     referers = []
     correct = []
     submitted = []
-    results = ItemResult.raw_results( opts )
+    time_elapsed = []
+    confidence_level = []
+    identifiers = {}
 
-    results.map do |item_result|
+    results.each do |item_result|
+      identifiers[item_result.identifier] ||= []
+      identifiers[item_result.identifier] << item_result
       users << item_result.user if !users.include?(item_result.user)
       referers << item_result.referer if !item_result.referer.nil? && !referers.include?(item_result.referer)
-      correct << item_result if item_result.item_variable && item_result.item_variable.map { |iv| iv["response_variable"]["correct_response"].include?(iv["response_variable"]["candidate_response"]) }.any?
+      correct << item_result if item_result.correct
+      time_elapsed << item_result.time_elapsed
+      confidence_level << item_result.confidence_level
     end
-
 
     results.each do |result|
       if result.session_status == 'final'
@@ -86,14 +91,39 @@ class ItemResult < ActiveRecord::Base
       end
     end
 
+    item_summaries = []
+    identifiers.each do |identifier, item_results|
+      
+      total_correct = item_results.find_all{|ir| ir.correct}.count
+      number_submitted = item_results.find_all{|ir| ir.session_status == 'final'}.count
+
+      item_summaries << {
+        identifier: identifier,
+        number_renders: item_results.length,
+        number_submitted: number_submitted,
+        percent_correct: (total_correct.to_f/number_submitted.to_f) * 100,
+        number_referers: item_results.map(&:referer).uniq.count,
+        number_of_users: item_results.map(&:user_id).uniq.count
+      }
+    end
+
     {
+      identifiers: identifiers,
+      item_summaries: item_summaries,
       renders: users.count,
       submitted: submitted,
       users: users,
       referers: referers,
       correct: correct,
-      percent_correct: submitted.count > 0 ? correct.count.to_f / submitted.count.to_f : 0
+      percent_correct: submitted.count > 0 ? correct.count.to_f / submitted.count.to_f : 0,
+      time_elapsed: average_of(time_elapsed) || 0,
+      confidence_level: average_of(confidence_level) || 'none'
     }
   end
-  
+
+  def self.average_of(arr)
+    return 0 if arr.blank?
+    arr.inject(0.0) { |sum, el| sum + (el || 0) } / arr.size
+  end
+
 end

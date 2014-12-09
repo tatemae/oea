@@ -1,23 +1,25 @@
 <tr>
   <td>
-  <%= item.title %>
+    <%= summary[:identifier] %>
   </td>
   <td>
-    <%= item.results_summary[:renders] %>
+    <%= summary[:number_renders] %>
   </td>
   <td>
-    <%= item.results_summary[:submitted].count %>
+    <%= summary[:number_submitted] %>
   </td>
   <td>
-    <%= signif(item.results_summary[:percent_correct] * 100, 2) %>%
+    <%= signif(summary[:percent_correct], 2) %>%
   </td>
   <td>
-    <%= item.results_summary[:referers].count %>
+    <%= summary[:number_referers] %>
   </td>
   <td>
-    <%= item.results_summary[:users].count %>
+    <%= summary[:number_of_users] %>
   </td>
   <td>
-    <a href="<%= item_results_url(item.id, :format => :csv, :type => "summary") %>"><i class='glyphicon glyphicon-download'></i></a>
+    <a href="<%= item_results_url(summary[:identifier], format: :csv, type: "summary") %>">
+      <i class='glyphicon glyphicon-download'></i>
+    </a>
   </td>
 </tr>
