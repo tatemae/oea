@@ -94,8 +94,9 @@ class ItemResult < ActiveRecord::Base
     item_summaries = []
     identifiers.each do |identifier, item_results|
       
-      total_correct = item_results.find_all{|ir| ir.correct}.count
-      number_submitted = item_results.find_all{|ir| ir.session_status == 'final'}.count
+      final_submissions = item_results.find_all{|ir| ir.session_status == 'final'}
+      number_submitted = final_submissions.count
+      total_correct = final_submissions.find_all{|ir| ir.correct}.count
 
       item_summaries << {
         identifier: identifier,
