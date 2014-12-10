@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <%= summary[:identifier] %>
+    <%= link_to summary[:identifier],  item_results_url(identifier: summary[:identifier], type: 'summary') %>
   </td>
   <td>
     <%= summary[:number_renders] %>
@@ -18,7 +18,7 @@
     <%= summary[:number_of_users] %>
   </td>
   <td>
-    <a href="<%= item_results_url(summary[:identifier], format: :csv, type: "summary") %>">
+    <a href="<%= item_results_url(identifier: summary[:identifier], format: 'csv') %>">
       <i class='glyphicon glyphicon-download'></i>
     </a>
   </td>

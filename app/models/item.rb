@@ -151,24 +151,6 @@ class Item < ActiveRecord::Base
     end
   end
 
-  def results_summary_csv
-    rs = self.results_summary
-    CSV.generate do |csv|
-      csv << rs.keys
-      csv << [rs[:renders], rs[:submitted].count, rs[:users].count, rs[:referers].count, rs[:correct].count, rs[:percent_correct] * 100]
-    end
-  end
-
-  def results_csv
-    results = self.item_results
-    CSV.generate do |csv|
-      csv << results.column_names
-      results.each do |result|
-        csv << result.attributes.values_at(*results.column_names)
-      end
-    end
-  end
-
   def get_answers
     JSON.parse(self.answers).map do |ans_id|
       Answer.new( ans_id["id"], ans_id["text"] )

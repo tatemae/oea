@@ -28,7 +28,7 @@ class AssessmentResultsController < ApplicationController
       end
       format.csv do
         identifier = @assessment.id.to_s if @assessment.present?
-        identifier ||= params[:identifier] || params(:eid) || params(:src_url)
+        identifier ||= params[:identifier] || params[:eid] || params[:src_url]
         identifier.gsub!(/[^0-9A-Za-z.\-]/, '_')
         send_data(
           csv_result(@item_results),

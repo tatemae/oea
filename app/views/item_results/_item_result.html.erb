@@ -1,0 +1,30 @@
+<tr>
+  <td><%= item_result.identifier %></td>
+  <td><%= item_result.sequence_index %></td>
+  <td><%= item_result.datestamp.nil? ? 'Not submitted.' : item_result.datestamp.strftime("%B %d, %Y @ %l:%M%p") %></td>
+  <td><%= item_result.session_status.titleize %></td>
+  <td><%= item_result.item_variable %></td>
+  <td><%= item_result.candidate_comment %></td>
+  <td><%= item_result.rendered_datestamp.strftime("%B %d, %Y @ %l:%M:%S%p") %></td>
+  <td><%= item_result.referer %></td>
+  <td><%= item_result.ip_address %></td>
+  <td><%= item_result.item_id %></td>
+  <td><%= item_result.user_id %></td>
+  <td><%= item_result.created_at %></td>
+  <td><%= item_result.updated_at %></td>
+  <td><%= item_result.assessment_result_id %></td>
+  <td><%= item_result.time_elapsed %></td>
+  <td><%= item_result.confidence_level %></td>
+  <td><%= item_result.eid %></td>
+  <td><%= item_result.src_url %></td>
+  <td><%= item_result.external_user_id %></td>
+  <td><%= item_result.keyword_list %></td>
+  <td><%= item_result.objective_list %></td>
+  <td><%= item_result.correct %></td>
+  <td><%= item_result.score %></td>
+  <td>
+    <a href="<%= item_results_url(identifier: item_result.identifier, format: :csv) %>">
+      <i class='glyphicon glyphicon-download'></i>
+    </a>
+  </td>
+</tr>
