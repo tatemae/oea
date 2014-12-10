@@ -75,7 +75,7 @@ describe ItemResultsController do
 
   describe "GET 'index'" do
     it "returns http success" do
-      get 'index', :identifier => @identifier
+      get 'index', identifier: @identifier
       response.should be_success
     end
 
@@ -122,6 +122,32 @@ describe ItemResultsController do
         expect(assigns(:item_results_summary)[:percent_correct]).to eq(percent_correct)
       end
 
+    end
+
+    describe "json" do
+      it "returns http success" do
+        get 'index', identifier: @identifier, format: 'json'
+        response.should be_success
+      end
+      context "type is summary" do
+        it "returns http success" do
+          get 'index', identifier: @identifier, format: 'json', type: :summary
+          response.should be_success
+        end
+      end
+    end
+
+    describe "csv" do
+      it "returns http success" do
+        get 'index', identifier: @identifier, format: 'csv'
+        response.should be_success
+      end
+      context "type is summary" do
+        it "returns http success" do
+          get 'index', identifier: @identifier, format: 'csv', type: :summary
+          response.should be_success
+        end
+      end
     end
 
   end
