@@ -52,7 +52,15 @@
 </div>
 <% else -%>
   <div class="item_results_table">
-    <h2>Item Results for <%= @title %> <small class="pull-right"><%= link_to 'Summary', item_results_path(params.merge(type: :summary)) %></small></h2>
+    <h2>
+      Item Results for <%= @title %> 
+      <small class="pull-right"><%= link_to 'Summary', item_results_path(params.merge(type: :summary)) %></small>
+    </h2>
+    <h2>
+      <a href="<%= item_results_path(params.merge(format: :csv)) %>">
+        <small><i class='glyphicon glyphicon-download'></i> CSV</small>
+      </a>
+    </h2>
     <table class="table table-striped table-bordered" id="item_results">
       <thead>
         <tr>
@@ -79,7 +87,6 @@
           <th>Objectives</th>
           <th>Correct</th>
           <th>Score</th>
-          <th>CSV</th>
         </tr>
       </thead>
       <tbody>
