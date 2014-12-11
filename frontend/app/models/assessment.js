@@ -61,15 +61,22 @@ export default Base.extend({
     });
 
     var baseUrl = url.substr(0, url.indexOf('sequential'));
+
+    this.padArray(this.get('sections'), sequential.children());
+    
     var promises = this.crawlEdX(sequential.children(), baseUrl + 'vertical/', function(id, url, data){
       var section = EdXSection.fromEdX(id, url, data);
-      this.get('sections').pushObject(section);
-      var sectionPromises = this.crawlEdX(section.get('xml').children(), baseUrl + 'problem/', function(id, url, data){
+
+      this.findAndSetObject(this.get('sections'), section);
+
+      var children = section.get('xml').children();
+      this.padArray(section.get('items'), children);
+      var sectionPromises = this.crawlEdX(children, baseUrl + 'problem/', function(id, url, data){
         var item = EdXItem.fromEdX(id, url, data);
         if(item){
-          section.get('items').pushObject(item);  
+          this.findAndSetObject(section.get('items'), item);
         }
-      });
+      }.bind(this));
       if(promises){
         Ember.RSVP.Promise.all(promises.concat(sectionPromises)).then(function(){
           this.trigger('loaded');
