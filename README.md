@@ -14,6 +14,41 @@ oEmbed
 ======
 See the API Documentation for the documentation on oEmbed.
 
+edX Support
+======
+Open Assessments supports the drag and drop and multiple choice question types from edX. 
+For more information on the edX xml structure see http://edx-open-learning-xml.readthedocs.org/en/latest/index.html
+
+Assessment by Url
+======
+Assessments can be loaded directly from a remote url - the assessment need not be loaded into http://www.openassessments.com. 
+Just specify a src_url. CORS must be enabled on the server specified by src_url. Example:
+
+http://www.openassessments.com/assessments/load?confidence_levels=true&eid=atest&src_url=https%253A%252F%252Fdl.dropboxusercontent.com%252Fu%252F7594429%252FedXCourse%252Fsequential%252F97cc2d1812204294b5fcbb91a1157368.xml
+
+Stats
+======
+For assessments loaded into http://www.openassessments.com you simply need to browse to the assessment and click on the bar graph. 
+Stats are available on the site, as json and as csv. Loading stats for an assessment that was loaded via a src_url is a bit trickier.
+You'll want to specify an 'eid' (external identifier). In theory you can query later on based on src_url but that makes things hard to control and a 
+bit unpredictable. Here's an example using our MIT edX course:
+
+http://www.openassessments.com/assessments/load?confidence_levels=true&eid=atest&src_url=https%253A%252F%252Fdl.dropboxusercontent.com%252Fu%252F7594429%252FedXCourse%252Fsequential%252F97cc2d1812204294b5fcbb91a1157368.xml
+
+For that assessment, the eid specified was 'atest'. View the stats by asking for them by eid. Note that the /0? is important in the url as it tells the system
+that you want to find the stats by eid rather than by id:
+
+html:
+http://www.openassessments.com/assessment_results/0?eid=atest
+
+csv:
+http://www.openassessments.com/assessment_results/0.csv?eid=atest
+
+json:
+http://www.openassessments.com/assessment_results/0.json?eid=atest
+
+We recommend using a GUID for the eid to prevent conflicts with other assessments.
+
 
 Getting ruby-saml-mod to work on Heroku.
 ========================================
