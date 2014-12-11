@@ -26,6 +26,9 @@ class AssessmentResultsController < ApplicationController
         @avg_confidence = results_summaries[:confidence_level]
         @item_summaries = results_summaries[:item_summaries]
       end
+      format.json do
+        render json: @item_results
+      end
       format.csv do
         identifier = @assessment.id.to_s if @assessment.present?
         identifier ||= params[:identifier] || params[:eid] || params[:src_url]
