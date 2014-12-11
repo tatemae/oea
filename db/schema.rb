@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208174117) do
+ActiveRecord::Schema.define(version: 20141211202148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,16 +106,16 @@ ActiveRecord::Schema.define(version: 20141208174117) do
     t.string   "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "title"
+    t.string   "title",             limit: 512
     t.text     "description"
     t.integer  "section_id"
     t.text     "question_text"
-    t.string   "answers"
-    t.string   "feedback"
+    t.text     "answers"
+    t.text     "feedback"
     t.text     "item_feedback"
     t.text     "correct_responses"
     t.string   "base_type"
-    t.string   "keywords"
+    t.string   "keywords",          limit: 512
   end
 
   add_index "items", ["identifier", "section_id"], name: "index_items_on_identifier_and_section_id", using: :btree
