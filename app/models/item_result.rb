@@ -61,7 +61,7 @@ class ItemResult < ActiveRecord::Base
       results.concat ItemResult.where(src_url: opts[:src_url])
     end
 
-    return results
+    results
 
   end
 
