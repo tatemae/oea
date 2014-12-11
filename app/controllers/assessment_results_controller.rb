@@ -2,7 +2,7 @@ class AssessmentResultsController < ApplicationController
 
   def show
 
-    if params[:id].present?
+    if params[:id].present? && params[:id].to_i > 0
       # The assessment lives in OEA
       @assessment = Assessment.find(params[:id])
       @assessment_results = AssessmentResult.where(assessment_id: @assessment.id) 
