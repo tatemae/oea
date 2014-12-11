@@ -102,12 +102,11 @@ class ItemResult < ActiveRecord::Base
         identifier: identifier,
         number_renders: item_results.length,
         number_submitted: number_submitted,
-        percent_correct: (total_correct.to_f/number_submitted.to_f) * 100,
+        percent_correct: number_submitted > 0 ? (total_correct.to_f/number_submitted.to_f) * 100 : 0,
         number_referers: item_results.map(&:referer).uniq.count,
         number_of_users: item_results.map(&:user_id).uniq.count
       }
     end
-
     {
       identifiers: identifiers,
       item_summaries: item_summaries,
