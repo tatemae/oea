@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require libs/md5
 
 
 $(document).ready(function() {
@@ -29,4 +30,7 @@ $(document).ready(function() {
     }
   });
 
+  $('#assessment_src_url').on('change', function(e){
+    $('#assessment_eid').val(md5($(this).val()))
+  });
 });

@@ -5,20 +5,37 @@
 
     <%= form_tag(assessment_loaders_path, html: { :role => 'form' }) do -%>
       <div class="form-group">
-        <%= label_tag "assessment", "Enter the web address of a QTI format assessment" %>
-        <%= text_field_tag :src_url, nil, class: "form-control" %>
+        <%= label_tag "assessment", "Enter the web address of a QTI or EdX format assessment" %>
+        <%= text_field_tag :src_url, nil, class: "form-control", id: "assessment_src_url" %>
         <p class="help-block">(e.g. <%= "http://#{request.host_with_port}/assessment.xml" %>)</p>
       </div>
 
       <div class="form-group">
         <%= label_tag "assessment", "Enter the embed identifier" %>
-        <%= text_field_tag :eid, nil, class: "form-control", style: "width: 350px;" %>
+        <%= text_field_tag :eid, nil, class: "form-control", id: "assessment_eid" %>
+        <p class="help-block">(We generate one for you based on the assessment url, but you can change it to any value you like)</p>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag "keywords", "Keywords" %>
+        <%= text_field_tag :keywords, nil, class: "form-control" %>
+        <p class="help-block">
+          (Optional. Keywords will be stored along with student responses and be used 
+          later on to search for specific results.)
+        </p>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag "style", "Select style" %>
+        <%= select_tag "style", options_for_select(available_styles), class: "form-control" %>
+        <p class="help-block">(OEA is the default style.)</p>
       </div>
 
       <div class="form-group">
         <%= check_box_tag :confidence_levels, 'true', true %>
         <%= label_tag "confidence_levels", "Display confidence controls" %>
       </div>
+      
       <%= submit_tag "View Assessment", :class => "btn" %>
     <% end -%>
   </div>
