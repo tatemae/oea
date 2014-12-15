@@ -17,7 +17,11 @@ class AssessmentsController < ApplicationController
   end
 
   def show
-    @embedded = params[:src_url].present? || params[:embed].present?
+    if params[:load_ui] == 'true'
+      @embedded = false
+    else
+      @embedded = params[:src_url].present? || params[:embed].present?
+    end
     @confidence_levels = params[:confidence_levels] ? true : false
     @enable_start = params[:enable_start] ? true : false
     @eid = params[:eid] if params[:eid]
@@ -38,6 +42,11 @@ class AssessmentsController < ApplicationController
     else
       # Get the remote url where we can download the qti
       @src_url = ensure_scheme(URI.decode(params[:src_url])) if params[:src_url].present?
+      if params[:load_ui] == 'true'
+        # Build an embed code and stats page for an assessment loaded via a url
+        @embed_code = embed_code(nil, @confidence_levels, @eid, @enable_start, params[:offline].present?, params[:src_url])
+        @embed_code_confidence_levels = embed_code(nil, true, @eid, @enable_start, params[:offline].present?, params[:src_url])
+      end
     end
 
     @assessment_id = @assessment ? @assessment.id : params[:assessment_id] || 'null'

@@ -47,15 +47,26 @@ class ApplicationController < ActionController::Base
       api_assessment_url(assessment, format: 'xml')
     end
 
-    def embed_code(assessment, confidence_levels=true, eid=nil, enable_start=false, offline=false)
-      url = "#{request.host_with_port}#{assessment_path('load')}?src_url=#{embed_url(assessment)}"
+    def embed_code(assessment, confidence_levels=true, eid=nil, enable_start=false, offline=false, src_url=nil)
+      if assessment
+        url = "#{request.host_with_port}#{assessment_path('load')}?src_url=#{embed_url(assessment)}"
+      elsif src_url
+        url = "#{request.host_with_port}#{assessment_path('load')}?src_url=#{src_url}"
+      else
+        raise "You must provide an assessment or src_url"
+      end
       url << "&results_end_point=#{request.scheme}://#{request.host_with_port}/api"
       url << "&assessment_id=#{assessment.id}" if assessment.present?
       url << "&confidence_levels=true" if confidence_levels.present?
       url << "&eid=#{eid}" if eid.present?
       url << "&enable_start=#{enable_start}" if enable_start.present?
       url << "&offline=true" if offline
-      CGI.unescapeHTML(%Q{<iframe src="//#{url}" frameborder="0" style="border:none;width:100%;height:100%;min-height:#{assessment.recommended_height || 400}px;"></iframe>})
+      if assessment
+        height = assessment.recommended_height || 400
+      else
+        height = 400
+      end
+      CGI.unescapeHTML(%Q{<iframe src="//#{url}" frameborder="0" style="border:none;width:100%;height:100%;min-height:#{height}px;"></iframe>})
     end
 
     def signif(value, signs)

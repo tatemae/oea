@@ -26,6 +26,14 @@
       </div>
 
       <div class="form-group">
+        <%= label_tag "external_user_id", "External User Id" %>
+        <%= text_field_tag :external_user_id, nil, class: "form-control" %>
+        <p class="help-block">
+          (Optional. Provide an identifier for a user that can be used to query results for that user later on.)
+        </p>
+      </div>
+
+      <div class="form-group">
         <%= label_tag "style", "Select style" %>
         <%= select_tag "style", options_for_select(available_styles), class: "form-control" %>
         <p class="help-block">(OEA is the default style.)</p>
