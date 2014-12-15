@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211202148) do
+ActiveRecord::Schema.define(version: 20141215212752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(version: 20141211202148) do
     t.datetime "updated_at"
     t.datetime "rendered_datestamp"
     t.string   "session_status"
-    t.string   "referer"
+    t.string   "referer",            limit: 2048
     t.string   "ip_address"
-    t.string   "eid"
-    t.string   "src_url"
-    t.string   "identifier"
-    t.string   "keywords"
+    t.string   "eid",                limit: 512
+    t.string   "src_url",            limit: 2048
+    t.string   "identifier",         limit: 512
+    t.string   "keywords",           limit: 512
     t.string   "external_user_id"
-    t.string   "objectives"
+    t.string   "objectives",         limit: 1024
   end
 
   add_index "assessment_results", ["assessment_id"], name: "index_assessment_results_on_assessment_id", using: :btree
@@ -73,14 +73,14 @@ ActiveRecord::Schema.define(version: 20141211202148) do
   add_index "assessments", ["src_url", "user_id"], name: "index_assessments_on_src_url_and_user_id", using: :btree
 
   create_table "item_results", force: true do |t|
-    t.string   "identifier"
+    t.string   "identifier",           limit: 512
     t.string   "sequence_index"
     t.datetime "datestamp"
     t.string   "session_status"
     t.text     "item_variable"
-    t.string   "candidate_comment"
+    t.string   "candidate_comment",    limit: 512
     t.datetime "rendered_datestamp"
-    t.string   "referer"
+    t.string   "referer",              limit: 2048
     t.string   "ip_address"
     t.integer  "item_id"
     t.integer  "user_id"
@@ -89,11 +89,11 @@ ActiveRecord::Schema.define(version: 20141211202148) do
     t.integer  "assessment_result_id"
     t.integer  "time_elapsed"
     t.integer  "confidence_level"
-    t.string   "eid"
-    t.string   "src_url"
+    t.string   "eid",                  limit: 512
+    t.string   "src_url",              limit: 2048
     t.string   "external_user_id"
-    t.string   "keywords"
-    t.string   "objectives"
+    t.string   "keywords",             limit: 512
+    t.string   "objectives",           limit: 1024
     t.boolean  "correct"
     t.float    "score"
   end
