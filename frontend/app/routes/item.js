@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import ItemResult from '../models/item_result';
 import Utils from '../utils/utils';
+import CommunicationHandler from '../utils/communication_handler';
 
 export default Ember.Route.extend({
 
@@ -28,5 +29,15 @@ export default Ember.Route.extend({
 
       model.set('start', Utils.currentTime());
     }
+
+    Ember.run.scheduleOnce('afterRender', this, function(){
+      // Everything should be loaded. Send a resize message.
+      CommunicationHandler.sendSize();
+      // HACK schedule another sendSize since sometimes the browser hasn't finished figuring out how bit the iframe should be
+      Ember.run.later(this, function() {
+        CommunicationHandler.sendSize();
+      }, 500);
+    });
+
   },
 });

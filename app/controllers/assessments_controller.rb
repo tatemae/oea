@@ -37,7 +37,6 @@ class AssessmentsController < ApplicationController
       else
         # Show the full page with analtyics and embed code buttons
         @embed_code = embed_code(@assessment, @confidence_levels, @eid, @enable_start, params[:offline].present?)
-        @embed_code_confidence_levels = embed_code(@assessment, true, @eid, @enable_start)
       end
     else
       # Get the remote url where we can download the qti
@@ -45,7 +44,6 @@ class AssessmentsController < ApplicationController
       if params[:load_ui] == 'true'
         # Build an embed code and stats page for an assessment loaded via a url
         @embed_code = embed_code(nil, @confidence_levels, @eid, @enable_start, params[:offline].present?, params[:src_url])
-        @embed_code_confidence_levels = embed_code(nil, true, @eid, @enable_start, params[:offline].present?, params[:src_url])
       end
     end
 

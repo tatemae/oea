@@ -9,14 +9,20 @@
         <p><span class="stats_word">stats</span><a href="<%= assessment_result_path(params[:assessment_id] || @assessment || 0, eid: params[:eid]) %>" class="btn btn-info stats_button" target="_top"><i class="glyphicon glyphicon-signal"></i></a></p>
         <p><span class="embed_word">embed</span><a href="#" class="btn btn-info embed_button">&lt/&gt</a></p>
       </div>
-      <div class="embed_code">
-        <textarea class="embed_text hidden" name="embed_text"> <%= @embed_code %></textarea>
-        <textarea class="embed_text" name="embed_text_confidence_levels"> <%= @embed_code_confidence_levels %></textarea>
+      <form class="embed_code">
+        <div class="form-group">
+          <%= label_tag "embed_text", "Embed Code:" %>
+          <textarea class="embed_text" name="embed_text"> <%= @embed_code %></textarea>
+        </div>
         <div class="form-group">
           <%= check_box_tag :confidence_levels, 'true', true %>
           <%= label_tag "confidence_levels", "Display confidence controls" %>
-          </div>
-      </div>
+        </div>
+        <div class="form-group">
+          <%= check_box_tag :resize_script, 'true', true %>
+          <%= label_tag "resize_script", "Include resize script" %>
+        </div>
+      </form>
     </div>
   </div>
 <% else -%>
@@ -52,3 +58,5 @@
   </script>
   <%= javascript_include_tag "oea/application" %>
 <% end -%>
+
+<%= javascript_include_tag "oea/openassessments.js" %>

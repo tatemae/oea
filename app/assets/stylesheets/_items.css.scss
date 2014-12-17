@@ -49,12 +49,13 @@
   }
 }
 .embed_code{
+  padding: 10px;
   background-color:$background-gray;
   margin-top:-15px;
   display:none;
   textarea{
-    margin:3.5%;
-    width:90%;
+    width:100%;
+    height: 150px;
   }
   textarea:focus{
     border-color:$light-blue;

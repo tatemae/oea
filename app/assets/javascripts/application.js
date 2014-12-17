@@ -5,6 +5,10 @@
 
 
 $(document).ready(function() {
+  
+  //
+  // Scripts for the assessments/show page
+  //
   $('.embed_button').on('click', function(e){
     e.preventDefault();
     var container = $(e.target).closest('.assessment_meta');
@@ -17,20 +21,36 @@ $(document).ready(function() {
     }
   });
 
-  $('#confidence_levels').on('click', function(e){
-    if( e.currentTarget.checked )
-    {
-      $('[name=embed_text]').addClass('hidden');
-      $('[name=embed_text_confidence_levels]').removeClass('hidden');
+  function updateEmbedCode(shouldInclude, value, insertAfter){
+    var embed = $('[name=embed_text]').text().replace(value, '');
+    if(shouldInclude){
+      var index = 0;
+      if(insertAfter){
+       index = embed.indexOf(insertAfter) + insertAfter.length;
+      }
+      embed = insertAt(embed, index, value)
     }
-    else
-    {
-      $('[name=embed_text]').removeClass('hidden');
-      $('[name=embed_text_confidence_levels]').addClass('hidden');
-    }
-  });
+    $('[name=embed_text]').text(embed);
+  }
 
-  $('#assessment_src_url').on('change', function(e){
-    $('#assessment_eid').val(md5($(this).val()))
-  });
+  function insertAt(sourceString, index, insertString){
+    if (index > 0)
+      return sourceString.substring(0, index) + insertString + sourceString.substring(index, sourceString.length);
+    else
+      return sourceString + insertString;
+  }
+
+  function updateScriptInclude(){
+    var resizeScript = '<script src="' + window.location.origin + '/assets/openassessments.js" type="text/javascript"></script>';
+    updateEmbedCode($('#resize_script:checked').length > 0, resizeScript);
+  }
+  updateScriptInclude();
+  $('#resize_script').on('click', updateScriptInclude);
+
+  function updateConfidenceInclude(){
+    updateEmbedCode($('#confidence_levels:checked').length > 0, 'confidence_levels=true&', 'assessments/load?');
+  }  
+  updateConfidenceInclude();
+  $('#confidence_levels').on('click', updateConfidenceInclude);
+
 });

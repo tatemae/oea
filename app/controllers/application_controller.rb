@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
       else
         height = 400
       end
-      CGI.unescapeHTML(%Q{<iframe src="//#{url}" frameborder="0" style="border:none;width:100%;height:100%;min-height:#{height}px;"></iframe>})
+      CGI.unescapeHTML(%Q{<iframe id="openassessments_container" src="//#{url}" frameborder="0" style="border:none;width:100%;height:100%;min-height:#{height}px;"></iframe>})
     end
 
     def signif(value, signs)
