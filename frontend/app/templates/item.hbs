@@ -1,21 +1,33 @@
-{{#if promptConfidenceLevel}}
-  {{#view 'multibuttonform'}}
-    <div class="full_question">
-      {{partial "item_content"}}
-      <div class="lower_level">
-        {{input type="submit" value='Maybe?' class="btn btn-check-answer" }}
-        {{input type="submit" value='Probably.' class="btn btn-check-answer" }}
-        {{input type="submit" value='Definitely!' class="btn btn-check-answer" }}
+{{#if didFindModel}}
+  {{#if promptConfidenceLevel}}
+    {{#view 'multibuttonform'}}
+      <div class="full_question">
+        {{partial "item_content"}}
+        <div class="lower_level">
+          {{input type="submit" value='Maybe?' class="btn btn-check-answer" }}
+          {{input type="submit" value='Probably.' class="btn btn-check-answer" }}
+          {{input type="submit" value='Definitely!' class="btn btn-check-answer" }}
+        </div>
       </div>
-    </div>
-  {{/view}}
+    {{/view}}
+  {{else}}
+   <form {{action checkAnswer on="submit"}} class="edit_item">
+      <div class="full_question">
+        {{partial "item_content"}}
+        <div class="lower_level">
+          {{input type="submit" value='Check Answer' class="btn btn-check-answer" }}
+        </div>
+      </div>
+    </form>
+  {{/if}}
 {{else}}
- <form {{action checkAnswer on="submit"}} class="edit_item">
-    <div class="full_question">
-      {{partial "item_content"}}
-      <div class="lower_level">
-        {{input type="submit" value='Check Answer' class="btn btn-check-answer" }}
+  <div class="container">
+    <div class="page-header">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p class="alert alert-danger">Invalid Assessment Item ID.</p>
+        </div>
       </div>
     </div>
-  </form>
+  </div>
 {{/if}}

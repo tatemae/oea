@@ -10,6 +10,10 @@ export default Ember.ObjectController.extend({
     return this.get('settings').get('confidenceLevels');
   }.property(),
 
+  didFindModel: function(){
+    return !Ember.isNone(this.get('model'));
+  }.property(),
+
   actions: {
     checkAnswer: function(selectedConfidenceLevel){
       var results;
