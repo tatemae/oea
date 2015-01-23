@@ -62,7 +62,9 @@ export default Base.extend({
 
     var baseUrl = url.substr(0, url.indexOf('sequential'));
 
-    this.padArray(this.get('sections'), sequential.children());
+    var seqentialChildren = sequential.children();
+    this.ensureIds('edx_sequential_', seqentialChildren);
+    this.padArray(this.get('sections'), seqentialChildren);
     
     var promises = this.crawlEdX(sequential.children(), baseUrl + 'vertical/', function(id, url, data){
       var section = EdXSection.fromEdX(id, url, data);
@@ -70,6 +72,7 @@ export default Base.extend({
       this.findAndSetObject(this.get('sections'), section);
 
       var children = section.get('xml').children();
+      this.ensureIds('edx_item_', children);
       this.padArray(section.get('items'), children);
       var sectionPromises = this.crawlEdX(children, baseUrl + 'problem/', function(id, url, data){
         var item = EdXItem.fromEdX(id, url, data);

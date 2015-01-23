@@ -10,7 +10,7 @@ export default Ember.Object.extend(Ember.Evented, {
     Ember.$.each(children, function(i, child){
       var id = Ember.$(child).attr('url_name');
       if(id === undefined){ // Data is embedded in the document
-        id = Utils.makeId();
+        id = Ember.$(child).attr('id') || Utils.makeId();
         return callback(id, null, child);
       }
       var url = baseUrl + id + '.xml';
@@ -27,12 +27,24 @@ export default Ember.Object.extend(Ember.Evented, {
     return promises;
   },
 
+  // Not all edX nodes will have a url_name or a valid id in which case we have 
+  // no way to identify them in the padArray method. This method can be called to
+  // ensure the child nodes have a valid id that can be used to identify them later on.
+  ensureIds: function(prefix, children){
+    Ember.$.each(children, function(i, child){
+      var id = Ember.$(child).attr('url_name') || Ember.$(child).attr('id');
+      if(!id){
+        Ember.$(child).attr('id', prefix + i);
+      }
+    });
+  },
+
   // The children are loaded asyncronously but need to be ordered
   // the same way every time. Create placeholders that can later be used
   // to correctly order the children after their promises return.
   padArray: function(arrayProxy, children){
     Ember.$.each(children, function(i, child){
-      var id = Ember.$(child).attr('url_name');
+      var id = Ember.$(child).attr('url_name') || Ember.$(child).attr('id');
       arrayProxy.pushObject(id);
     }.bind(this));
   },
@@ -44,6 +56,9 @@ export default Ember.Object.extend(Ember.Evented, {
     if(idx >= 0){
       arrayProxy.removeAt(idx);
       arrayProxy.insertAt(idx, obj);
+      return true;
+    } else {
+      return false;
     }
   },
 
