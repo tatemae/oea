@@ -35,6 +35,8 @@ export default Base.extend({
       this.parseQti(assessment, xml);
     } else if(sequential.length > 0){
       this.parseEdX(sequential);
+    } else {
+      alert("Open Assessments could not find valid QTI or EdX XML. Nothing will be rendered. Please verify that your XML meets one of these standards.");
     }
   },
 
