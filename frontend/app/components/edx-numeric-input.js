@@ -19,6 +19,7 @@ export default EdXBase.extend({
       };
     });
     this.set('graded', graded);
+    this._super();
   },
 
   computedResponses: function(){

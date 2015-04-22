@@ -8,6 +8,7 @@ export default EdXBase.extend({
 
   didInsertElement: function(){
     this.set('graded', {});
+    this._super();
   },
 
   click: function(e){
