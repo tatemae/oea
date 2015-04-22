@@ -17,8 +17,18 @@ export default Ember.Object.extend({
   }.property('params'),
 
   srcData: function(){
-    return Utils.htmlDecodeWithRoot(Ember.$('#srcData').html());
-  }.property('params'),
+    var result = Utils.htmlDecodeWithRoot(Ember.$('#srcData').html());
+    if(Ember.$(result).length == 1){ // We ended up with an empty <root> element. Try returning the raw result
+      result = Ember.$('#srcData').html();
+    }
+    result = result.trim();
+    result = result.replace('<![CDATA[', '');
+    result = result.replace('<!--[CDATA[', '');
+    if(result.slice(-3) == ']]>'){
+      result = result.slice(0,-3);
+    }
+    return result;
+  }.property(),
 
   offline: function(){
     return this.bestValue('offline', 'offline', false);

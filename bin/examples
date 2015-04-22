@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Build ember and copy to the examples directory
+
+cd frontend && ember build
+
+cd ..
+
+cp frontend/dist/assets/oea.js examples/javascripts/oea.js
+cp frontend/dist/assets/vendor.js examples/javascripts/vendor.js
+

@@ -5,8 +5,9 @@ import AssessmentResult from "../models/assessment_result";
 export default Ember.Route.extend({
 
   beforeModel: function(transition){
+    var settings = this.get('settings');
     var srcUrl = this.get('settings').get('srcUrl');
-    if(Ember.isBlank(srcUrl)){
+    if(Ember.isBlank(srcUrl) && !settings.get('offline')){
       throw new Error("No src_url specified: specify a src_url in the url query params.");
     }
 
