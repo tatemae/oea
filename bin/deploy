@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 
-cd frontend && ember build
+set -o nounset
+set -o errexit
+set -o pipefail
+
+cd frontend && node_modules/.bin/ember build
 
 cd ..
 
 git add -f frontend/dist/assets/oea.js
 git add -f frontend/dist/assets/vendor.js
+git add -f frontend/vendor/MathJax/
 
 git commit -m "add ember build"
 
