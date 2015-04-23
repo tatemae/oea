@@ -1,0 +1,56 @@
+/*
+Syntax error: File to import not found or unreadable: defines.
+              Load paths:
+                /Users/jbasdf/projects/oea
+                /Users/jbasdf/projects/oea/app/assets/stylesheets
+        on line 1 of app/assets/stylesheets/bare.css.scss
+
+1: @import 'defines';
+2: @import "bootstrap";
+3: @import 'items';
+4: @import "draggables";
+5: 
+6: body{
+
+Backtrace:
+app/assets/stylesheets/bare.css.scss:1
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/import_node.rb:67:in `rescue in import'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/import_node.rb:45:in `import'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/import_node.rb:28:in `imported_file'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/import_node.rb:37:in `css_import?'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:217:in `visit_import'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `map'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:121:in `with_environment'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:108:in `visit_children'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:128:in `visit_root'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/base.rb:37:in `visit'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:100:in `visit'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/tree/root_node.rb:20:in `render'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/engine.rb:315:in `_render'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/engine.rb:262:in `render'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:362:in `update_stylesheet'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:201:in `each'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/plugin.rb:81:in `update_stylesheets'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/exec.rb:443:in `watch_or_update'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/exec.rb:326:in `process_result'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/exec.rb:41:in `parse'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/lib/sass/exec.rb:21:in `parse!'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/gems/sass-3.2.19/bin/sass:13:in `<top (required)>'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/bin/sass:23:in `load'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/bin/sass:23:in `<main>'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/bin/ruby_noexec_wrapper:14:in `eval'
+/Users/jbasdf/.rvm/gems/ruby-2.0.0-p247@oea/bin/ruby_noexec_wrapper:14:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: defines.\A               Load paths:\A                 /Users/jbasdf/projects/oea\A                 /Users/jbasdf/projects/oea/app/assets/stylesheets\A         on line 1 of app/assets/stylesheets/bare.css.scss\A \A 1: @import 'defines';\A 2: @import \"bootstrap\";\A 3: @import 'items';\A 4: @import \"draggables\";\A 5: \A 6: body{"; }

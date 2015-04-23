@@ -6,6 +6,10 @@ cd frontend && ember build
 
 cd ..
 
+RAILS_ENV=production rake assets:precompile
+rake copy_for_examples
+rake assets:clobber
+
 cp -r public/MathJax examples/javascripts
 cp frontend/dist/assets/oea.js examples/javascripts/oea.js
 cp frontend/dist/assets/vendor.js examples/javascripts/vendor.js
