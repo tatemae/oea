@@ -22,21 +22,6 @@ var MathJaxInit = {
     /* see http://www.mathjax.org/docs/1.1/options/tex2jax.html */
     config = 'MathJax.Hub.Config({tex2jax:{inlineMath:[[\'$\',\'$\'], ["\\(","\\)"]],displayMath:[[\'\\\\[\',\'\\\\]\'], ["\\[","\\]"]],processEscapes:true}});MathJax.Hub.Startup.onload();';
 
-
-
-// MathJax.Hub.Config({
-//     extensions: ["tex2jax.js"],
-//     jax: ["input/TeX", "output/HTML-CSS"],
-//     tex2jax: {
-//       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-//       displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-//       processEscapes: true
-//     },
-//     "HTML-CSS": { availableFonts: ["TeX"] }
-//   });
-
-
-
     if (window.opera) script.innerHTML = config; else script.text = config;
 
     doc.getElementsByTagName('head')[0].appendChild(script);

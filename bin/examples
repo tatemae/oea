@@ -6,6 +6,7 @@ cd frontend && ember build
 
 cd ..
 
+cp -r public/MathJax examples/javascripts
 cp frontend/dist/assets/oea.js examples/javascripts/oea.js
 cp frontend/dist/assets/vendor.js examples/javascripts/vendor.js
 
